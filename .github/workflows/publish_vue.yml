@@ -1,8 +1,11 @@
-name: Publish Static Site to GitHub Pages
+name: Publish Vue Site to GitHub Pages
 
 on:
   push:
     branches: [ "main" ]
+
+env:
+  VUEDIR: vue-project
 
 jobs:
   build:
@@ -12,22 +15,20 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
 
-    - name: Set up Python
-      uses: actions/setup-python@v3
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
       with:
-        python-version: "3.10"
+        node-version: 24
 
-    - name: Install dependencies
-      run: pip install requests
+    - name: Install Dependencies
+      run: cd ${{ env.VUEDIR }} && npm install
 
-    - name: Update forecast file
-      run: |
-        python ./scripts/update_forecast.py
-        cp -f ./data/weather.json ./data/forecast.json ./www/assets/data/
+    - name: Build Site
+      run: cd ${{ env.VUEDIR }} && npm run build
 
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v4
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./www
+        publish_dir: ${{ env.VUEDIR }}/dist
         force_orphan: true
