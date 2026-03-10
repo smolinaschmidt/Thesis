@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrie - Art Palette</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Intro Animation Overlay -->
+    <div id="introOverlay" class="intro-overlay">
+        <button id="skipIntro" class="skip-intro">SKIP INTRO</button>
+        <div class="intro-triptych" id="introTriptych"></div>
+    </div>
+
+    <header class="app-header">
+        <h1>Carrie: Color Palette Comparison</h1>
+        <p class="subtitle">1976 · 2002 · 2013</p>
+        <p id="loadingStatus"></p>
+    </header>
+
+    <main id="comparisonContainer" class="comparison-container"></main>
+
+    <section id="bubbleSection" class="bubble-section">
+        <h2 class="section-title">Color Predomination in Trailers</h2>
+        <p class="section-subtitle">Bubble size represents frequency of each color category across trailer frames</p>
+        <div id="bubbleCharts" class="bubble-charts"></div>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.0/color-thief.umd.js"></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
