@@ -1,0 +1,687 @@
+{
+  "generatedAt": "2026-04-23T04:07:25.204883+00:00",
+  "summary": {
+    "totalMovies": 643,
+    "uniqueGenres": 19
+  },
+  "distribution": [
+    {
+      "genre": "Drama",
+      "movieCount": 248
+    },
+    {
+      "genre": "Comedy",
+      "movieCount": 223
+    },
+    {
+      "genre": "Thriller",
+      "movieCount": 186
+    },
+    {
+      "genre": "Romance",
+      "movieCount": 137
+    },
+    {
+      "genre": "Horror",
+      "movieCount": 136
+    },
+    {
+      "genre": "Crime",
+      "movieCount": 120
+    },
+    {
+      "genre": "Action",
+      "movieCount": 120
+    },
+    {
+      "genre": "Family",
+      "movieCount": 88
+    },
+    {
+      "genre": "Fantasy",
+      "movieCount": 69
+    },
+    {
+      "genre": "Mystery",
+      "movieCount": 67
+    },
+    {
+      "genre": "Adventure",
+      "movieCount": 64
+    },
+    {
+      "genre": "Science Fiction",
+      "movieCount": 61
+    },
+    {
+      "genre": "TV Movie",
+      "movieCount": 36
+    },
+    {
+      "genre": "Animation",
+      "movieCount": 31
+    },
+    {
+      "genre": "Music",
+      "movieCount": 18
+    },
+    {
+      "genre": "Western",
+      "movieCount": 7
+    },
+    {
+      "genre": "Documentary",
+      "movieCount": 7
+    },
+    {
+      "genre": "War",
+      "movieCount": 5
+    },
+    {
+      "genre": "History",
+      "movieCount": 4
+    }
+  ],
+  "byDecade": [
+    {
+      "decade": 1930,
+      "genreMentions": 6,
+      "distribution": [
+        {
+          "genre": "Romance",
+          "movieCount": 2
+        },
+        {
+          "genre": "Drama",
+          "movieCount": 2
+        },
+        {
+          "genre": "Comedy",
+          "movieCount": 1
+        },
+        {
+          "genre": "Fantasy",
+          "movieCount": 1
+        }
+      ]
+    },
+    {
+      "decade": 1940,
+      "genreMentions": 8,
+      "distribution": [
+        {
+          "genre": "Comedy",
+          "movieCount": 3
+        },
+        {
+          "genre": "Romance",
+          "movieCount": 2
+        },
+        {
+          "genre": "Drama",
+          "movieCount": 2
+        },
+        {
+          "genre": "Fantasy",
+          "movieCount": 1
+        }
+      ]
+    },
+    {
+      "decade": 1950,
+      "genreMentions": 18,
+      "distribution": [
+        {
+          "genre": "Drama",
+          "movieCount": 4
+        },
+        {
+          "genre": "Crime",
+          "movieCount": 3
+        },
+        {
+          "genre": "Thriller",
+          "movieCount": 2
+        },
+        {
+          "genre": "Comedy",
+          "movieCount": 2
+        },
+        {
+          "genre": "Music",
+          "movieCount": 1
+        },
+        {
+          "genre": "Romance",
+          "movieCount": 1
+        },
+        {
+          "genre": "Mystery",
+          "movieCount": 1
+        },
+        {
+          "genre": "Science Fiction",
+          "movieCount": 1
+        },
+        {
+          "genre": "Horror",
+          "movieCount": 1
+        },
+        {
+          "genre": "History",
+          "movieCount": 1
+        },
+        {
+          "genre": "Adventure",
+          "movieCount": 1
+        }
+      ]
+    },
+    {
+      "decade": 1960,
+      "genreMentions": 146,
+      "distribution": [
+        {
+          "genre": "Comedy",
+          "movieCount": 24
+        },
+        {
+          "genre": "Drama",
+          "movieCount": 23
+        },
+        {
+          "genre": "Romance",
+          "movieCount": 17
+        },
+        {
+          "genre": "Thriller",
+          "movieCount": 15
+        },
+        {
+          "genre": "Crime",
+          "movieCount": 14
+        },
+        {
+          "genre": "Horror",
+          "movieCount": 10
+        },
+        {
+          "genre": "Family",
+          "movieCount": 9
+        },
+        {
+          "genre": "Adventure",
+          "movieCount": 7
+        },
+        {
+          "genre": "Science Fiction",
+          "movieCount": 7
+        },
+        {
+          "genre": "Action",
+          "movieCount": 4
+        },
+        {
+          "genre": "Fantasy",
+          "movieCount": 4
+        },
+        {
+          "genre": "Mystery",
+          "movieCount": 4
+        },
+        {
+          "genre": "Western",
+          "movieCount": 3
+        },
+        {
+          "genre": "Animation",
+          "movieCount": 2
+        },
+        {
+          "genre": "War",
+          "movieCount": 1
+        },
+        {
+          "genre": "History",
+          "movieCount": 1
+        },
+        {
+          "genre": "Music",
+          "movieCount": 1
+        }
+      ]
+    },
+    {
+      "decade": 1970,
+      "genreMentions": 199,
+      "distribution": [
+        {
+          "genre": "Comedy",
+          "movieCount": 31
+        },
+        {
+          "genre": "Drama",
+          "movieCount": 30
+        },
+        {
+          "genre": "Horror",
+          "movieCount": 24
+        },
+        {
+          "genre": "Crime",
+          "movieCount": 21
+        },
+        {
+          "genre": "Thriller",
+          "movieCount": 21
+        },
+        {
+          "genre": "Action",
+          "movieCount": 16
+        },
+        {
+          "genre": "Romance",
+          "movieCount": 13
+        },
+        {
+          "genre": "Science Fiction",
+          "movieCount": 8
+        },
+        {
+          "genre": "Fantasy",
+          "movieCount": 7
+        },
+        {
+          "genre": "Mystery",
+          "movieCount": 7
+        },
+        {
+          "genre": "Family",
+          "movieCount": 7
+        },
+        {
+          "genre": "TV Movie",
+          "movieCount": 6
+        },
+        {
+          "genre": "Adventure",
+          "movieCount": 4
+        },
+        {
+          "genre": "Animation",
+          "movieCount": 2
+        },
+        {
+          "genre": "Music",
+          "movieCount": 1
+        },
+        {
+          "genre": "Western",
+          "movieCount": 1
+        }
+      ]
+    },
+    {
+      "decade": 1980,
+      "genreMentions": 188,
+      "distribution": [
+        {
+          "genre": "Comedy",
+          "movieCount": 31
+        },
+        {
+          "genre": "Drama",
+          "movieCount": 25
+        },
+        {
+          "genre": "Horror",
+          "movieCount": 21
+        },
+        {
+          "genre": "Romance",
+          "movieCount": 17
+        },
+        {
+          "genre": "Thriller",
+          "movieCount": 15
+        },
+        {
+          "genre": "Action",
+          "movieCount": 12
+        },
+        {
+          "genre": "Fantasy",
+          "movieCount": 11
+        },
+        {
+          "genre": "Family",
+          "movieCount": 11
+        },
+        {
+          "genre": "Science Fiction",
+          "movieCount": 10
+        },
+        {
+          "genre": "Crime",
+          "movieCount": 10
+        },
+        {
+          "genre": "Adventure",
+          "movieCount": 7
+        },
+        {
+          "genre": "Animation",
+          "movieCount": 6
+        },
+        {
+          "genre": "TV Movie",
+          "movieCount": 4
+        },
+        {
+          "genre": "Mystery",
+          "movieCount": 4
+        },
+        {
+          "genre": "War",
+          "movieCount": 2
+        },
+        {
+          "genre": "Music",
+          "movieCount": 1
+        },
+        {
+          "genre": "Documentary",
+          "movieCount": 1
+        }
+      ]
+    },
+    {
+      "decade": 1990,
+      "genreMentions": 259,
+      "distribution": [
+        {
+          "genre": "Drama",
+          "movieCount": 37
+        },
+        {
+          "genre": "Comedy",
+          "movieCount": 36
+        },
+        {
+          "genre": "Thriller",
+          "movieCount": 32
+        },
+        {
+          "genre": "Romance",
+          "movieCount": 20
+        },
+        {
+          "genre": "Crime",
+          "movieCount": 19
+        },
+        {
+          "genre": "Family",
+          "movieCount": 19
+        },
+        {
+          "genre": "Action",
+          "movieCount": 19
+        },
+        {
+          "genre": "Horror",
+          "movieCount": 15
+        },
+        {
+          "genre": "Fantasy",
+          "movieCount": 13
+        },
+        {
+          "genre": "TV Movie",
+          "movieCount": 12
+        },
+        {
+          "genre": "Adventure",
+          "movieCount": 12
+        },
+        {
+          "genre": "Science Fiction",
+          "movieCount": 9
+        },
+        {
+          "genre": "Mystery",
+          "movieCount": 6
+        },
+        {
+          "genre": "Animation",
+          "movieCount": 6
+        },
+        {
+          "genre": "Music",
+          "movieCount": 3
+        },
+        {
+          "genre": "Western",
+          "movieCount": 1
+        }
+      ]
+    },
+    {
+      "decade": 2000,
+      "genreMentions": 452,
+      "distribution": [
+        {
+          "genre": "Drama",
+          "movieCount": 76
+        },
+        {
+          "genre": "Thriller",
+          "movieCount": 64
+        },
+        {
+          "genre": "Comedy",
+          "movieCount": 48
+        },
+        {
+          "genre": "Romance",
+          "movieCount": 44
+        },
+        {
+          "genre": "Horror",
+          "movieCount": 43
+        },
+        {
+          "genre": "Action",
+          "movieCount": 38
+        },
+        {
+          "genre": "Mystery",
+          "movieCount": 33
+        },
+        {
+          "genre": "Crime",
+          "movieCount": 29
+        },
+        {
+          "genre": "Family",
+          "movieCount": 16
+        },
+        {
+          "genre": "Science Fiction",
+          "movieCount": 16
+        },
+        {
+          "genre": "Adventure",
+          "movieCount": 11
+        },
+        {
+          "genre": "TV Movie",
+          "movieCount": 10
+        },
+        {
+          "genre": "Fantasy",
+          "movieCount": 10
+        },
+        {
+          "genre": "Animation",
+          "movieCount": 5
+        },
+        {
+          "genre": "Music",
+          "movieCount": 3
+        },
+        {
+          "genre": "Documentary",
+          "movieCount": 3
+        },
+        {
+          "genre": "War",
+          "movieCount": 2
+        },
+        {
+          "genre": "History",
+          "movieCount": 1
+        }
+      ]
+    },
+    {
+      "decade": 2010,
+      "genreMentions": 285,
+      "distribution": [
+        {
+          "genre": "Drama",
+          "movieCount": 40
+        },
+        {
+          "genre": "Comedy",
+          "movieCount": 39
+        },
+        {
+          "genre": "Thriller",
+          "movieCount": 32
+        },
+        {
+          "genre": "Action",
+          "movieCount": 26
+        },
+        {
+          "genre": "Crime",
+          "movieCount": 20
+        },
+        {
+          "genre": "Family",
+          "movieCount": 19
+        },
+        {
+          "genre": "Horror",
+          "movieCount": 19
+        },
+        {
+          "genre": "Adventure",
+          "movieCount": 16
+        },
+        {
+          "genre": "Fantasy",
+          "movieCount": 16
+        },
+        {
+          "genre": "Romance",
+          "movieCount": 15
+        },
+        {
+          "genre": "Mystery",
+          "movieCount": 12
+        },
+        {
+          "genre": "Science Fiction",
+          "movieCount": 8
+        },
+        {
+          "genre": "Music",
+          "movieCount": 7
+        },
+        {
+          "genre": "Animation",
+          "movieCount": 7
+        },
+        {
+          "genre": "TV Movie",
+          "movieCount": 4
+        },
+        {
+          "genre": "Western",
+          "movieCount": 2
+        },
+        {
+          "genre": "Documentary",
+          "movieCount": 2
+        },
+        {
+          "genre": "History",
+          "movieCount": 1
+        }
+      ]
+    },
+    {
+      "decade": 2020,
+      "genreMentions": 66,
+      "distribution": [
+        {
+          "genre": "Drama",
+          "movieCount": 9
+        },
+        {
+          "genre": "Comedy",
+          "movieCount": 8
+        },
+        {
+          "genre": "Family",
+          "movieCount": 7
+        },
+        {
+          "genre": "Romance",
+          "movieCount": 6
+        },
+        {
+          "genre": "Adventure",
+          "movieCount": 6
+        },
+        {
+          "genre": "Fantasy",
+          "movieCount": 6
+        },
+        {
+          "genre": "Action",
+          "movieCount": 5
+        },
+        {
+          "genre": "Thriller",
+          "movieCount": 5
+        },
+        {
+          "genre": "Crime",
+          "movieCount": 4
+        },
+        {
+          "genre": "Animation",
+          "movieCount": 3
+        },
+        {
+          "genre": "Horror",
+          "movieCount": 3
+        },
+        {
+          "genre": "Science Fiction",
+          "movieCount": 2
+        },
+        {
+          "genre": "Music",
+          "movieCount": 1
+        },
+        {
+          "genre": "Documentary",
+          "movieCount": 1
+        }
+      ]
+    }
+  ]
+}

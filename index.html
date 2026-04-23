@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Remaking Color</title>
+    <meta
+      name="description"
+      content="A visual essay on how color palettes and emotional tone change across film remakes."
+    />
+    <link rel="icon" href="data:," />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div id="search-dock" class="search-dock">
+      <input
+        id="search"
+        list="film-list"
+        placeholder="Search a film…"
+        aria-label="Search a film"
+        autocomplete="off"
+      />
+      <datalist id="film-list"></datalist>
+    </div>
+
+    <article id="essay" class="essay"></article>
+
+    <footer class="colophon">
+      <p class="small">Remaking Color — a visual essay · 2026</p>
+      <p class="small">
+        Data: TMDB · Color extraction via K-means · Sentiment via RoBERTa
+      </p>
+    </footer>
+
+    <div id="tooltip" class="tooltip"></div>
+
+    <script type="module" src="./js/main.js"></script>
+  </body>
+</html>
