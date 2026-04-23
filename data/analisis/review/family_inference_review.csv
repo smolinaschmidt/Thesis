@@ -1,0 +1,302 @@
+family_id,movie_count,titles,years,needs_review
+FAM0001,2,Boudu | Boudu Saved from Drowning,"1932, 2005",yes
+FAM0002,2,Death Takes a Holiday | Meet Joe Black,"1934, 1998",yes
+FAM0003,4,A Star Is Born,"1937, 1954, 1976, 2018",no
+FAM0004,3,"Move Over, Darling | My Favorite Wife | Something's Got to Give","1940, 1962, 1963",yes
+FAM0005,2,A Walk in the Clouds | Four Steps in the Clouds,"1942, 1995",yes
+FAM0006,2,Heaven Can Wait,"1943, 1978",no
+FAM0007,2,A Perfect Murder | Dial M for Murder,"1954, 1998",yes
+FAM0008,2,Rear Window,"1954, 1998",no
+FAM0009,2,The Ladykillers,"1955, 2004",no
+FAM0010,2,Big Deal on Madonna Street | Welcome to Collinwood,"1958, 2002",yes
+FAM0011,2,The Fly,"1958, 1986",no
+FAM0012,2,Ben Hur | Ben-Hur,"1959, 2003",no
+FAM0013,3,Battle Beyond the Stars | The Magnificent Seven,"1960, 1980, 2016",yes
+FAM0014,2,Breathless,"1960, 1983",no
+FAM0015,2,Little Shop of Horrors | The Little Shop of Horrors,"1960, 1986",no
+FAM0016,2,Midnight Lace,"1960, 1981",no
+FAM0017,2,Ocean's 11 | Ocean's Eleven,"1960, 2001",yes
+FAM0018,2,Psycho,"1960, 1998",no
+FAM0019,2,Purple Noon | The Talented Mr. Ripley,"1960, 1999",yes
+FAM0020,2,School for Scoundrels,"1960, 2006",no
+FAM0021,2,The Time Machine,"1960, 2002",no
+FAM0022,2,Village of the Damned,"1960, 1995",no
+FAM0023,2,Where the Boys Are | Where the Boys Are '84,"1960, 1984",no
+FAM0024,2,101 Dalmatians | One Hundred and One Dalmatians,"1961, 1996",yes
+FAM0025,2,Flubber | The Absent-Minded Professor,"1961, 1997",yes
+FAM0026,4,A Million to Juan | Brewster's Millions | Maalamaal | Three on a Spree,"1961, 1985, 1988, 1994",yes
+FAM0027,2,Escape to Victory | Two Half Times in Hell,"1961, 1981",yes
+FAM0028,3,A Fistful of Dollars | Last Man Standing | Yojimbo,"1961, 1964, 1996",yes
+FAM0029,2,The Parent Trap,"1961, 1998",no
+FAM0030,2,The Roman Spring of Mrs. Stone,"1961, 2003",no
+FAM0031,2,Splendor in the Grass,"1961, 1981",no
+FAM0032,2,West Side Story,"1961, 2021",no
+FAM0033,2,Cape Fear,"1962, 1991",no
+FAM0034,2,Carnival of Souls,"1962, 1998",no
+FAM0035,2,Hara-Kiri: Death of a Samurai | Harakiri,"1962, 2011",yes
+FAM0036,2,The Manchurian Candidate,"1962, 2004",no
+FAM0037,2,The Music Man,"1962, 2003",no
+FAM0038,2,What Ever Happened to Baby Jane? | What Ever Happened to...,"1962, 1991",yes
+FAM0039,2,Charade | The Truth About Charlie,"1963, 2002",yes
+FAM0040,2,Flipper,"1963, 1996",no
+FAM0041,2,The Haunting,"1963, 1999",no
+FAM0042,2,Homeward Bound: The Incredible Journey | The Incredible Journey,"1963, 1993",yes
+FAM0043,2,The Nutty Professor,"1963, 1996",no
+FAM0044,2,2001 Maniacs | Two Thousand Maniacs!,"1964, 2005",yes
+FAM0045,3,Bedtime Story | Dirty Rotten Scoundrels | The Hustle,"1964, 1988, 2019",yes
+FAM0046,2,Castle of Blood | Web of the Spider,"1964, 1971",yes
+FAM0047,2,Flight of the Phoenix | The Flight of the Phoenix,"1965, 2004",no
+FAM0048,2,I Saw What You Did,"1965, 1988",no
+FAM0049,2,That Darn Cat | That Darn Cat!,"1965, 1997",no
+FAM0050,2,Alfie,"1966, 2004",no
+FAM0051,2,Fahrenheit 451,"1966, 2018",no
+FAM0052,2,Gambit,"1966, 2012",no
+FAM0053,2,Le Deuxième Souffle | The Second Wind,"1966, 2007",yes
+FAM0054,2,Bedazzled,"1967, 2000",no
+FAM0055,2,Guess Who | Guess Who's Coming to Dinner,"1967, 2005",yes
+FAM0056,2,The Jungle Book,"1967, 2016",no
+FAM0057,2,Oscar,"1967, 1991",no
+FAM0058,2,Point Blank | The Outfit,"1967, 1973",yes
+FAM0059,2,The Plank,"1967, 1979",no
+FAM0060,3,Night of the Living Dead | Night of the Living Dead 3D,"1968, 1990, 2006",no
+FAM0061,2,Planet of the Apes,"1968, 2001",no
+FAM0062,2,Sweet November,"1968, 2001",no
+FAM0063,2,The Thomas Crown Affair,"1968, 1999",no
+FAM0064,2,"Yours, Mine & Ours | Yours, Mine and Ours","1968, 2005",no
+FAM0065,2,The Computer Wore Tennis Shoes,"1969, 1995",no
+FAM0066,4,Hawas | Murder | The Unfaithful Wife | Unfaithful,"1969, 2002, 2004",yes
+FAM0067,2,The Italian Job,"1969, 2003",no
+FAM0068,2,Mississippi Mermaid | Original Sin,"1969, 2001",yes
+FAM0069,2,True Grit,"1969, 2010",no
+FAM0070,2,And Soon the Darkness,"1970, 2010",no
+FAM0071,2,Intersection | The Things of Life,"1970, 1994",yes
+FAM0072,2,The Out-of-Towners,"1970, 1999",no
+FAM0073,2,A Storm in Summer,"1970, 2000",no
+FAM0074,2,The Wizard of Gore,"1970, 2007",no
+FAM0075,2,The Barefoot Executive,"1971, 1995",no
+FAM0076,2,Brian's Song,"1971, 2001",no
+FAM0077,2,Charlie and the Chocolate Factory | Willy Wonka & the Chocolate Factory,"1971, 2005",yes
+FAM0078,3,Get Carter | Payback,"1971, 1999, 2000",yes
+FAM0079,2,Straw Dogs,"1971, 2011",no
+FAM0080,2,Vanishing Point,"1971, 1997",no
+FAM0081,2,The Heartbreak Kid,"1972, 2007",no
+FAM0082,2,The Last House on the Left,"1972, 2009",no
+FAM0083,2,The Man with One Red Shoe | The Tall Blond Man with One Black Shoe,"1972, 1985",yes
+FAM0084,2,The Mechanic,"1972, 2011",no
+FAM0085,3,Poseidon | The Poseidon Adventure,"1972, 2005, 2006",yes
+FAM0086,2,Buddy Buddy | L'emmerdeur,"1973, 1981",yes
+FAM0087,2,Charlotte's Web,"1973, 2006",no
+FAM0088,2,The Crazies,"1973, 2010",no
+FAM0089,2,The Day of the Jackal | The Jackal,"1973, 1997",yes
+FAM0090,2,Happy New Year | La bonne année,"1973, 1987",yes
+FAM0091,2,Outrage,"1973, 1998",no
+FAM0092,2,Papillon,"1973, 2017",no
+FAM0093,2,Satan's School for Girls,"1973, 2000",no
+FAM0094,2,Sisters,"1973, 2006",no
+FAM0095,2,Walking Tall,"1973, 2004",no
+FAM0096,2,The Wicker Man,"1973, 2006",no
+FAM0097,2,The Arena,"1974, 2001",no
+FAM0098,3,Black Christmas,"1974, 2006, 2019",no
+FAM0099,2,Blazing Saddles | Paws of Fury: The Legend of Hank,"1974, 2022",yes
+FAM0100,2,Death Wish,"1974, 2018",no
+FAM0101,2,The Gambler,"1974, 2014",no
+FAM0102,2,Gone in 60 Seconds,"1974, 2000",no
+FAM0103,3,The Great Gatsby,"1974, 2000, 2013",no
+FAM0104,2,It's Alive,"1974, 2009",no
+FAM0105,3,Mean Machine | The Longest Yard,"1974, 2001, 2005",yes
+FAM0106,2,Profumo di donna | Scent of a Woman,"1974, 1992",yes
+FAM0107,2,Swept Away,"1974, 2002",no
+FAM0108,2,The Taking of Pelham One Two Three,"1974, 1998",no
+FAM0109,2,The Texas Chain Saw Massacre | The Texas Chainsaw Massacre,"1974, 2003",no
+FAM0110,2,Aag | Sholay,"1975, 2007",yes
+FAM0111,2,Cousin Cousine | Cousins,"1975, 1989",yes
+FAM0112,2,Death Race | Death Race 2000,"1975, 2008",yes
+FAM0113,2,Escape to Witch Mountain,"1975, 1995",no
+FAM0114,2,The Rocky Horror Picture Show | The Rocky Horror Picture Show: Let's Do the Time Warp Again,"1975, 2016",yes
+FAM0115,2,Rollerball,"1975, 2002",no
+FAM0116,2,Assault on Precinct 13,"1976, 2005",no
+FAM0117,2,Bad News Bears | The Bad News Bears,"1976, 2005",no
+FAM0118,3,Carrie,"1976, 2002, 2013",no
+FAM0119,2,Dona Flor and Her Two Husbands | Kiss Me Goodbye,"1976, 1982",yes
+FAM0120,4,Freaky Friday,"1976, 1995, 2003, 2018",no
+FAM0121,2,Griffin & Phoenix | Griffin and Phoenix,"1976, 2006",no
+FAM0122,2,Le Jouet | The Toy,"1976, 1982",yes
+FAM0123,2,The Omen,"1976, 2006",no
+FAM0124,2,Pardon Mon Affaire | The Woman in Red,"1976, 1984",yes
+FAM0125,2,Death Game | Knock Knock,"1977, 2015",yes
+FAM0126,2,Fun with Dick and Jane,"1977, 2005",no
+FAM0127,2,The Goodbye Girl,"1977, 2004",no
+FAM0128,2,The Hills Have Eyes,"1977, 2006",no
+FAM0129,2,The Man Who Loved Women,"1977, 1983",no
+FAM0130,2,Pete's Dragon,"1977, 2016",no
+FAM0131,2,Suspiria,"1977, 2018",no
+FAM0132,2,Fingers | The Beat That My Heart Skipped,"1978, 2005",yes
+FAM0133,2,La Cage aux Folles | The Birdcage,"1978, 1996",yes
+FAM0134,2,Dawn of the Dead,"1978, 2004",no
+FAM0135,3,Don | Yugandhar,"1978, 1979, 2006",yes
+FAM0136,2,Halloween,"1978, 2007",no
+FAM0137,2,I Spit on Your Grave,"1978, 2010",no
+FAM0138,2,Ice Castles,"1978, 2010",no
+FAM0139,2,The Initiation of Sarah,"1978, 2006",no
+FAM0140,3,Piranha | Piranha 3D,"1978, 1995, 2010",yes
+FAM0141,2,The Toolbox Murders | Toolbox Murders,"1978, 2004",no
+FAM0142,2,The Amityville Horror,"1979, 2005",no
+FAM0143,2,Going in Style,"1979, 2017",no
+FAM0144,2,The In-Laws,"1979, 2003",no
+FAM0145,2,Jeene Nahi Doonga | Maula Jatt,"1979, 1984",yes
+FAM0146,2,When a Stranger Calls,"1979, 2006",no
+FAM0147,2,Anthropophagous 2000 | Antropophagus,"1980, 1999",yes
+FAM0148,3,Billa,"1980, 2007, 2009",no
+FAM0149,2,Diversion | Fatal Attraction,"1980, 1987",yes
+FAM0150,2,Doraemon: Nobita's Dinosaur | Doraemon: Nobita's Dinosaur 2006,"1980, 2006",no
+FAM0151,2,Fame,"1980, 2009",no
+FAM0152,2,The Fog,"1980, 2005",no
+FAM0153,2,Gloria,"1980, 1999",no
+FAM0154,2,Humanoids from the Deep,"1980, 1996",no
+FAM0155,2,Mother's Day,"1980, 2010",no
+FAM0156,2,Prom Night,"1980, 2008",no
+FAM0157,2,Resurrection,"1980, 1999",no
+FAM0158,2,Arthur,"1981, 2011",no
+FAM0159,2,Clash of the Titans,"1981, 2010",no
+FAM0160,2,Evil Dead | The Evil Dead,"1981, 2013",no
+FAM0161,2,Garde à Vue | Under Suspicion,"1981, 2000",yes
+FAM0162,2,My Bloody Valentine | My Bloody Valentine 3D,"1981, 2009",no
+FAM0163,3,Annie,"1982, 1999, 2014",no
+FAM0164,2,Arth | Arth - The Destination,"1982, 2017",yes
+FAM0165,2,Doraemon: New Nobita's Great Demon—Peko and the Exploration Party of Five | Doraemon: Nobita and the Haunts of Evil,"1982, 2014",yes
+FAM0166,2,Le Père Noël est une ordure | Mixed Nuts,"1982, 1994",yes
+FAM0167,2,Poltergeist,"1982, 2015",no
+FAM0168,2,Down | The Lift,"1983, 2001",yes
+FAM0169,2,Fathers' Day | Les Compères,"1983, 1997",yes
+FAM0170,2,Naukar Biwi Ka | Naukar Vahuti Da,"1983, 2019",yes
+FAM0171,2,Valley Girl,"1983, 2020",no
+FAM0172,2,Doraemon: Nobita's Great Adventure into the Underworld | Doraemon: Nobita's New Great Adventure into the Underworld,"1984, 2007",no
+FAM0173,2,Footloose,"1984, 2011",no
+FAM0174,2,Frankenweenie,"1984, 2012",no
+FAM0175,2,The Karate Kid,"1984, 2010",no
+FAM0176,2,A Nightmare on Elm Street,"1984, 2010",no
+FAM0177,2,Red Dawn,"1984, 2012",no
+FAM0178,4,Babai Abbai | Mann | Nee Bareda Kadambari | Pyar Jhukta Nahin,"1985, 1999",yes
+FAM0179,3,Day of the Dead | Day of the Dead: Bloodline,"1985, 2008, 2017",yes
+FAM0180,2,Doraemon: Nobita's Little Star Wars | Doraemon: Nobita's Little Star Wars 2021,"1985, 2022",no
+FAM0181,2,Fright Night,"1985, 2011",no
+FAM0182,2,April Fool's Day,"1986, 2008",no
+FAM0183,2,Doraemon: Nobita and the New Steel Troops—Winged Angels | Doraemon: Nobita and the Steel Troops,"1986, 2011",yes
+FAM0184,4,Heat | L.A. Takedown | Wild Card,"1986, 1989, 1995, 2015",yes
+FAM0185,2,The Hitcher,"1986, 2007",no
+FAM0186,2,Les Fugitifs | Three Fugitives,"1986, 1989",yes
+FAM0187,2,Adventures in Babysitting,"1987, 2016",no
+FAM0188,2,Can’t Buy Me Love | Love Don't Cost a Thing,"1987, 2003",yes
+FAM0189,2,City of Angels | Wings of Desire,"1987, 1998",yes
+FAM0190,2,Paradise | The Grand Highway,"1987, 1991",yes
+FAM0191,2,Overboard,"1987, 2018",no
+FAM0192,2,RoboCop,"1987, 2014",no
+FAM0193,2,The Stepfather,"1987, 2009",no
+FAM0194,2,Child's Play,"1988, 2019",no
+FAM0195,2,Night of the Demons,"1988, 2009",no
+FAM0196,2,Shame,"1988, 1992",no
+FAM0197,2,The Vanishing,"1988, 1993",no
+FAM0198,2,The Firm,"1989, 2009",no
+FAM0199,2,The Little Mermaid,"1989, 2023",no
+FAM0200,2,Prancer | Prancer: A Christmas Tale,"1989, 2022",yes
+FAM0201,2,Shiva,"1989, 1990",no
+FAM0202,2,Agneepath,"1990, 2012",no
+FAM0203,3,Black Cat | La Femme Nikita | Point of No Return,"1990, 1991, 1993",yes
+FAM0204,2,Flatliners,"1990, 2017",no
+FAM0205,2,Total Recall,"1990, 2012",no
+FAM0206,2,Beauty and the Beast,"1991, 2017",no
+FAM0207,2,La Totale! | True Lies,"1991, 1994",yes
+FAM0208,2,My Father the Hero,"1991, 1994",no
+FAM0209,2,Point Break,"1991, 2015",no
+FAM0210,2,Aladdin,"1992, 2019",no
+FAM0211,2,White Men Can't Jump,"1992, 2023",no
+FAM0212,2,Head Above Water | Hodet over vannet,"1993, 1996",yes
+FAM0213,2,Just Visiting | Les Visiteurs,"1993, 2001",yes
+FAM0214,2,Eat Drink Man Woman | Tortilla Soup,"1994, 2001",yes
+FAM0215,2,"EDtv | Louis 19, King of the Airwaves","1994, 1999",yes
+FAM0216,2,Forrest Gump | Laal Singh Chaddha,"1994, 2022",yes
+FAM0217,2,Jungle 2 Jungle | Un indien dans la ville,"1994, 1997",yes
+FAM0218,2,The Lion King,"1994, 2019",no
+FAM0219,2,Neuf mois | Nine Months,"1994, 1995",yes
+FAM0220,2,Nightwatch,"1994, 1997",no
+FAM0221,2,Arunachalam | Baasha,"1995, 1997",yes
+FAM0222,2,Dredd | Judge Dredd,"1995, 2012",yes
+FAM0223,2,The Apartment | Wicker Park,"1996, 2004",yes
+FAM0224,2,Don't Look Up | Ghost Theater,"1996, 2015",yes
+FAM0225,2,Shall We Dance?,"1996, 2004",no
+FAM0226,2,Insomnia,"1997, 2002",no
+FAM0227,2,My Father's Dragon,"1997, 2022",no
+FAM0228,2,Open Your Eyes | Vanilla Sky,"1997, 2001",yes
+FAM0229,2,Cats,"1998, 2019",no
+FAM0230,2,Mulan,"1998, 2020",no
+FAM0231,2,Pokémon the Movie: Mewtwo Strikes Back - Evolution | Pokémon: The First Movie,"1998, 2019",yes
+FAM0232,2,Ringu | The Ring,"1998, 2002",no
+FAM0233,2,Stepmom | We Are Family,"1998, 2010",yes
+FAM0234,2,Taxi,"1998, 2004",no
+FAM0235,2,Himitsu | The Secret,"1999, 2007",yes
+FAM0236,2,Sethu | Tere Naam,"1999, 2003",yes
+FAM0237,2,Criminal | Nueve Reinas,"2000, 2004",yes
+FAM0238,3,Il Mare | Siworae | The Lake House,"2000, 2006",yes
+FAM0239,3,What Men Want | What Women Want,"2000, 2011, 2019",no
+FAM0240,2,Das Experiment | The Experiment,"2001, 2010",yes
+FAM0241,2,Hot Money | Mad Money,"2001, 2008",yes
+FAM0242,2,I Am Sam | Main Aisa Hi Hoon,"2001, 2005",yes
+FAM0243,2,The Last Kiss,"2001, 2006",no
+FAM0244,2,Mostly Martha | No Reservations,"2001, 2007",yes
+FAM0245,2,Pulse,"2001, 2006",no
+FAM0246,2,Dark Water,"2002, 2005",no
+FAM0247,2,Infernal Affairs | The Departed,"2002, 2006",yes
+FAM0248,3,Naina | The Eye,"2002, 2005, 2008",yes
+FAM0249,2,Hello Mr. Billionaire | Mr. Deeds,"2002, 2018",yes
+FAM0250,2,Lilo & Stitch,"2002, 2025",no
+FAM0251,2,Run,"2002, 2004",no
+FAM0252,2,Chloe | Nathalie...,"2003, 2009",yes
+FAM0253,2,Elf | Elf: Buddy's Musical Christmas,"2003, 2014",yes
+FAM0254,2,Gharshana | Kaakha Kaakha,"2003, 2004",yes
+FAM0255,2,Interview,"2003, 2007",no
+FAM0256,2,Midsommer | Solstice,"2003, 2008",yes
+FAM0257,2,Oldboy,"2003, 2013",no
+FAM0258,2,The Room | The Room Returns!,"2003, 2025",yes
+FAM0259,2,Autograph | Naa Autograph,2004,yes
+FAM0260,2,Brothers | Brødre,"2004, 2009",yes
+FAM0261,2,Brick Mansions | District 13,"2004, 2014",yes
+FAM0262,2,Sigaw | The Echo,"2004, 2008",yes
+FAM0263,2,Le Convoyeur | Wrath of Man,"2004, 2021",yes
+FAM0264,2,Sideways,"2004, 2009",no
+FAM0265,2,Annavaram | Thirupaachi,"2005, 2006",yes
+FAM0266,2,Anthony Zimmer | The Tourist,"2005, 2010",yes
+FAM0267,2,Ghajini,"2005, 2008",no
+FAM0268,3,Chinthamani Kolacase | Ellam Avan Seyal | Sri Mahalakshmi,"2006, 2007, 2008",yes
+FAM0269,2,Classmates,"2006, 2007",no
+FAM0270,2,Jai Ho | Stalin,"2006, 2014",yes
+FAM0271,2,Rowdy Rathore | Vikramarkudu,"2006, 2012",yes
+FAM0272,2,Death at a Funeral,"2007, 2010",no
+FAM0273,2,The Debt,"2007, 2010",no
+FAM0274,2,Quarantine | REC,"2007, 2008",yes
+FAM0275,2,Anything for Her | The Next Three Days,"2008, 2010",yes
+FAM0276,3,Loft | The Loft,"2008, 2010, 2014",no
+FAM0277,2,Martyrs,"2008, 2015",no
+FAM0278,2,Ready,"2008, 2011",no
+FAM0279,2,Scandal Maker | Scandal Makers,"2008, 2016",no
+FAM0280,3,3 Idiotas | 3 Idiots | Nanban,"2009, 2012, 2017",yes
+FAM0281,2,All the Best | Gulumaal: The Escape,"2009, 2012",yes
+FAM0282,2,Bride Wars,"2009, 2015",no
+FAM0283,2,The Girl with the Dragon Tattoo,"2009, 2011",no
+FAM0284,5,Hudugaru | Ithu Nammude Katha | Naadodigal | Rangrezz | Shambo Shiva Shambo,"2009, 2010, 2011, 2013",yes
+FAM0285,2,Kick,"2009, 2014",no
+FAM0286,2,Secret in Their Eyes | The Secret in Their Eyes,"2009, 2015",no
+FAM0287,2,How to Train Your Dragon,"2010, 2025",no
+FAM0288,2,Blind | The Witness,"2011, 2015",yes
+FAM0289,2,The Intouchables | The Upside,"2011, 2019",yes
+FAM0290,2,The Body,"2012, 2019",no
+FAM0291,3,Gopala Gopala | Mukunda Murari | OMG – Oh My God!,"2012, 2015, 2016",yes
+FAM0292,3,20 Once Again | Miss Granny | Sweet 20,"2014, 2015",yes
+FAM0293,2,Chef,"2014, 2017",no
+FAM0294,2,Kisi Ka Bhai Kisi Ki Jaan | Veeram,"2014, 2023",yes
+FAM0295,2,Last Shift | Malum,"2014, 2023",yes
+FAM0296,2,A Man Called Otto | A Man Called Ove,"2015, 2022",yes
+FAM0297,2,Baby John | Theri,"2016, 2024",yes
+FAM0298,3,Nerkonda Paarvai | Pink | Vakeel Saab,"2016, 2019, 2021",yes
+FAM0299,2,The Guilty,"2018, 2021",no
+FAM0300,2,Jersey,"2019, 2022",no
+FAM0301,2,Shaitaan | Vash,"2023, 2024",yes

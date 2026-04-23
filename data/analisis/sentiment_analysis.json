@@ -1,0 +1,235 @@
+{
+  "generatedAt": "2026-04-23T04:07:25.204883+00:00",
+  "summary": {
+    "totalMovies": 643,
+    "moviesWithSentiment": 642,
+    "translatedToEnglish": 183,
+    "missingSentiment": 1
+  },
+  "distribution": [
+    {
+      "label": "neutral",
+      "movieCount": 337,
+      "percentage": 52.49
+    },
+    {
+      "label": "negative",
+      "movieCount": 251,
+      "percentage": 39.1
+    },
+    {
+      "label": "positive",
+      "movieCount": 53,
+      "percentage": 8.26
+    },
+    {
+      "label": "no_overview",
+      "movieCount": 1,
+      "percentage": 0.16
+    }
+  ],
+  "byDecade": [
+    {
+      "decade": 1930,
+      "movieCount": 3,
+      "distribution": [
+        {
+          "label": "neutral",
+          "movieCount": 2,
+          "percentage": 66.67
+        },
+        {
+          "label": "positive",
+          "movieCount": 1,
+          "percentage": 33.33
+        }
+      ]
+    },
+    {
+      "decade": 1940,
+      "movieCount": 3,
+      "distribution": [
+        {
+          "label": "neutral",
+          "movieCount": 2,
+          "percentage": 66.67
+        },
+        {
+          "label": "negative",
+          "movieCount": 1,
+          "percentage": 33.33
+        }
+      ]
+    },
+    {
+      "decade": 1950,
+      "movieCount": 7,
+      "distribution": [
+        {
+          "label": "neutral",
+          "movieCount": 4,
+          "percentage": 57.14
+        },
+        {
+          "label": "negative",
+          "movieCount": 3,
+          "percentage": 42.86
+        }
+      ]
+    },
+    {
+      "decade": 1960,
+      "movieCount": 60,
+      "distribution": [
+        {
+          "label": "neutral",
+          "movieCount": 31,
+          "percentage": 51.67
+        },
+        {
+          "label": "negative",
+          "movieCount": 25,
+          "percentage": 41.67
+        },
+        {
+          "label": "positive",
+          "movieCount": 4,
+          "percentage": 6.67
+        }
+      ]
+    },
+    {
+      "decade": 1970,
+      "movieCount": 83,
+      "distribution": [
+        {
+          "label": "negative",
+          "movieCount": 44,
+          "percentage": 53.01
+        },
+        {
+          "label": "neutral",
+          "movieCount": 32,
+          "percentage": 38.55
+        },
+        {
+          "label": "positive",
+          "movieCount": 7,
+          "percentage": 8.43
+        }
+      ]
+    },
+    {
+      "decade": 1980,
+      "movieCount": 81,
+      "distribution": [
+        {
+          "label": "neutral",
+          "movieCount": 52,
+          "percentage": 64.2
+        },
+        {
+          "label": "negative",
+          "movieCount": 23,
+          "percentage": 28.4
+        },
+        {
+          "label": "positive",
+          "movieCount": 6,
+          "percentage": 7.41
+        }
+      ]
+    },
+    {
+      "decade": 1990,
+      "movieCount": 96,
+      "distribution": [
+        {
+          "label": "neutral",
+          "movieCount": 49,
+          "percentage": 51.04
+        },
+        {
+          "label": "negative",
+          "movieCount": 34,
+          "percentage": 35.42
+        },
+        {
+          "label": "positive",
+          "movieCount": 13,
+          "percentage": 13.54
+        }
+      ]
+    },
+    {
+      "decade": 2000,
+      "movieCount": 173,
+      "distribution": [
+        {
+          "label": "neutral",
+          "movieCount": 97,
+          "percentage": 56.07
+        },
+        {
+          "label": "negative",
+          "movieCount": 66,
+          "percentage": 38.15
+        },
+        {
+          "label": "positive",
+          "movieCount": 10,
+          "percentage": 5.78
+        }
+      ]
+    },
+    {
+      "decade": 2010,
+      "movieCount": 113,
+      "distribution": [
+        {
+          "label": "neutral",
+          "movieCount": 52,
+          "percentage": 46.02
+        },
+        {
+          "label": "negative",
+          "movieCount": 50,
+          "percentage": 44.25
+        },
+        {
+          "label": "positive",
+          "movieCount": 10,
+          "percentage": 8.85
+        },
+        {
+          "label": "no_overview",
+          "movieCount": 1,
+          "percentage": 0.88
+        }
+      ]
+    },
+    {
+      "decade": 2020,
+      "movieCount": 23,
+      "distribution": [
+        {
+          "label": "neutral",
+          "movieCount": 16,
+          "percentage": 69.57
+        },
+        {
+          "label": "negative",
+          "movieCount": 5,
+          "percentage": 21.74
+        },
+        {
+          "label": "positive",
+          "movieCount": 2,
+          "percentage": 8.7
+        }
+      ]
+    }
+  ],
+  "sourceFile": "data/analisis/sentiment_features.json",
+  "notes": []
+}

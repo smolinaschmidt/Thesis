@@ -1,0 +1,1319 @@
+{
+  "generatedAt": "2026-04-23T04:07:25.204883+00:00",
+  "summary": {
+    "totalMovies": 643,
+    "sources": [
+      "color_analysis",
+      "genre_analysis",
+      "sentiment_analysis"
+    ]
+  },
+  "color": {
+    "generatedAt": "2026-04-23T04:07:25.204883+00:00",
+    "summary": {
+      "totalMovies": 643,
+      "colorGroupCount": 7
+    },
+    "distribution": [
+      {
+        "label": "Neutral",
+        "movieCount": 218,
+        "percentage": 33.9
+      },
+      {
+        "label": "Orange",
+        "movieCount": 164,
+        "percentage": 25.51
+      },
+      {
+        "label": "Red",
+        "movieCount": 118,
+        "percentage": 18.35
+      },
+      {
+        "label": "Blue",
+        "movieCount": 83,
+        "percentage": 12.91
+      },
+      {
+        "label": "Yellow",
+        "movieCount": 32,
+        "percentage": 4.98
+      },
+      {
+        "label": "Green",
+        "movieCount": 16,
+        "percentage": 2.49
+      },
+      {
+        "label": "Purple",
+        "movieCount": 12,
+        "percentage": 1.87
+      }
+    ],
+    "byDecade": [
+      {
+        "decade": 1930,
+        "movieCount": 3,
+        "distribution": [
+          {
+            "label": "Neutral",
+            "movieCount": 2,
+            "percentage": 66.67
+          },
+          {
+            "label": "Green",
+            "movieCount": 1,
+            "percentage": 33.33
+          }
+        ]
+      },
+      {
+        "decade": 1940,
+        "movieCount": 3,
+        "distribution": [
+          {
+            "label": "Neutral",
+            "movieCount": 1,
+            "percentage": 33.33
+          },
+          {
+            "label": "Purple",
+            "movieCount": 1,
+            "percentage": 33.33
+          },
+          {
+            "label": "Blue",
+            "movieCount": 1,
+            "percentage": 33.33
+          }
+        ]
+      },
+      {
+        "decade": 1950,
+        "movieCount": 7,
+        "distribution": [
+          {
+            "label": "Red",
+            "movieCount": 3,
+            "percentage": 42.86
+          },
+          {
+            "label": "Neutral",
+            "movieCount": 1,
+            "percentage": 14.29
+          },
+          {
+            "label": "Green",
+            "movieCount": 1,
+            "percentage": 14.29
+          },
+          {
+            "label": "Orange",
+            "movieCount": 1,
+            "percentage": 14.29
+          },
+          {
+            "label": "Yellow",
+            "movieCount": 1,
+            "percentage": 14.29
+          }
+        ]
+      },
+      {
+        "decade": 1960,
+        "movieCount": 60,
+        "distribution": [
+          {
+            "label": "Red",
+            "movieCount": 15,
+            "percentage": 25.0
+          },
+          {
+            "label": "Neutral",
+            "movieCount": 14,
+            "percentage": 23.33
+          },
+          {
+            "label": "Orange",
+            "movieCount": 13,
+            "percentage": 21.67
+          },
+          {
+            "label": "Yellow",
+            "movieCount": 9,
+            "percentage": 15.0
+          },
+          {
+            "label": "Blue",
+            "movieCount": 7,
+            "percentage": 11.67
+          },
+          {
+            "label": "Green",
+            "movieCount": 2,
+            "percentage": 3.33
+          }
+        ]
+      },
+      {
+        "decade": 1970,
+        "movieCount": 83,
+        "distribution": [
+          {
+            "label": "Neutral",
+            "movieCount": 27,
+            "percentage": 32.53
+          },
+          {
+            "label": "Orange",
+            "movieCount": 23,
+            "percentage": 27.71
+          },
+          {
+            "label": "Red",
+            "movieCount": 18,
+            "percentage": 21.69
+          },
+          {
+            "label": "Blue",
+            "movieCount": 8,
+            "percentage": 9.64
+          },
+          {
+            "label": "Yellow",
+            "movieCount": 4,
+            "percentage": 4.82
+          },
+          {
+            "label": "Green",
+            "movieCount": 2,
+            "percentage": 2.41
+          },
+          {
+            "label": "Purple",
+            "movieCount": 1,
+            "percentage": 1.2
+          }
+        ]
+      },
+      {
+        "decade": 1980,
+        "movieCount": 81,
+        "distribution": [
+          {
+            "label": "Neutral",
+            "movieCount": 28,
+            "percentage": 34.57
+          },
+          {
+            "label": "Red",
+            "movieCount": 18,
+            "percentage": 22.22
+          },
+          {
+            "label": "Orange",
+            "movieCount": 15,
+            "percentage": 18.52
+          },
+          {
+            "label": "Blue",
+            "movieCount": 14,
+            "percentage": 17.28
+          },
+          {
+            "label": "Green",
+            "movieCount": 3,
+            "percentage": 3.7
+          },
+          {
+            "label": "Purple",
+            "movieCount": 2,
+            "percentage": 2.47
+          },
+          {
+            "label": "Yellow",
+            "movieCount": 1,
+            "percentage": 1.23
+          }
+        ]
+      },
+      {
+        "decade": 1990,
+        "movieCount": 96,
+        "distribution": [
+          {
+            "label": "Neutral",
+            "movieCount": 27,
+            "percentage": 28.12
+          },
+          {
+            "label": "Red",
+            "movieCount": 24,
+            "percentage": 25.0
+          },
+          {
+            "label": "Orange",
+            "movieCount": 20,
+            "percentage": 20.83
+          },
+          {
+            "label": "Blue",
+            "movieCount": 16,
+            "percentage": 16.67
+          },
+          {
+            "label": "Yellow",
+            "movieCount": 4,
+            "percentage": 4.17
+          },
+          {
+            "label": "Green",
+            "movieCount": 3,
+            "percentage": 3.12
+          },
+          {
+            "label": "Purple",
+            "movieCount": 2,
+            "percentage": 2.08
+          }
+        ]
+      },
+      {
+        "decade": 2000,
+        "movieCount": 174,
+        "distribution": [
+          {
+            "label": "Orange",
+            "movieCount": 62,
+            "percentage": 35.63
+          },
+          {
+            "label": "Neutral",
+            "movieCount": 54,
+            "percentage": 31.03
+          },
+          {
+            "label": "Blue",
+            "movieCount": 22,
+            "percentage": 12.64
+          },
+          {
+            "label": "Red",
+            "movieCount": 20,
+            "percentage": 11.49
+          },
+          {
+            "label": "Yellow",
+            "movieCount": 11,
+            "percentage": 6.32
+          },
+          {
+            "label": "Green",
+            "movieCount": 3,
+            "percentage": 1.72
+          },
+          {
+            "label": "Purple",
+            "movieCount": 2,
+            "percentage": 1.15
+          }
+        ]
+      },
+      {
+        "decade": 2010,
+        "movieCount": 113,
+        "distribution": [
+          {
+            "label": "Neutral",
+            "movieCount": 52,
+            "percentage": 46.02
+          },
+          {
+            "label": "Orange",
+            "movieCount": 27,
+            "percentage": 23.89
+          },
+          {
+            "label": "Red",
+            "movieCount": 18,
+            "percentage": 15.93
+          },
+          {
+            "label": "Blue",
+            "movieCount": 12,
+            "percentage": 10.62
+          },
+          {
+            "label": "Yellow",
+            "movieCount": 2,
+            "percentage": 1.77
+          },
+          {
+            "label": "Purple",
+            "movieCount": 2,
+            "percentage": 1.77
+          }
+        ]
+      },
+      {
+        "decade": 2020,
+        "movieCount": 23,
+        "distribution": [
+          {
+            "label": "Neutral",
+            "movieCount": 12,
+            "percentage": 52.17
+          },
+          {
+            "label": "Blue",
+            "movieCount": 3,
+            "percentage": 13.04
+          },
+          {
+            "label": "Orange",
+            "movieCount": 3,
+            "percentage": 13.04
+          },
+          {
+            "label": "Purple",
+            "movieCount": 2,
+            "percentage": 8.7
+          },
+          {
+            "label": "Red",
+            "movieCount": 2,
+            "percentage": 8.7
+          },
+          {
+            "label": "Green",
+            "movieCount": 1,
+            "percentage": 4.35
+          }
+        ]
+      }
+    ]
+  },
+  "genre": {
+    "generatedAt": "2026-04-23T04:07:25.204883+00:00",
+    "summary": {
+      "totalMovies": 643,
+      "uniqueGenres": 19
+    },
+    "distribution": [
+      {
+        "genre": "Drama",
+        "movieCount": 248
+      },
+      {
+        "genre": "Comedy",
+        "movieCount": 223
+      },
+      {
+        "genre": "Thriller",
+        "movieCount": 186
+      },
+      {
+        "genre": "Romance",
+        "movieCount": 137
+      },
+      {
+        "genre": "Horror",
+        "movieCount": 136
+      },
+      {
+        "genre": "Crime",
+        "movieCount": 120
+      },
+      {
+        "genre": "Action",
+        "movieCount": 120
+      },
+      {
+        "genre": "Family",
+        "movieCount": 88
+      },
+      {
+        "genre": "Fantasy",
+        "movieCount": 69
+      },
+      {
+        "genre": "Mystery",
+        "movieCount": 67
+      },
+      {
+        "genre": "Adventure",
+        "movieCount": 64
+      },
+      {
+        "genre": "Science Fiction",
+        "movieCount": 61
+      },
+      {
+        "genre": "TV Movie",
+        "movieCount": 36
+      },
+      {
+        "genre": "Animation",
+        "movieCount": 31
+      },
+      {
+        "genre": "Music",
+        "movieCount": 18
+      },
+      {
+        "genre": "Western",
+        "movieCount": 7
+      },
+      {
+        "genre": "Documentary",
+        "movieCount": 7
+      },
+      {
+        "genre": "War",
+        "movieCount": 5
+      },
+      {
+        "genre": "History",
+        "movieCount": 4
+      }
+    ],
+    "byDecade": [
+      {
+        "decade": 1930,
+        "genreMentions": 6,
+        "distribution": [
+          {
+            "genre": "Romance",
+            "movieCount": 2
+          },
+          {
+            "genre": "Drama",
+            "movieCount": 2
+          },
+          {
+            "genre": "Comedy",
+            "movieCount": 1
+          },
+          {
+            "genre": "Fantasy",
+            "movieCount": 1
+          }
+        ]
+      },
+      {
+        "decade": 1940,
+        "genreMentions": 8,
+        "distribution": [
+          {
+            "genre": "Comedy",
+            "movieCount": 3
+          },
+          {
+            "genre": "Romance",
+            "movieCount": 2
+          },
+          {
+            "genre": "Drama",
+            "movieCount": 2
+          },
+          {
+            "genre": "Fantasy",
+            "movieCount": 1
+          }
+        ]
+      },
+      {
+        "decade": 1950,
+        "genreMentions": 18,
+        "distribution": [
+          {
+            "genre": "Drama",
+            "movieCount": 4
+          },
+          {
+            "genre": "Crime",
+            "movieCount": 3
+          },
+          {
+            "genre": "Thriller",
+            "movieCount": 2
+          },
+          {
+            "genre": "Comedy",
+            "movieCount": 2
+          },
+          {
+            "genre": "Music",
+            "movieCount": 1
+          },
+          {
+            "genre": "Romance",
+            "movieCount": 1
+          },
+          {
+            "genre": "Mystery",
+            "movieCount": 1
+          },
+          {
+            "genre": "Science Fiction",
+            "movieCount": 1
+          },
+          {
+            "genre": "Horror",
+            "movieCount": 1
+          },
+          {
+            "genre": "History",
+            "movieCount": 1
+          },
+          {
+            "genre": "Adventure",
+            "movieCount": 1
+          }
+        ]
+      },
+      {
+        "decade": 1960,
+        "genreMentions": 146,
+        "distribution": [
+          {
+            "genre": "Comedy",
+            "movieCount": 24
+          },
+          {
+            "genre": "Drama",
+            "movieCount": 23
+          },
+          {
+            "genre": "Romance",
+            "movieCount": 17
+          },
+          {
+            "genre": "Thriller",
+            "movieCount": 15
+          },
+          {
+            "genre": "Crime",
+            "movieCount": 14
+          },
+          {
+            "genre": "Horror",
+            "movieCount": 10
+          },
+          {
+            "genre": "Family",
+            "movieCount": 9
+          },
+          {
+            "genre": "Adventure",
+            "movieCount": 7
+          },
+          {
+            "genre": "Science Fiction",
+            "movieCount": 7
+          },
+          {
+            "genre": "Action",
+            "movieCount": 4
+          },
+          {
+            "genre": "Fantasy",
+            "movieCount": 4
+          },
+          {
+            "genre": "Mystery",
+            "movieCount": 4
+          },
+          {
+            "genre": "Western",
+            "movieCount": 3
+          },
+          {
+            "genre": "Animation",
+            "movieCount": 2
+          },
+          {
+            "genre": "War",
+            "movieCount": 1
+          },
+          {
+            "genre": "History",
+            "movieCount": 1
+          },
+          {
+            "genre": "Music",
+            "movieCount": 1
+          }
+        ]
+      },
+      {
+        "decade": 1970,
+        "genreMentions": 199,
+        "distribution": [
+          {
+            "genre": "Comedy",
+            "movieCount": 31
+          },
+          {
+            "genre": "Drama",
+            "movieCount": 30
+          },
+          {
+            "genre": "Horror",
+            "movieCount": 24
+          },
+          {
+            "genre": "Crime",
+            "movieCount": 21
+          },
+          {
+            "genre": "Thriller",
+            "movieCount": 21
+          },
+          {
+            "genre": "Action",
+            "movieCount": 16
+          },
+          {
+            "genre": "Romance",
+            "movieCount": 13
+          },
+          {
+            "genre": "Science Fiction",
+            "movieCount": 8
+          },
+          {
+            "genre": "Fantasy",
+            "movieCount": 7
+          },
+          {
+            "genre": "Mystery",
+            "movieCount": 7
+          },
+          {
+            "genre": "Family",
+            "movieCount": 7
+          },
+          {
+            "genre": "TV Movie",
+            "movieCount": 6
+          },
+          {
+            "genre": "Adventure",
+            "movieCount": 4
+          },
+          {
+            "genre": "Animation",
+            "movieCount": 2
+          },
+          {
+            "genre": "Music",
+            "movieCount": 1
+          },
+          {
+            "genre": "Western",
+            "movieCount": 1
+          }
+        ]
+      },
+      {
+        "decade": 1980,
+        "genreMentions": 188,
+        "distribution": [
+          {
+            "genre": "Comedy",
+            "movieCount": 31
+          },
+          {
+            "genre": "Drama",
+            "movieCount": 25
+          },
+          {
+            "genre": "Horror",
+            "movieCount": 21
+          },
+          {
+            "genre": "Romance",
+            "movieCount": 17
+          },
+          {
+            "genre": "Thriller",
+            "movieCount": 15
+          },
+          {
+            "genre": "Action",
+            "movieCount": 12
+          },
+          {
+            "genre": "Fantasy",
+            "movieCount": 11
+          },
+          {
+            "genre": "Family",
+            "movieCount": 11
+          },
+          {
+            "genre": "Science Fiction",
+            "movieCount": 10
+          },
+          {
+            "genre": "Crime",
+            "movieCount": 10
+          },
+          {
+            "genre": "Adventure",
+            "movieCount": 7
+          },
+          {
+            "genre": "Animation",
+            "movieCount": 6
+          },
+          {
+            "genre": "TV Movie",
+            "movieCount": 4
+          },
+          {
+            "genre": "Mystery",
+            "movieCount": 4
+          },
+          {
+            "genre": "War",
+            "movieCount": 2
+          },
+          {
+            "genre": "Music",
+            "movieCount": 1
+          },
+          {
+            "genre": "Documentary",
+            "movieCount": 1
+          }
+        ]
+      },
+      {
+        "decade": 1990,
+        "genreMentions": 259,
+        "distribution": [
+          {
+            "genre": "Drama",
+            "movieCount": 37
+          },
+          {
+            "genre": "Comedy",
+            "movieCount": 36
+          },
+          {
+            "genre": "Thriller",
+            "movieCount": 32
+          },
+          {
+            "genre": "Romance",
+            "movieCount": 20
+          },
+          {
+            "genre": "Crime",
+            "movieCount": 19
+          },
+          {
+            "genre": "Family",
+            "movieCount": 19
+          },
+          {
+            "genre": "Action",
+            "movieCount": 19
+          },
+          {
+            "genre": "Horror",
+            "movieCount": 15
+          },
+          {
+            "genre": "Fantasy",
+            "movieCount": 13
+          },
+          {
+            "genre": "TV Movie",
+            "movieCount": 12
+          },
+          {
+            "genre": "Adventure",
+            "movieCount": 12
+          },
+          {
+            "genre": "Science Fiction",
+            "movieCount": 9
+          },
+          {
+            "genre": "Mystery",
+            "movieCount": 6
+          },
+          {
+            "genre": "Animation",
+            "movieCount": 6
+          },
+          {
+            "genre": "Music",
+            "movieCount": 3
+          },
+          {
+            "genre": "Western",
+            "movieCount": 1
+          }
+        ]
+      },
+      {
+        "decade": 2000,
+        "genreMentions": 452,
+        "distribution": [
+          {
+            "genre": "Drama",
+            "movieCount": 76
+          },
+          {
+            "genre": "Thriller",
+            "movieCount": 64
+          },
+          {
+            "genre": "Comedy",
+            "movieCount": 48
+          },
+          {
+            "genre": "Romance",
+            "movieCount": 44
+          },
+          {
+            "genre": "Horror",
+            "movieCount": 43
+          },
+          {
+            "genre": "Action",
+            "movieCount": 38
+          },
+          {
+            "genre": "Mystery",
+            "movieCount": 33
+          },
+          {
+            "genre": "Crime",
+            "movieCount": 29
+          },
+          {
+            "genre": "Family",
+            "movieCount": 16
+          },
+          {
+            "genre": "Science Fiction",
+            "movieCount": 16
+          },
+          {
+            "genre": "Adventure",
+            "movieCount": 11
+          },
+          {
+            "genre": "TV Movie",
+            "movieCount": 10
+          },
+          {
+            "genre": "Fantasy",
+            "movieCount": 10
+          },
+          {
+            "genre": "Animation",
+            "movieCount": 5
+          },
+          {
+            "genre": "Music",
+            "movieCount": 3
+          },
+          {
+            "genre": "Documentary",
+            "movieCount": 3
+          },
+          {
+            "genre": "War",
+            "movieCount": 2
+          },
+          {
+            "genre": "History",
+            "movieCount": 1
+          }
+        ]
+      },
+      {
+        "decade": 2010,
+        "genreMentions": 285,
+        "distribution": [
+          {
+            "genre": "Drama",
+            "movieCount": 40
+          },
+          {
+            "genre": "Comedy",
+            "movieCount": 39
+          },
+          {
+            "genre": "Thriller",
+            "movieCount": 32
+          },
+          {
+            "genre": "Action",
+            "movieCount": 26
+          },
+          {
+            "genre": "Crime",
+            "movieCount": 20
+          },
+          {
+            "genre": "Family",
+            "movieCount": 19
+          },
+          {
+            "genre": "Horror",
+            "movieCount": 19
+          },
+          {
+            "genre": "Adventure",
+            "movieCount": 16
+          },
+          {
+            "genre": "Fantasy",
+            "movieCount": 16
+          },
+          {
+            "genre": "Romance",
+            "movieCount": 15
+          },
+          {
+            "genre": "Mystery",
+            "movieCount": 12
+          },
+          {
+            "genre": "Science Fiction",
+            "movieCount": 8
+          },
+          {
+            "genre": "Music",
+            "movieCount": 7
+          },
+          {
+            "genre": "Animation",
+            "movieCount": 7
+          },
+          {
+            "genre": "TV Movie",
+            "movieCount": 4
+          },
+          {
+            "genre": "Western",
+            "movieCount": 2
+          },
+          {
+            "genre": "Documentary",
+            "movieCount": 2
+          },
+          {
+            "genre": "History",
+            "movieCount": 1
+          }
+        ]
+      },
+      {
+        "decade": 2020,
+        "genreMentions": 66,
+        "distribution": [
+          {
+            "genre": "Drama",
+            "movieCount": 9
+          },
+          {
+            "genre": "Comedy",
+            "movieCount": 8
+          },
+          {
+            "genre": "Family",
+            "movieCount": 7
+          },
+          {
+            "genre": "Romance",
+            "movieCount": 6
+          },
+          {
+            "genre": "Adventure",
+            "movieCount": 6
+          },
+          {
+            "genre": "Fantasy",
+            "movieCount": 6
+          },
+          {
+            "genre": "Action",
+            "movieCount": 5
+          },
+          {
+            "genre": "Thriller",
+            "movieCount": 5
+          },
+          {
+            "genre": "Crime",
+            "movieCount": 4
+          },
+          {
+            "genre": "Animation",
+            "movieCount": 3
+          },
+          {
+            "genre": "Horror",
+            "movieCount": 3
+          },
+          {
+            "genre": "Science Fiction",
+            "movieCount": 2
+          },
+          {
+            "genre": "Music",
+            "movieCount": 1
+          },
+          {
+            "genre": "Documentary",
+            "movieCount": 1
+          }
+        ]
+      }
+    ]
+  },
+  "sentiment": {
+    "generatedAt": "2026-04-23T04:07:25.204883+00:00",
+    "summary": {
+      "totalMovies": 643,
+      "moviesWithSentiment": 642,
+      "translatedToEnglish": 183,
+      "missingSentiment": 1
+    },
+    "distribution": [
+      {
+        "label": "neutral",
+        "movieCount": 337,
+        "percentage": 52.49
+      },
+      {
+        "label": "negative",
+        "movieCount": 251,
+        "percentage": 39.1
+      },
+      {
+        "label": "positive",
+        "movieCount": 53,
+        "percentage": 8.26
+      },
+      {
+        "label": "no_overview",
+        "movieCount": 1,
+        "percentage": 0.16
+      }
+    ],
+    "byDecade": [
+      {
+        "decade": 1930,
+        "movieCount": 3,
+        "distribution": [
+          {
+            "label": "neutral",
+            "movieCount": 2,
+            "percentage": 66.67
+          },
+          {
+            "label": "positive",
+            "movieCount": 1,
+            "percentage": 33.33
+          }
+        ]
+      },
+      {
+        "decade": 1940,
+        "movieCount": 3,
+        "distribution": [
+          {
+            "label": "neutral",
+            "movieCount": 2,
+            "percentage": 66.67
+          },
+          {
+            "label": "negative",
+            "movieCount": 1,
+            "percentage": 33.33
+          }
+        ]
+      },
+      {
+        "decade": 1950,
+        "movieCount": 7,
+        "distribution": [
+          {
+            "label": "neutral",
+            "movieCount": 4,
+            "percentage": 57.14
+          },
+          {
+            "label": "negative",
+            "movieCount": 3,
+            "percentage": 42.86
+          }
+        ]
+      },
+      {
+        "decade": 1960,
+        "movieCount": 60,
+        "distribution": [
+          {
+            "label": "neutral",
+            "movieCount": 31,
+            "percentage": 51.67
+          },
+          {
+            "label": "negative",
+            "movieCount": 25,
+            "percentage": 41.67
+          },
+          {
+            "label": "positive",
+            "movieCount": 4,
+            "percentage": 6.67
+          }
+        ]
+      },
+      {
+        "decade": 1970,
+        "movieCount": 83,
+        "distribution": [
+          {
+            "label": "negative",
+            "movieCount": 44,
+            "percentage": 53.01
+          },
+          {
+            "label": "neutral",
+            "movieCount": 32,
+            "percentage": 38.55
+          },
+          {
+            "label": "positive",
+            "movieCount": 7,
+            "percentage": 8.43
+          }
+        ]
+      },
+      {
+        "decade": 1980,
+        "movieCount": 81,
+        "distribution": [
+          {
+            "label": "neutral",
+            "movieCount": 52,
+            "percentage": 64.2
+          },
+          {
+            "label": "negative",
+            "movieCount": 23,
+            "percentage": 28.4
+          },
+          {
+            "label": "positive",
+            "movieCount": 6,
+            "percentage": 7.41
+          }
+        ]
+      },
+      {
+        "decade": 1990,
+        "movieCount": 96,
+        "distribution": [
+          {
+            "label": "neutral",
+            "movieCount": 49,
+            "percentage": 51.04
+          },
+          {
+            "label": "negative",
+            "movieCount": 34,
+            "percentage": 35.42
+          },
+          {
+            "label": "positive",
+            "movieCount": 13,
+            "percentage": 13.54
+          }
+        ]
+      },
+      {
+        "decade": 2000,
+        "movieCount": 173,
+        "distribution": [
+          {
+            "label": "neutral",
+            "movieCount": 97,
+            "percentage": 56.07
+          },
+          {
+            "label": "negative",
+            "movieCount": 66,
+            "percentage": 38.15
+          },
+          {
+            "label": "positive",
+            "movieCount": 10,
+            "percentage": 5.78
+          }
+        ]
+      },
+      {
+        "decade": 2010,
+        "movieCount": 113,
+        "distribution": [
+          {
+            "label": "neutral",
+            "movieCount": 52,
+            "percentage": 46.02
+          },
+          {
+            "label": "negative",
+            "movieCount": 50,
+            "percentage": 44.25
+          },
+          {
+            "label": "positive",
+            "movieCount": 10,
+            "percentage": 8.85
+          },
+          {
+            "label": "no_overview",
+            "movieCount": 1,
+            "percentage": 0.88
+          }
+        ]
+      },
+      {
+        "decade": 2020,
+        "movieCount": 23,
+        "distribution": [
+          {
+            "label": "neutral",
+            "movieCount": 16,
+            "percentage": 69.57
+          },
+          {
+            "label": "negative",
+            "movieCount": 5,
+            "percentage": 21.74
+          },
+          {
+            "label": "positive",
+            "movieCount": 2,
+            "percentage": 8.7
+          }
+        ]
+      }
+    ],
+    "sourceFile": "data/analisis/sentiment_features.json",
+    "notes": []
+  }
+}

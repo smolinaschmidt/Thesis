@@ -1,34 +1,45 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carrie - Art Palette</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <!-- Intro Animation Overlay -->
-    <div id="introOverlay" class="intro-overlay">
-        <button id="skipIntro" class="skip-intro">SKIP INTRO</button>
-        <div class="intro-triptych" id="introTriptych"></div>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Remaking Color</title>
+    <meta
+      name="description"
+      content="A visual essay on how color palettes and emotional tone change across film remakes."
+    />
+    <link rel="icon" href="data:," />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div id="search-dock" class="search-dock">
+      <input
+        id="search"
+        list="film-list"
+        placeholder="Search a film…"
+        aria-label="Search a film"
+        autocomplete="off"
+      />
+      <datalist id="film-list"></datalist>
     </div>
 
-    <header class="app-header">
-        <h1>Carrie: Color Palette Comparison</h1>
-        <p class="subtitle">1976 · 2002 · 2013</p>
-        <p id="loadingStatus"></p>
-    </header>
+    <article id="essay" class="essay"></article>
 
-    <main id="comparisonContainer" class="comparison-container"></main>
+    <footer class="colophon">
+      <p class="small">Remaking Color — a visual essay · 2026</p>
+      <p class="small">
+        Data: TMDB · Color extraction via K-means · Sentiment via RoBERTa
+      </p>
+    </footer>
 
-    <section id="bubbleSection" class="bubble-section">
-        <h2 class="section-title">Color Predomination in Trailers</h2>
-        <p class="section-subtitle">Bubble size represents frequency of each color category across trailer frames</p>
-        <div id="bubbleCharts" class="bubble-charts"></div>
-    </section>
+    <div id="tooltip" class="tooltip"></div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.0/color-thief.umd.js"></script>
-    <script src="https://d3js.org/d3.v7.min.js"></script>
-    <script src="script.js"></script>
-</body>
+    <script type="module" src="./js/main.js"></script>
+  </body>
 </html>

@@ -1,0 +1,11 @@
+{
+  "name": "remaking.color",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Scrollytelling thesis on color and sentiment across film remakes.",
+  "scripts": {
+    "start": "python3 -m http.server 5173",
+    "serve": "python3 -m http.server 5173"
+  },
+  "license": "MIT"
+}

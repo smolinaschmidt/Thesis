@@ -1,0 +1,30 @@
+{
+  "generatedAt": "2026-04-16T17:11:32.226519+00:00",
+  "totalMovies": 655,
+  "totalFamilies": 469,
+  "missingCounts": {
+    "posterPath": 7,
+    "trailerKey": 149,
+    "tmdbId": 0,
+    "year": 0,
+    "genres": 12
+  },
+  "completenessPercent": {
+    "posterPath": 98.93,
+    "trailerKey": 77.25,
+    "tmdbId": 100.0,
+    "year": 100.0,
+    "genres": 98.17
+  },
+  "familySizeDistribution": {
+    "1": 294,
+    "2": 166,
+    "3": 7,
+    "4": 2
+  },
+  "singletonFamilies": 294,
+  "notes": [
+    "Singleton families are expected before manual review consolidation.",
+    "Trailer absence often reflects missing official trailer entries in TMDB metadata."
+  ]
+}

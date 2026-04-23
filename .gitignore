@@ -1,0 +1,7 @@
+node_modules/
+*.pyc
+__pycache__/
+.DS_Store
+data/.hf_cache/
+data/processed/_tmp_media/
+config.js
