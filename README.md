@@ -2,7 +2,7 @@
 
 ### Visualizing the unequal impacts of gun violence and the search for peace in America’s cities
 
-By Sofía Molina // [View live project](xx) // Parsons 2026 Data Visualization
+By Sofía Molina // [View live project](https://sofiams.com/Thesis/) // Parsons 2026 Data Visualization
 
 
 Abstract
