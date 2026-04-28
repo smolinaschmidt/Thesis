@@ -1,373 +1,271 @@
 {
-  "generatedAt": "2026-04-30T05:50:37.346378+00:00",
+  "generatedAt": "2026-04-28T18:14:42.120508+00:00",
   "summary": {
-    "totalMovies": 1025,
+    "totalMovies": 643,
     "colorGroupCount": 7
   },
   "distribution": [
     {
       "label": "Neutral",
-      "movieCount": 356,
-      "percentage": 34.73
+      "movieCount": 222,
+      "percentage": 34.53
     },
     {
       "label": "Orange",
-      "movieCount": 306,
-      "percentage": 29.85
+      "movieCount": 171,
+      "percentage": 26.59
     },
     {
       "label": "Red",
-      "movieCount": 188,
-      "percentage": 18.34
+      "movieCount": 119,
+      "percentage": 18.51
     },
     {
       "label": "Blue",
-      "movieCount": 92,
-      "percentage": 8.98
+      "movieCount": 82,
+      "percentage": 12.75
     },
     {
       "label": "Yellow",
-      "movieCount": 52,
-      "percentage": 5.07
-    },
-    {
-      "label": "Purple",
-      "movieCount": 16,
-      "percentage": 1.56
+      "movieCount": 30,
+      "percentage": 4.67
     },
     {
       "label": "Green",
-      "movieCount": 15,
-      "percentage": 1.46
+      "movieCount": 10,
+      "percentage": 1.56
+    },
+    {
+      "label": "Purple",
+      "movieCount": 9,
+      "percentage": 1.4
     }
   ],
   "byDecade": [
     {
-      "decade": 1910,
-      "movieCount": 10,
-      "distribution": [
-        {
-          "label": "Neutral",
-          "movieCount": 8,
-          "percentage": 80.0
-        },
-        {
-          "label": "Orange",
-          "movieCount": 2,
-          "percentage": 20.0
-        }
-      ]
-    },
-    {
-      "decade": 1920,
-      "movieCount": 37,
-      "distribution": [
-        {
-          "label": "Neutral",
-          "movieCount": 16,
-          "percentage": 43.24
-        },
-        {
-          "label": "Orange",
-          "movieCount": 11,
-          "percentage": 29.73
-        },
-        {
-          "label": "Red",
-          "movieCount": 4,
-          "percentage": 10.81
-        },
-        {
-          "label": "Yellow",
-          "movieCount": 3,
-          "percentage": 8.11
-        },
-        {
-          "label": "Blue",
-          "movieCount": 2,
-          "percentage": 5.41
-        },
-        {
-          "label": "Green",
-          "movieCount": 1,
-          "percentage": 2.7
-        }
-      ]
-    },
-    {
       "decade": 1930,
-      "movieCount": 112,
+      "movieCount": 3,
       "distribution": [
         {
           "label": "Orange",
-          "movieCount": 47,
-          "percentage": 41.96
-        },
-        {
-          "label": "Neutral",
-          "movieCount": 29,
-          "percentage": 25.89
+          "movieCount": 1,
+          "percentage": 33.33
         },
         {
           "label": "Red",
-          "movieCount": 22,
-          "percentage": 19.64
+          "movieCount": 1,
+          "percentage": 33.33
         },
         {
-          "label": "Yellow",
-          "movieCount": 7,
-          "percentage": 6.25
-        },
-        {
-          "label": "Blue",
-          "movieCount": 5,
-          "percentage": 4.46
-        },
-        {
-          "label": "Green",
-          "movieCount": 2,
-          "percentage": 1.79
+          "label": "Neutral",
+          "movieCount": 1,
+          "percentage": 33.33
         }
       ]
     },
     {
       "decade": 1940,
-      "movieCount": 88,
+      "movieCount": 3,
       "distribution": [
         {
           "label": "Neutral",
-          "movieCount": 28,
-          "percentage": 31.82
-        },
-        {
-          "label": "Orange",
-          "movieCount": 28,
-          "percentage": 31.82
+          "movieCount": 1,
+          "percentage": 33.33
         },
         {
           "label": "Red",
-          "movieCount": 16,
-          "percentage": 18.18
-        },
-        {
-          "label": "Yellow",
-          "movieCount": 10,
-          "percentage": 11.36
-        },
-        {
-          "label": "Blue",
-          "movieCount": 4,
-          "percentage": 4.55
-        },
-        {
-          "label": "Green",
           "movieCount": 1,
-          "percentage": 1.14
+          "percentage": 33.33
         },
         {
-          "label": "Purple",
+          "label": "Orange",
           "movieCount": 1,
-          "percentage": 1.14
+          "percentage": 33.33
         }
       ]
     },
     {
       "decade": 1950,
-      "movieCount": 103,
+      "movieCount": 7,
       "distribution": [
         {
-          "label": "Orange",
-          "movieCount": 40,
-          "percentage": 38.83
-        },
-        {
           "label": "Neutral",
-          "movieCount": 29,
-          "percentage": 28.16
+          "movieCount": 2,
+          "percentage": 28.57
         },
         {
           "label": "Red",
-          "movieCount": 20,
-          "percentage": 19.42
+          "movieCount": 2,
+          "percentage": 28.57
+        },
+        {
+          "label": "Orange",
+          "movieCount": 2,
+          "percentage": 28.57
         },
         {
           "label": "Yellow",
-          "movieCount": 9,
-          "percentage": 8.74
-        },
-        {
-          "label": "Purple",
-          "movieCount": 2,
-          "percentage": 1.94
-        },
-        {
-          "label": "Blue",
-          "movieCount": 2,
-          "percentage": 1.94
-        },
-        {
-          "label": "Green",
           "movieCount": 1,
-          "percentage": 0.97
+          "percentage": 14.29
         }
       ]
     },
     {
       "decade": 1960,
-      "movieCount": 73,
+      "movieCount": 60,
       "distribution": [
         {
           "label": "Red",
-          "movieCount": 19,
-          "percentage": 26.03
-        },
-        {
-          "label": "Orange",
-          "movieCount": 18,
-          "percentage": 24.66
+          "movieCount": 15,
+          "percentage": 25.0
         },
         {
           "label": "Neutral",
-          "movieCount": 16,
-          "percentage": 21.92
+          "movieCount": 14,
+          "percentage": 23.33
+        },
+        {
+          "label": "Orange",
+          "movieCount": 13,
+          "percentage": 21.67
         },
         {
           "label": "Yellow",
           "movieCount": 9,
-          "percentage": 12.33
+          "percentage": 15.0
         },
         {
           "label": "Blue",
-          "movieCount": 7,
-          "percentage": 9.59
-        },
-        {
-          "label": "Purple",
-          "movieCount": 3,
-          "percentage": 4.11
+          "movieCount": 8,
+          "percentage": 13.33
         },
         {
           "label": "Green",
           "movieCount": 1,
-          "percentage": 1.37
+          "percentage": 1.67
         }
       ]
     },
     {
       "decade": 1970,
-      "movieCount": 89,
+      "movieCount": 83,
       "distribution": [
         {
           "label": "Neutral",
-          "movieCount": 32,
-          "percentage": 35.96
+          "movieCount": 28,
+          "percentage": 33.73
         },
         {
           "label": "Orange",
-          "movieCount": 24,
-          "percentage": 26.97
+          "movieCount": 23,
+          "percentage": 27.71
         },
         {
           "label": "Red",
           "movieCount": 18,
-          "percentage": 20.22
+          "percentage": 21.69
         },
         {
           "label": "Blue",
-          "movieCount": 9,
-          "percentage": 10.11
+          "movieCount": 8,
+          "percentage": 9.64
         },
         {
           "label": "Yellow",
           "movieCount": 4,
-          "percentage": 4.49
+          "percentage": 4.82
         },
         {
           "label": "Green",
           "movieCount": 1,
-          "percentage": 1.12
+          "percentage": 1.2
         },
         {
           "label": "Purple",
           "movieCount": 1,
-          "percentage": 1.12
+          "percentage": 1.2
         }
       ]
     },
     {
       "decade": 1980,
-      "movieCount": 90,
+      "movieCount": 81,
       "distribution": [
         {
           "label": "Neutral",
-          "movieCount": 33,
-          "percentage": 36.67
-        },
-        {
-          "label": "Orange",
-          "movieCount": 19,
-          "percentage": 21.11
+          "movieCount": 29,
+          "percentage": 35.8
         },
         {
           "label": "Red",
-          "movieCount": 19,
-          "percentage": 21.11
+          "movieCount": 18,
+          "percentage": 22.22
+        },
+        {
+          "label": "Orange",
+          "movieCount": 16,
+          "percentage": 19.75
         },
         {
           "label": "Blue",
           "movieCount": 14,
-          "percentage": 15.56
-        },
-        {
-          "label": "Purple",
-          "movieCount": 3,
-          "percentage": 3.33
+          "percentage": 17.28
         },
         {
           "label": "Green",
           "movieCount": 2,
-          "percentage": 2.22
+          "percentage": 2.47
+        },
+        {
+          "label": "Purple",
+          "movieCount": 1,
+          "percentage": 1.23
+        },
+        {
+          "label": "Yellow",
+          "movieCount": 1,
+          "percentage": 1.23
         }
       ]
     },
     {
       "decade": 1990,
-      "movieCount": 111,
+      "movieCount": 96,
       "distribution": [
         {
           "label": "Neutral",
-          "movieCount": 39,
-          "percentage": 35.14
-        },
-        {
-          "label": "Orange",
-          "movieCount": 27,
-          "percentage": 24.32
+          "movieCount": 28,
+          "percentage": 29.17
         },
         {
           "label": "Red",
-          "movieCount": 23,
-          "percentage": 20.72
+          "movieCount": 24,
+          "percentage": 25.0
+        },
+        {
+          "label": "Orange",
+          "movieCount": 20,
+          "percentage": 20.83
         },
         {
           "label": "Blue",
-          "movieCount": 15,
-          "percentage": 13.51
-        },
-        {
-          "label": "Purple",
-          "movieCount": 3,
-          "percentage": 2.7
+          "movieCount": 16,
+          "percentage": 16.67
         },
         {
           "label": "Green",
-          "movieCount": 2,
-          "percentage": 1.8
+          "movieCount": 3,
+          "percentage": 3.12
         },
         {
           "label": "Yellow",
+          "movieCount": 3,
+          "percentage": 3.12
+        },
+        {
+          "label": "Purple",
           "movieCount": 2,
-          "percentage": 1.8
+          "percentage": 2.08
         }
       ]
     },
@@ -376,116 +274,111 @@
       "movieCount": 174,
       "distribution": [
         {
-          "label": "Neutral",
-          "movieCount": 61,
-          "percentage": 35.06
-        },
-        {
           "label": "Orange",
-          "movieCount": 57,
-          "percentage": 32.76
+          "movieCount": 64,
+          "percentage": 36.78
         },
         {
-          "label": "Red",
-          "movieCount": 24,
-          "percentage": 13.79
+          "label": "Neutral",
+          "movieCount": 54,
+          "percentage": 31.03
         },
         {
           "label": "Blue",
-          "movieCount": 22,
-          "percentage": 12.64
+          "movieCount": 21,
+          "percentage": 12.07
+        },
+        {
+          "label": "Red",
+          "movieCount": 20,
+          "percentage": 11.49
         },
         {
           "label": "Yellow",
-          "movieCount": 6,
-          "percentage": 3.45
-        },
-        {
-          "label": "Green",
-          "movieCount": 3,
-          "percentage": 1.72
+          "movieCount": 11,
+          "percentage": 6.32
         },
         {
           "label": "Purple",
-          "movieCount": 1,
-          "percentage": 0.57
+          "movieCount": 2,
+          "percentage": 1.15
+        },
+        {
+          "label": "Green",
+          "movieCount": 2,
+          "percentage": 1.15
         }
       ]
     },
     {
       "decade": 2010,
-      "movieCount": 107,
+      "movieCount": 113,
       "distribution": [
         {
           "label": "Neutral",
-          "movieCount": 50,
-          "percentage": 46.73
+          "movieCount": 53,
+          "percentage": 46.9
         },
         {
           "label": "Orange",
-          "movieCount": 26,
-          "percentage": 24.3
+          "movieCount": 28,
+          "percentage": 24.78
         },
         {
           "label": "Red",
-          "movieCount": 19,
-          "percentage": 17.76
+          "movieCount": 18,
+          "percentage": 15.93
         },
         {
           "label": "Blue",
-          "movieCount": 10,
-          "percentage": 9.35
-        },
-        {
-          "label": "Purple",
-          "movieCount": 1,
-          "percentage": 0.93
+          "movieCount": 12,
+          "percentage": 10.62
         },
         {
           "label": "Yellow",
           "movieCount": 1,
-          "percentage": 0.93
+          "percentage": 0.88
+        },
+        {
+          "label": "Purple",
+          "movieCount": 1,
+          "percentage": 0.88
         }
       ]
     },
     {
       "decade": 2020,
-      "movieCount": 31,
+      "movieCount": 23,
       "distribution": [
         {
           "label": "Neutral",
-          "movieCount": 15,
-          "percentage": 48.39
-        },
-        {
-          "label": "Orange",
-          "movieCount": 7,
-          "percentage": 22.58
-        },
-        {
-          "label": "Red",
-          "movieCount": 4,
-          "percentage": 12.9
+          "movieCount": 12,
+          "percentage": 52.17
         },
         {
           "label": "Blue",
-          "movieCount": 2,
-          "percentage": 6.45
+          "movieCount": 3,
+          "percentage": 13.04
         },
         {
-          "label": "Yellow",
-          "movieCount": 1,
-          "percentage": 3.23
+          "label": "Orange",
+          "movieCount": 3,
+          "percentage": 13.04
         },
         {
           "label": "Purple",
-          "movieCount": 1,
-          "percentage": 3.23
+          "movieCount": 2,
+          "percentage": 8.7
+        },
+        {
+          "label": "Red",
+          "movieCount": 2,
+          "percentage": 8.7
         },
         {
           "label": "Green",
           "movieCount": 1,
-          "percentage": 3.23
+          "percentage": 4.35
         }
       ]
     }

@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-04-30T05:50:37.346378+00:00",
+  "generatedAt": "2026-04-28T18:14:42.120508+00:00",
   "summary": {
-    "totalMovies": 1025,
+    "totalMovies": 643,
     "moviesWithSentiment": 642,
     "translatedToEnglish": 183,
-    "missingSentiment": 383
+    "missingSentiment": 1
   },
   "distribution": [
     {

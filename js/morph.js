@@ -211,8 +211,12 @@ export function renderMorphScrolly(
   const domainNice = morphNicedYearDomain(yearExtentRaw);
   const xTime = morphTimeScale(left, right, domainNice);
   const yTime = d3.scaleLinear().domain([0, 100]).nice().range([bottom, top]);
-  const yByLum = d3.scaleLinear().domain([0, 100]).nice().range([bottom - 14, top + 10]);
-  const brightnessTicks = [0, 20, 40, 60, 80, 100];
+  const yByYear = d3.scaleLinear().domain(domainNice).range([bottom - 14, top + 10]);
+  const decadeTickYearsY = d3.range(
+    Math.floor(d3.min(nodes, (d) => d.year) / 10) * 10,
+    Math.ceil(d3.max(nodes, (d) => d.year) / 10) * 10 + 1,
+    10
+  );
 
   const sim = d3
     .forceSimulation(nodes)
@@ -250,17 +254,16 @@ export function renderMorphScrolly(
   const stackGap = 4;
   const rStack = (d) => Math.max(4.2, Math.min(11, radiusFor(d) * 0.62));
 
-  // Stack layout (genre columns): vertical position by brightness (lum).
   genreLabels.forEach((lab) => {
     const col = nodes
       .filter((d) => d.bucket === lab)
-      .sort((a, b) => a.lum - b.lum || String(a.id).localeCompare(String(b.id)));
+      .sort((a, b) => a.year - b.year || String(a.id).localeCompare(String(b.id)));
     const cx = xBand(lab) + xBand.bandwidth() / 2;
     let belowCenter = null;
     let belowR = 0;
     col.forEach((n) => {
       const rr = rStack(n);
-      let cy = yByLum(n.lum);
+      let cy = yByYear(n.year);
       if (belowCenter != null) {
         const maxCy = belowCenter - belowR - stackGap - rr;
         cy = Math.min(cy, maxCy);
@@ -292,11 +295,11 @@ export function renderMorphScrolly(
     genreLabels.forEach((lab) => {
       const col = nodes
         .filter((d) => d.bucket === lab)
-        .sort((a, b) => a.lum - b.lum || String(a.title).localeCompare(String(b.title)));
+        .sort((a, b) => a.year - b.year || String(a.title).localeCompare(String(b.title)));
       const bw = Math.max(4, xBand.bandwidth() - 2);
       const xLeft = xBand(lab) + 1;
       col.forEach((n) => {
-        const cy = yByLum(n.lum);
+        const cy = yByYear(n.year);
         n.barX = xLeft;
         n.barW = bw;
         n.barH = lineH;
@@ -432,7 +435,7 @@ export function renderMorphScrolly(
       .attr("font-family", FONT)
       .attr("font-size", 17)
       .text(
-        "Each film is assigned using its TMDB genres in order: the first that maps to one of the eight columns (direct match or mapped, e.g. Adventure→Action). Vertical scale is poster brightness (darker toward the bottom)."
+        "Each film is assigned using its TMDB genres in order: the first that maps to one of the eight columns (direct match or mapped, e.g. Adventure→Action). Vertical scale is by decade (older toward the bottom)."
       );
 
     gHeaderBarcode
@@ -452,7 +455,7 @@ export function renderMorphScrolly(
       .attr("font-family", FONT)
       .attr("font-size", 17)
       .text(
-        "Horizontal stripes — one film per stripe, aligned to the same brightness scale on the left."
+        "Horizontal stripes — one film per stripe, aligned to the same decade scale on the left."
       );
   } else {
     gHeaderTime.style("display", "none");
@@ -494,9 +497,9 @@ export function renderMorphScrolly(
     .attr("transform", `translate(${left}, 0)`)
     .call(
       d3
-        .axisLeft(yByLum)
-        .tickValues(brightnessTicks)
-        .tickFormat((v) => String(Math.round(v)))
+        .axisLeft(yByYear)
+        .tickValues(decadeTickYearsY)
+        .tickFormat((y) => `${y}s`)
         .tickSize(0)
     )
     .call((g) => g.select(".domain").remove());
