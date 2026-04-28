@@ -1,8 +1,3 @@
-/* =========================================================
-   Remaking Color — data-editorial surface (Energy Profits–adjacent):
-   white field, neo-grotesque type, blue accent, scroll reveals.
-   ========================================================= */
-
 :root {
   --ink: #0a0a0a;
   --ink-soft: #454545;
@@ -50,7 +45,6 @@ html, body {
   color: var(--paper);
 }
 
-/* ---------- Search dock (floating, minimal) ---------- */
 
 .search-dock {
   position: fixed;
@@ -91,7 +85,6 @@ html, body {
   box-shadow: 0 0 0 3px var(--accent-soft);
 }
 
-/* ---------- Essay shell ---------- */
 
 .essay {
   max-width: none;
@@ -101,7 +94,6 @@ html, body {
   box-sizing: border-box;
 }
 
-/* ---------- Scroll reveal ---------- */
 
 .masthead .crumb,
 .masthead h1,
@@ -127,11 +119,14 @@ html, body {
 .masthead.is-revealed .dek { transition-delay: 0.18s; }
 .masthead.is-revealed .byline { transition-delay: 0.26s; }
 
-/* Only direct section copy — not titles/nums inside pinned figures (nested under figure) */
 section.chapter > .chapter-num,
 section.chapter > h2,
 section.chapter > .lede,
-section.chapter > .body {
+section.chapter > .body,
+#c1 .ch01-intro-copy > .chapter-num,
+#c1 .ch01-intro-copy > h2,
+#c1 .ch01-intro-copy > .lede,
+#c1 .ch01-intro-copy > .body {
   opacity: 0;
   transform: translateY(1.5rem);
   transition:
@@ -142,15 +137,23 @@ section.chapter > .body {
 section.chapter.is-revealed > .chapter-num,
 section.chapter.is-revealed > h2,
 section.chapter.is-revealed > .lede,
-section.chapter.is-revealed > .body {
+section.chapter.is-revealed > .body,
+section#c1.chapter.is-revealed .ch01-intro-copy > .chapter-num,
+section#c1.chapter.is-revealed .ch01-intro-copy > h2,
+section#c1.chapter.is-revealed .ch01-intro-copy > .lede,
+section#c1.chapter.is-revealed .ch01-intro-copy > .body {
   opacity: 1;
   transform: translateY(0);
 }
 
-section.chapter.is-revealed > .chapter-num { transition-delay: 0.05s; }
-section.chapter.is-revealed > h2 { transition-delay: 0.12s; }
-section.chapter.is-revealed > .lede { transition-delay: 0.2s; }
-section.chapter.is-revealed > .body { transition-delay: 0.28s; }
+section.chapter.is-revealed > .chapter-num,
+section#c1.chapter.is-revealed .ch01-intro-copy > .chapter-num { transition-delay: 0.05s; }
+section.chapter.is-revealed > h2,
+section#c1.chapter.is-revealed .ch01-intro-copy > h2 { transition-delay: 0.12s; }
+section.chapter.is-revealed > .lede,
+section#c1.chapter.is-revealed .ch01-intro-copy > .lede { transition-delay: 0.2s; }
+section.chapter.is-revealed > .body,
+section#c1.chapter.is-revealed .ch01-intro-copy > .body { transition-delay: 0.28s; }
 
 aside.chapter blockquote.pull {
   opacity: 0;
@@ -165,7 +168,6 @@ aside.chapter.is-revealed blockquote.pull {
   transform: translateY(0);
 }
 
-/* ---------- Masthead ---------- */
 
 .masthead {
   box-sizing: border-box;
@@ -233,7 +235,6 @@ aside.chapter.is-revealed blockquote.pull {
   max-width: 48ch;
 }
 
-/* ---------- Chapter / section ---------- */
 
 .chapter {
   box-sizing: border-box;
@@ -258,7 +259,6 @@ aside.chapter {
   text-align: left;
 }
 
-/* Ch.03 — pinned viewport: scroll swaps copy + timeline→morph, then morph animation */
 #c3.chapter--ch3-pinned {
   min-height: auto;
   padding: 0;
@@ -351,7 +351,6 @@ aside.chapter {
 }
 
 .ch3-viz-layers {
-  /* Static chart frame: matches timeline/morph viewBox 2040×640 (captura 1) */
   position: relative;
   width: 100%;
   flex: 0 1 auto;
@@ -390,7 +389,6 @@ aside.chapter {
   object-fit: contain;
 }
 
-/* Ch.04 — pinned sentiment→scatter morph (VIEW 2040×760): sticky frame, copy + chart morph on scroll */
 #c7.chapter--pinned-morph {
   min-height: auto;
   padding: 0;
@@ -402,17 +400,17 @@ aside.chapter {
   margin-bottom: 0;
 }
 
-/* Wide shell (same horizontal cap as ch.03–04 pinned + atlas) */
 .chapter--bleed-shell {
   max-width: min(var(--col-bleed), 100%);
 }
 
-/* Ch.01–02: same copy measure + scale as pinned ch.03–04 headings */
-.chapter--pinned-copy-rhythm > .chapter-num {
+.chapter--pinned-copy-rhythm > .chapter-num,
+.chapter--pinned-copy-rhythm .ch01-intro-copy > .chapter-num {
   text-align: left;
 }
 
-.chapter--pinned-copy-rhythm > h2 {
+.chapter--pinned-copy-rhythm > h2,
+.chapter--pinned-copy-rhythm .ch01-intro-copy > h2 {
   max-width: 32ch;
   font-size: clamp(1.45rem, 2.75vw, 2.05rem);
   line-height: 1.12;
@@ -420,45 +418,65 @@ aside.chapter {
   text-align: left;
 }
 
-.chapter--pinned-copy-rhythm > .lede {
+.chapter--pinned-copy-rhythm > .lede,
+.chapter--pinned-copy-rhythm .ch01-intro-copy > .lede {
   max-width: min(62ch, 100%);
   font-size: clamp(0.92rem, 1.15vw, 1.03rem);
   line-height: 1.45;
   text-align: left;
 }
 
-.chapter--pinned-copy-rhythm > .body {
+.chapter--pinned-copy-rhythm > .body,
+.chapter--pinned-copy-rhythm .ch01-intro-copy > .body {
   max-width: 54ch;
   font-size: 0.95rem;
   line-height: 1.55;
   text-align: left;
 }
 
-/* Ch.01 — fit heading + 3 posters + palette bars in one typical viewport */
+/* Cap. 1: ocupa al menos un viewport para que, al hacer snap, no se asome el cap. 3 */
 #c1.chapter--bleed-shell {
-  min-height: auto;
+  min-height: 100dvh;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
   padding-top: clamp(0.65rem, 1.8vh, 1.35rem);
   padding-bottom: clamp(0.85rem, 2.5vh, 1.75rem);
+  margin-bottom: clamp(5rem, 22vh, 14rem);
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
 }
 
-#c1.chapter--pinned-copy-rhythm > .chapter-num {
+#c1 .ch01-intro-copy {
+  width: 100%;
+}
+
+#c1 > figure.fig {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+#c1.chapter--pinned-copy-rhythm .ch01-intro-copy > .chapter-num {
   margin: 0 0 0.45rem;
 }
 
-#c1.chapter--pinned-copy-rhythm > h2 {
+#c1.chapter--pinned-copy-rhythm .ch01-intro-copy > h2 {
   margin: 0 0 0.65rem;
 }
 
-#c1.chapter--pinned-copy-rhythm > .lede {
+#c1.chapter--pinned-copy-rhythm .ch01-intro-copy > .lede {
   margin: 0 0 0.75rem;
 }
 
-#c1.chapter--pinned-copy-rhythm > .body {
+#c1.chapter--pinned-copy-rhythm .ch01-intro-copy > .body {
   margin: 0 0 0.85rem;
 }
 
 #c1 > .fig.fig--bleed {
-  margin-top: clamp(14px, 2.2vh, 28px);
+  margin-top: 0;
+  margin-bottom: 0;
+  width: 100%;
 }
 
 #c1 .viz-body {
@@ -575,7 +593,6 @@ aside.chapter {
 }
 
 .ch7-viz-layers {
-  /* Match ch.03: same aspect and max-height as timeline/morph embed */
   position: relative;
   width: 100%;
   flex: 0 1 auto;
@@ -647,7 +664,6 @@ aside.chapter {
   max-width: 42ch;
 }
 
-/* ---------- Figures (break out of text column) ---------- */
 
 .fig {
   margin: 48px auto 0;
@@ -666,7 +682,6 @@ aside.chapter {
   margin-right: calc(50% - 50vw + 5vw);
 }
 
-/* Ch.05 — sticky morph: year×lightness → genre stacks on scroll */
 .morph-scrolly-track {
   min-height: 420vh;
   position: relative;
@@ -684,7 +699,6 @@ aside.chapter {
   padding: 0;
 }
 
-/* Full bleed width; scrolly viewBox is taller than timeline (2040×1020) for more plot height */
 .morph-scrolly-sticky svg {
   width: 100%;
   height: auto;
@@ -748,7 +762,6 @@ aside.chapter {
   width: 100%;
 }
 
-/* Color-over-time: genre filter chips above beeswarm */
 .beeswarm-wrap {
   width: 100%;
   font-family: var(--font-ui);
@@ -805,7 +818,6 @@ aside.chapter {
   opacity: 1;
 }
 
-/* Each renderer writes into .fig-slot; this wrapper is the surface. */
 
 .viz-body {
   width: 100%;
@@ -814,7 +826,6 @@ aside.chapter {
   gap: 14px;
 }
 
-/* ---------- Intro figure: poster split + palette ---------- */
 
 .intro-split {
   display: grid;
@@ -867,7 +878,6 @@ aside.chapter {
   100% { transform: scaleY(1); opacity: 1; }
 }
 
-/* ---------- Method pipelines ---------- */
 
 .method-pipelines {
   display: grid;
@@ -929,7 +939,6 @@ aside.chapter {
   50% { transform: scale(1); opacity: 1; }
 }
 
-/* ---------- SVG ---------- */
 
 svg {
   width: 100%;
@@ -939,7 +948,6 @@ svg {
 
 svg text { font-family: var(--font-ui); }
 
-/* ---------- Tooltip ---------- */
 
 .tooltip {
   position: fixed;
@@ -969,7 +977,6 @@ svg text { font-family: var(--font-ui); }
   text-transform: uppercase;
 }
 
-/* Film hover: title + year / genres, larger type, wraps long genre lists */
 .tooltip.tooltip--film {
   white-space: normal;
   max-width: min(360px, 92vw);
@@ -994,7 +1001,6 @@ svg text { font-family: var(--font-ui); }
   line-height: 1.4;
 }
 
-/* ---------- Case study (media rows: poster | palette grid | barcode) ---------- */
 
 .case-rows {
   display: flex;
@@ -1047,7 +1053,6 @@ svg text { font-family: var(--font-ui); }
   margin: 0;
 }
 
-/* three-column media strip: poster | palette grid | barcode */
 
 .media-row__grid {
   display: grid;
@@ -1080,8 +1085,6 @@ svg text { font-family: var(--font-ui); }
   display: block;
 }
 
-/* Palette grid: same visual footprint as the poster next to it (2:3
-   aspect ratio). Data shape is 5 columns × 8 rows of dominant colours. */
 .palette-grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -1127,8 +1130,6 @@ svg text { font-family: var(--font-ui); }
 .barcode {
   display: flex;
   align-items: stretch;
-  /* Match the vertical footprint of the poster/palette columns (2:3
-     aspect ratio within their 200 px width). */
   height: 300px;
   width: 100%;
   background: var(--paper-dim);
@@ -1163,7 +1164,6 @@ svg text { font-family: var(--font-ui); }
   margin: 0;
 }
 
-/* metrics row under the media strip */
 
 .media-row__metrics {
   display: grid;
@@ -1292,7 +1292,6 @@ svg text { font-family: var(--font-ui); }
   .media-row__metrics { grid-template-columns: 1fr 1fr; }
 }
 
-/* ---------- Conclusion small multiples ---------- */
 
 .small-multiples {
   display: grid;
@@ -1349,7 +1348,50 @@ svg text { font-family: var(--font-ui); }
   justify-content: space-between;
 }
 
-/* ---------- Chapter markers + pull quote ---------- */
+/* ch.01 intro — same 12 lanes as timeline atlas; posters on swatch hover */
+/* Atlas 12 tiles: mismo ancho que el texto; 4×3 escritorio (~sketch); 3 y 2 columnas en vistas más estrechas */
+#c1 .intro-atlas.intro-ch01-grid.small-multiples {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(12px, 2vw, 20px);
+  margin-top: 0;
+}
+
+@media (max-width: 1200px) {
+  #c1 .intro-atlas.intro-ch01-grid.small-multiples {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  #c1 .intro-atlas.intro-ch01-grid.small-multiples {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+#c1 .intro-atlas .intro-atlas-title {
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.8125rem;
+  font-weight: 700;
+}
+
+#c1 .intro-atlas .intro-atlas-swatch {
+  cursor: pointer;
+}
+
+.tooltip.tooltip--film img.intro-tip-poster {
+  display: block;
+  width: 132px;
+  max-width: min(132px, 42vw);
+  height: auto;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  border-radius: 6px;
+  margin: 0 0 10px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.4);
+}
+
 
 .pull {
   font-family: var(--font-ui);
@@ -1364,7 +1406,6 @@ svg text { font-family: var(--font-ui); }
   border-left: 4px solid var(--accent);
 }
 
-/* ---------- Utility text ---------- */
 
 .small {
   font-family: var(--font-ui);
@@ -1389,7 +1430,6 @@ svg text { font-family: var(--font-ui); }
   background: linear-gradient(180deg, var(--paper) 0%, var(--paper-dim) 100%);
 }
 
-/* ---------- Poster analysis (family atlas drill-in) ---------- */
 
 .poster-analysis {
   position: fixed;
@@ -1419,7 +1459,6 @@ svg text { font-family: var(--font-ui); }
 .poster-analysis__panel {
   position: relative;
   z-index: 1;
-  /* Match section 05 / .fig--bleed horizontal footprint: essay gutters + col-bleed cap */
   width: min(var(--col-bleed), calc(100vw - 10vw));
   flex: 0 0 auto;
   min-height: 0;
@@ -1505,7 +1544,6 @@ svg text { font-family: var(--font-ui); }
   gap: 0;
 }
 
-/* Shared column track for legend + data rows */
 .pa-legend,
 .pa-row__strip {
   --pa-poster-w: clamp(170px, 15vw, 270px);
@@ -1673,8 +1711,87 @@ svg text { font-family: var(--font-ui); }
 
 .pa-grid-slot {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
   width: 100%;
+}
+
+.pa-grid-slot--stacked {
+  gap: 8px;
+}
+
+.pa-poster-sample-note {
+  margin: 0;
+  max-width: 16em;
+  font-size: 0.72rem;
+  line-height: 1.35;
+  color: color-mix(in srgb, var(--ink) 62%, transparent);
+  text-align: center;
+}
+
+.pa-slope-wrap {
+  margin: 10px 0 26px;
+  padding: 14px 14px 16px;
+  background: var(--paper);
+  border-radius: 12px;
+  box-shadow: inset 0 0 0 1px var(--rule-soft);
+}
+
+.pa-slope-title {
+  margin: 0 0 10px;
+  font-family: var(--font, IBM Plex Sans, "Helvetica Neue", sans-serif);
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: var(--ink);
+}
+
+.pa-slope {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.pa-slope__axis {
+  stroke: color-mix(in srgb, var(--ink) 55%, transparent);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+}
+
+.pa-slope__grid {
+  stroke: color-mix(in srgb, var(--ink) 24%, transparent);
+  stroke-width: 1;
+  stroke-dasharray: 8 10;
+}
+
+.pa-slope__line {
+  stroke: color-mix(in srgb, var(--ink) 60%, transparent);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  fill: none;
+}
+
+.pa-slope__dot {
+  stroke: rgba(0, 0, 0, 0.14);
+  stroke-width: 1;
+  cursor: help;
+  transition: stroke-width 120ms ease;
+}
+
+.pa-slope__pm {
+  fill: color-mix(in srgb, var(--ink) 72%, transparent);
+  font-size: 16px;
+  font-weight: 700;
+  font-family: var(--font, IBM Plex Sans, "Helvetica Neue", sans-serif);
+  text-anchor: middle;
+  paint-order: stroke;
+  stroke: color-mix(in srgb, var(--paper) 92%, transparent);
+  stroke-width: 4px;
+  stroke-linejoin: round;
+}
+
+.pa-slope__dot:hover {
+  stroke-width: 2;
 }
 
 .pa-swatch {
@@ -1847,7 +1964,6 @@ svg text { font-family: var(--font-ui); }
   }
 }
 
-/* ---------- Footer ---------- */
 
 .colophon {
   box-sizing: border-box;
@@ -1866,7 +1982,11 @@ svg text { font-family: var(--font-ui); }
   text-align: left;
 }
 
-/* ---------- Responsive ---------- */
+
+/* When js/ui-flags SHOW_SENTIMENT_UI is false — hide RoBERTa footer line only */
+body.sentiment-ui-hidden .colophon > .small:last-of-type {
+  display: none;
+}
 
 @media (max-width: 760px) {
   .essay { padding: 0 5vw 100px; }
@@ -1904,6 +2024,10 @@ svg text { font-family: var(--font-ui); }
   section.chapter > h2,
   section.chapter > .lede,
   section.chapter > .body,
+  #c1 .ch01-intro-copy > .chapter-num,
+  #c1 .ch01-intro-copy > h2,
+  #c1 .ch01-intro-copy > .lede,
+  #c1 .ch01-intro-copy > .body,
   aside.chapter blockquote.pull {
     opacity: 1 !important;
     transform: none !important;

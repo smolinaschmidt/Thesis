@@ -1,8 +1,11 @@
-import { el, clear, posterUrl, classifyColor } from "./color.js";
+import { el, clear, posterUrl, classifyColor, brightness } from "./color.js";
 import { loadMediaColors, rgbToHex } from "./case-study.js";
+import { showTooltip, moveTooltip, hideTooltip } from "./tooltip.js";
 
 const GRID_ROWS = 8;
 const GRID_COLS = 5;
+
+const SLOPE_FAMILY_IDS = new Set(["FAM0003", "FAM0018"]); // A Star Is Born + Psycho (pilot)
 
 function luminance(rgb) {
   const [r, g, b] = rgb.map((v) => v / 255);
@@ -226,9 +229,7 @@ function renderFilmRow(movie, { index, total }) {
   gridSlot.append(renderPoster58Grid(null, dominantHex));
 
   const d4 = el("div", { class: "pa-stage-inner" });
-  const d2 = el("div", { class: "pa-stage-inner" });
   d4.append(renderDominant4([dominantHex, dominantHex, dominantHex, dominantHex]));
-  d2.append(renderDominant2([dominantHex, dominantHex]));
 
   const posterCol = el(
     "div",
@@ -253,15 +254,13 @@ function renderFilmRow(movie, { index, total }) {
     stageCard("Poster", "Key art", posterCol),
     stageCard("Poster sample", "5 × 8 regions", gridSlot),
     stageCard("Four tones", "k-means", d4),
-    stageCard("Two tones", "blended", d2),
-    stageCard("Dominant", "dataset", renderDominant1(dominantHex))
+    stageCard("Final colour", "dataset", renderDominant1(dominantHex))
   );
 
   const row = el("article", { class: "pa-row" }, strip);
 
   loadMediaColors(movie.tmdbId).then((media) => {
     clear(d4);
-    clear(d2);
 
     const full = media?.posterGrid;
     const grid58 = sliceGrid58(full);
@@ -269,12 +268,22 @@ function renderFilmRow(movie, { index, total }) {
 
     clear(gridSlot);
     gridSlot.append(renderPoster58Grid(grid58, dominantHex));
+    if (!grid58) {
+      gridSlot.classList.add("pa-grid-slot--stacked");
+      gridSlot.append(
+        el(
+          "p",
+          { class: "pa-poster-sample-note", role: "status" },
+          "No poster sample grid in dataset — middle columns use the recorded dominant only."
+        )
+      );
+    } else {
+      gridSlot.classList.remove("pa-grid-slot--stacked");
+    }
 
     const c4 = kMeansRgbs(points, Math.min(4, points.length)).map(rgbToHex);
-    const c2 = kMeansRgbs(points, Math.min(2, points.length)).map(rgbToHex);
 
     d4.append(renderDominant4(c4));
-    d2.append(renderDominant2(c2));
   });
 
   return row;
@@ -282,6 +291,109 @@ function renderFilmRow(movie, { index, total }) {
 
 let shell = null;
 let onKey = null;
+
+function fmtBrightness(b) {
+  if (b == null || !Number.isFinite(b)) return "—";
+  return `${Math.round(b)}`;
+}
+
+function slopeChartForFamily(family) {
+  let movies = [...(family?.movies || [])].filter((m) => m?.dominantHex && m?.year != null);
+  if (movies.length < 2) return null;
+  movies = movies.sort((a, b) => (a.year ?? 9999) - (b.year ?? 9999));
+
+  const W = 560;
+  const H = 190;
+  const pad = { top: 18, right: 42, bottom: 18, left: 42 };
+  const innerW = W - pad.left - pad.right;
+  const innerH = H - pad.top - pad.bottom;
+
+  const x = (i) => {
+    if (movies.length <= 1) return pad.left;
+    return pad.left + (i / (movies.length - 1)) * innerW;
+  };
+  const y = (v) => pad.top + (1 - Math.max(0, Math.min(100, v)) / 100) * innerH;
+  const pts = movies.map((m, i) => ({
+    i,
+    year: m.year,
+    hex: m.dominantHex,
+    b: brightness(m.dominantHex),
+    x: x(i),
+    y: y(brightness(m.dominantHex)),
+  }));
+
+  const ns = "http://www.w3.org/2000/svg";
+  const svg = document.createElementNS(ns, "svg");
+  svg.setAttribute("class", "pa-slope");
+  svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+  svg.setAttribute("role", "img");
+  svg.setAttribute("aria-label", `Brightness over time from ${pts[0].year} to ${pts[pts.length - 1].year}.`);
+
+  const mk = (tag, attrs = {}) => {
+    const n = document.createElementNS(ns, tag);
+    for (const [k, v] of Object.entries(attrs)) n.setAttribute(k, String(v));
+    return n;
+  };
+
+  // side axes
+  svg.appendChild(mk("line", { x1: pad.left, x2: pad.left, y1: pad.top, y2: pad.top + innerH, class: "pa-slope__axis" }));
+  svg.appendChild(mk("line", { x1: pad.left + innerW, x2: pad.left + innerW, y1: pad.top, y2: pad.top + innerH, class: "pa-slope__axis" }));
+
+  // dashed gridlines (no numeric labels; sketch-like)
+  const ticks = [85, 65, 45, 25];
+  for (const t of ticks) {
+    const yy = y(t);
+    svg.appendChild(mk("line", { x1: pad.left, x2: pad.left + innerW, y1: yy, y2: yy, class: "pa-slope__grid" }));
+  }
+
+  // + / - markers like the sketch
+  const plusL = mk("text", { x: pad.left - 16, y: pad.top + 10, class: "pa-slope__pm" }); plusL.textContent = "+";
+  const minusL = mk("text", { x: pad.left - 16, y: pad.top + innerH, class: "pa-slope__pm" }); minusL.textContent = "−";
+  const plusR = mk("text", { x: pad.left + innerW + 16, y: pad.top + 10, class: "pa-slope__pm pa-slope__pm--r" }); plusR.textContent = "+";
+  const minusR = mk("text", { x: pad.left + innerW + 16, y: pad.top + innerH, class: "pa-slope__pm pa-slope__pm--r" }); minusR.textContent = "−";
+  svg.appendChild(plusL); svg.appendChild(minusL); svg.appendChild(plusR); svg.appendChild(minusR);
+
+  // slope polyline through every film
+  const d = pts.map((p) => `${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(" ");
+  svg.appendChild(mk("polyline", { points: d, class: "pa-slope__line", fill: "none" }));
+
+  // points (no visible years; show on hover via <title>)
+  pts.forEach((p, i) => {
+    const c = mk("circle", {
+      cx: p.x,
+      cy: p.y,
+      r: 10,
+      fill: p.hex,
+      class: "pa-slope__dot",
+      tabindex: "0",
+      "data-year": p.year,
+      "data-hex": String(p.hex || "").toUpperCase(),
+      "data-bright": Math.round(p.b),
+    });
+
+    const onEnter = (event) => {
+      const year = c.getAttribute("data-year") || "—";
+      const hex = c.getAttribute("data-hex") || "—";
+      const br = c.getAttribute("data-bright") || "—";
+      showTooltip(event, `<span class="t-title">${hex}</span><span class="t-sub">${year} · brightness ${br}</span>`);
+    };
+    c.addEventListener("mouseenter", onEnter);
+    c.addEventListener("mousemove", (event) => moveTooltip(event));
+    c.addEventListener("mouseleave", () => hideTooltip());
+    c.addEventListener("focus", (event) => onEnter(event));
+    c.addEventListener("blur", () => hideTooltip());
+
+    svg.appendChild(c);
+  });
+
+  const wrap = el(
+    "section",
+    { class: "pa-slope-wrap", "aria-label": "Brightness change" },
+    el("h3", { class: "pa-slope-title" }, "Brightness slope"),
+    svg
+  );
+  return wrap;
+}
 
 function buildShell() {
   const backdrop = el("div", {
@@ -373,11 +485,7 @@ export function openPosterAnalysis({ familyId, families }) {
     ),
     el("div", { class: "pa-legend__cell" },
       el("span", { class: "pa-legend__label" }, "Step 4"),
-      el("span", { class: "pa-legend__hint" }, "2 tones")
-    ),
-    el("div", { class: "pa-legend__cell" },
-      el("span", { class: "pa-legend__label" }, "Step 5"),
-      el("span", { class: "pa-legend__hint" }, "Dominant")
+      el("span", { class: "pa-legend__hint" }, "Final")
     )
   );
   shell.rows.append(legend);
@@ -385,6 +493,16 @@ export function openPosterAnalysis({ familyId, families }) {
   sorted.forEach((m, i) => {
     shell.rows.append(renderFilmRow(m, { index: i, total: sorted.length }));
   });
+
+  if (SLOPE_FAMILY_IDS.has(String(family.familyId))) {
+    try {
+      const slope = slopeChartForFamily({ ...family, movies: sorted });
+      if (slope) shell.rows.append(slope);
+    } catch (err) {
+      // Never let optional analysis block the modal.
+      console.warn("slope chart failed", err);
+    }
+  }
 
   shell.root.hidden = false;
   shell.root.setAttribute("aria-hidden", "false");

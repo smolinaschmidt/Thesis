@@ -17,8 +17,7 @@ Plain static site (`html + css + js` modules) + Python pipeline for data.
 - `tooltip.js` — single shared tooltip (bound to `#tooltip` in `index.html`).
 - `intro.js` — sections 1–2 (hook, posters, palette morph).
 - `timeline.js` — section 3 (remake families across time, hover lanes).
-- `method.js` — section 4 (two pipelines diagram).
-- `morph.js` — sections 5–8 in one sticky D3 chart, four data stages:
+- `morph.js` — sections 4–7 in one sticky D3 chart, four data stages:
   - 0 decade hue stacks
   - 1 genre hue stacks (same rectangles, re-keyed)
   - 2 sentiment dots + decade mean line
@@ -29,7 +28,7 @@ Plain static site (`html + css + js` modules) + Python pipeline for data.
 ## `data/` — processed analysis artifacts
 
 - `data/Final_Database.csv` — source CSV dataset.
-- `data/poster/`, `data/trailers/` — media files.
+- `data/poster/`, `data/trailers/` — optional local cache of downloaded assets when running `extract_media_colors.py` (the site uses JSON under `data/analisis/`, not these files).
 - `data/analisis/` — all Python-generated analysis outputs.
 
 ### Inside `data/analisis/`

@@ -1,15 +1,28 @@
 import { el, clear } from "./color.js";
 import { renderIntro } from "./intro.js";
 import { renderTimeline, computeTimelineLayout, timelineDotX } from "./timeline.js";
-import { renderMorph, renderMorphScrolly, renderSentimentToScatterPinned } from "./morph.js";
+import { renderMorphScrolly, renderSentimentToScatterPinned } from "./morph.js";
 import { renderConclusion } from "./conclusion.js";
 import { openPosterAnalysis } from "./poster-analysis.js";
+import { SHOW_SENTIMENT_UI } from "./ui-flags.js";
+
+if (!SHOW_SENTIMENT_UI) {
+  document.body.classList.add("sentiment-ui-hidden");
+}
 
 /**
  * Editorial long-form — single centered column with figures that break out.
  * Each chapter has: number, italic serif heading, body, and an inline figure.
  * Figures are rendered lazily the first time they enter the viewport.
  */
+
+const C2_BODY_WITH_SENTIMENT =
+  "These are aesthetic questions, but they are also measurable. Across 650 films we extract a single dominant color and a single sentiment score — two numbers per movie, two coordinates on a map.";
+const C2_BODY_COLOR_ONLY =
+  "These are aesthetic questions, but they are also measurable. Across 650 films we extract a single dominant color per poster — one number per film, one point on a map.";
+const C2_LEDE_WITH_SENTIMENT =
+  "How does the color identity of a story change across cinematic eras? And what happens to its emotional tone?";
+const C2_LEDE_COLOR_ONLY = "How does the color identity of a story change across cinematic eras?";
 
 const CHAPTERS = [
   {
@@ -27,10 +40,8 @@ const CHAPTERS = [
     id: "c2",
     num: "02",
     heading: "A question of color.",
-    lede:
-      "How does the color identity of a story change across cinematic eras? And what happens to its emotional tone?",
-    body:
-      "These are aesthetic questions, but they are also measurable. Across 650 films we extract a single dominant color and a single sentiment score — two numbers per movie, two coordinates on a map.",
+    lede: SHOW_SENTIMENT_UI ? C2_LEDE_WITH_SENTIMENT : C2_LEDE_COLOR_ONLY,
+    body: SHOW_SENTIMENT_UI ? C2_BODY_WITH_SENTIMENT : C2_BODY_COLOR_ONLY,
     figWidth: "narrow",
     render: null,
   },
@@ -65,12 +76,24 @@ const CHAPTERS = [
         analytics: ctx.analytics,
         families: ctx.families,
         onSelectFamily: ctx.onSelectFamily,
+        showSentimentSummary: SHOW_SENTIMENT_UI,
       }),
   },
 ];
 
 /** Chapter ids with no static heading in <section>; copy lives inside pinned figures. */
-const PINNED_NO_STATIC_COPY = new Set(["c3", "c7"]);
+const PINNED_NO_STATIC_COPY = new Set(["c3", ...(SHOW_SENTIMENT_UI ? ["c7"] : [])]);
+
+function visibleChapters() {
+  return CHAPTERS.filter(
+    (ch) => (SHOW_SENTIMENT_UI || ch.id !== "c7") && ch.id !== "c2"
+  );
+}
+
+function chapterIndexById(id) {
+  const i = visibleChapters().findIndex((ch) => ch.id === id);
+  return i >= 0 ? i : 0;
+}
 
 const state = {
   combined: null,
@@ -297,7 +320,7 @@ function renderPinnedChapter3(slot, ctx) {
 
   const timelineAnchors = new Map();
   const tmdbToLane = new Map();
-  const TL = computeTimelineLayout(ctx.families);
+  const TL = computeTimelineLayout(ctx.families, { movies: ctx.movies });
   if (TL) {
     for (const d of TL.data) {
       if (d.tmdbId != null && Number.isFinite(d.tmdbId)) {
@@ -317,7 +340,11 @@ function renderPinnedChapter3(slot, ctx) {
     margin: { top: 44, right: 22, bottom: 44, left: 220 },
   };
 
-  const timelineApiRaw = renderTimeline(layerT, { families: ctx.families, omitDots: true });
+  const timelineApiRaw = renderTimeline(layerT, {
+    families: ctx.families,
+    movies: ctx.movies,
+    omitDots: true,
+  });
   let lastCh3Mt = 0;
 
   const morphApi = renderMorphScrolly(layerM, {
@@ -415,43 +442,49 @@ loadData().then(() => {
 /* ---------------- build ---------------- */
 
 function buildMasthead() {
+  const dek = SHOW_SENTIMENT_UI
+    ? "The same story, retold across time, never looks the same. A visual essay on color and sentiment in film remakes, 1930 to today."
+    : "The same story, retold across time, never looks the same. A visual essay on color in film remakes, 1930 to today.";
+  const bylineSpans = SHOW_SENTIMENT_UI
+    ? [el("span", {}, "By Sofia"), el("span", {}, "Color · Sentiment"), el("span", {}, "TMDB · 650 films")]
+    : [el("span", {}, "By Sofia"), el("span", {}, "Color"), el("span", {}, "TMDB · 650 films")];
   essay.append(
     el(
       "header",
       { class: "masthead" },
       el("p", { class: "crumb" }, "Thesis · Data visualization · 2026"),
       el("h1", { html: "Remaking <em>Color.</em>" }),
-      el(
-        "p",
-        { class: "dek" },
-        "The same story, retold across time, never looks the same. A visual essay on color and sentiment in film remakes, 1930 to today."
-      ),
-      el(
-        "p",
-        { class: "byline" },
-        el("span", {}, "By Sofia"),
-        el("span", {}, "Color · Sentiment"),
-        el("span", {}, "TMDB · 650 films")
-      )
+      el("p", { class: "dek" }, dek),
+      el("p", { class: "byline" }, ...bylineSpans)
     )
   );
 }
 
 function buildChapters() {
-  CHAPTERS.forEach((ch, idx) => {
+  visibleChapters().forEach((ch, idx) => {
     let sectionClass = "chapter";
     if (ch.id === "c3") sectionClass = "chapter chapter--ch3-pinned";
     else if (ch.id === "c7") sectionClass = "chapter chapter--pinned-morph";
     else if (ch.id === "c10") sectionClass = "chapter chapter--bleed-shell";
-    else if (ch.id === "c1" || ch.id === "c2")
+    else if (ch.id === "c1")
       sectionClass = "chapter chapter--bleed-shell chapter--pinned-copy-rhythm";
     const section = el("section", { class: sectionClass, id: ch.id, "data-index": String(idx) });
+    const chapterNumDisplayed = String(idx + 1).padStart(2, "0");
 
     if (!PINNED_NO_STATIC_COPY.has(ch.id)) {
-      section.append(el("p", { class: "chapter-num" }, ch.num));
-      if (ch.heading) section.append(el("h2", {}, ch.heading));
-      if (ch.lede) section.append(el("p", { class: "lede" }, ch.lede));
-      if (ch.body) section.append(el("p", { class: "body" }, ch.body));
+      if (ch.id === "c1") {
+        const copy = el("div", { class: "ch01-intro-copy" });
+        copy.append(el("p", { class: "chapter-num" }, chapterNumDisplayed));
+        if (ch.heading) copy.append(el("h2", {}, ch.heading));
+        if (ch.lede) copy.append(el("p", { class: "lede" }, ch.lede));
+        if (ch.body) copy.append(el("p", { class: "body" }, ch.body));
+        section.append(copy);
+      } else {
+        section.append(el("p", { class: "chapter-num" }, chapterNumDisplayed));
+        if (ch.heading) section.append(el("h2", {}, ch.heading));
+        if (ch.lede) section.append(el("p", { class: "lede" }, ch.lede));
+        if (ch.body) section.append(el("p", { class: "body" }, ch.body));
+      }
     }
 
     if (ch.render) {
@@ -466,8 +499,8 @@ function buildChapters() {
 
     essay.append(section);
 
-    // Pull quote halfway through
-    if (idx === 2) {
+    // Pull quote after the comparison chapter (was third section when c2 existed)
+    if (ch.id === "c3") {
       essay.append(
         el(
           "aside",
@@ -562,7 +595,7 @@ function resolveSearch(query) {
   if (!match?.tmdbId) return;
   state.selectedFilmId = Number(match.tmdbId);
   // Re-render the case study chapter
-  renderChapter(4, true);
+  renderChapter(chapterIndexById("c10"), true);
   document.getElementById("c10")?.scrollIntoView({ behavior: "smooth" });
 }
 
@@ -621,7 +654,7 @@ function setupLazyRender() {
 function renderChapter(idx, force) {
   if (!state.combined || !state.analytics) return;
   if (!force && state.rendered.has(idx)) return;
-  const chapter = CHAPTERS[idx];
+  const chapter = visibleChapters()[idx];
   if (!chapter?.render) return;
 
   const fig = document.querySelector(`[data-render="${idx}"]`);

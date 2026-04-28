@@ -1,9 +1,21 @@
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 import { el, clear } from "./color.js";
 import { showTooltip, hideTooltip, moveTooltip } from "./tooltip.js";
+import {
+  VIEW_WIDTH,
+  morphEligibleMovies,
+  morphRawYearExtents,
+  morphNicedYearDomain,
+  morphDecadeStartsForBands,
+  morphBottomDecadeTickYears,
+  morphTimeScale,
+  MORPH_CHART_FONT,
+  MORPH_MUTED,
+  MORPH_RULE,
+} from "./shared-morph-time-axis.js";
 
-// Timeline of most famous remake families
-const FEATURED_LANES = [
+/** Timeline + intro ch.01 atlas — same curated 12 remake families. */
+export const FEATURED_LANES = [
   { laneId: "gatsby", label: "The Great Gatsby", familyTitles: ["Great Gatsby"] },
   { laneId: "starisborn", label: "A Star Is Born", familyTitles: ["Star Is Born"] },
   { laneId: "carrie", label: "Carrie", familyTitles: ["Carrie"] },
@@ -29,7 +41,13 @@ const FEATURED_LANES = [
   { laneId: "westside", label: "West Side Story", familyTitles: ["West Side Story"] },
 ];
 
-export function computeTimelineLayout(families) {
+/** Featured rows as minimal movie-shaped objects — only for axis fallback without analytics.movies */
+function featuredRowsAsYearExtents(data) {
+  return data.filter((d) => d.year);
+}
+
+/** Optional `movies`: same pool as morph scrolly (analytics.movies); shared domain + zebra + ticks when set. */
+export function computeTimelineLayout(families, options = {}) {
   const byFamilyTitle = new Map(
     (families || []).map((f) => [(f.familyTitle || "").toLowerCase(), f])
   );
@@ -60,18 +78,12 @@ export function computeTimelineLayout(families) {
   if (!data.length) return null;
 
   const MIN_VOTES = 20;
-  const radiusDomain = [5, 8.5];
-  const radiusRange = [7, 22];
-  const rScale = d3.scalePow().exponent(1.6).domain(radiusDomain).range(radiusRange).clamp(true);
-  const neutralRadius = 11;
-
-  const radiusFor = (d) =>
-    d.voteAverage != null && d.voteCount >= MIN_VOTES
-      ? rScale(d.voteAverage)
-      : neutralRadius;
+  /** Uniform dot size (remakes timeline — “The first comparison”). */
+  const filmDotRadius = 16;
+  const radiusFor = () => filmDotRadius;
   const isRated = (d) => d.voteAverage != null && d.voteCount >= MIN_VOTES;
 
-  const fullWidth = 2040;
+  const fullWidth = VIEW_WIDTH;
   const panelWidth = 320;
   const panelGap = 28;
   const height = 640;
@@ -83,11 +95,16 @@ export function computeTimelineLayout(families) {
   const chartRightFull = fullWidth - margin.right;
   const chartRightSplit = fullWidth - margin.right - panelWidth - panelGap;
 
-  const x = d3
-    .scaleLinear()
-    .domain(d3.extent(data, (d) => d.year))
-    .nice()
-    .range([margin.left, chartRightFull]);
+  const eligible = morphEligibleMovies(options.movies);
+  const yearlySource = eligible.length > 0 ? eligible : featuredRowsAsYearExtents(data);
+  const rawExt = morphRawYearExtents(yearlySource);
+  if (!rawExt) return null;
+
+  const domainNice = morphNicedYearDomain(rawExt);
+  const x = morphTimeScale(margin.left, chartRightFull, domainNice);
+
+  const decadeBandStarts = morphDecadeStartsForBands(rawExt[0], rawExt[1]);
+  const decadeTickYears = morphBottomDecadeTickYears(rawExt[0], rawExt[1]);
 
   const laneIds = FEATURED_LANES.filter((lane) =>
     data.some((d) => d.laneId === lane.laneId)
@@ -102,6 +119,8 @@ export function computeTimelineLayout(families) {
   return {
     data,
     x,
+    decadeBandStarts,
+    decadeTickYears,
     y,
     laneIds,
     labelById,
@@ -118,22 +137,20 @@ export function computeTimelineLayout(families) {
     radiusFor,
     isRated,
     MIN_VOTES,
-    neutralRadius,
-    rScale,
   };
 }
 
-/** X position for a film year — full chart, or narrowed when the comparison panel is open. */
+/** X position by release year — same linear time axis as the morph “all films” view; panel narrows range. */
 export function timelineDotX(TL, year, panelOpen) {
   if (!TL || year == null || !Number.isFinite(year)) return 0;
   const right = panelOpen ? TL.chartRightSplit : TL.chartRightFull;
   return TL.x.copy().range([TL.margin.left, right])(year);
 }
 
-export function renderTimeline(container, { families, omitDots = false } = {}) {
+export function renderTimeline(container, { families, movies = null, omitDots = false } = {}) {
   clear(container);
 
-  const L = computeTimelineLayout(families);
+  const L = computeTimelineLayout(families, { movies });
   if (!L) return;
 
   const svgNode = document.createElementNS("http://www.w3.org/2000/svg", "svg");
@@ -143,6 +160,8 @@ export function renderTimeline(container, { families, omitDots = false } = {}) {
   const {
     data,
     x,
+    decadeBandStarts,
+    decadeTickYears,
     y,
     laneIds,
     labelById,
@@ -162,7 +181,30 @@ export function renderTimeline(container, { families, omitDots = false } = {}) {
 
   svg.attr("viewBox", `0 0 ${fullWidth} ${height}`);
 
-  // Background: click empty chart area to clear selection (dots sit above).
+  /** Matches morph (`morph-bands-time`): zebra by decade stripe. */
+  const gBandsTime = svg.append("g").attr("class", "morph-bands-time");
+
+  const baselineBottom = svg
+    .append("line")
+    .attr("class", "morph-baseline timeline-morph-shared")
+    .attr("x1", margin.left)
+    .attr("x2", chartRightFull)
+    .attr("y1", plotBottom)
+    .attr("y2", plotBottom)
+    .attr("stroke", MORPH_RULE)
+    .attr("stroke-width", 1.5);
+
+  const baselineLeft = svg
+    .append("line")
+    .attr("class", "morph-baseline-left timeline-morph-shared")
+    .attr("x1", margin.left)
+    .attr("x2", margin.left)
+    .attr("y1", plotTop)
+    .attr("y2", plotBottom)
+    .attr("stroke", MORPH_RULE)
+    .attr("stroke-width", 1.5);
+
+  // Transparent hit target over plot (bands sit behind).
   const chartBg = svg
     .append("rect")
     .attr("x", margin.left)
@@ -171,6 +213,73 @@ export function renderTimeline(container, { families, omitDots = false } = {}) {
     .attr("height", plotInnerHeight)
     .attr("fill", "transparent")
     .style("cursor", "default");
+
+  const axisTimeX = svg.append("g").attr("class", "timeline-morph-axis-x");
+
+  svg
+    .append("text")
+    .attr("class", "morph-caption-time-x timeline-caption-release-year")
+    .attr("x", chartRightFull)
+    .attr("y", height - 16)
+    .attr("text-anchor", "end")
+    .attr("fill", MORPH_MUTED)
+    .attr("font-family", MORPH_CHART_FONT)
+    .attr("font-size", 15)
+    .attr("font-weight", 700)
+    .text("Release year →");
+
+  /** Same decade bands + axis + baselines + caption x as morph scrolly (shared numbers / styling). */
+  function drawMorphTimeAxis(chartRight, dur) {
+    const left = margin.left;
+    x.range([left, chartRight]);
+
+    const bandData = decadeBandStarts.slice(0, -1).map((start, i) => ({
+      start,
+      end: decadeBandStarts[i + 1],
+      i,
+      key: `${start}_${decadeBandStarts[i + 1]}`,
+    }));
+
+    const bandRects = gBandsTime
+      .selectAll("rect")
+      .data(bandData, (d) => d.key)
+      .join(
+        (enter) =>
+          enter
+            .append("rect")
+            .attr("y", plotTop)
+            .attr("height", plotBottom - plotTop),
+        (update) => update,
+        (exit) => exit.remove()
+      )
+      .attr("fill", (d) => (d.i % 2 === 0 ? "#fafafa" : "#ffffff"))
+      .attr("stroke", "none");
+
+    bandRects.each(function (d) {
+      const xa = Math.max(left, x(d.start));
+      const xb = Math.min(chartRight, x(d.end));
+      const sel = dur > 0 ? d3.select(this).transition().duration(dur) : d3.select(this);
+      sel.attr("x", xa).attr("width", Math.max(0, xb - xa));
+    });
+
+    if (dur > 0) {
+      baselineBottom.transition().duration(dur).attr("x1", left).attr("x2", chartRight);
+    } else {
+      baselineBottom.attr("x1", left).attr("x2", chartRight);
+    }
+
+    svg.select(".timeline-caption-release-year").attr("x", chartRight);
+
+    const axisBottom = d3.axisBottom(x).tickValues(decadeTickYears).tickFormat(d3.format("d")).tickSize(0);
+
+    axisTimeX.attr("transform", `translate(0, ${plotBottom})`).call(axisBottom).call((g) => g.select(".domain").remove());
+    axisTimeX
+      .selectAll("text")
+      .attr("fill", MORPH_MUTED)
+      .attr("font-family", MORPH_CHART_FONT)
+      .style("font-size", "16px")
+      .style("font-weight", "600");
+  }
 
   const lanes = svg
     .append("g")
@@ -256,10 +365,6 @@ export function renderTimeline(container, { families, omitDots = false } = {}) {
     return m ? `#${m[1].toUpperCase()}` : "#000000";
   };
 
-  const axisGroup = svg
-    .append("g")
-    .attr("transform", `translate(0, ${height - margin.bottom + 8})`);
-
   function renderComparison() {
     cardsGroup.selectAll("*").remove();
     if (!selectedLaneId) return;
@@ -328,24 +433,12 @@ export function renderTimeline(container, { families, omitDots = false } = {}) {
       .attr("opacity", 0.9);
   }
 
-  function styleAxis() {
-    axisGroup.selectAll("path,line").attr("stroke", "#d8d8d2");
-    axisGroup
-      .selectAll("text")
-      .attr("fill", "#333")
-      .style("font-size", "13px")
-      .style("font-weight", "500")
-      .style("letter-spacing", "0.04em");
-  }
-
   function applyLayout(animate) {
     const dur = animate ? 420 : 0;
     const open = Boolean(selectedLaneId);
     const chartRight = open ? chartRightSplit : chartRightFull;
 
-    x.range([margin.left, chartRight]);
-
-    const axis = d3.axisBottom(x).ticks(8).tickFormat(d3.format("d"));
+    drawMorphTimeAxis(chartRight, dur);
 
     if (dur === 0) {
       // Do not use transitions on `dots` here: a zero-duration transition
@@ -353,8 +446,6 @@ export function renderTimeline(container, { families, omitDots = false } = {}) {
       chartBg.attr("width", chartRight - margin.left);
       lanes.attr("x2", chartRight);
       if (dots) dots.attr("cx", (d) => x(d.year));
-      axisGroup.call(axis);
-      styleAxis();
       const panelX = open ? chartRight + panelGap : fullWidth;
       panelGroup
         .style("pointer-events", open ? "auto" : "none")
@@ -363,8 +454,8 @@ export function renderTimeline(container, { families, omitDots = false } = {}) {
     } else {
       chartBg.transition().duration(dur).attr("width", chartRight - margin.left);
       lanes.transition().duration(dur).attr("x2", chartRight);
-      if (dots) dots.interrupt().transition().duration(dur).attr("cx", (d) => x(d.year));
-      axisGroup.transition().duration(dur).call(axis).on("end", styleAxis);
+      if (dots)
+        dots.interrupt().transition().duration(dur).attr("cx", (d) => x(d.year));
       const panelX = open ? chartRight + panelGap : fullWidth;
       panelGroup
         .style("pointer-events", open ? "auto" : "none")
@@ -441,19 +532,6 @@ export function renderTimeline(container, { families, omitDots = false } = {}) {
     .on("mouseleave", () => {
       if (!selectedLaneId) resetHighlight();
     });
-
-  // Legend: dot size encodes TMDB vote average (when enough votes).
-  svg
-    .append("text")
-    .attr("x", margin.left)
-    .attr("y", 22)
-    .attr("dy", "0.35em")
-    .attr("fill", "#111")
-    .attr("font-size", 13)
-    .attr("font-weight", 600)
-    .style("letter-spacing", "0.06em")
-    .style("text-transform", "uppercase")
-    .text("size = TMDB rating");
 
   applyLayout(false);
 

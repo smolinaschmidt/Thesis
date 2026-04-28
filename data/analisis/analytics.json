@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-23T04:07:25.204883+00:00",
+  "generatedAt": "2026-04-28T18:14:42.120508+00:00",
   "summary": {
     "totalMovies": 643,
     "totalFamilies": 301,
@@ -25,12 +25,12 @@
       "trailerKey": "etAwZ9ZILAQ",
       "overview": "Michel Simon gives one of the most memorable performances in screen history as Boudu, a Parisian tramp who takes a suicidal plunge into the Seine and is rescued by a well-to-do bookseller, Edouard Lestingois. The Lestingois family decides to take in the irrepressible bum, and he shows his gratitude by shaking the household to its foundations. With Boudu Saved from Drowning, legendary director Jean Renoir takes advantage of a host of Parisian locations and the anarchic charms of his lead actor to create an effervescent satire of the bourgeoisie.",
       "dominantRgb": [
-        153,
-        129,
-        137
+        150,
+        87,
+        56
       ],
-      "dominantHex": "#998189",
-      "colorSource": "deterministic_seed",
+      "dominantHex": "#965738",
+      "colorSource": "poster_palette",
       "voteAverage": 6.961,
       "voteCount": 151,
       "popularity": 0.6135
@@ -77,12 +77,12 @@
       "trailerKey": "T86G_Vs9XAA",
       "overview": "After years of questioning why people fear him, Death takes on human form so he can mingle among the mortals and find an answer. However, events soon spiral out of control as he falls in love with the beautiful young Grazia, the only woman not afraid of him. As he falls in love with her, her father sees him for what he is and begs him to return to his duties. Death must decide whether or not to seek his own happiness or sacrifice it so that Grazia may live.",
       "dominantRgb": [
-        101,
-        133,
-        69
+        127,
+        97,
+        86
       ],
-      "dominantHex": "#658545",
-      "colorSource": "deterministic_seed",
+      "dominantHex": "#7f6156",
+      "colorSource": "poster_palette",
       "voteAverage": 6.2,
       "voteCount": 48,
       "popularity": 1.6126
@@ -237,12 +237,12 @@
       "trailerKey": "hsMArAsctbM",
       "overview": "Years after she was presumed dead in a shipwreck, Ellen Arden returns home to the surprise of her husband recently remarrying. But he too gets a shock when he learns that Ellen spent her time alone on an island with another man.",
       "dominantRgb": [
-        96,
-        78,
-        104
+        95,
+        91,
+        102
       ],
-      "dominantHex": "#604e68",
-      "colorSource": "deterministic_seed",
+      "dominantHex": "#5f5b66",
+      "colorSource": "poster_palette",
       "voteAverage": 7.0,
       "voteCount": 169,
       "popularity": 2.4123
@@ -263,12 +263,12 @@
       "trailerKey": "yQBk0CtTiok",
       "overview": "Something's Got to Give (1962) was an unfinished film starring Marilyn Monroe, Dean Martin, and Cyd Charisse, intended as a remake of My Favorite Wife. Production was plagued by Monroe's frequent absences due to illness, leading to her firing and rehiring, and the project was abandoned after her sudden death in August 1962, making it her final work.",
       "dominantRgb": [
-        71,
-        163,
-        99
+        29,
+        76,
+        135
       ],
-      "dominantHex": "#47a363",
-      "colorSource": "deterministic_seed",
+      "dominantHex": "#1d4c87",
+      "colorSource": "poster_palette",
       "voteAverage": 7.7,
       "voteCount": 3,
       "popularity": 0.7042
@@ -315,12 +315,12 @@
       "trailerKey": null,
       "overview": "Travelling family man Paolo agrees to pose as husband to an unwed pregnant girl he meets on a train. However, once faced with her father, things do not go as planned.",
       "dominantRgb": [
-        222,
-        96,
-        158
+        156,
+        109,
+        120
       ],
-      "dominantHex": "#de609e",
-      "colorSource": "deterministic_seed",
+      "dominantHex": "#9c6d78",
+      "colorSource": "poster_palette",
       "voteAverage": 7.4,
       "voteCount": 31,
       "popularity": 0.5127
@@ -369,12 +369,12 @@
       "trailerKey": "MWpndF2aI4g",
       "overview": "Spoiled playboy Henry van Cleve dies and arrives at the entrance to Hell, a final destination he is sure he deserves after living a life of profligacy. The devil, however, isn't so sure Henry meets Hell's standards. Convinced he is where he belongs, Henry recounts his life's deeds, both good and bad, including an act of indiscretion during his 25-year marriage to his wife, Martha, with the hope that \"His Excellency\" will arrive at the proper judgment.",
       "dominantRgb": [
-        87,
-        51,
-        203
+        216,
+        179,
+        154
       ],
-      "dominantHex": "#5733cb",
-      "colorSource": "deterministic_seed",
+      "dominantHex": "#d8b39a",
+      "colorSource": "poster_palette",
       "voteAverage": 6.9,
       "voteCount": 245,
       "popularity": 2.8027
@@ -396,12 +396,12 @@
       "trailerKey": "SDLbLbsxRKQ",
       "overview": "Joe Pendleton is a quarterback preparing to lead his team to the superbowl when he is almost killed in an accident. An overanxious angel plucks him to heaven only to discover that he wasn't ready to die, and that his body has been cremated. A new body must be found, and that of a recently-murdered millionaire is chosen. His wife and accountant\u2014the murderers\u2014are confused by this development, as he buys the L.A. Rams in order to once again quarterback them into the Superbowl.",
       "dominantRgb": [
-        128,
-        214,
-        132
+        171,
+        185,
+        191
       ],
-      "dominantHex": "#80d684",
-      "colorSource": "deterministic_seed",
+      "dominantHex": "#abb9bf",
+      "colorSource": "poster_palette",
       "voteAverage": 6.631,
       "voteCount": 436,
       "popularity": 3.2948
@@ -423,12 +423,12 @@
       "trailerKey": "kR_NZuW28XE",
       "overview": "When her American lover visits London, a wealthy woman\u2019s jealous husband hatches a plan to murder her and inherit her fortune.",
       "dominantRgb": [
-        121,
-        173,
-        109
+        132,
+        31,
+        22
       ],
-      "dominantHex": "#79ad6d",
-      "colorSource": "deterministic_seed",
+      "dominantHex": "#841f16",
+      "colorSource": "poster_palette",
       "voteAverage": 7.999,
       "voteCount": 2833,
       "popularity": 3.7825
@@ -529,12 +529,12 @@
       "trailerKey": "TdJGho9p-wA",
       "overview": "Five oddball criminals planning a bank robbery rent rooms on a cul-de-sac from an octogenarian widow under the pretext that they are classical musicians.",
       "dominantRgb": [
-        200,
-        70,
-        60
+        144,
+        152,
+        157
       ],
-      "dominantHex": "#c8463c",
-      "colorSource": "deterministic_seed",
+      "dominantHex": "#90989d",
+      "colorSource": "poster_palette",
       "voteAverage": 7.3,
       "voteCount": 535,
       "popularity": 2.8954
@@ -556,12 +556,12 @@
       "trailerKey": "BVL6AjybCZ0",
       "overview": "An eccentric, if not charming Southern professor and his crew pose as a band in order to rob a casino, all under the nose of his unsuspecting landlord \u2013 a sharp old woman.",
       "dominantRgb": [
-        100,
-        50,
-        40
+        183,
+        139,
+        140
       ],
-      "dominantHex": "#643228",
-      "colorSource": "deterministic_seed",
+      "dominantHex": "#b78b8c",
+      "colorSource": "poster_palette",
       "voteAverage": 6.129,
       "voteCount": 1728,
       "popularity": 4.0367
@@ -582,12 +582,12 @@
       "trailerKey": "hP8HX5bnQyo",
       "overview": "Best friends Peppe and Mario are thieves, but they're not very good at it. Still, Peppe thinks that he's finally devised a master heist that will make them rich. With the help of some fellow criminals, he plans to dig a tunnel from a rented apartment to the pawnshop next door, where they can rob the safe. But his plan is far from foolproof, and the fact that no one in the group has any experience digging tunnels proves to be the least of their problems.",
       "dominantRgb": [
-        120,
-        90,
-        80
+        210,
+        196,
+        89
       ],
-      "dominantHex": "#785a50",
-      "colorSource": "deterministic_seed",
+      "dominantHex": "#d2c459",
+      "colorSource": "poster_palette",
       "voteAverage": 8.085,
       "voteCount": 773,
       "popularity": 1.8482
@@ -688,12 +688,12 @@
       "trailerKey": "f2y1gDeZ230",
       "overview": "In ancient Judea, a Jewish aristocrat opposing Roman occupation of his homeland reunites with his childhood friend, now a Roman commander \u2014 setting in motion a saga of betrayal, adventure, tragedy, revenge, and faith.",
       "dominantRgb": [
-        138,
-        144,
-        62
+        215,
+        158,
+        65
       ],
-      "dominantHex": "#8a903e",
-      "colorSource": "deterministic_seed",
+      "dominantHex": "#d79e41",
+      "colorSource": "poster_palette",
       "voteAverage": 7.884,
       "voteCount": 3110,
       "popularity": 9.5243
@@ -1486,12 +1486,12 @@
       "trailerKey": "V7g0tqdNy7M",
       "overview": "Monty Brewster, an aging minor-league baseball player, stands to inherit $300 million if he can successfully spend $30 million in 30 days without anything to show for it, and without telling anyone what he's up to... A task that's a lot harder than it sounds!",
       "dominantRgb": [
-        106,
-        188,
-        34
+        172,
+        174,
+        163
       ],
-      "dominantHex": "#6abc22",
-      "colorSource": "deterministic_seed",
+      "dominantHex": "#acaea3",
+      "colorSource": "poster_palette",
       "voteAverage": 6.599,
       "voteCount": 653,
       "popularity": 2.5313
@@ -3894,12 +3894,12 @@
       "trailerKey": "HF0eg5YAFIs",
       "overview": "A young man is plunged into a life of subterfuge, deceit and mistaken identity in pursuit of a femme fatale whose heart is never quite within his grasp.",
       "dominantRgb": [
-        123,
-        159,
-        167
+        149,
+        98,
+        70
       ],
-      "dominantHex": "#7b9fa7",
-      "colorSource": "deterministic_seed",
+      "dominantHex": "#956246",
+      "colorSource": "poster_palette",
       "voteAverage": 6.128,
       "voteCount": 892,
       "popularity": 8.3678
@@ -9600,12 +9600,12 @@
       "trailerKey": null,
       "overview": "Jagirdar Bishamber Nath a wealthy man disowns his son, police inspector Amar Nath for marrying against his wishes. In the course of his duties Amar sends a notorious criminal Pinto to jail. In due course, Pinto escapes from prison and begins a vendetta which results in several deaths, children being separated from parents and the loyalty of a family driver which saves Jyoti. As the children grow up there is a peek behind the scenes of movieland in Bombay, abductions, being loved, unrequited love, broken childhood engagement, success in stardom, suicide and failure. Does Amar's daughter Jyoti find her true love? Is wealthy Bishamber Nath destined to a lonely old age?",
       "dominantRgb": [
-        202,
-        56,
-        118
+        187,
+        150,
+        134
       ],
-      "dominantHex": "#ca3876",
-      "colorSource": "deterministic_seed",
+      "dominantHex": "#bb9686",
+      "colorSource": "poster_palette",
       "voteAverage": 5.0,
       "voteCount": 2,
       "popularity": 0.7024
@@ -12484,12 +12484,12 @@
       "trailerKey": null,
       "overview": "Auto rickshaw driver Manickam avoids violence at all costs. When some thugs begin to intimidate Manickam's family, it triggers the revival of Manickam's old self.",
       "dominantRgb": [
-        208,
-        194,
-        112
+        201,
+        129,
+        87
       ],
-      "dominantHex": "#d0c270",
-      "colorSource": "deterministic_seed",
+      "dominantHex": "#c98157",
+      "colorSource": "poster_palette",
       "voteAverage": 7.609,
       "voteCount": 69,
       "popularity": 0.783
@@ -13294,12 +13294,12 @@
       "trailerKey": null,
       "overview": "A violent college student softens his tough exterior when he falls in love with a shy Brahmin woman. Just as the ice between them begins to melt, he's attacked viciously and loses his mental stability.",
       "dominantRgb": [
-        188,
-        154,
-        72
+        67,
+        60,
+        77
       ],
-      "dominantHex": "#bc9a48",
-      "colorSource": "deterministic_seed",
+      "dominantHex": "#433c4d",
+      "colorSource": "poster_palette",
       "voteAverage": 6.3,
       "voteCount": 16,
       "popularity": 0.8792
@@ -14067,12 +14067,12 @@
       "trailerKey": "ASw47FiEhes",
       "overview": "When Longfellow Deeds, a small-town pizzeria owner and poet, inherits $40 billion from his deceased uncle, he quickly begins rolling in a different kind of dough. Moving to the big city, Deeds finds himself besieged by opportunists all gunning for their piece of the pie. Babe, a television tabloid reporter, poses as an innocent small-town girl to do an expos\u00e9 on Deeds.",
       "dominantRgb": [
-        57,
-        81,
-        53
+        139,
+        107,
+        86
       ],
-      "dominantHex": "#395135",
-      "colorSource": "deterministic_seed",
+      "dominantHex": "#8b6b56",
+      "colorSource": "poster_palette",
       "voteAverage": 5.917,
       "voteCount": 2501,
       "popularity": 5.4866
@@ -15279,12 +15279,12 @@
       "trailerKey": "gCAcU3p9GNo",
       "overview": "A small-time thug comes across a young girl who claims him to be her father, following which he realizes he has a lookalike who's being hunted by goons.",
       "dominantRgb": [
-        205,
-        125,
-        205
+        140,
+        86,
+        46
       ],
-      "dominantHex": "#cd7dcd",
-      "colorSource": "deterministic_seed",
+      "dominantHex": "#8c562e",
+      "colorSource": "poster_palette",
       "voteAverage": 5.903,
       "voteCount": 108,
       "popularity": 1.6109
@@ -16378,12 +16378,12 @@
       "trailerKey": "rWiBztGfgO8",
       "overview": "A woman\u2019s body disappears mysteriously from the morgue without a trace. Police inspector Jaime Pe\u00f1a investigates the strange occurrence with the help of \u00c1lex Ulloa, the widower of the missing woman.",
       "dominantRgb": [
-        184,
-        182,
-        136
+        48,
+        51,
+        50
       ],
-      "dominantHex": "#b8b688",
-      "colorSource": "deterministic_seed",
+      "dominantHex": "#303332",
+      "colorSource": "poster_palette",
       "voteAverage": 7.521,
       "voteCount": 1409,
       "popularity": 3.4808

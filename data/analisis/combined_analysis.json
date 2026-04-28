@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-23T04:07:25.204883+00:00",
+  "generatedAt": "2026-04-28T18:14:42.120508+00:00",
   "summary": {
     "totalMovies": 643,
     "sources": [
@@ -9,7 +9,7 @@
     ]
   },
   "color": {
-    "generatedAt": "2026-04-23T04:07:25.204883+00:00",
+    "generatedAt": "2026-04-28T18:14:42.120508+00:00",
     "summary": {
       "totalMovies": 643,
       "colorGroupCount": 7
@@ -17,38 +17,38 @@
     "distribution": [
       {
         "label": "Neutral",
-        "movieCount": 218,
-        "percentage": 33.9
+        "movieCount": 222,
+        "percentage": 34.53
       },
       {
         "label": "Orange",
-        "movieCount": 164,
-        "percentage": 25.51
+        "movieCount": 171,
+        "percentage": 26.59
       },
       {
         "label": "Red",
-        "movieCount": 118,
-        "percentage": 18.35
+        "movieCount": 119,
+        "percentage": 18.51
       },
       {
         "label": "Blue",
-        "movieCount": 83,
-        "percentage": 12.91
+        "movieCount": 82,
+        "percentage": 12.75
       },
       {
         "label": "Yellow",
-        "movieCount": 32,
-        "percentage": 4.98
+        "movieCount": 30,
+        "percentage": 4.67
       },
       {
         "label": "Green",
-        "movieCount": 16,
-        "percentage": 2.49
+        "movieCount": 10,
+        "percentage": 1.56
       },
       {
         "label": "Purple",
-        "movieCount": 12,
-        "percentage": 1.87
+        "movieCount": 9,
+        "percentage": 1.4
       }
     ],
     "byDecade": [
@@ -57,12 +57,17 @@
         "movieCount": 3,
         "distribution": [
           {
-            "label": "Neutral",
-            "movieCount": 2,
-            "percentage": 66.67
+            "label": "Orange",
+            "movieCount": 1,
+            "percentage": 33.33
           },
           {
-            "label": "Green",
+            "label": "Red",
+            "movieCount": 1,
+            "percentage": 33.33
+          },
+          {
+            "label": "Neutral",
             "movieCount": 1,
             "percentage": 33.33
           }
@@ -78,12 +83,12 @@
             "percentage": 33.33
           },
           {
-            "label": "Purple",
+            "label": "Red",
             "movieCount": 1,
             "percentage": 33.33
           },
           {
-            "label": "Blue",
+            "label": "Orange",
             "movieCount": 1,
             "percentage": 33.33
           }
@@ -94,24 +99,19 @@
         "movieCount": 7,
         "distribution": [
           {
-            "label": "Red",
-            "movieCount": 3,
-            "percentage": 42.86
-          },
-          {
             "label": "Neutral",
-            "movieCount": 1,
-            "percentage": 14.29
+            "movieCount": 2,
+            "percentage": 28.57
           },
           {
-            "label": "Green",
-            "movieCount": 1,
-            "percentage": 14.29
+            "label": "Red",
+            "movieCount": 2,
+            "percentage": 28.57
           },
           {
             "label": "Orange",
-            "movieCount": 1,
-            "percentage": 14.29
+            "movieCount": 2,
+            "percentage": 28.57
           },
           {
             "label": "Yellow",
@@ -146,13 +146,13 @@
           },
           {
             "label": "Blue",
-            "movieCount": 7,
-            "percentage": 11.67
+            "movieCount": 8,
+            "percentage": 13.33
           },
           {
             "label": "Green",
-            "movieCount": 2,
-            "percentage": 3.33
+            "movieCount": 1,
+            "percentage": 1.67
           }
         ]
       },
@@ -162,8 +162,8 @@
         "distribution": [
           {
             "label": "Neutral",
-            "movieCount": 27,
-            "percentage": 32.53
+            "movieCount": 28,
+            "percentage": 33.73
           },
           {
             "label": "Orange",
@@ -187,8 +187,8 @@
           },
           {
             "label": "Green",
-            "movieCount": 2,
-            "percentage": 2.41
+            "movieCount": 1,
+            "percentage": 1.2
           },
           {
             "label": "Purple",
@@ -203,8 +203,8 @@
         "distribution": [
           {
             "label": "Neutral",
-            "movieCount": 28,
-            "percentage": 34.57
+            "movieCount": 29,
+            "percentage": 35.8
           },
           {
             "label": "Red",
@@ -213,8 +213,8 @@
           },
           {
             "label": "Orange",
-            "movieCount": 15,
-            "percentage": 18.52
+            "movieCount": 16,
+            "percentage": 19.75
           },
           {
             "label": "Blue",
@@ -223,13 +223,13 @@
           },
           {
             "label": "Green",
-            "movieCount": 3,
-            "percentage": 3.7
+            "movieCount": 2,
+            "percentage": 2.47
           },
           {
             "label": "Purple",
-            "movieCount": 2,
-            "percentage": 2.47
+            "movieCount": 1,
+            "percentage": 1.23
           },
           {
             "label": "Yellow",
@@ -244,8 +244,8 @@
         "distribution": [
           {
             "label": "Neutral",
-            "movieCount": 27,
-            "percentage": 28.12
+            "movieCount": 28,
+            "percentage": 29.17
           },
           {
             "label": "Red",
@@ -263,12 +263,12 @@
             "percentage": 16.67
           },
           {
-            "label": "Yellow",
-            "movieCount": 4,
-            "percentage": 4.17
+            "label": "Green",
+            "movieCount": 3,
+            "percentage": 3.12
           },
           {
-            "label": "Green",
+            "label": "Yellow",
             "movieCount": 3,
             "percentage": 3.12
           },
@@ -285,8 +285,8 @@
         "distribution": [
           {
             "label": "Orange",
-            "movieCount": 62,
-            "percentage": 35.63
+            "movieCount": 64,
+            "percentage": 36.78
           },
           {
             "label": "Neutral",
@@ -295,8 +295,8 @@
           },
           {
             "label": "Blue",
-            "movieCount": 22,
-            "percentage": 12.64
+            "movieCount": 21,
+            "percentage": 12.07
           },
           {
             "label": "Red",
@@ -309,12 +309,12 @@
             "percentage": 6.32
           },
           {
-            "label": "Green",
-            "movieCount": 3,
-            "percentage": 1.72
+            "label": "Purple",
+            "movieCount": 2,
+            "percentage": 1.15
           },
           {
-            "label": "Purple",
+            "label": "Green",
             "movieCount": 2,
             "percentage": 1.15
           }
@@ -326,13 +326,13 @@
         "distribution": [
           {
             "label": "Neutral",
-            "movieCount": 52,
-            "percentage": 46.02
+            "movieCount": 53,
+            "percentage": 46.9
           },
           {
             "label": "Orange",
-            "movieCount": 27,
-            "percentage": 23.89
+            "movieCount": 28,
+            "percentage": 24.78
           },
           {
             "label": "Red",
@@ -346,13 +346,13 @@
           },
           {
             "label": "Yellow",
-            "movieCount": 2,
-            "percentage": 1.77
+            "movieCount": 1,
+            "percentage": 0.88
           },
           {
             "label": "Purple",
-            "movieCount": 2,
-            "percentage": 1.77
+            "movieCount": 1,
+            "percentage": 0.88
           }
         ]
       },
@@ -395,7 +395,7 @@
     ]
   },
   "genre": {
-    "generatedAt": "2026-04-23T04:07:25.204883+00:00",
+    "generatedAt": "2026-04-28T18:14:42.120508+00:00",
     "summary": {
       "totalMovies": 643,
       "uniqueGenres": 19
@@ -1082,7 +1082,7 @@
     ]
   },
   "sentiment": {
-    "generatedAt": "2026-04-23T04:07:25.204883+00:00",
+    "generatedAt": "2026-04-28T18:14:42.120508+00:00",
     "summary": {
       "totalMovies": 643,
       "moviesWithSentiment": 642,
