@@ -1,644 +1,1026 @@
 movie,year,tmdb_link,tmdb_id,genres,normalized_title,family_id
-Boudu Saved from Drowning,1932,https://www.themoviedb.org/movie/48365,48365,Comedy,boudu saved from drowning,FAM0001
-Boudu,2005,https://www.themoviedb.org/movie/14644,14644,Comedy,boudu,FAM0001
-Death Takes a Holiday,1934,https://www.themoviedb.org/movie/37215,37215,"Drama, Fantasy, Romance",death takes a holiday,FAM0002
-Meet Joe Black,1998,https://www.themoviedb.org/movie/297,297,"Fantasy, Drama, Romance",meet joe black,FAM0002
-A Star Is Born,1937,https://www.themoviedb.org/movie/22692,22692,"Romance, Drama",star is born,FAM0003
-A Star Is Born,1954,https://www.themoviedb.org/movie/3111,3111,"Romance, Drama",star is born,FAM0003
-A Star Is Born,1976,https://www.themoviedb.org/movie/19610,19610,"Romance, Drama",star is born,FAM0003
-A Star Is Born,2018,https://www.themoviedb.org/movie/332562,332562,"Romance, Drama",star is born,FAM0003
-My Favorite Wife,1940,https://www.themoviedb.org/movie/41463,41463,"Comedy, Romance",my favorite wife,FAM0004
-Something's Got to Give,1962,https://www.themoviedb.org/movie/1287400,1287400,"Comedy, Romance",something s got to give,FAM0004
-"Move Over, Darling",1963,https://www.themoviedb.org/movie/30204,30204,"Comedy, Romance",move over darling,FAM0004
-Four Steps in the Clouds,1942,https://www.themoviedb.org/movie/65477,65477,"Comedy, Drama, Romance",four steps in the clouds,FAM0005
+A Star Is Born,1937,https://www.themoviedb.org/movie/22692,22692,"Romance, Drama",star is born,FAM0001
+A Star Is Born,1954,https://www.themoviedb.org/movie/3111,3111,"Romance, Drama",star is born,FAM0001
+A Star Is Born,1976,https://www.themoviedb.org/movie/19610,19610,"Romance, Drama",star is born,FAM0001
+A Star Is Born,2018,https://www.themoviedb.org/movie/332562,332562,"Romance, Drama",star is born,FAM0001
+The Squaw Man,1914,https://www.themoviedb.org/movie/161710,161710,"Drama, Western",squaw man,FAM0002
+The Squaw Man,1918,https://www.themoviedb.org/movie/115076,115076,Western,squaw man,FAM0002
+The Squaw Man,1931,https://www.themoviedb.org/movie/206039,206039,"Drama, Western",squaw man,FAM0002
+Boudu Saved from Drowning,1932,https://www.themoviedb.org/movie/48365,48365,Comedy,boudu saved from drowning,FAM0003
+Down and Out in Beverly Hills,1986,https://www.themoviedb.org/movie/9941,9941,Comedy,down and out in beverly hills,FAM0003
+Boudu,2005,https://www.themoviedb.org/movie/14644,14644,Comedy,boudu,FAM0003
+The Great Train Robbery,1941,https://www.themoviedb.org/movie/355798,355798,"Crime, Drama",great train robbery,FAM0004
+The Last Bandit,1949,https://www.themoviedb.org/movie/456334,456334,"Western, Romance",last bandit,FAM0004
+South Pacific Trail,1952,https://www.themoviedb.org/movie/284146,284146,Western,south pacific trail,FAM0004
+Four Steps in the Clouds,1942,https://www.themoviedb.org/movie/65477,65477,"Drama, Comedy",four steps in the clouds,FAM0005
+The Virtuous Bigamist,1956,https://www.themoviedb.org/movie/82835,82835,"Comedy, Drama",virtuous bigamist,FAM0005
 A Walk in the Clouds,1995,https://www.themoviedb.org/movie/9560,9560,"Drama, Romance",walk in the clouds,FAM0005
-Heaven Can Wait,1943,https://www.themoviedb.org/movie/18727,18727,"Comedy, Romance, Fantasy, Drama",heaven can wait,FAM0006
-Heaven Can Wait,1978,https://www.themoviedb.org/movie/12185,12185,"Fantasy, Comedy, Romance",heaven can wait,FAM0006
-Dial M for Murder,1954,https://www.themoviedb.org/movie/521,521,"Crime, Thriller",dial m for murder,FAM0007
-A Perfect Murder,1998,https://www.themoviedb.org/movie/1965,1965,"Crime, Thriller, Drama",perfect murder,FAM0007
-Rear Window,1954,https://www.themoviedb.org/movie/567-rear-window,567,"Mystery, Thriller",rear window,FAM0008
-Rear Window,1998,https://www.themoviedb.org/movie/11603-rear-window,11603,"Drama, Thriller",rear window,FAM0008
-The Ladykillers,1955,https://www.themoviedb.org/movie/5506,5506,"Comedy, Crime",ladykillers,FAM0009
-The Ladykillers,2004,https://www.themoviedb.org/movie/5516,5516,"Comedy, Crime, Thriller",ladykillers,FAM0009
-Big Deal on Madonna Street,1958,https://www.themoviedb.org/movie/24382,24382,"Comedy, Crime",big deal on madonna street,FAM0010
-Welcome to Collinwood,2002,https://www.themoviedb.org/movie/9260,9260,"Comedy, Crime",welcome to collinwood,FAM0010
-The Fly,1958,https://www.themoviedb.org/movie/11815-the-fly?language=en-US,11815,"""Horror",fly,FAM0011
-The Fly,1986,https://www.themoviedb.org/movie/9426-the-fly?language=en-US,9426,"""Horror",fly,FAM0011
-Ben-Hur,1959,https://www.themoviedb.org/movie/665,665,"Adventure, Drama, History, Action",ben hur,FAM0012
-Ben Hur,2003,https://www.themoviedb.org/movie/64609,64609,"Family, Animation",ben hur,FAM0012
-The Magnificent Seven,1960,https://www.themoviedb.org/movie/966,966,"Western, Action, Adventure",magnificent seven,FAM0013
-Battle Beyond the Stars,1980,https://www.themoviedb.org/movie/14460,14460,"Science Fiction, Action, Adventure",battle beyond the stars,FAM0013
-The Magnificent Seven,2016,https://www.themoviedb.org/movie/333484,333484,"Adventure, Action, Western",magnificent seven,FAM0013
-Breathless,1960,https://www.themoviedb.org/movie/269,269,"Drama, Crime",breathless,FAM0014
-Breathless,1983,https://www.themoviedb.org/movie/1058,1058,"Romance, Drama, Action",breathless,FAM0014
-The Little Shop of Horrors,1960,https://www.themoviedb.org/movie/24452,24452,"Horror, Comedy, Fantasy",little shop of horrors,FAM0015
-Little Shop of Horrors,1986,https://www.themoviedb.org/movie/10776,10776,"Horror, Comedy",little shop of horrors,FAM0015
-Midnight Lace,1960,https://www.themoviedb.org/movie/12617,12617,"Mystery, Thriller",midnight lace,FAM0016
-Midnight Lace,1981,https://www.themoviedb.org/movie/520256,520256,"Horror, Thriller, TV Movie",midnight lace,FAM0016
-Ocean's 11,1960,https://www.themoviedb.org/movie/299,299,"Crime, Comedy, Thriller",ocean s 11,FAM0017
-Ocean's Eleven,2001,https://www.themoviedb.org/movie/161,161,"Thriller, Crime",ocean s eleven,FAM0017
-Psycho,1960,https://www.themoviedb.org/movie/539,539,"Horror, Thriller, Mystery",psycho,FAM0018
-Psycho,1998,https://www.themoviedb.org/movie/11252,11252,"Horror, Mystery, Thriller",psycho,FAM0018
-Purple Noon,1960,https://www.themoviedb.org/movie/10363,10363,"Crime, Drama, Thriller",purple noon,FAM0019
-The Talented Mr. Ripley,1999,https://www.themoviedb.org/movie/1213,1213,"Thriller, Crime, Drama",talented mr ripley,FAM0019
-School for Scoundrels,1960,https://www.themoviedb.org/movie/36741,36741,Comedy,school for scoundrels,FAM0020
-School for Scoundrels,2006,https://www.themoviedb.org/movie/9842,9842,"Comedy, Romance",school for scoundrels,FAM0020
-The Time Machine,1960,https://www.themoviedb.org/movie/2134,2134,"Thriller, Adventure, Fantasy, Science Fiction, Romance",time machine,FAM0021
-The Time Machine,2002,https://www.themoviedb.org/movie/2135,2135,"Science Fiction, Adventure, Action",time machine,FAM0021
-Village of the Damned,1960,https://www.themoviedb.org/movie/11773,11773,"Horror, Science Fiction",village of the damned,FAM0022
-Village of the Damned,1995,https://www.themoviedb.org/movie/12122,12122,"Thriller, Horror, Science Fiction",village of the damned,FAM0022
-Where the Boys Are,1960,https://www.themoviedb.org/movie/43049,43049,"Comedy, Drama, Romance",where the boys are,FAM0023
-Where the Boys Are '84,1984,https://www.themoviedb.org/movie/59897,59897,"Comedy, Romance",where the boys are 84,FAM0023
-One Hundred and One Dalmatians,1961,https://www.themoviedb.org/movie/12230,12230,"Adventure, Animation, Comedy, Family",one hundred and one dalmatians,FAM0024
-101 Dalmatians,1996,https://www.themoviedb.org/movie/11674,11674,"Family, Comedy",101 dalmatians,FAM0024
-The Absent-Minded Professor,1961,https://www.themoviedb.org/movie/17984,17984,"Comedy, Family, Science Fiction",absent minded professor,FAM0025
-Flubber,1997,https://www.themoviedb.org/movie/9574,9574,"Comedy, Family, Science Fiction",flubber,FAM0025
-Three on a Spree,1961,https://www.themoviedb.org/movie/281250,281250,Comedy,three on a spree,FAM0026
-Brewster's Millions,1985,https://www.themoviedb.org/movie/11064,11064,Comedy,brewster s millions,FAM0026
-Maalamaal,1988,https://www.themoviedb.org/movie/54656,54656,Comedy,maalamaal,FAM0026
-A Million to Juan,1994,https://www.themoviedb.org/movie/124029,124029,Comedy,million to juan,FAM0026
-Two Half Times in Hell,1961,https://www.themoviedb.org/movie/163363,163363,"War, Drama",two half times in hell,FAM0027
-Escape to Victory,1981,https://www.themoviedb.org/movie/17360,17360,"Drama, War",escape to victory,FAM0027
-Yojimbo,1961,https://www.themoviedb.org/movie/11878,11878,"Drama, Thriller",yojimbo,FAM0028
-A Fistful of Dollars,1964,https://www.themoviedb.org/movie/391,391,Western,fistful of dollars,FAM0028
-Last Man Standing,1996,https://www.themoviedb.org/movie/9333,9333,"Crime, Action, Western, Drama",last man standing,FAM0028
-The Parent Trap,1961,https://www.themoviedb.org/movie/19186,19186,"Comedy, Family, Romance",parent trap,FAM0029
-The Parent Trap,1998,https://www.themoviedb.org/movie/9820,9820,"Comedy, Family, Romance",parent trap,FAM0029
-The Roman Spring of Mrs. Stone,1961,https://www.themoviedb.org/movie/36731,36731,"Drama, Romance",roman spring of mrs stone,FAM0030
-The Roman Spring of Mrs. Stone,2003,https://www.themoviedb.org/movie/158928,158928,"Drama, Romance",roman spring of mrs stone,FAM0030
-Splendor in the Grass,1961,https://www.themoviedb.org/movie/28569,28569,"Drama, Romance",splendor in the grass,FAM0031
-Splendor in the Grass,1981,https://www.themoviedb.org/movie/468749,468749,Drama,splendor in the grass,FAM0031
-West Side Story,1961,https://www.themoviedb.org/movie/1725,1725,"Crime, Drama, Romance",west side story,FAM0032
-West Side Story,2021,https://www.themoviedb.org/movie/511809,511809,"Drama, Romance, Crime",west side story,FAM0032
-Cape Fear,1962,https://www.themoviedb.org/movie/11349,11349,"Thriller, Drama, Crime",cape fear,FAM0033
-Cape Fear,1991,https://www.themoviedb.org/movie/1598,1598,"Drama, Crime, Thriller",cape fear,FAM0033
-Carnival of Souls,1962,https://www.themoviedb.org/movie/16093,16093,"Horror, Mystery, Fantasy",carnival of souls,FAM0034
-Carnival of Souls,1998,https://www.themoviedb.org/movie/40341,40341,"Horror, Thriller",carnival of souls,FAM0034
-Harakiri,1962,https://www.themoviedb.org/movie/14537,14537,"Action, Drama, History",harakiri,FAM0035
-Hara-Kiri: Death of a Samurai,2011,https://www.themoviedb.org/movie/85836,85836,"Drama, History",hara kiri death of a samurai,FAM0035
-The Manchurian Candidate,1962,https://www.themoviedb.org/movie/982,982,"Thriller, Drama",manchurian candidate,FAM0036
-The Manchurian Candidate,2004,https://www.themoviedb.org/movie/14462,14462,"Drama, Thriller, Mystery",manchurian candidate,FAM0036
-The Music Man,1962,https://www.themoviedb.org/movie/13671,13671,"Comedy, Family, Music, Romance",music man,FAM0037
-The Music Man,2003,https://www.themoviedb.org/movie/24105,24105,"Comedy, Drama, Romance, Music, Family",music man,FAM0037
-What Ever Happened to Baby Jane?,1962,https://www.themoviedb.org/movie/10242,10242,"Drama, Horror, Thriller",what ever happened to baby jane,FAM0038
-What Ever Happened to...,1991,https://www.themoviedb.org/movie/137536,137536,"Drama, Thriller",what ever happened to,FAM0038
-Charade,1963,https://www.themoviedb.org/movie/4808,4808,"Comedy, Mystery, Romance",charade,FAM0039
-The Truth About Charlie,2002,https://www.themoviedb.org/movie/13440,13440,"Thriller, Mystery",truth about charlie,FAM0039
-Flipper,1963,https://www.themoviedb.org/movie/19893,19893,"Adventure, Drama, Family",flipper,FAM0040
-Flipper,1996,https://www.themoviedb.org/movie/36355,36355,"Adventure, Family",flipper,FAM0040
-The Haunting,1963,https://www.themoviedb.org/movie/11772,11772,Horror,haunting,FAM0041
-The Haunting,1999,https://www.themoviedb.org/movie/11618,11618,"Horror, Thriller, Fantasy, Mystery",haunting,FAM0041
-The Incredible Journey,1963,https://www.themoviedb.org/movie/37969,37969,"Adventure, Family",incredible journey,FAM0042
-Homeward Bound: The Incredible Journey,1993,https://www.themoviedb.org/movie/6878,6878,"Adventure, Comedy, Family",homeward bound the incredible journey,FAM0042
-The Nutty Professor,1963,https://www.themoviedb.org/movie/18331,18331,"Comedy, Science Fiction, Romance",nutty professor,FAM0043
-The Nutty Professor,1996,https://www.themoviedb.org/movie/9327,9327,"Fantasy, Comedy, Romance, Science Fiction",nutty professor,FAM0043
-Two Thousand Maniacs!,1964,https://www.themoviedb.org/movie/28177,28177,Horror,two thousand maniacs,FAM0044
-2001 Maniacs,2005,https://www.themoviedb.org/movie/10845,10845,"Horror, Comedy",2001 maniacs,FAM0044
-Bedtime Story,1964,https://www.themoviedb.org/movie/40618,40618,Comedy,bedtime story,FAM0045
-Dirty Rotten Scoundrels,1988,https://www.themoviedb.org/movie/10141,10141,"Comedy, Crime",dirty rotten scoundrels,FAM0045
-The Hustle,2019,https://www.themoviedb.org/movie/449562,449562,"Comedy, Crime",hustle,FAM0045
-Castle of Blood,1964,https://www.themoviedb.org/movie/28532,28532,Horror,castle of blood,FAM0046
-Web of the Spider,1971,https://www.themoviedb.org/movie/49130,49130,Horror,web of the spider,FAM0046
-The Flight of the Phoenix,1965,https://www.themoviedb.org/movie/10243,10243,"Adventure, Drama",flight of the phoenix,FAM0047
-Flight of the Phoenix,2004,https://www.themoviedb.org/movie/11866,11866,"Action, Adventure, Drama",flight of the phoenix,FAM0047
-I Saw What You Did,1965,https://www.themoviedb.org/movie/28295,28295,"Thriller, Horror, Crime",i saw what you did,FAM0048
-I Saw What You Did,1988,https://www.themoviedb.org/movie/121518,121518,Thriller,i saw what you did,FAM0048
-That Darn Cat!,1965,https://www.themoviedb.org/movie/20723,20723,"Family, Crime, Comedy",that darn cat,FAM0049
-That Darn Cat,1997,https://www.themoviedb.org/movie/20735,20735,"Family, Comedy",that darn cat,FAM0049
-Alfie,1966,https://www.themoviedb.org/movie/15598,15598,"Comedy, Drama, Romance",alfie,FAM0050
-Alfie,2004,https://www.themoviedb.org/movie/8849,8849,"Comedy, Drama, Romance",alfie,FAM0050
-Fahrenheit 451,1966,https://www.themoviedb.org/movie/1714,1714,"Drama, Science Fiction",fahrenheit 451,FAM0051
-Fahrenheit 451,2018,https://www.themoviedb.org/movie/401905,401905,"Drama, Science Fiction, Thriller",fahrenheit 451,FAM0051
-Gambit,1966,https://www.themoviedb.org/movie/28270,28270,"Comedy, Crime",gambit,FAM0052
-Gambit,2012,https://www.themoviedb.org/movie/97434,97434,"Comedy, Crime",gambit,FAM0052
-Le Deuxième Souffle,1966,https://www.themoviedb.org/movie/25047,25047,"Action, Drama, Crime",le deuxi me souffle,FAM0053
-The Second Wind,2007,https://www.themoviedb.org/movie/59918,59918,"Drama, Crime, Mystery, Thriller",second wind,FAM0053
-Bedazzled,1967,https://www.themoviedb.org/movie/18209,18209,"Fantasy, Comedy, Romance",bedazzled,FAM0054
-Bedazzled,2000,https://www.themoviedb.org/movie/1636,1636,"Fantasy, Comedy, Romance",bedazzled,FAM0054
-Guess Who's Coming to Dinner,1967,https://www.themoviedb.org/movie/1879,1879,"Drama, Romance",guess who s coming to dinner,FAM0055
-Guess Who,2005,https://www.themoviedb.org/movie/11638,11638,"Comedy, Romance",guess who,FAM0055
-The Jungle Book,1967,https://www.themoviedb.org/movie/9325,9325,"Family, Animation, Adventure",jungle book,FAM0056
-The Jungle Book,2016,https://www.themoviedb.org/movie/278927,278927,"Family, Adventure, Fantasy",jungle book,FAM0056
-Oscar,1967,https://www.themoviedb.org/movie/2798,2798,Comedy,oscar,FAM0057
-Oscar,1991,https://www.themoviedb.org/movie/11890,11890,Comedy,oscar,FAM0057
-Point Blank,1967,https://www.themoviedb.org/movie/26039,26039,"Crime, Thriller, Drama",point blank,FAM0058
-The Outfit,1973,https://www.themoviedb.org/movie/26762,26762,"Crime, Drama",outfit,FAM0058
-The Plank,1967,https://www.themoviedb.org/movie/18879,18879,Comedy,plank,FAM0059
-The Plank,1979,https://www.themoviedb.org/movie/120557,120557,Comedy,plank,FAM0059
-Night of the Living Dead,1968,https://www.themoviedb.org/movie/10331,10331,"Horror, Thriller, Science Fiction",night of the living dead,FAM0060
-Night of the Living Dead,1990,https://www.themoviedb.org/movie/19185,19185,Horror,night of the living dead,FAM0060
-Night of the Living Dead 3D,2006,https://www.themoviedb.org/movie/24927,24927,Horror,night of the living dead 3d,FAM0060
-Planet of the Apes,1968,https://www.themoviedb.org/movie/871,871,"Science Fiction, Adventure, Drama, Action",planet of the apes,FAM0061
-Planet of the Apes,2001,https://www.themoviedb.org/movie/869,869,"Thriller, Science Fiction, Action, Adventure",planet of the apes,FAM0061
-Sweet November,1968,https://www.themoviedb.org/movie/97936,97936,"Romance, Comedy, Drama",sweet november,FAM0062
-Sweet November,2001,https://www.themoviedb.org/movie/1921,1921,"Drama, Romance",sweet november,FAM0062
-The Thomas Crown Affair,1968,https://www.themoviedb.org/movie/912,912,"Crime, Romance",thomas crown affair,FAM0063
-The Thomas Crown Affair,1999,https://www.themoviedb.org/movie/913,913,"Drama, Crime, Romance",thomas crown affair,FAM0063
-"Yours, Mine and Ours",1968,https://www.themoviedb.org/movie/27983,27983,Comedy,yours mine and ours,FAM0064
-"Yours, Mine & Ours",2005,https://www.themoviedb.org/movie/13499,13499,"Comedy, Family, Romance",yours mine ours,FAM0064
-The Computer Wore Tennis Shoes,1969,https://www.themoviedb.org/movie/29228,29228,"Comedy, Family, Drama",computer wore tennis shoes,FAM0065
-The Computer Wore Tennis Shoes,1995,https://www.themoviedb.org/movie/177229,177229,"Science Fiction, Comedy",computer wore tennis shoes,FAM0065
-The Unfaithful Wife,1969,https://www.themoviedb.org/movie/8286,8286,"Crime, Drama, Thriller",unfaithful wife,FAM0066
-Unfaithful,2002,https://www.themoviedb.org/movie/2251,2251,"Thriller, Drama, Romance",unfaithful,FAM0066
-Hawas,2004,https://www.themoviedb.org/movie/276480,276480,"Romance, Thriller",hawas,FAM0066
-Murder,2004,https://www.themoviedb.org/movie/20534,20534,"Drama, Thriller",murder,FAM0066
-The Italian Job,1969,https://www.themoviedb.org/movie/10536,10536,"Crime, Comedy, Thriller",italian job,FAM0067
-The Italian Job,2003,https://www.themoviedb.org/movie/9654,9654,"Action, Crime",italian job,FAM0067
-Mississippi Mermaid,1969,https://www.themoviedb.org/movie/1651,1651,"Romance, Drama, Crime, Thriller",mississippi mermaid,FAM0068
-Original Sin,2001,https://www.themoviedb.org/movie/2057,2057,"Drama, Mystery, Romance, Thriller",original sin,FAM0068
-True Grit,1969,https://www.themoviedb.org/movie/17529,17529,Western,true grit,FAM0069
-True Grit,2010,https://www.themoviedb.org/movie/44264,44264,"Drama, Adventure, Western",true grit,FAM0069
-And Soon the Darkness,1970,https://www.themoviedb.org/movie/51992,51992,"Mystery, Thriller, Crime",and soon the darkness,FAM0070
-And Soon the Darkness,2010,https://www.themoviedb.org/movie/33107,33107,"Mystery, Thriller",and soon the darkness,FAM0070
-The Things of Life,1970,https://www.themoviedb.org/movie/3423,3423,"Drama, Romance",things of life,FAM0071
-Intersection,1994,https://www.themoviedb.org/movie/46717,46717,"Drama, Romance",intersection,FAM0071
-The Out-of-Towners,1970,https://www.themoviedb.org/movie/20444,20444,Comedy,out of towners,FAM0072
-The Out-of-Towners,1999,https://www.themoviedb.org/movie/8970,8970,"Comedy, Romance, Adventure",out of towners,FAM0072
-A Storm in Summer,1970,https://www.themoviedb.org/movie/263791,263791,Drama,storm in summer,FAM0073
-A Storm in Summer,2000,https://www.themoviedb.org/movie/164123,164123,Drama,storm in summer,FAM0073
-The Wizard of Gore,1970,https://www.themoviedb.org/movie/23506,23506,Horror,wizard of gore,FAM0074
-The Wizard of Gore,2007,https://www.themoviedb.org/movie/13903,13903,"Mystery, Horror",wizard of gore,FAM0074
-The Barefoot Executive,1971,https://www.themoviedb.org/movie/20173,20173,"Comedy, Family",barefoot executive,FAM0075
-The Barefoot Executive,1995,https://www.themoviedb.org/movie/124344,124344,"Comedy, Family",barefoot executive,FAM0075
-Brian's Song,1971,https://www.themoviedb.org/movie/18047,18047,Drama,brian s song,FAM0076
-Brian's Song,2001,https://www.themoviedb.org/movie/18048,18048,"Action, Drama",brian s song,FAM0076
-Willy Wonka & the Chocolate Factory,1971,https://www.themoviedb.org/movie/252,252,"Family, Fantasy, Comedy",willy wonka the chocolate factory,FAM0077
-Charlie and the Chocolate Factory,2005,https://www.themoviedb.org/movie/118,118,"Adventure, Comedy, Family, Fantasy",charlie and the chocolate factory,FAM0077
-Get Carter,1971,https://www.themoviedb.org/movie/1485,1485,"Crime, Thriller",get carter,FAM0078
-Payback,1999,https://www.themoviedb.org/movie/2112,2112,"Action, Drama, Crime, Thriller",payback,FAM0078
-Get Carter,2000,https://www.themoviedb.org/movie/10461,10461,"Action, Drama, Thriller, Crime",get carter,FAM0078
-Straw Dogs,1971,https://www.themoviedb.org/movie/994,994,"Thriller, Drama, Crime",straw dogs,FAM0079
-Straw Dogs,2011,https://www.themoviedb.org/movie/64639,64639,"Drama, Thriller",straw dogs,FAM0079
-Vanishing Point,1971,https://www.themoviedb.org/movie/11951,11951,"Action, Crime, Drama, Thriller",vanishing point,FAM0080
-Vanishing Point,1997,https://www.themoviedb.org/movie/27312,27312,"Action, Adventure, Thriller",vanishing point,FAM0080
-The Heartbreak Kid,1972,https://www.themoviedb.org/movie/40687,40687,"Romance, Comedy",heartbreak kid,FAM0081
-The Heartbreak Kid,2007,https://www.themoviedb.org/movie/9038,9038,"Comedy, Romance",heartbreak kid,FAM0081
-The Last House on the Left,1972,https://www.themoviedb.org/movie/15516,15516,"Horror, Crime",last house on the left,FAM0082
-The Last House on the Left,2009,https://www.themoviedb.org/movie/18405,18405,"Crime, Thriller, Horror, Drama",last house on the left,FAM0082
-The Tall Blond Man with One Black Shoe,1972,https://www.themoviedb.org/movie/12089,12089,"Comedy, Mystery",tall blond man with one black shoe,FAM0083
-The Man with One Red Shoe,1985,https://www.themoviedb.org/movie/10905,10905,"Action, Comedy",man with one red shoe,FAM0083
-The Mechanic,1972,https://www.themoviedb.org/movie/19403,19403,"Action, Thriller",mechanic,FAM0084
-The Mechanic,2011,https://www.themoviedb.org/movie/27582,27582,"Action, Thriller, Crime",mechanic,FAM0084
-The Poseidon Adventure,1972,https://www.themoviedb.org/movie/551,551,"Adventure, Drama, Thriller",poseidon adventure,FAM0085
-The Poseidon Adventure,2005,https://www.themoviedb.org/movie/28512,28512,"Adventure, Thriller, Action",poseidon adventure,FAM0085
-Poseidon,2006,https://www.themoviedb.org/movie/503,503,"Adventure, Action, Drama, Thriller",poseidon,FAM0085
-L'emmerdeur,1973,https://www.themoviedb.org/movie/11670,11670,"Comedy, Drama",l emmerdeur,FAM0086
-Buddy Buddy,1981,https://www.themoviedb.org/movie/36133,36133,"Comedy, Crime",buddy buddy,FAM0086
-Charlotte's Web,1973,https://www.themoviedb.org/movie/15171,15171,"Family, Animation, Drama",charlotte s web,FAM0087
-Charlotte's Web,2006,https://www.themoviedb.org/movie/9986,9986,"Comedy, Family, Fantasy",charlotte s web,FAM0087
-The Crazies,1973,https://www.themoviedb.org/movie/29425,29425,"Science Fiction, Horror, Action",crazies,FAM0088
-The Crazies,2010,https://www.themoviedb.org/movie/29427,29427,"Mystery, Horror, Action",crazies,FAM0088
-The Day of the Jackal,1973,https://www.themoviedb.org/movie/4909,4909,"Action, Thriller",day of the jackal,FAM0089
-The Jackal,1997,https://www.themoviedb.org/movie/4824,4824,"Action, Thriller, Adventure, Crime",jackal,FAM0089
-La bonne année,1973,https://www.themoviedb.org/movie/76329,76329,"Comedy, Crime, Drama, Romance",la bonne ann e,FAM0090
-Happy New Year,1987,https://www.themoviedb.org/movie/133781,133781,"Comedy, Crime, Romance",happy new year,FAM0090
-Outrage,1973,https://www.themoviedb.org/movie/103432,103432,"Thriller, Crime, Drama",outrage,FAM0091
-Outrage,1998,https://www.themoviedb.org/movie/291539,291539,"Drama, Thriller",outrage,FAM0091
-Papillon,1973,https://www.themoviedb.org/movie/5924,5924,"Crime, Drama",papillon,FAM0092
-Papillon,2017,https://www.themoviedb.org/movie/433498,433498,"Adventure, Crime, Drama",papillon,FAM0092
-Satan's School for Girls,1973,https://www.themoviedb.org/movie/33543,33543,"Mystery, Horror",satan s school for girls,FAM0093
-Satan's School for Girls,2000,https://www.themoviedb.org/movie/221506,221506,Horror,satan s school for girls,FAM0093
-Sisters,1973,https://www.themoviedb.org/movie/22307,22307,"Thriller, Horror, Mystery",sisters,FAM0094
-Sisters,2006,https://www.themoviedb.org/movie/52788,52788,"Mystery, Thriller, Horror",sisters,FAM0094
-Walking Tall,1973,https://www.themoviedb.org/movie/25473,25473,"Action, Crime, Drama",walking tall,FAM0095
-Walking Tall,2004,https://www.themoviedb.org/movie/11358,11358,"Adventure, Drama, Action, Thriller",walking tall,FAM0095
-The Wicker Man,1973,https://www.themoviedb.org/movie/16307,16307,Horror,wicker man,FAM0096
-The Wicker Man,2006,https://www.themoviedb.org/movie/9708,9708,"Horror, Mystery, Thriller",wicker man,FAM0096
-The Arena,1974,https://www.themoviedb.org/movie/29039,29039,"Action, Adventure",arena,FAM0097
-The Arena,2001,https://www.themoviedb.org/movie/152437,152437,Action,arena,FAM0097
-Black Christmas,1974,https://www.themoviedb.org/movie/16938,16938,"Horror, Mystery, Crime",black christmas,FAM0098
-Black Christmas,2006,https://www.themoviedb.org/movie/9656,9656,"Horror, Mystery",black christmas,FAM0098
-Black Christmas,2019,https://www.themoviedb.org/movie/551808,551808,"Horror, Mystery",black christmas,FAM0098
-Blazing Saddles,1974,https://www.themoviedb.org/movie/11072,11072,"Western, Comedy",blazing saddles,FAM0099
-Paws of Fury: The Legend of Hank,2022,https://www.themoviedb.org/movie/366672,366672,"Animation, Adventure, Comedy, Family",paws of fury the legend of hank,FAM0099
-Death Wish,1974,https://www.themoviedb.org/movie/13939,13939,"Crime, Drama, Action",death wish,FAM0100
-Death Wish,2018,https://www.themoviedb.org/movie/395990,395990,"Action, Crime, Thriller, Drama",death wish,FAM0100
-The Gambler,1974,https://www.themoviedb.org/movie/44800,44800,"Drama, Crime",gambler,FAM0101
-The Gambler,2014,https://www.themoviedb.org/movie/284536,284536,"Thriller, Crime, Drama",gambler,FAM0101
-Gone in 60 Seconds,1974,https://www.themoviedb.org/movie/16246,16246,"Action, Crime, Thriller, Drama",gone in 60 seconds,FAM0102
-Gone in 60 Seconds,2000,https://www.themoviedb.org/movie/9679,9679,"Action, Crime, Thriller",gone in 60 seconds,FAM0102
-The Great Gatsby,1974,https://www.themoviedb.org/movie/11034-the-great-gatsby?language=en-US,11034,"Drama, Romance",great gatsby,FAM0103
-The Great Gatsby,2000,https://www.themoviedb.org/movie/34027-the-great-gatsby?language=en-US,34027,"Drama, Romance",great gatsby,FAM0103
-The Great Gatsby,2013,https://www.themoviedb.org/movie/64682-the-great-gatsby?language=en-US,64682,"Drama, Romance",great gatsby,FAM0103
-It's Alive,1974,https://www.themoviedb.org/movie/28153,28153,"Horror, Science Fiction",it s alive,FAM0104
-It's Alive,2009,https://www.themoviedb.org/movie/23174,23174,"Horror, Science Fiction",it s alive,FAM0104
-The Longest Yard,1974,https://www.themoviedb.org/movie/4985,4985,"Comedy, Drama, Crime",longest yard,FAM0105
-Mean Machine,2001,https://www.themoviedb.org/movie/9991,9991,"Comedy, Drama",mean machine,FAM0105
-The Longest Yard,2005,https://www.themoviedb.org/movie/9291,9291,"Drama, Comedy, Crime",longest yard,FAM0105
-Profumo di donna,1974,https://www.themoviedb.org/movie/47848,47848,"Comedy, Drama",profumo di donna,FAM0106
-Scent of a Woman,1992,https://www.themoviedb.org/movie/9475,9475,Drama,scent of a woman,FAM0106
-Swept Away,1974,https://www.themoviedb.org/movie/37916,37916,"Comedy, Drama, Romance",swept away,FAM0107
-Swept Away,2002,https://www.themoviedb.org/movie/12779,12779,"Comedy, Romance",swept away,FAM0107
-The Taking of Pelham One Two Three,1974,https://www.themoviedb.org/movie/8333,8333,"Crime, Thriller",taking of pelham one two three,FAM0108
-The Taking of Pelham One Two Three,1998,https://www.themoviedb.org/movie/314370,314370,"Crime, Thriller",taking of pelham one two three,FAM0108
-The Texas Chain Saw Massacre,1974,https://www.themoviedb.org/movie/30497,30497,Horror,texas chain saw massacre,FAM0109
-The Texas Chainsaw Massacre,2003,https://www.themoviedb.org/movie/9373,9373,Horror,texas chainsaw massacre,FAM0109
-Sholay,1975,https://www.themoviedb.org/movie/12259,12259,Action,sholay,FAM0110
-Aag,2007,https://www.themoviedb.org/movie/300300,300300,"Drama, Family",aag,FAM0110
-Cousin Cousine,1975,https://www.themoviedb.org/movie/5618,5618,"Comedy, Romance",cousin cousine,FAM0111
-Cousins,1989,https://www.themoviedb.org/movie/31674,31674,"Comedy, Romance",cousins,FAM0111
-Death Race 2000,1975,https://www.themoviedb.org/movie/13282,13282,"Action, Science Fiction, Comedy",death race 2000,FAM0112
-Death Race,2008,https://www.themoviedb.org/movie/10483,10483,"Action, Thriller, Science Fiction",death race,FAM0112
-Escape to Witch Mountain,1975,https://www.themoviedb.org/movie/14821,14821,"Adventure, Fantasy, Science Fiction, Family",escape to witch mountain,FAM0113
-Escape to Witch Mountain,1995,https://www.themoviedb.org/movie/239033,239033,"Family, Fantasy",escape to witch mountain,FAM0113
-The Rocky Horror Picture Show,1975,https://www.themoviedb.org/movie/36685,36685,"Comedy, Science Fiction, Fantasy, Horror",rocky horror picture show,FAM0114
-The Rocky Horror Picture Show: Let's Do the Time Warp Again,2016,https://www.themoviedb.org/movie/377448,377448,"Comedy, Science Fiction, Fantasy, Horror",rocky horror picture show let s do the time warp again,FAM0114
-Rollerball,1975,https://www.themoviedb.org/movie/11484,11484,"Science Fiction, Action",rollerball,FAM0115
-Rollerball,2002,https://www.themoviedb.org/movie/11535,11535,"Action, Science Fiction, Thriller",rollerball,FAM0115
-Assault on Precinct 13,1976,https://www.themoviedb.org/movie/17814,17814,"Thriller, Action, Crime",assault on precinct 13,FAM0116
-Assault on Precinct 13,2005,https://www.themoviedb.org/movie/8978,8978,"Thriller, Action, Adventure, Crime",assault on precinct 13,FAM0116
-The Bad News Bears,1976,https://www.themoviedb.org/movie/23479,23479,"Family, Comedy",bad news bears,FAM0117
-Bad News Bears,2005,https://www.themoviedb.org/movie/13341,13341,Comedy,bad news bears,FAM0117
-Carrie,1976,https://www.themoviedb.org/movie/7340,7340,"Horror, Thriller",carrie,FAM0118
-Carrie,2002,https://www.themoviedb.org/movie/7342,7342,"Horror, Drama",carrie,FAM0118
-Carrie,2013,https://www.themoviedb.org/movie/133805,133805,"Drama, Horror",carrie,FAM0118
-Dona Flor and Her Two Husbands,1976,https://www.themoviedb.org/movie/42234,42234,"Comedy, Drama, Fantasy, Romance",dona flor and her two husbands,FAM0119
-Kiss Me Goodbye,1982,https://www.themoviedb.org/movie/81001,81001,"Comedy, Fantasy, Romance",kiss me goodbye,FAM0119
-Freaky Friday,1976,https://www.themoviedb.org/movie/16084,16084,"Fantasy, Comedy, Family",freaky friday,FAM0120
-Freaky Friday,1995,https://www.themoviedb.org/movie/196257,196257,"Comedy, Family, Fantasy",freaky friday,FAM0120
-Freaky Friday,2003,https://www.themoviedb.org/movie/10330,10330,"Family, Fantasy, Drama, Comedy",freaky friday,FAM0120
-Freaky Friday,2018,https://www.themoviedb.org/movie/505904,505904,"Family, Fantasy, Comedy",freaky friday,FAM0120
-Griffin and Phoenix,1976,https://www.themoviedb.org/movie/252735,252735,Drama,griffin and phoenix,FAM0121
-Griffin & Phoenix,2006,https://www.themoviedb.org/movie/15534,15534,"Comedy, Drama, Romance",griffin phoenix,FAM0121
-Le Jouet,1976,https://www.themoviedb.org/movie/56648,56648,"Comedy, Drama",le jouet,FAM0122
-The Toy,1982,https://www.themoviedb.org/movie/23805,23805,"Comedy, Family",toy,FAM0122
-The Omen,1976,https://www.themoviedb.org/movie/794,794,"Horror, Thriller",omen,FAM0123
-The Omen,2006,https://www.themoviedb.org/movie/806,806,"Horror, Mystery, Thriller",omen,FAM0123
-Pardon Mon Affaire,1976,https://www.themoviedb.org/movie/2459,2459,"Comedy, Romance",pardon mon affaire,FAM0124
-The Woman in Red,1984,https://www.themoviedb.org/movie/5968,5968,"Comedy, Romance",woman in red,FAM0124
-Death Game,1977,https://www.themoviedb.org/movie/86743,86743,"Thriller, Horror",death game,FAM0125
-Knock Knock,2015,https://www.themoviedb.org/movie/263472,263472,"Horror, Thriller",knock knock,FAM0125
-Fun with Dick and Jane,1977,https://www.themoviedb.org/movie/24109,24109,"Comedy, Crime",fun with dick and jane,FAM0126
-Fun with Dick and Jane,2005,https://www.themoviedb.org/movie/7552,7552,"Comedy, Crime",fun with dick and jane,FAM0126
-The Goodbye Girl,1977,https://www.themoviedb.org/movie/14741,14741,"Comedy, Drama, Romance",goodbye girl,FAM0127
-The Goodbye Girl,2004,https://www.themoviedb.org/movie/66722,66722,"Comedy, Romance",goodbye girl,FAM0127
-The Hills Have Eyes,1977,https://www.themoviedb.org/movie/12262,12262,Horror,hills have eyes,FAM0128
-The Hills Have Eyes,2006,https://www.themoviedb.org/movie/9792,9792,"Horror, Thriller",hills have eyes,FAM0128
-The Man Who Loved Women,1977,https://www.themoviedb.org/movie/1421,1421,"Drama, Comedy, Romance",man who loved women,FAM0129
-The Man Who Loved Women,1983,https://www.themoviedb.org/movie/69928,69928,"Comedy, Drama, Romance",man who loved women,FAM0129
-Pete's Dragon,1977,https://www.themoviedb.org/movie/11114,11114,"Fantasy, Animation, Comedy, Family",pete s dragon,FAM0130
-Pete's Dragon,2016,https://www.themoviedb.org/movie/294272,294272,"Adventure, Family, Fantasy",pete s dragon,FAM0130
-Suspiria,1977,https://www.themoviedb.org/movie/11906,11906,Horror,suspiria,FAM0131
-Suspiria,2018,https://www.themoviedb.org/movie/361292,361292,"Horror, Mystery, Drama",suspiria,FAM0131
-Fingers,1978,https://www.themoviedb.org/movie/63435,63435,"Drama, Action, Thriller, Crime",fingers,FAM0132
-The Beat That My Heart Skipped,2005,https://www.themoviedb.org/movie/1553,1553,"Drama, Crime",beat that my heart skipped,FAM0132
-La Cage aux Folles,1978,https://www.themoviedb.org/movie/4484,4484,Comedy,la cage aux folles,FAM0133
-The Birdcage,1996,https://www.themoviedb.org/movie/11000,11000,Comedy,birdcage,FAM0133
-Dawn of the Dead,1978,https://www.themoviedb.org/movie/923,923,"Horror, Science Fiction",dawn of the dead,FAM0134
-Dawn of the Dead,2004,https://www.themoviedb.org/movie/924,924,"Horror, Action",dawn of the dead,FAM0134
-Don,1978,https://www.themoviedb.org/movie/68108,68108,Comedy,don,FAM0135
-Yugandhar,1979,https://www.themoviedb.org/movie/1269739,1269739,"Action, Crime, Thriller, Comedy",yugandhar,FAM0135
-Don,2006,https://www.themoviedb.org/movie/92979,92979,"Family, Drama",don,FAM0135
-Halloween,1978,https://www.themoviedb.org/movie/948,948,"Horror, Thriller",halloween,FAM0136
-Halloween,2007,https://www.themoviedb.org/movie/2082,2082,Horror,halloween,FAM0136
-I Spit on Your Grave,1978,https://www.themoviedb.org/movie/25239,25239,"Horror, Thriller",i spit on your grave,FAM0137
-I Spit on Your Grave,2010,https://www.themoviedb.org/movie/43947,43947,"Thriller, Crime, Horror",i spit on your grave,FAM0137
-Ice Castles,1978,https://www.themoviedb.org/movie/50541,50541,"Drama, Romance",ice castles,FAM0138
-Ice Castles,2010,https://www.themoviedb.org/movie/33570,33570,Drama,ice castles,FAM0138
-The Initiation of Sarah,1978,https://www.themoviedb.org/movie/23692,23692,Horror,initiation of sarah,FAM0139
-The Initiation of Sarah,2006,https://www.themoviedb.org/movie/23691,23691,"Horror, Thriller, Fantasy",initiation of sarah,FAM0139
-Piranha,1978,https://www.themoviedb.org/movie/24831,24831,"Horror, Science Fiction",piranha,FAM0140
-Piranha,1995,https://www.themoviedb.org/movie/48374,48374,Horror,piranha,FAM0140
-Piranha 3D,2010,https://www.themoviedb.org/movie/43593,43593,"Comedy, Horror",piranha 3d,FAM0140
-The Toolbox Murders,1978,https://www.themoviedb.org/movie/27495,27495,"Horror, Mystery, Thriller",toolbox murders,FAM0141
-Toolbox Murders,2004,https://www.themoviedb.org/movie/16764,16764,"Horror, Mystery",toolbox murders,FAM0141
-The Amityville Horror,1979,https://www.themoviedb.org/movie/11449,11449,Horror,amityville horror,FAM0142
-The Amityville Horror,2005,https://www.themoviedb.org/movie/10065,10065,Horror,amityville horror,FAM0142
-Going in Style,1979,https://www.themoviedb.org/movie/65066,65066,"Crime, Drama, Comedy",going in style,FAM0143
-Going in Style,2017,https://www.themoviedb.org/movie/353070,353070,"Crime, Comedy",going in style,FAM0143
-The In-Laws,1979,https://www.themoviedb.org/movie/19827,19827,"Action, Adventure, Comedy, Mystery",in laws,FAM0144
-The In-Laws,2003,https://www.themoviedb.org/movie/5146,5146,"Action, Comedy",in laws,FAM0144
-Maula Jatt,1979,https://www.themoviedb.org/movie/170078,170078,"Drama, Action",maula jatt,FAM0145
-Jeene Nahi Doonga,1984,https://www.themoviedb.org/movie/309146,309146,"Action, Drama",jeene nahi doonga,FAM0145
-When a Stranger Calls,1979,https://www.themoviedb.org/movie/45964,45964,"Horror, Thriller",when a stranger calls,FAM0146
-When a Stranger Calls,2006,https://www.themoviedb.org/movie/10053,10053,"Horror, Mystery",when a stranger calls,FAM0146
-Antropophagus,1980,https://www.themoviedb.org/movie/5424,5424,Horror,antropophagus,FAM0147
-Anthropophagous 2000,1999,https://www.themoviedb.org/movie/67382,67382,"Horror, Crime, Thriller",anthropophagous 2000,FAM0147
-Billa,1980,https://www.themoviedb.org/movie/21866,21866,"Drama, Romance, Comedy",billa,FAM0148
-Billa,2007,https://www.themoviedb.org/movie/23767,23767,"Action, Thriller",billa,FAM0148
-Billa,2009,https://www.themoviedb.org/movie/16345,16345,"Comedy, Drama",billa,FAM0148
-Diversion,1980,https://www.themoviedb.org/movie/417082,417082,,diversion,FAM0149
-Fatal Attraction,1987,https://www.themoviedb.org/movie/10998,10998,"Thriller, Drama, Romance",fatal attraction,FAM0149
-Doraemon: Nobita's Dinosaur,1980,https://www.themoviedb.org/movie/64789,64789,"Animation, Adventure, Family, Fantasy, Science Fiction",doraemon nobita s dinosaur,FAM0150
-Doraemon: Nobita's Dinosaur 2006,2006,https://www.themoviedb.org/movie/70841,70841,"Animation, Adventure, Family, Fantasy, Science Fiction",doraemon nobita s dinosaur 2006,FAM0150
-Fame,1980,https://www.themoviedb.org/movie/3537,3537,"Drama, Music",fame,FAM0151
-Fame,2009,https://www.themoviedb.org/movie/28665,28665,"Music, Comedy, Drama, Romance",fame,FAM0151
-The Fog,1980,https://www.themoviedb.org/movie/790,790,Horror,fog,FAM0152
-The Fog,2005,https://www.themoviedb.org/movie/791,791,"Horror, Mystery",fog,FAM0152
-Gloria,1980,https://www.themoviedb.org/movie/10889,10889,"Crime, Drama, Thriller",gloria,FAM0153
-Gloria,1999,https://www.themoviedb.org/movie/45712,45712,"Drama, Crime, Thriller",gloria,FAM0153
-Humanoids from the Deep,1980,https://www.themoviedb.org/movie/29343,29343,"Horror, Science Fiction",humanoids from the deep,FAM0154
-Humanoids from the Deep,1996,https://www.themoviedb.org/movie/53060,53060,"Science Fiction, Thriller, Horror",humanoids from the deep,FAM0154
-Mother's Day,1980,https://www.themoviedb.org/movie/14929,14929,"Action, Horror, Comedy",mother s day,FAM0155
-Mother's Day,2010,https://www.themoviedb.org/movie/101669,101669,"Crime, Horror, Thriller",mother s day,FAM0155
-Prom Night,1980,https://www.themoviedb.org/movie/36599,36599,"Horror, Mystery, Thriller",prom night,FAM0156
-Prom Night,2008,https://www.themoviedb.org/movie/8617,8617,"Horror, Drama, Mystery",prom night,FAM0156
-Resurrection,1980,https://www.themoviedb.org/movie/98864,98864,"Drama, Fantasy",resurrection,FAM0157
-Resurrection,1999,https://www.themoviedb.org/movie/10359,10359,"Crime, Mystery, Horror",resurrection,FAM0157
-Arthur,1981,https://www.themoviedb.org/movie/13665,13665,"Comedy, Drama, Romance",arthur,FAM0158
-Arthur,2011,https://www.themoviedb.org/movie/49012,49012,"Comedy, Romance",arthur,FAM0158
-Clash of the Titans,1981,https://www.themoviedb.org/movie/10323,10323,"Adventure, Fantasy, Action",clash of the titans,FAM0159
-Clash of the Titans,2010,https://www.themoviedb.org/movie/18823,18823,"Adventure, Fantasy, Action",clash of the titans,FAM0159
-The Evil Dead,1981,https://www.themoviedb.org/movie/764,764,Horror,evil dead,FAM0160
-Evil Dead,2013,https://www.themoviedb.org/movie/109428,109428,Horror,evil dead,FAM0160
-Garde à Vue,1981,https://www.themoviedb.org/movie/5062,5062,"Crime, Drama, Thriller",garde vue,FAM0161
-Under Suspicion,2000,https://www.themoviedb.org/movie/10562,10562,"Thriller, Crime, Drama",under suspicion,FAM0161
-My Bloody Valentine,1981,https://www.themoviedb.org/movie/39874,39874,"Horror, Thriller",my bloody valentine,FAM0162
-My Bloody Valentine 3D,2009,https://www.themoviedb.org/movie/14435,14435,"Horror, Thriller",my bloody valentine 3d,FAM0162
-Annie,1982,https://www.themoviedb.org/movie/15739,15739,"Comedy, Drama, Family",annie,FAM0163
-Annie,1999,https://www.themoviedb.org/movie/26177,26177,"Music, Family, Comedy",annie,FAM0163
-Annie,2014,https://www.themoviedb.org/movie/196867,196867,"Comedy, Drama, Family",annie,FAM0163
-Arth,1982,https://www.themoviedb.org/movie/1209500,1209500,Documentary,arth,FAM0164
-Arth - The Destination,2017,https://www.themoviedb.org/movie/500144,500144,"Drama, Music, Romance",arth the destination,FAM0164
-Doraemon: Nobita and the Haunts of Evil,1982,https://www.themoviedb.org/movie/184004,184004,"Family, Animation, Adventure, Fantasy, Science Fiction",doraemon nobita and the haunts of evil,FAM0165
-Doraemon: New Nobita's Great Demon—Peko and the Exploration Party of Five,2014,https://www.themoviedb.org/movie/285812,285812,"Family, Animation, Adventure, Fantasy, Comedy, Science Fiction",doraemon new nobita s great demon peko and the exploration party of five,FAM0165
-Le Père Noël est une ordure,1982,https://www.themoviedb.org/movie/14645,14645,Comedy,le p re no l est une ordure,FAM0166
-Mixed Nuts,1994,https://www.themoviedb.org/movie/24070,24070,"Comedy, Drama, Romance",mixed nuts,FAM0166
-Poltergeist,1982,https://www.themoviedb.org/movie/609,609,Horror,poltergeist,FAM0167
-Poltergeist,2015,https://www.themoviedb.org/movie/243688,243688,Horror,poltergeist,FAM0167
-The Lift,1983,https://www.themoviedb.org/movie/11417,11417,"Horror, Thriller, Comedy",lift,FAM0168
-Down,2001,https://www.themoviedb.org/movie/19058,19058,"Horror, Mystery, Thriller",down,FAM0168
-Les Compères,1983,https://www.themoviedb.org/movie/10484,10484,Comedy,les comp res,FAM0169
-Fathers' Day,1997,https://www.themoviedb.org/movie/12499,12499,"Comedy, Family",fathers day,FAM0169
-Naukar Biwi Ka,1983,https://www.themoviedb.org/movie/213187,213187,"Comedy, Drama, Family",naukar biwi ka,FAM0170
-Naukar Vahuti Da,2019,https://www.themoviedb.org/movie/626401,626401,"Comedy, Drama",naukar vahuti da,FAM0170
-Valley Girl,1983,https://www.themoviedb.org/movie/19053,19053,"Comedy, Romance",valley girl,FAM0171
-Valley Girl,2020,https://www.themoviedb.org/movie/482273,482273,"Comedy, Romance, Music",valley girl,FAM0171
-Doraemon: Nobita's Great Adventure into the Underworld,1984,https://www.themoviedb.org/movie/161699,161699,"Animation, Adventure, Family, Fantasy, Science Fiction",doraemon nobita s great adventure into the underworld,FAM0172
-Doraemon: Nobita's New Great Adventure into the Underworld,2007,https://www.themoviedb.org/movie/52795,52795,"Family, Adventure, Animation, Science Fiction, Fantasy",doraemon nobita s new great adventure into the underworld,FAM0172
-Footloose,1984,https://www.themoviedb.org/movie/1788,1788,"Drama, Romance",footloose,FAM0173
-Footloose,2011,https://www.themoviedb.org/movie/68817,68817,"Drama, Music, Romance",footloose,FAM0173
-Frankenweenie,1984,https://www.themoviedb.org/movie/33914,33914,"Horror, Family, Science Fiction, Comedy",frankenweenie,FAM0174
-Frankenweenie,2012,https://www.themoviedb.org/movie/62214,62214,"Animation, Comedy, Family",frankenweenie,FAM0174
-The Karate Kid,1984,https://www.themoviedb.org/movie/1885,1885,"Action, Drama",karate kid,FAM0175
-The Karate Kid,2010,https://www.themoviedb.org/movie/38575,38575,"Action, Adventure, Drama, Family",karate kid,FAM0175
-A Nightmare on Elm Street,1984,https://www.themoviedb.org/movie/377,377,Horror,nightmare on elm street,FAM0176
-A Nightmare on Elm Street,2010,https://www.themoviedb.org/movie/23437,23437,"Horror, Mystery, Thriller",nightmare on elm street,FAM0176
-Red Dawn,1984,https://www.themoviedb.org/movie/1880,1880,"Action, Thriller, War, Drama",red dawn,FAM0177
-Red Dawn,2012,https://www.themoviedb.org/movie/60747,60747,"Action, Thriller",red dawn,FAM0177
-Babai Abbai,1985,https://www.themoviedb.org/movie/155153,155153,"Comedy, Romance",babai abbai,FAM0178
-Nee Bareda Kadambari,1985,https://www.themoviedb.org/movie/1385360,1385360,"Drama, Romance",nee bareda kadambari,FAM0178
-Pyar Jhukta Nahin,1985,https://www.themoviedb.org/movie/441793,441793,,pyar jhukta nahin,FAM0178
-Mann,1999,https://www.themoviedb.org/movie/159664,159664,"Drama, Romance",mann,FAM0178
-Day of the Dead,1985,https://www.themoviedb.org/movie/8408,8408,"Horror, Drama, Mystery",day of the dead,FAM0179
-Day of the Dead,2008,https://www.themoviedb.org/movie/13613,13613,"Action, Horror, Science Fiction, Thriller",day of the dead,FAM0179
-Day of the Dead: Bloodline,2017,https://www.themoviedb.org/movie/485415,485415,"Action, Horror",day of the dead bloodline,FAM0179
-Doraemon: Nobita's Little Star Wars,1985,https://www.themoviedb.org/movie/161704,161704,"Animation, Adventure, Family, Fantasy, Science Fiction",doraemon nobita s little star wars,FAM0180
-Doraemon: Nobita's Little Star Wars 2021,2022,https://www.themoviedb.org/movie/782054,782054,"Animation, Science Fiction, Adventure, Family, Fantasy, Comedy",doraemon nobita s little star wars 2021,FAM0180
-Fright Night,1985,https://www.themoviedb.org/movie/11797,11797,"Comedy, Horror",fright night,FAM0181
-Fright Night,2011,https://www.themoviedb.org/movie/58151,58151,"Horror, Comedy",fright night,FAM0181
-April Fool's Day,1986,https://www.themoviedb.org/movie/24913,24913,"Horror, Mystery",april fool s day,FAM0182
-April Fool's Day,2008,https://www.themoviedb.org/movie/26233,26233,Horror,april fool s day,FAM0182
-Doraemon: Nobita and the Steel Troops,1986,https://www.themoviedb.org/movie/88625,88625,"Animation, Adventure, Family, Fantasy, Science Fiction",doraemon nobita and the steel troops,FAM0183
-Doraemon: Nobita and the New Steel Troops—Winged Angels,2011,https://www.themoviedb.org/movie/137227,137227,"Animation, Adventure, Family, Science Fiction, Fantasy, Comedy",doraemon nobita and the new steel troops winged angels,FAM0183
-Heat,1986,https://www.themoviedb.org/movie/42023,42023,"Action, Thriller",heat,FAM0184
-L.A. Takedown,1989,https://www.themoviedb.org/movie/25964,25964,"Crime, Thriller",l a takedown,FAM0184
-Heat,1995,https://www.themoviedb.org/movie/949,949,"Crime, Drama, Action",heat,FAM0184
-Wild Card,2015,https://www.themoviedb.org/movie/265208,265208,"Thriller, Crime, Action",wild card,FAM0184
-The Hitcher,1986,https://www.themoviedb.org/movie/9542,9542,"Horror, Action, Thriller",hitcher,FAM0185
-The Hitcher,2007,https://www.themoviedb.org/movie/8398,8398,"Crime, Horror, Thriller",hitcher,FAM0185
-Les Fugitifs,1986,https://www.themoviedb.org/movie/30163,30163,Comedy,les fugitifs,FAM0186
-Three Fugitives,1989,https://www.themoviedb.org/movie/31608,31608,"Comedy, Crime",three fugitives,FAM0186
-Adventures in Babysitting,1987,https://www.themoviedb.org/movie/14367,14367,Comedy,adventures in babysitting,FAM0187
-Adventures in Babysitting,2016,https://www.themoviedb.org/movie/360606,360606,"Comedy, Family, Adventure",adventures in babysitting,FAM0187
-Can’t Buy Me Love,1987,https://www.themoviedb.org/movie/12919,12919,"Comedy, Romance",can t buy me love,FAM0188
-Love Don't Cost a Thing,2003,https://www.themoviedb.org/movie/21542,21542,"Comedy, Drama, Family, Romance",love don t cost a thing,FAM0188
-Wings of Desire,1987,https://www.themoviedb.org/movie/144,144,"Drama, Fantasy, Romance",wings of desire,FAM0189
-City of Angels,1998,https://www.themoviedb.org/movie/795,795,"Romance, Drama, Fantasy",city of angels,FAM0189
-The Grand Highway,1987,https://www.themoviedb.org/movie/60797,60797,Drama,grand highway,FAM0190
-Paradise,1991,https://www.themoviedb.org/movie/68430,68430,Drama,paradise,FAM0190
-Overboard,1987,https://www.themoviedb.org/movie/10780,10780,"Comedy, Romance",overboard,FAM0191
-Overboard,2018,https://www.themoviedb.org/movie/454619,454619,"Romance, Comedy",overboard,FAM0191
-RoboCop,1987,https://www.themoviedb.org/movie/5548,5548,"Action, Thriller, Science Fiction",robocop,FAM0192
-RoboCop,2014,https://www.themoviedb.org/movie/97020,97020,"Action, Adventure, Crime, Science Fiction, Thriller",robocop,FAM0192
-The Stepfather,1987,https://www.themoviedb.org/movie/25155,25155,"Horror, Thriller",stepfather,FAM0193
-The Stepfather,2009,https://www.themoviedb.org/movie/19904,19904,"Horror, Thriller",stepfather,FAM0193
-Child's Play,1988,https://www.themoviedb.org/movie/10585,10585,Horror,child s play,FAM0194
-Child's Play,2019,https://www.themoviedb.org/movie/533642,533642,"Horror, Thriller",child s play,FAM0194
-Night of the Demons,1988,https://www.themoviedb.org/movie/24924,24924,"Horror, Comedy",night of the demons,FAM0195
-Night of the Demons,2009,https://www.themoviedb.org/movie/27646,27646,"Horror, Action, Comedy",night of the demons,FAM0195
-Shame,1988,https://www.themoviedb.org/movie/113747,113747,"Drama, Crime",shame,FAM0196
-Shame,1992,https://www.themoviedb.org/movie/291666,291666,Drama,shame,FAM0196
-The Vanishing,1988,https://www.themoviedb.org/movie/8740,8740,"Thriller, Mystery",vanishing,FAM0197
-The Vanishing,1993,https://www.themoviedb.org/movie/1644,1644,"Thriller, Drama, Mystery, Horror",vanishing,FAM0197
-The Firm,1989,https://www.themoviedb.org/movie/17300,17300,"Drama, Crime",firm,FAM0198
-The Firm,2009,https://www.themoviedb.org/movie/31218,31218,Drama,firm,FAM0198
-The Little Mermaid,1989,https://www.themoviedb.org/movie/10144,10144,"Animation, Family, Fantasy",little mermaid,FAM0199
-The Little Mermaid,2023,https://www.themoviedb.org/movie/447277,447277,"Adventure, Family, Fantasy, Romance",little mermaid,FAM0199
-Prancer,1989,https://www.themoviedb.org/movie/24951,24951,"Family, Drama, Fantasy",prancer,FAM0200
-Prancer: A Christmas Tale,2022,https://www.themoviedb.org/movie/1047431,1047431,"Family, Drama",prancer a christmas tale,FAM0200
-Shiva,1989,https://www.themoviedb.org/movie/354630,354630,"Action, Drama, Crime",shiva,FAM0201
-Shiva,1990,https://www.themoviedb.org/movie/109001,109001,"Drama, Action, Crime",shiva,FAM0201
-Agneepath,1990,https://www.themoviedb.org/movie/37403,37403,"Action, Crime, Drama",agneepath,FAM0202
-Agneepath,2012,https://www.themoviedb.org/movie/84858,84858,"Action, Crime, Drama",agneepath,FAM0202
-La Femme Nikita,1990,https://www.themoviedb.org/movie/9322,9322,"Action, Thriller",la femme nikita,FAM0203
-Black Cat,1991,https://www.themoviedb.org/movie/45437,45437,"Action, Crime, Thriller, Romance",black cat,FAM0203
-Point of No Return,1993,https://www.themoviedb.org/movie/10498,10498,"Action, Crime, Thriller",point of no return,FAM0203
-Flatliners,1990,https://www.themoviedb.org/movie/1551,1551,"Drama, Science Fiction, Horror",flatliners,FAM0204
-Flatliners,2017,https://www.themoviedb.org/movie/400710,400710,"Drama, Horror, Thriller",flatliners,FAM0204
-Total Recall,1990,https://www.themoviedb.org/movie/861,861,"Action, Adventure, Science Fiction",total recall,FAM0205
-Total Recall,2012,https://www.themoviedb.org/movie/64635,64635,"Action, Science Fiction, Thriller",total recall,FAM0205
-Beauty and the Beast,1991,https://www.themoviedb.org/movie/10020,10020,"Romance, Family, Animation, Fantasy",beauty and the beast,FAM0206
-Beauty and the Beast,2017,https://www.themoviedb.org/movie/321612,321612,"Family, Fantasy, Romance",beauty and the beast,FAM0206
-La Totale!,1991,https://www.themoviedb.org/movie/75944,75944,"Adventure, Comedy",la totale,FAM0207
-True Lies,1994,https://www.themoviedb.org/movie/36955,36955,"Action, Thriller",true lies,FAM0207
-My Father the Hero,1991,https://www.themoviedb.org/movie/20978,20978,"Comedy, Drama",my father the hero,FAM0208
-My Father the Hero,1994,https://www.themoviedb.org/movie/10486,10486,"Family, Comedy, Romance",my father the hero,FAM0208
-Point Break,1991,https://www.themoviedb.org/movie/1089,1089,"Action, Thriller, Crime",point break,FAM0209
-Point Break,2015,https://www.themoviedb.org/movie/257088,257088,"Action, Adventure, Crime, Thriller",point break,FAM0209
-Aladdin,1992,https://www.themoviedb.org/movie/812,812,"Animation, Family, Adventure, Fantasy, Romance",aladdin,FAM0210
-Aladdin,2019,https://www.themoviedb.org/movie/420817,420817,"Adventure, Fantasy, Romance, Family",aladdin,FAM0210
-White Men Can't Jump,1992,https://www.themoviedb.org/movie/10158,10158,"Comedy, Drama",white men can t jump,FAM0211
-White Men Can't Jump,2023,https://www.themoviedb.org/movie/920125,920125,"Comedy, Drama",white men can t jump,FAM0211
-Hodet over vannet,1993,https://www.themoviedb.org/movie/40918,40918,"Comedy, Thriller",hodet over vannet,FAM0212
-Head Above Water,1996,https://www.themoviedb.org/movie/11103,11103,"Comedy, Thriller",head above water,FAM0212
-Les Visiteurs,1993,https://www.themoviedb.org/movie/11687,11687,"Fantasy, Comedy",les visiteurs,FAM0213
-Just Visiting,2001,https://www.themoviedb.org/movie/56715,56715,"Comedy, Fantasy, Science Fiction",just visiting,FAM0213
-Eat Drink Man Woman,1994,https://www.themoviedb.org/movie/10451,10451,"Comedy, Drama, Romance",eat drink man woman,FAM0214
-Tortilla Soup,2001,https://www.themoviedb.org/movie/15104,15104,"Comedy, Drama, Romance",tortilla soup,FAM0214
-"Louis 19, King of the Airwaves",1994,https://www.themoviedb.org/movie/196875,196875,Comedy,louis 19 king of the airwaves,FAM0215
-EDtv,1999,https://www.themoviedb.org/movie/11374,11374,Comedy,edtv,FAM0215
-Forrest Gump,1994,https://www.themoviedb.org/movie/13,13,"Comedy, Drama, Romance",forrest gump,FAM0216
-Laal Singh Chaddha,2022,https://www.themoviedb.org/movie/601635,601635,"Drama, Romance, Comedy",laal singh chaddha,FAM0216
-Un indien dans la ville,1994,https://www.themoviedb.org/movie/11479,11479,"Adventure, Drama, Family, Comedy",un indien dans la ville,FAM0217
-Jungle 2 Jungle,1997,https://www.themoviedb.org/movie/9446,9446,"Comedy, Family",jungle 2 jungle,FAM0217
-The Lion King,1994,https://www.themoviedb.org/movie/8587,8587,"Animation, Family, Drama, Adventure",lion king,FAM0218
-The Lion King,2019,https://www.themoviedb.org/movie/420818,420818,"Adventure, Drama, Family, Animation",lion king,FAM0218
-Neuf mois,1994,https://www.themoviedb.org/movie/63150,63150,Comedy,neuf mois,FAM0219
-Nine Months,1995,https://www.themoviedb.org/movie/11472,11472,"Romance, Comedy",nine months,FAM0219
-Nightwatch,1994,https://www.themoviedb.org/movie/6498,6498,"Horror, Thriller",nightwatch,FAM0220
-Nightwatch,1997,https://www.themoviedb.org/movie/2212,2212,"Drama, Horror, Mystery, Thriller",nightwatch,FAM0220
-Baasha,1995,https://www.themoviedb.org/movie/49074,49074,"Action, Drama",baasha,FAM0221
-Arunachalam,1997,https://www.themoviedb.org/movie/66245,66245,"Action, Drama, Comedy",arunachalam,FAM0221
-Judge Dredd,1995,https://www.themoviedb.org/movie/9482,9482,"Science Fiction, Action",judge dredd,FAM0222
-Dredd,2012,https://www.themoviedb.org/movie/49049,49049,"Action, Science Fiction",dredd,FAM0222
-The Apartment,1996,https://www.themoviedb.org/movie/54937,54937,"Thriller, Comedy",apartment,FAM0223
-Wicker Park,2004,https://www.themoviedb.org/movie/11208,11208,"Drama, Mystery, Romance, Thriller",wicker park,FAM0223
-Don't Look Up,1996,https://www.themoviedb.org/movie/58405,58405,Horror,don t look up,FAM0224
-Ghost Theater,2015,https://www.themoviedb.org/movie/371241,371241,Horror,ghost theater,FAM0224
-Shall We Dance?,1996,https://www.themoviedb.org/movie/11239,11239,"Music, Comedy, Drama, Romance",shall we dance,FAM0225
-Shall We Dance?,2004,https://www.themoviedb.org/movie/4380,4380,"Drama, Romance, Comedy",shall we dance,FAM0225
-Insomnia,1997,https://www.themoviedb.org/movie/26610,26610,"Thriller, Crime, Mystery",insomnia,FAM0226
-Insomnia,2002,https://www.themoviedb.org/movie/320,320,"Thriller, Crime, Drama",insomnia,FAM0226
-My Father's Dragon,1997,https://www.themoviedb.org/movie/92113,92113,"Animation, Fantasy",my father s dragon,FAM0227
-My Father's Dragon,2022,https://www.themoviedb.org/movie/560052,560052,"Animation, Adventure, Family, Fantasy, Comedy",my father s dragon,FAM0227
-Open Your Eyes,1997,https://www.themoviedb.org/movie/1902,1902,"Drama, Thriller, Science Fiction",open your eyes,FAM0228
-Vanilla Sky,2001,https://www.themoviedb.org/movie/1903,1903,"Mystery, Romance, Science Fiction",vanilla sky,FAM0228
-Cats,1998,https://www.themoviedb.org/movie/26598,26598,"Music, Fantasy",cats,FAM0229
-Cats,2019,https://www.themoviedb.org/movie/536869,536869,"Fantasy, Comedy, Drama",cats,FAM0229
-Mulan,1998,https://www.themoviedb.org/movie/10674,10674,"Animation, Family, Adventure",mulan,FAM0230
-Mulan,2020,https://www.themoviedb.org/movie/337401,337401,"Adventure, Fantasy, Action",mulan,FAM0230
-Pokémon: The First Movie,1998,https://www.themoviedb.org/movie/10228,10228,"Animation, Family, Adventure, Fantasy, Action",pok mon the first movie,FAM0231
-Pokémon the Movie: Mewtwo Strikes Back - Evolution,2019,https://www.themoviedb.org/movie/571891-evolution,571891,"Animation, Adventure, Fantasy, Action, Family",pok mon the movie mewtwo strikes back evolution,FAM0231
-Ringu,1998,https://www.themoviedb.org/movie/2671,2671,"Horror, Thriller",ringu,FAM0232
-The Ring,2002,https://www.themoviedb.org/movie/565,565,"Horror, Mystery",ring,FAM0232
-Stepmom,1998,https://www.themoviedb.org/movie/9441,9441,"Drama, Romance, Comedy",stepmom,FAM0233
-We Are Family,2010,https://www.themoviedb.org/movie/44972,44972,"Drama, Family",we are family,FAM0233
-Taxi,1998,https://www.themoviedb.org/movie/2330,2330,"Action, Comedy, Crime, Adventure",taxi,FAM0234
-Taxi,2004,https://www.themoviedb.org/movie/11045,11045,"Action, Comedy, Thriller, Crime",taxi,FAM0234
-Himitsu,1999,https://www.themoviedb.org/movie/88517,88517,"Drama, Fantasy",himitsu,FAM0235
-The Secret,2007,https://www.themoviedb.org/movie/15403,15403,"Animation, Science Fiction, Family, Action",secret,FAM0235
-Sethu,1999,https://www.themoviedb.org/movie/69669,69669,"Action, Drama, Romance, Thriller",sethu,FAM0236
-Tere Naam,2003,https://www.themoviedb.org/movie/56969,56969,"Action, Drama, Romance, Thriller",tere naam,FAM0236
-Nueve Reinas,2000,https://www.themoviedb.org/movie/18079,18079,"Crime, Thriller, Drama",nueve reinas,FAM0237
-Criminal,2004,https://www.themoviedb.org/movie/14198,14198,"Action, Comedy, Thriller",criminal,FAM0237
-Il Mare,2000,https://www.themoviedb.org/movie/12650,12650,"Drama, Romance, Science Fiction",il mare,FAM0238
-Siworae,2000,https://www.themoviedb.org/movie/12650,12650,"Drama, Romance, Science Fiction",siworae,FAM0238
-The Lake House,2006,https://www.themoviedb.org/movie/2044,2044,"Romance, Drama, Mystery, Fantasy",lake house,FAM0238
-What Women Want,2000,https://www.themoviedb.org/movie/3981,3981,"Comedy, Romance",what women want,FAM0239
-What Women Want,2011,https://www.themoviedb.org/movie/62976,62976,"Comedy, Romance, Fantasy",what women want,FAM0239
-What Men Want,2019,https://www.themoviedb.org/movie/487297,487297,"Comedy, Romance",what men want,FAM0239
-Das Experiment,2001,https://www.themoviedb.org/movie/575,575,"Drama, Thriller",das experiment,FAM0240
-The Experiment,2010,https://www.themoviedb.org/movie/43549,43549,"Thriller, Drama",experiment,FAM0240
-Hot Money,2001,https://www.themoviedb.org/movie/162911,162911,Crime,hot money,FAM0241
-Mad Money,2008,https://www.themoviedb.org/movie/12085,12085,"Comedy, Action, Crime",mad money,FAM0241
-I Am Sam,2001,https://www.themoviedb.org/movie/10950,10950,Drama,i am sam,FAM0242
-Main Aisa Hi Hoon,2005,https://www.themoviedb.org/movie/316812,316812,"Drama, Family",main aisa hi hoon,FAM0242
-The Last Kiss,2001,https://www.themoviedb.org/movie/12308,12308,"Comedy, Drama, Romance",last kiss,FAM0243
-The Last Kiss,2006,https://www.themoviedb.org/movie/7511,7511,"Comedy, Drama, Romance",last kiss,FAM0243
-Mostly Martha,2001,https://www.themoviedb.org/movie/3640,3640,"Romance, Comedy",mostly martha,FAM0244
-No Reservations,2007,https://www.themoviedb.org/movie/3638,3638,"Comedy, Romance, Drama",no reservations,FAM0244
-Pulse,2001,https://www.themoviedb.org/movie/27324,27324,"Horror, Thriller, Mystery",pulse,FAM0245
-Pulse,2006,https://www.themoviedb.org/movie/9682,9682,"Horror, Science Fiction, Mystery, Drama",pulse,FAM0245
-Dark Water,2002,https://www.themoviedb.org/movie/12205,12205,"Horror, Mystery, Thriller",dark water,FAM0246
-Dark Water,2005,https://www.themoviedb.org/movie/9009,9009,"Horror, Mystery",dark water,FAM0246
-Infernal Affairs,2002,https://www.themoviedb.org/movie/10775,10775,"Drama, Action, Thriller, Crime, Mystery",infernal affairs,FAM0247
-The Departed,2006,https://www.themoviedb.org/movie/1422,1422,"Drama, Thriller, Crime",departed,FAM0247
-The Eye,2002,https://www.themoviedb.org/movie/10389,10389,Horror,eye,FAM0248
-Naina,2005,https://www.themoviedb.org/movie/15978,15978,"Horror, Mystery",naina,FAM0248
-The Eye,2008,https://www.themoviedb.org/movie/9030,9030,"Drama, Horror, Thriller",eye,FAM0248
-Mr. Deeds,2002,https://www.themoviedb.org/movie/2022,2022,"Comedy, Romance",mr deeds,FAM0249
-Hello Mr. Billionaire,2018,https://www.themoviedb.org/movie/538331,538331,Comedy,hello mr billionaire,FAM0249
-Lilo & Stitch,2002,https://www.themoviedb.org/movie/11544,11544,"Animation, Family, Comedy",lilo stitch,FAM0250
-Lilo & Stitch,2025,https://www.themoviedb.org/movie/552524,552524,"Family, Science Fiction, Comedy",lilo stitch,FAM0250
-Run,2002,https://www.themoviedb.org/movie/20337,20337,"Comedy, Documentary",run,FAM0251
-Run,2004,https://www.themoviedb.org/movie/158780,158780,,run,FAM0251
-Nathalie...,2003,https://www.themoviedb.org/movie/38376,38376,Drama,nathalie,FAM0252
-Chloe,2009,https://www.themoviedb.org/movie/468086,468086,,chloe,FAM0252
-Elf,2003,https://www.themoviedb.org/movie/10719,10719,"Comedy, Family, Fantasy",elf,FAM0253
-Elf: Buddy's Musical Christmas,2014,https://www.themoviedb.org/movie/312100,312100,"Animation, Family, Fantasy, Comedy",elf buddy s musical christmas,FAM0253
-Kaakha Kaakha,2003,https://www.themoviedb.org/movie/330629,330629,"Crime, Thriller, Action",kaakha kaakha,FAM0254
-Gharshana,2004,https://www.themoviedb.org/movie/63671,63671,"Crime, Action, Thriller",gharshana,FAM0254
-Interview,2003,https://www.themoviedb.org/movie/36350,36350,Drama,interview,FAM0255
-Interview,2007,https://www.themoviedb.org/movie/8414,8414,Drama,interview,FAM0255
-Midsommer,2003,https://www.themoviedb.org/movie/16032,16032,"Drama, Horror, Mystery, Thriller",midsommer,FAM0256
-Solstice,2008,https://www.themoviedb.org/movie/14660,14660,"Drama, Horror, Mystery",solstice,FAM0256
-Oldboy,2003,https://www.themoviedb.org/movie/670,670,"Drama, Thriller, Mystery, Action",oldboy,FAM0257
-Oldboy,2013,https://www.themoviedb.org/movie/87516,87516,"Drama, Thriller, Mystery, Action",oldboy,FAM0257
-The Room,2003,https://www.themoviedb.org/movie/17473,17473,"Drama, Romance",room,FAM0258
-The Room Returns!,2025,https://www.themoviedb.org/movie/1097699,1097699,"Drama, Romance",room returns,FAM0258
-Autograph,2004,https://www.themoviedb.org/movie/140299,140299,"Romance, Drama",autograph,FAM0259
-Naa Autograph,2004,https://www.themoviedb.org/movie/307907,307907,"Family, Romance, Drama",naa autograph,FAM0259
-Brødre,2004,https://www.themoviedb.org/movie/3875,3875,"Drama, War",br dre,FAM0260
-Brothers,2009,https://www.themoviedb.org/movie/7445,7445,"Drama, Thriller, War",brothers,FAM0260
-District 13,2004,https://www.themoviedb.org/movie/10045,10045,"Action, Thriller, Science Fiction",district 13,FAM0261
-Brick Mansions,2014,https://www.themoviedb.org/movie/254473,254473,"Action, Crime, Drama",brick mansions,FAM0261
-Sigaw,2004,https://www.themoviedb.org/movie/110285,110285,"Thriller, Horror",sigaw,FAM0262
-The Echo,2008,https://www.themoviedb.org/movie/25329,25329,"Horror, Thriller, Drama, Mystery",echo,FAM0262
-Le Convoyeur,2004,https://www.themoviedb.org/movie/21776,21776,"Action, Drama, Crime, Thriller",le convoyeur,FAM0263
-Wrath of Man,2021,https://www.themoviedb.org/movie/637649,637649,"Thriller, Crime, Drama",wrath of man,FAM0263
-Sideways,2004,https://www.themoviedb.org/movie/9675,9675,"Comedy, Drama, Romance",sideways,FAM0264
-Sideways,2009,https://www.themoviedb.org/movie/128169,128169,"Comedy, Romance",sideways,FAM0264
-Thirupaachi,2005,https://www.themoviedb.org/movie/63642,63642,"Action, Thriller",thirupaachi,FAM0265
-Annavaram,2006,https://www.themoviedb.org/movie/199806,199806,"Action, Drama",annavaram,FAM0265
-Anthony Zimmer,2005,https://www.themoviedb.org/movie/11604,11604,"Thriller, Crime, Drama, Romance",anthony zimmer,FAM0266
-The Tourist,2010,https://www.themoviedb.org/movie/37710,37710,"Action, Thriller, Romance",tourist,FAM0266
-Ghajini,2005,https://www.themoviedb.org/movie/69636,69636,"Action, Romance, Thriller",ghajini,FAM0267
-Ghajini,2008,https://www.themoviedb.org/movie/14070,14070,"Action, Romance, Thriller",ghajini,FAM0267
-Chinthamani Kolacase,2006,https://www.themoviedb.org/movie/230183,230183,"Action, Crime, Mystery",chinthamani kolacase,FAM0268
-Sri Mahalakshmi,2007,https://www.themoviedb.org/movie/330762,330762,,sri mahalakshmi,FAM0268
-Ellam Avan Seyal,2008,https://www.themoviedb.org/movie/511378,511378,"Crime, Thriller, Action",ellam avan seyal,FAM0268
-Classmates,2006,https://www.themoviedb.org/movie/325914,325914,,classmates,FAM0269
-Classmates,2007,https://www.themoviedb.org/movie/403402,403402,"Drama, Romance",classmates,FAM0269
-Stalin,2006,https://www.themoviedb.org/movie/972761,972761,Music,stalin,FAM0270
-Jai Ho,2014,https://www.themoviedb.org/movie/354167,354167,"Documentary, Music",jai ho,FAM0270
-Vikramarkudu,2006,https://www.themoviedb.org/movie/40909,40909,"Action, Drama",vikramarkudu,FAM0271
-Rowdy Rathore,2012,https://www.themoviedb.org/movie/102632,102632,"Action, Comedy, Crime",rowdy rathore,FAM0271
-Death at a Funeral,2007,https://www.themoviedb.org/movie/2196,2196,"Comedy, Drama",death at a funeral,FAM0272
-Death at a Funeral,2010,https://www.themoviedb.org/movie/34803,34803,Comedy,death at a funeral,FAM0272
-The Debt,2007,https://www.themoviedb.org/movie/35941,35941,Documentary,debt,FAM0273
-The Debt,2010,https://www.themoviedb.org/movie/48289,48289,"Drama, Thriller",debt,FAM0273
-REC,2007,https://www.themoviedb.org/movie/38410,38410,"Horror, Mystery, Crime, Thriller",rec,FAM0274
-Quarantine,2008,https://www.themoviedb.org/movie/13812,13812,"Horror, Science Fiction, Thriller",quarantine,FAM0274
-Anything for Her,2008,https://www.themoviedb.org/movie/14556,14556,"Drama, Thriller",anything for her,FAM0275
-The Next Three Days,2010,https://www.themoviedb.org/movie/43539,43539,"Romance, Drama, Thriller, Crime",next three days,FAM0275
-Loft,2008,https://www.themoviedb.org/movie/17845,17845,"Drama, Mystery, Romance",loft,FAM0276
-Loft,2010,https://www.themoviedb.org/movie/57059,57059,Thriller,loft,FAM0276
-The Loft,2014,https://www.themoviedb.org/movie/72784,72784,Thriller,loft,FAM0276
-Martyrs,2008,https://www.themoviedb.org/movie/9539,9539,"Horror, Drama, Thriller",martyrs,FAM0277
-Martyrs,2015,https://www.themoviedb.org/movie/362057,362057,"Horror, Mystery",martyrs,FAM0277
-Ready,2008,https://www.themoviedb.org/movie/15110,15110,Documentary,ready,FAM0278
-Ready,2011,https://www.themoviedb.org/movie/65946,65946,"Action, Comedy",ready,FAM0278
-Scandal Makers,2008,https://www.themoviedb.org/movie/18384,18384,"Comedy, Drama",scandal makers,FAM0279
-Scandal Maker,2016,https://www.themoviedb.org/movie/498833,498833,"Comedy, Family, Drama",scandal maker,FAM0279
-3 Idiots,2009,https://www.themoviedb.org/movie/20453,20453,"Drama, Comedy",3 idiots,FAM0280
-Nanban,2012,https://www.themoviedb.org/movie/69537,69537,"Comedy, Drama",nanban,FAM0280
-3 Idiotas,2017,https://www.themoviedb.org/movie/346034,346034,"Family, Comedy",3 idiotas,FAM0280
-Gulumaal: The Escape,2009,https://www.themoviedb.org/movie/330505,330505,"Thriller, Comedy",gulumaal the escape,FAM0281
-All the Best,2012,https://www.themoviedb.org/movie/226292,226292,,all the best,FAM0281
-Bride Wars,2009,https://www.themoviedb.org/movie/10521,10521,"Comedy, Romance",bride wars,FAM0282
-Bride Wars,2015,https://www.themoviedb.org/movie/362519,362519,"Comedy, Romance",bride wars,FAM0282
-The Girl with the Dragon Tattoo,2009,https://www.themoviedb.org/movie/15472-man-som-hatar-kvinnor?language=en-US,15472,"""Thriller",girl with the dragon tattoo,FAM0283
-The Girl with the Dragon Tattoo,2011,https://www.themoviedb.org/movie/65754-the-girl-with-the-dragon-tattoo?language=en-US,65754,"""Thriller",girl with the dragon tattoo,FAM0283
-Naadodigal,2009,https://www.themoviedb.org/movie/25122,25122,Drama,naadodigal,FAM0284
-Shambo Shiva Shambo,2010,https://www.themoviedb.org/movie/308306,308306,Action,shambo shiva shambo,FAM0284
-Hudugaru,2011,https://www.themoviedb.org/movie/287986,287986,"Action, Drama",hudugaru,FAM0284
-Ithu Nammude Katha,2011,https://www.themoviedb.org/movie/215347,215347,"Drama, Thriller",ithu nammude katha,FAM0284
-Rangrezz,2013,https://www.themoviedb.org/movie/179656,179656,"Action, Drama",rangrezz,FAM0284
-Kick,2009,https://www.themoviedb.org/movie/35067,35067,"Action, Adventure",kick,FAM0285
-Kick,2014,https://www.themoviedb.org/movie/280690,280690,"Action, Romance, Comedy, Crime",kick,FAM0285
-The Secret in Their Eyes,2009,https://www.themoviedb.org/movie/25376,25376,"Drama, Mystery, Thriller",secret in their eyes,FAM0286
-Secret in Their Eyes,2015,https://www.themoviedb.org/movie/290751,290751,"Thriller, Mystery, Crime",secret in their eyes,FAM0286
-How to Train Your Dragon,2010,https://www.themoviedb.org/movie/10191,10191,"Fantasy, Adventure, Animation, Family",how to train your dragon,FAM0287
-How to Train Your Dragon,2025,https://www.themoviedb.org/movie/1087192,1087192,"Fantasy, Family, Action, Adventure",how to train your dragon,FAM0287
-Blind,2011,https://www.themoviedb.org/movie/79374,79374,Thriller,blind,FAM0288
-The Witness,2015,https://www.themoviedb.org/movie/356332,356332,Documentary,witness,FAM0288
-The Intouchables,2011,https://www.themoviedb.org/movie/77338,77338,"Drama, Comedy",intouchables,FAM0289
-The Upside,2019,https://www.themoviedb.org/movie/440472,440472,"Comedy, Drama",upside,FAM0289
-The Body,2012,https://www.themoviedb.org/movie/111083,111083,"Mystery, Thriller, Drama",body,FAM0290
-The Body,2019,https://www.themoviedb.org/movie/648316,648316,"Thriller, Mystery",body,FAM0290
-OMG – Oh My God!,2012,https://www.themoviedb.org/movie/135718,135718,"Comedy, Drama",omg oh my god,FAM0291
-Gopala Gopala,2015,https://www.themoviedb.org/movie/279449,279449,"Comedy, Romance, Fantasy",gopala gopala,FAM0291
-Mukunda Murari,2016,https://www.themoviedb.org/movie/468329,468329,,mukunda murari,FAM0291
-Miss Granny,2014,https://www.themoviedb.org/movie/253065,253065,"Drama, Comedy, Music",miss granny,FAM0292
-20 Once Again,2015,https://www.themoviedb.org/movie/301274,301274,"Comedy, Music, Fantasy",20 once again,FAM0292
-Sweet 20,2015,https://www.themoviedb.org/movie/386084,386084,Comedy,sweet 20,FAM0292
-Chef,2014,https://www.themoviedb.org/movie/212778,212778,Comedy,chef,FAM0293
-Chef,2017,https://www.themoviedb.org/movie/471972,471972,"Drama, Comedy, Family",chef,FAM0293
-Veeram,2014,https://www.themoviedb.org/movie/247504,247504,"Action, Comedy",veeram,FAM0294
-Kisi Ka Bhai Kisi Ki Jaan,2023,https://www.themoviedb.org/movie/966719,966719,"Romance, Action",kisi ka bhai kisi ki jaan,FAM0294
-Last Shift,2014,https://www.themoviedb.org/movie/296065,296065,"Horror, Mystery",last shift,FAM0295
-Malum,2023,https://www.themoviedb.org/movie/1094403,1094403,Horror,malum,FAM0295
-A Man Called Ove,2015,https://www.themoviedb.org/movie/348678,348678,"Comedy, Drama",man called ove,FAM0296
-A Man Called Otto,2022,https://www.themoviedb.org/movie/937278,937278,"Comedy, Drama",man called otto,FAM0296
-Theri,2016,https://www.themoviedb.org/movie/410688,410688,,theri,FAM0297
-Baby John,2024,https://www.themoviedb.org/movie/1083241,1083241,"Action, Drama, Thriller, Crime",baby john,FAM0297
-Pink,2016,https://www.themoviedb.org/movie/1359027,1359027,Music,pink,FAM0298
-Nerkonda Paarvai,2019,https://www.themoviedb.org/movie/586291,586291,"Drama, Action, Thriller",nerkonda paarvai,FAM0298
-Vakeel Saab,2021,https://www.themoviedb.org/movie/673732,673732,"Action, Thriller, Crime, Drama",vakeel saab,FAM0298
-The Guilty,2018,https://www.themoviedb.org/movie/486947,486947,"Thriller, Drama, Crime",guilty,FAM0299
-The Guilty,2021,https://www.themoviedb.org/movie/567748,567748,"Drama, Thriller",guilty,FAM0299
-Jersey,2019,https://www.themoviedb.org/movie/795776,795776,,jersey,FAM0300
-Jersey,2022,https://www.themoviedb.org/movie/1032682,1032682,Documentary,jersey,FAM0300
-Vash,2023,https://www.themoviedb.org/movie/1155640,1155640,Horror,vash,FAM0301
-Shaitaan,2024,https://www.themoviedb.org/movie/1187619,1187619,"Thriller, Horror",shaitaan,FAM0301
+This Gun for Hire,1942,https://www.themoviedb.org/movie/16703,16703,"Crime, Thriller, Mystery",this gun for hire,FAM0006
+Short Cut to Hell,1957,https://www.themoviedb.org/movie/51555,51555,"Crime, Drama, Thriller",short cut to hell,FAM0006
+This Gun for Hire,1991,https://www.themoviedb.org/movie/251497,251497,"TV Movie, Thriller",this gun for hire,FAM0006
+Strangers on a Train,1951,https://www.themoviedb.org/movie/845,845,"Crime, Thriller, Drama",strangers on a train,FAM0007
+Once You Kiss a Stranger,1969,https://www.themoviedb.org/movie/72774,72774,"Mystery, Thriller",once you kiss a stranger,FAM0007
+Once You Meet a Stranger,1996,https://www.themoviedb.org/movie/264769,264769,"Thriller, TV Movie",once you meet a stranger,FAM0007
+Big Deal on Madonna Street,1958,https://www.themoviedb.org/movie/24382,24382,"Comedy, Crime",big deal on madonna street,FAM0008
+Crackers,1984,https://www.themoviedb.org/movie/87235,87235,"Action, Comedy, Crime",crackers,FAM0008
+Welcome to Collinwood,2002,https://www.themoviedb.org/movie/9260,9260,"Comedy, Crime",welcome to collinwood,FAM0008
+Bedtime Story,1964,https://www.themoviedb.org/movie/40618,40618,Comedy,bedtime story,FAM0009
+Dirty Rotten Scoundrels,1988,https://www.themoviedb.org/movie/10141,10141,"Comedy, Crime",dirty rotten scoundrels,FAM0009
+The Hustle,2019,https://www.themoviedb.org/movie/449562,449562,"Comedy, Crime",hustle,FAM0009
+The Unfaithful Wife,1969,https://www.themoviedb.org/movie/8286,8286,"Crime, Drama, Thriller",unfaithful wife,FAM0010
+Unfaithful,2002,https://www.themoviedb.org/movie/2251,2251,"Thriller, Drama, Romance",unfaithful,FAM0010
+Hawas,2004,https://www.themoviedb.org/movie/276480,276480,"Romance, Thriller",hawas,FAM0010
+Get Carter,1971,https://www.themoviedb.org/movie/1485,1485,"Crime, Thriller",get carter,FAM0011
+Payback,1999,https://www.themoviedb.org/movie/2112,2112,"Action, Drama, Crime, Thriller",payback,FAM0011
+Get Carter,2000,https://www.themoviedb.org/movie/10461,10461,"Action, Drama, Thriller, Crime",get carter,FAM0011
+The Poseidon Adventure,1972,https://www.themoviedb.org/movie/551,551,"Adventure, Drama, Thriller",poseidon adventure,FAM0012
+The Poseidon Adventure,2005,https://www.themoviedb.org/movie/28512,28512,"Adventure, Thriller, Action, TV Movie",poseidon adventure,FAM0012
+Poseidon,2006,https://www.themoviedb.org/movie/503,503,"Adventure, Action, Drama, Thriller",poseidon,FAM0012
+The Great Gatsby,1974,https://www.themoviedb.org/movie/11034-the-great-gatsby?language=en-US,11034,"Drama, Romance",great gatsby,FAM0013
+The Great Gatsby,2000,https://www.themoviedb.org/movie/34027-the-great-gatsby?language=en-US,34027,"Drama, Romance",great gatsby,FAM0013
+The Great Gatsby,2013,https://www.themoviedb.org/movie/64682-the-great-gatsby?language=en-US,64682,"Drama, Romance",great gatsby,FAM0013
+Piranha,1978,https://www.themoviedb.org/movie/24831,24831,"Horror, Science Fiction",piranha,FAM0014
+Piranha,1995,https://www.themoviedb.org/movie/48374,48374,"Horror, TV Movie",piranha,FAM0014
+Piranha 3D,2010,https://www.themoviedb.org/movie/43593,43593,"Comedy, Horror",piranha 3d,FAM0014
+Day of the Dead,1985,https://www.themoviedb.org/movie/8408,8408,"Horror, Drama, Mystery",day of the dead,FAM0015
+Day of the Dead,2008,https://www.themoviedb.org/movie/13613,13613,"Action, Horror, Science Fiction, Thriller",day of the dead,FAM0015
+Day of the Dead: Bloodline,2017,https://www.themoviedb.org/movie/485415,485415,"Action, Horror",day of the dead bloodline,FAM0015
+La Femme Nikita,1990,https://www.themoviedb.org/movie/9322,9322,"Action, Thriller",la femme nikita,FAM0016
+Black Cat,1991,https://www.themoviedb.org/movie/45437,45437,"Action, Crime, Thriller, Romance",black cat,FAM0016
+Point of No Return,1993,https://www.themoviedb.org/movie/10498,10498,"Action, Crime, Thriller",point of no return,FAM0016
+Il Mare,2000,https://www.themoviedb.org/movie/46535,46535,"Drama, Romance, Science Fiction",il mare,FAM0017
+Siworae,2000,https://www.themoviedb.org/movie/12650,12650,"Drama, Romance, Science Fiction",siworae,FAM0017
+The Lake House,2006,https://www.themoviedb.org/movie/2044,2044,"Romance, Drama, Mystery, Fantasy",lake house,FAM0017
+What Women Want,2000,https://www.themoviedb.org/movie/3981,3981,"Comedy, Romance",what women want,FAM0018
+What Women Want,2011,https://www.themoviedb.org/movie/62976,62976,"Comedy, Romance, Fantasy",what women want,FAM0018
+What Men Want,2019,https://www.themoviedb.org/movie/487297,487297,"Comedy, Romance",what men want,FAM0018
+Oldboy,2003,https://www.themoviedb.org/movie/670,670,"Drama, Thriller, Mystery, Action",oldboy,FAM0019
+Zinda,2006,https://www.themoviedb.org/movie/20971,20971,"Action, Thriller",zinda,FAM0019
+Oldboy,2013,https://www.themoviedb.org/movie/87516,87516,"Drama, Thriller, Mystery, Action",oldboy,FAM0019
+Katha Parayumpol,2007,https://www.themoviedb.org/movie/67890,67890,"Comedy, Drama",katha parayumpol,FAM0020
+Kathanayakudu,2008,https://www.themoviedb.org/movie/1166562,1166562,Drama,kathanayakudu,FAM0020
+Billu Barber,2009,https://www.themoviedb.org/movie/16345,16345,"Comedy, Drama",billu barber,FAM0020
+Miss Granny,2014,https://www.themoviedb.org/movie/253065,253065,"Drama, Comedy, Music",miss granny,FAM0021
+20 Once Again,2015,https://www.themoviedb.org/movie/301274,301274,"Comedy, Music, Fantasy",20 once again,FAM0021
+Sweet 20,2015,https://www.themoviedb.org/movie/386084,386084,Comedy,sweet 20,FAM0021
+Retribution,2015,https://www.themoviedb.org/movie/1643870,1643870,"Crime, Drama",retribution,FAM0022
+Hard Hit,2021,https://www.themoviedb.org/movie/654739,654739,"Action, Crime, Drama, Thriller",hard hit,FAM0022
+Retribution,2023,https://www.themoviedb.org/movie/762430,762430,"Thriller, Action, Adventure",retribution,FAM0022
+The Battle of the Sexes,1914,https://www.themoviedb.org/movie/557929,557929,Drama,battle of the sexes,FAM0023
+The Battle of the Sexes,1928,https://www.themoviedb.org/movie/109944,109944,"Drama, Comedy",battle of the sexes,FAM0023
+Paid in Full,1914,https://www.themoviedb.org/movie/659968,659968,Drama,paid in full,FAM0024
+Paid in Full,1919,https://www.themoviedb.org/movie/740090,740090,Drama,paid in full,FAM0024
+The Golden Chance,1915,https://www.themoviedb.org/movie/197934,197934,Drama,golden chance,FAM0025
+Forbidden Fruit,1921,https://www.themoviedb.org/movie/72496,72496,"Drama, Romance",forbidden fruit,FAM0025
+My Old Dutch,1915,https://www.themoviedb.org/movie/609305,609305,"Drama, Romance",my old dutch,FAM0026
+My Old Dutch,1926,https://www.themoviedb.org/movie/372302,372302,"Drama, Romance",my old dutch,FAM0026
+Baby Mine,1917,https://www.themoviedb.org/movie/615876,615876,Comedy,baby mine,FAM0027
+Baby Mine,1928,https://www.themoviedb.org/movie/925494,925494,Comedy,baby mine,FAM0027
+The Lost Chord,1917,https://www.themoviedb.org/movie/933111,933111,Romance,lost chord,FAM0028
+The Lost Chord,1925,https://www.themoviedb.org/movie/728214,728214,Romance,lost chord,FAM0028
+The Miracle Man,1919,https://www.themoviedb.org/movie/278093,278093,Drama,miracle man,FAM0029
+The Miracle Man,1932,https://www.themoviedb.org/movie/209773,209773,Drama,miracle man,FAM0029
+Behold My Wife!,1920,https://www.themoviedb.org/movie/1590176,1590176,Drama,behold my wife,FAM0030
+Behold My Wife!,1934,https://www.themoviedb.org/movie/191610,191610,"Drama, Romance",behold my wife,FAM0030
+The Cabinet of Dr. Caligari,1920,https://www.themoviedb.org/movie/234,234,"Drama, Horror, Thriller, Crime",cabinet of dr caligari,FAM0031
+The Cabinet of Dr. Caligari,2005,https://www.themoviedb.org/movie/27227,27227,"Mystery, Thriller, Horror",cabinet of dr caligari,FAM0031
+His Royal Slyness,1920,https://www.themoviedb.org/movie/53530,53530,Comedy,his royal slyness,FAM0032
+Long Fliv the King,1926,https://www.themoviedb.org/movie/195225,195225,Comedy,long fliv the king,FAM0032
+The Phantom Carriage,1921,https://www.themoviedb.org/movie/58129,58129,"Drama, Fantasy, Horror",phantom carriage,FAM0033
+The Phantom Carriage,1958,https://www.themoviedb.org/movie/107383,107383,Drama,phantom carriage,FAM0033
+Dr. Mabuse the Gambler,1922,https://www.themoviedb.org/movie/5998,5998,"Crime, Thriller",dr mabuse the gambler,FAM0034
+Dr. M,1990,https://www.themoviedb.org/movie/29177,29177,"Crime, Mystery, Science Fiction",dr m,FAM0034
+Nosferatu,1922,https://www.themoviedb.org/movie/653,653,"Horror, Fantasy",nosferatu,FAM0035
+Nosferatu the Vampyre,1979,https://www.themoviedb.org/movie/6404,6404,"Drama, Horror",nosferatu the vampyre,FAM0035
+The Ten Commandments,1923,https://www.themoviedb.org/movie/24805,24805,"Drama, History",ten commandments,FAM0036
+The Ten Commandments,1956,https://www.themoviedb.org/movie/6844,6844,"Drama, History",ten commandments,FAM0036
+The Last Man on Earth,1924,https://www.themoviedb.org/movie/316288,316288,"Science Fiction, Comedy, Fantasy",last man on earth,FAM0037
+It's Great to Be Alive,1933,https://www.themoviedb.org/movie/464730,464730,"Comedy, Music, Science Fiction",it s great to be alive,FAM0037
+Merton of the Movies,1924,https://www.themoviedb.org/movie/701482,701482,Comedy,merton of the movies,FAM0038
+Make Me a Star,1932,https://www.themoviedb.org/movie/159798,159798,"Romance, Comedy, Drama",make me a star,FAM0038
+The Awful Truth,1925,https://www.themoviedb.org/movie/397339,397339,Comedy,awful truth,FAM0039
+The Awful Truth,1929,https://www.themoviedb.org/movie/919372,919372,Comedy,awful truth,FAM0039
+Seven Chances,1925,https://www.themoviedb.org/movie/32600,32600,"Comedy, Romance",seven chances,FAM0040
+The Bachelor,1999,https://www.themoviedb.org/movie/2020,2020,"Comedy, Romance",bachelor,FAM0040
+Ben-Hur: A Tale of the Christ,1925,https://www.themoviedb.org/movie/31510,31510,"Adventure, Drama, Romance",ben hur a tale of the christ,FAM0041
+Ben-Hur,1959,https://www.themoviedb.org/movie/665,665,"History, Drama, Adventure",ben hur,FAM0041
+Never the Twain Shall Meet,1925,https://www.themoviedb.org/movie/893333,893333,Drama,never the twain shall meet,FAM0042
+Never the Twain Shall Meet,1931,https://www.themoviedb.org/movie/156332,156332,Drama,never the twain shall meet,FAM0042
+The Swan,1925,https://www.themoviedb.org/movie/315729,315729,"Romance, Comedy",swan,FAM0043
+The Swan,1956,https://www.themoviedb.org/movie/61048,61048,"Romance, Drama, Comedy",swan,FAM0043
+The Unholy Three,1925,https://www.themoviedb.org/movie/27505,27505,"Crime, Thriller, Drama",unholy three,FAM0044
+The Unholy Three,1930,https://www.themoviedb.org/movie/27504,27504,"Crime, Drama",unholy three,FAM0044
+Aloma of the South Seas,1926,https://www.themoviedb.org/movie/391979,391979,"Comedy, Drama",aloma of the south seas,FAM0045
+Aloma of the South Seas,1941,https://www.themoviedb.org/movie/183632,183632,"Adventure, Drama, Romance",aloma of the south seas,FAM0045
+The Bat,1926,https://www.themoviedb.org/movie/27501,27501,"Comedy, Mystery, Thriller, Horror",bat,FAM0046
+The Bat Whispers,1930,https://www.themoviedb.org/movie/26162,26162,"Mystery, Comedy, Crime, Horror",bat whispers,FAM0046
+The General,1926,https://www.themoviedb.org/movie/961,961,"Action, Adventure, Comedy, War, Romance, Drama",general,FAM0047
+A Southern Yankee,1948,https://www.themoviedb.org/movie/253250,253250,"Comedy, History, War",southern yankee,FAM0047
+Mare Nostrum,1926,https://www.themoviedb.org/movie/183932,183932,"War, Drama",mare nostrum,FAM0048
+Mare Nostrum,1948,https://www.themoviedb.org/movie/448116,448116,Drama,mare nostrum,FAM0048
+Up in Mabel's Room,1926,https://www.themoviedb.org/movie/402390,402390,Comedy,up in mabel s room,FAM0049
+Up in Mabel's Room,1944,https://www.themoviedb.org/movie/191478,191478,Comedy,up in mabel s room,FAM0049
+7th Heaven,1927,https://www.themoviedb.org/movie/82474,82474,"Drama, Romance",7th heaven,FAM0050
+Seventh Heaven,1937,https://www.themoviedb.org/movie/173605,173605,"Drama, Romance",seventh heaven,FAM0050
+The Land Beyond the Law,1927,https://www.themoviedb.org/movie/284940,284940,Western,land beyond the law,FAM0051
+The Big Stampede,1932,https://www.themoviedb.org/movie/80193,80193,Western,big stampede,FAM0051
+The Cat and the Canary,1927,https://www.themoviedb.org/movie/76804,76804,"Comedy, Horror, Mystery",cat and the canary,FAM0052
+The Cat Creeps,1930,https://www.themoviedb.org/movie/84714,84714,"Horror, Mystery",cat creeps,FAM0052
+The Jazz Singer,1927,https://www.themoviedb.org/movie/939,939,"Drama, Music",jazz singer,FAM0053
+The Jazz Singer,1952,https://www.themoviedb.org/movie/216925,216925,"Music, Drama",jazz singer,FAM0053
+The Way of All Flesh,1927,https://www.themoviedb.org/movie/85499,85499,Drama,way of all flesh,FAM0054
+The Way of All Flesh,1940,https://www.themoviedb.org/movie/415506,415506,"Romance, Crime, Drama",way of all flesh,FAM0054
+Lonesome,1928,https://www.themoviedb.org/movie/101482,101482,"Romance, Drama",lonesome,FAM0055
+The Affair of Susan,1935,https://www.themoviedb.org/movie/294197,294197,"Romance, Comedy",affair of susan,FAM0055
+The Michigan Kid,1928,https://www.themoviedb.org/movie/288843,288843,Drama,michigan kid,FAM0056
+The Michigan Kid,1947,https://www.themoviedb.org/movie/726279,726279,"Action, Romance, Western",michigan kid,FAM0056
+The White Outlaw,1929,https://www.themoviedb.org/movie/633866,633866,Western,white outlaw,FAM0057
+The Apache Kid's Escape,1930,https://www.themoviedb.org/movie/129956,129956,Western,apache kid s escape,FAM0057
+Lost Patrol,1929,https://www.themoviedb.org/movie/617336,617336,"Drama, War",lost patrol,FAM0058
+The Lost Patrol,1934,https://www.themoviedb.org/movie/46910,46910,"Action, War",lost patrol,FAM0058
+The Virginian,1929,https://www.themoviedb.org/movie/42616,42616,Western,virginian,FAM0059
+The Virginian,1946,https://www.themoviedb.org/movie/121230,121230,Western,virginian,FAM0059
+The Blue Angel,1930,https://www.themoviedb.org/movie/228,228,Drama,blue angel,FAM0060
+The Blue Angel,1959,https://www.themoviedb.org/movie/271561,271561,Drama,blue angel,FAM0060
+The Dawn Patrol,1930,https://www.themoviedb.org/movie/81847,81847,"War, Drama, Action",dawn patrol,FAM0061
+The Dawn Patrol,1938,https://www.themoviedb.org/movie/46688,46688,"Action, Drama, War",dawn patrol,FAM0061
+Free and Easy,1930,https://www.themoviedb.org/movie/42811,42811,"Comedy, Music",free and easy,FAM0062
+Pick a Star,1937,https://www.themoviedb.org/movie/127040,127040,"Comedy, Music",pick a star,FAM0062
+Holiday,1930,https://www.themoviedb.org/movie/104219,104219,"Romance, Drama, Comedy",holiday,FAM0063
+Holiday,1938,https://www.themoviedb.org/movie/16274,16274,"Comedy, Romance, Drama",holiday,FAM0063
+Murder!,1930,https://www.themoviedb.org/movie/31930,31930,"Mystery, Crime, Thriller",murder,FAM0064
+Mary,1931,https://www.themoviedb.org/movie/97867,97867,"Mystery, Crime, Thriller",mary,FAM0064
+Up the River,1930,https://www.themoviedb.org/movie/72602,72602,"Comedy, Crime",up the river,FAM0065
+Up the River,1938,https://www.themoviedb.org/movie/490525,490525,Comedy,up the river,FAM0065
+Little Caesar,1931,https://www.themoviedb.org/movie/27899,27899,"Drama, Crime, Action",little caesar,FAM0066
+Black Caesar,1973,https://www.themoviedb.org/movie/22029,22029,"Action, Crime, Drama, Thriller",black caesar,FAM0066
+The Champ,1931,https://www.themoviedb.org/movie/42816,42816,"Drama, Family",champ,FAM0067
+The Clown,1953,https://www.themoviedb.org/movie/87983,87983,Drama,clown,FAM0067
+Clearing the Range,1931,https://www.themoviedb.org/movie/130162,130162,"Drama, Action, Adventure",clearing the range,FAM0068
+The Dude Bandit,1933,https://www.themoviedb.org/movie/164258,164258,Western,dude bandit,FAM0068
+Dr. Jekyll and Mr. Hyde,1931,https://www.themoviedb.org/movie/3019,3019,"Horror, Science Fiction, Drama",dr jekyll and mr hyde,FAM0069
+Dr. Jekyll and Mr. Hyde,1941,https://www.themoviedb.org/movie/3022,3022,"Drama, Horror, Science Fiction",dr jekyll and mr hyde,FAM0069
+The Front Page,1931,https://www.themoviedb.org/movie/42814,42814,"Comedy, Crime, Drama, Romance",front page,FAM0070
+His Girl Friday,1940,https://www.themoviedb.org/movie/3085,3085,"Comedy, Romance, Drama",his girl friday,FAM0070
+M,1931,https://www.themoviedb.org/movie/832,832,"Drama, Thriller, Crime",m,FAM0071
+M,1951,https://www.themoviedb.org/movie/36373,36373,"Crime, Drama, Thriller, Mystery",m,FAM0071
+Mädchen in Uniform,1931,https://www.themoviedb.org/movie/9653,9653,"Drama, Romance",m dchen in uniform,FAM0072
+Mädchen in Uniform,1958,https://www.themoviedb.org/movie/4955,4955,Drama,m dchen in uniform,FAM0072
+Trader Horn,1931,https://www.themoviedb.org/movie/84296,84296,"Action, Adventure",trader horn,FAM0073
+Trader Horn,1973,https://www.themoviedb.org/movie/340412,340412,Adventure,trader horn,FAM0073
+Waterloo Bridge,1931,https://www.themoviedb.org/movie/95797,95797,"Drama, Romance, War",waterloo bridge,FAM0074
+Waterloo Bridge,1940,https://www.themoviedb.org/movie/43824,43824,"Drama, Romance",waterloo bridge,FAM0074
+X Marks the Spot,1931,https://www.themoviedb.org/movie/156413,156413,"Crime, Drama",x marks the spot,FAM0075
+X Marks the Spot,1942,https://www.themoviedb.org/movie/186857,186857,Mystery,x marks the spot,FAM0075
+Back Street,1932,https://www.themoviedb.org/movie/109197,109197,"Drama, Romance",back street,FAM0076
+Back Street,1941,https://www.themoviedb.org/movie/109016,109016,Drama,back street,FAM0076
+"I Was Born, But...",1932,https://www.themoviedb.org/movie/28268,28268,"Comedy, Drama",i was born but,FAM0077
+Good Morning,1959,https://www.themoviedb.org/movie/28276,28276,"Comedy, Family, Drama",good morning,FAM0077
+The Last Mile,1932,https://www.themoviedb.org/movie/69857,69857,Drama,last mile,FAM0078
+The Last Mile,1959,https://www.themoviedb.org/movie/72002,72002,"Drama, Thriller, Crime",last mile,FAM0078
+Red Dust,1932,https://www.themoviedb.org/movie/38077,38077,"Romance, Drama",red dust,FAM0079
+Mogambo,1953,https://www.themoviedb.org/movie/25009,25009,"Adventure, Drama, Romance",mogambo,FAM0079
+The Mummy,1932,https://www.themoviedb.org/movie/15849,15849,"Horror, Fantasy",mummy,FAM0080
+The Mummy,1959,https://www.themoviedb.org/movie/18990,18990,Horror,mummy,FAM0080
+The Thirteenth Guest,1932,https://www.themoviedb.org/movie/76964,76964,"Mystery, Thriller",thirteenth guest,FAM0081
+Mystery of the 13th Guest,1943,https://www.themoviedb.org/movie/118953,118953,"Crime, Mystery",mystery of the 13th guest,FAM0081
+The Old Dark House,1932,https://www.themoviedb.org/movie/31592,31592,"Drama, Horror, Thriller",old dark house,FAM0082
+The Old Dark House,1963,https://www.themoviedb.org/movie/29400,29400,"Comedy, Horror, Mystery",old dark house,FAM0082
+Rome Express,1932,https://www.themoviedb.org/movie/190405,190405,Thriller,rome express,FAM0083
+Sleeping Car to Trieste,1948,https://www.themoviedb.org/movie/271426,271426,Thriller,sleeping car to trieste,FAM0083
+Scarface,1932,https://www.themoviedb.org/movie/877,877,"Crime, Action, Drama, Thriller",scarface,FAM0084
+Scarface,1983,https://www.themoviedb.org/movie/111,111,"Action, Crime, Drama",scarface,FAM0084
+Tarzan the Ape Man,1932,https://www.themoviedb.org/movie/26845,26845,"Action, Adventure",tarzan the ape man,FAM0085
+"Tarzan, the Ape Man",1959,https://www.themoviedb.org/movie/210395,210395,"Adventure, Action",tarzan the ape man,FAM0085
+The Mayor of Hell,1933,https://www.themoviedb.org/movie/100894,100894,"Crime, Drama",mayor of hell,FAM0086
+Crime School,1938,https://www.themoviedb.org/movie/79129,79129,"Crime, Drama",crime school,FAM0086
+Hoop-La,1933,https://www.themoviedb.org/movie/84358,84358,Drama,hoop la,FAM0087
+Diamond Horseshoe,1945,https://www.themoviedb.org/movie/108205,108205,"Music, Comedy",diamond horseshoe,FAM0087
+Victor and Victoria,1933,https://www.themoviedb.org/movie/169377,169377,"Music, Comedy, Romance",victor and victoria,FAM0088
+First a Girl,1935,https://www.themoviedb.org/movie/190165,190165,Comedy,first a girl,FAM0088
+The Good Companions,1933,https://www.themoviedb.org/movie/120965,120965,"Romance, Comedy, Music",good companions,FAM0089
+The Good Companions,1957,https://www.themoviedb.org/movie/263270,263270,"Music, Comedy, Romance",good companions,FAM0089
+Mystery of the Wax Museum,1933,https://www.themoviedb.org/movie/32652,32652,"Horror, Mystery, Thriller",mystery of the wax museum,FAM0090
+House of Wax,1953,https://www.themoviedb.org/movie/18573,18573,"Horror, Crime",house of wax,FAM0090
+King Kong,1933,https://www.themoviedb.org/movie/244,244,"Adventure, Fantasy, Horror",king kong,FAM0091
+King Kong,1976,https://www.themoviedb.org/movie/10730,10730,"Adventure, Fantasy, Horror",king kong,FAM0091
+Lady for a Day,1933,https://www.themoviedb.org/movie/43130,43130,"Comedy, Drama",lady for a day,FAM0092
+Pocketful of Miracles,1961,https://www.themoviedb.org/movie/248,248,"Comedy, Drama",pocketful of miracles,FAM0092
+One Sunday Afternoon,1933,https://www.themoviedb.org/movie/180635,180635,"Romance, Comedy",one sunday afternoon,FAM0093
+The Strawberry Blonde,1941,https://www.themoviedb.org/movie/76465,76465,"Romance, Comedy",strawberry blonde,FAM0093
+Death Takes a Holiday,1934,https://www.themoviedb.org/movie/37215,37215,"Fantasy, Romance, Drama",death takes a holiday,FAM0094
+The Awful Truth,1937,https://www.themoviedb.org/movie/14675,14675,"Comedy, Romance",awful truth,FAM0094
+The Barretts of Wimpole Street,1934,https://www.themoviedb.org/movie/43693,43693,"Drama, Romance",barretts of wimpole street,FAM0095
+The Barretts of Wimpole Street,1957,https://www.themoviedb.org/movie/180222,180222,"Drama, History, Romance",barretts of wimpole street,FAM0095
+Broadway Bill,1934,https://www.themoviedb.org/movie/77198,77198,"Comedy, Drama",broadway bill,FAM0096
+Riding High,1950,https://www.themoviedb.org/movie/111019,111019,Comedy,riding high,FAM0096
+The Countess of Monte Cristo,1934,https://www.themoviedb.org/movie/470634,470634,Comedy,countess of monte cristo,FAM0097
+The Countess of Monte Cristo,1948,https://www.themoviedb.org/movie/477011,477011,"Romance, Comedy",countess of monte cristo,FAM0097
+Maskerade,1934,https://www.themoviedb.org/movie/80960,80960,"Comedy, Romance",maskerade,FAM0098
+Escapade,1935,https://www.themoviedb.org/movie/185543,185543,"Romance, Comedy",escapade,FAM0098
+A Story of Floating Weeds,1934,https://www.themoviedb.org/movie/44163,44163,Drama,story of floating weeds,FAM0099
+Floating Weeds,1959,https://www.themoviedb.org/movie/46918,46918,Drama,floating weeds,FAM0099
+Hi Nellie!,1934,https://www.themoviedb.org/movie/217387,217387,"Comedy, Drama, Crime",hi nellie,FAM0100
+Love Is on the Air,1937,https://www.themoviedb.org/movie/180534,180534,"Romance, Mystery, Crime",love is on the air,FAM0100
+Little Miss Marker,1934,https://www.themoviedb.org/movie/43150,43150,"Comedy, Family",little miss marker,FAM0101
+Sorrowful Jones,1949,https://www.themoviedb.org/movie/57693,57693,Comedy,sorrowful jones,FAM0101
+The Man Who Knew Too Much,1934,https://www.themoviedb.org/movie/8208,8208,"Thriller, Mystery",man who knew too much,FAM0102
+The Man Who Knew Too Much,1956,https://www.themoviedb.org/movie/574,574,"Thriller, Mystery, Drama",man who knew too much,FAM0102
+Twenty Million Sweethearts,1934,https://www.themoviedb.org/movie/125578,125578,"Music, Comedy",twenty million sweethearts,FAM0103
+My Dream Is Yours,1949,https://www.themoviedb.org/movie/24040,24040,"Comedy, Music, Romance",my dream is yours,FAM0103
+The 39 Steps,1935,https://www.themoviedb.org/movie/260,260,"Mystery, Thriller",39 steps,FAM0104
+The 39 Steps,1959,https://www.themoviedb.org/movie/25386,25386,"Thriller, Mystery",39 steps,FAM0104
+The Farmer Takes a Wife,1935,https://www.themoviedb.org/movie/188470,188470,"Comedy, Romance",farmer takes a wife,FAM0105
+The Farmer Takes a Wife,1953,https://www.themoviedb.org/movie/130385,130385,"Music, Comedy, Romance",farmer takes a wife,FAM0105
+Folies Bergère de Paris,1935,https://www.themoviedb.org/movie/174988,174988,"Comedy, Music",folies berg re de paris,FAM0106
+That Night in Rio,1941,https://www.themoviedb.org/movie/43746,43746,"Comedy, Music, Romance",that night in rio,FAM0106
+The Informer,1935,https://www.themoviedb.org/movie/43896,43896,"Crime, Drama",informer,FAM0107
+Uptight,1968,https://www.themoviedb.org/movie/121971,121971,"Drama, Thriller",uptight,FAM0107
+Magnificent Obsession,1935,https://www.themoviedb.org/movie/47920,47920,"Drama, Romance",magnificent obsession,FAM0108
+Magnificent Obsession,1954,https://www.themoviedb.org/movie/13457,13457,"Drama, Romance",magnificent obsession,FAM0108
+Rendezvous,1935,https://www.themoviedb.org/movie/53860,53860,"Comedy, War",rendezvous,FAM0109
+Pacific Rendezvous,1942,https://www.themoviedb.org/movie/98191,98191,"Comedy, Mystery, War",pacific rendezvous,FAM0109
+These Three,1936,https://www.themoviedb.org/movie/54569,54569,"Drama, Romance",these three,FAM0110
+The Children's Hour,1961,https://www.themoviedb.org/movie/20139,20139,Drama,children s hour,FAM0110
+Intermezzo,1936,https://www.themoviedb.org/movie/125891,125891,"Drama, Romance",intermezzo,FAM0111
+Intermezzo,1939,https://www.themoviedb.org/movie/31868,31868,"Drama, Romance",intermezzo,FAM0111
+The Man Who Lived Twice,1936,https://www.themoviedb.org/movie/101218,101218,"Crime, Drama",man who lived twice,FAM0112
+Man in the Dark,1953,https://www.themoviedb.org/movie/48633,48633,"Crime, Thriller",man in the dark,FAM0112
+Mr. Deeds Goes to Town,1936,https://www.themoviedb.org/movie/24807,24807,"Comedy, Drama, Romance",mr deeds goes to town,FAM0113
+Mr. Deeds,2002,https://www.themoviedb.org/movie/2022,2022,"Comedy, Romance",mr deeds,FAM0113
+My Man Godfrey,1936,https://www.themoviedb.org/movie/13562,13562,Comedy,my man godfrey,FAM0114
+My Man Godfrey,1957,https://www.themoviedb.org/movie/52470,52470,Comedy,my man godfrey,FAM0114
+The Plainsman,1936,https://www.themoviedb.org/movie/43885,43885,"Western, War, Romance",plainsman,FAM0115
+The Plainsman,1966,https://www.themoviedb.org/movie/238124,238124,Western,plainsman,FAM0115
+Pépé le Moko,1937,https://www.themoviedb.org/movie/26252,26252,"Drama, Crime, Romance",p p le moko,FAM0116
+Algiers,1938,https://www.themoviedb.org/movie/22657,22657,"Drama, Mystery, Romance, Crime",algiers,FAM0116
+The Hurricane,1937,https://www.themoviedb.org/movie/77250,77250,"Action, Adventure, Drama, Romance",hurricane,FAM0117
+Hurricane,1979,https://www.themoviedb.org/movie/75162,75162,"Drama, Action, Romance",hurricane,FAM0117
+Land Beyond the Law,1937,https://www.themoviedb.org/movie/243640,243640,"Action, Western",land beyond the law,FAM0118
+Spring Parade,1940,https://www.themoviedb.org/movie/218312,218312,"Comedy, Music",spring parade,FAM0118
+Lost Horizon,1937,https://www.themoviedb.org/movie/3598,3598,"Adventure, Fantasy, Drama, Romance",lost horizon,FAM0119
+Lost Horizon,1973,https://www.themoviedb.org/movie/97519,97519,"Adventure, Drama, Fantasy, Music, Romance",lost horizon,FAM0119
+Love from a Stranger,1937,https://www.themoviedb.org/movie/29288,29288,"Mystery, Thriller, Romance",love from a stranger,FAM0120
+Love from a Stranger,1947,https://www.themoviedb.org/movie/72548,72548,Drama,love from a stranger,FAM0120
+Love Is News,1937,https://www.themoviedb.org/movie/82239,82239,"Romance, Comedy",love is news,FAM0121
+That Wonderful Urge,1948,https://www.themoviedb.org/movie/143170,143170,"Romance, Comedy",that wonderful urge,FAM0121
+Night Must Fall,1937,https://www.themoviedb.org/movie/91727,91727,"Mystery, Thriller",night must fall,FAM0122
+Night Must Fall,1964,https://www.themoviedb.org/movie/55943,55943,"Thriller, Horror",night must fall,FAM0122
+The Prisoner of Zenda,1937,https://www.themoviedb.org/movie/43867,43867,"Romance, Adventure, Drama",prisoner of zenda,FAM0123
+The Prisoner of Zenda,1952,https://www.themoviedb.org/movie/28431,28431,Adventure,prisoner of zenda,FAM0123
+Snow White and the Seven Dwarfs,1937,https://www.themoviedb.org/movie/408,408,"Fantasy, Animation, Family",snow white and the seven dwarfs,FAM0124
+Snow White,2025,https://www.themoviedb.org/movie/447273,447273,"Family, Fantasy",snow white,FAM0124
+Brother Rat,1938,https://www.themoviedb.org/movie/114838,114838,Comedy,brother rat,FAM0125
+About Face,1952,https://www.themoviedb.org/movie/50929,50929,"Comedy, Romance",about face,FAM0125
+The Buccaneer,1938,https://www.themoviedb.org/movie/115425,115425,"Adventure, Drama, Romance, History",buccaneer,FAM0126
+The Buccaneer,1958,https://www.themoviedb.org/movie/4933,4933,"Adventure, Drama, War, History",buccaneer,FAM0126
+Ferdinand the Bull,1938,https://www.themoviedb.org/movie/47166,47166,"Animation, Comedy, Family",ferdinand the bull,FAM0127
+Ferdinand,2017,https://www.themoviedb.org/movie/364689,364689,"Animation, Family, Adventure, Comedy",ferdinand,FAM0127
+The Lady Vanishes,1938,https://www.themoviedb.org/movie/940,940,"Mystery, Thriller",lady vanishes,FAM0128
+The Lady Vanishes,1979,https://www.themoviedb.org/movie/4706,4706,"Mystery, Thriller, Comedy, Romance",lady vanishes,FAM0128
+A Yank at Oxford,1938,https://www.themoviedb.org/movie/114079,114079,"Drama, Romance",yank at oxford,FAM0129
+Oxford Blues,1984,https://www.themoviedb.org/movie/30231,30231,"Comedy, Drama",oxford blues,FAM0129
+Love Affair,1939,https://www.themoviedb.org/movie/43739,43739,"Drama, Romance",love affair,FAM0130
+An Affair to Remember,1957,https://www.themoviedb.org/movie/8356,8356,"Drama, Romance",affair to remember,FAM0130
+Mr. Smith Goes to Washington,1939,https://www.themoviedb.org/movie/3083,3083,"Comedy, Drama",mr smith goes to washington,FAM0131
+Billy Jack Goes to Washington,1977,https://www.themoviedb.org/movie/78140,78140,Drama,billy jack goes to washington,FAM0131
+The Cat and the Canary,1939,https://www.themoviedb.org/movie/18851,18851,"Comedy, Horror, Mystery",cat and the canary,FAM0132
+The Cat and the Canary,1978,https://www.themoviedb.org/movie/86182-the-cat-and-the-canary,86182,"Horror, Comedy, Mystery",cat and the canary,FAM0132
+Dark Victory,1939,https://www.themoviedb.org/movie/27972,27972,"Drama, Romance",dark victory,FAM0133
+Stolen Hours,1963,https://www.themoviedb.org/movie/242622,242622,Drama,stolen hours,FAM0133
+Destry Rides Again,1939,https://www.themoviedb.org/movie/43828,43828,"Western, Comedy",destry rides again,FAM0134
+Frenchie,1950,https://www.themoviedb.org/movie/212787,212787,"Western, Drama",frenchie,FAM0134
+"Wife, Husband and Friend",1939,https://www.themoviedb.org/movie/120996,120996,Comedy,wife husband and friend,FAM0135
+Everybody Does It,1949,https://www.themoviedb.org/movie/260681,260681,Comedy,everybody does it,FAM0135
+Five Came Back,1939,https://www.themoviedb.org/movie/65858,65858,"Adventure, Drama",five came back,FAM0136
+Los que volvieron,1948,https://www.themoviedb.org/movie/318505,318505,"Drama, Adventure",los que volvieron,FAM0136
+Gunga Din,1939,https://www.themoviedb.org/movie/24965,24965,"Adventure, War, Action, Comedy",gunga din,FAM0137
+Sergeants 3,1962,https://www.themoviedb.org/movie/18512,18512,"Western, Comedy",sergeants 3,FAM0137
+Le jour se lève,1939,https://www.themoviedb.org/movie/27053,27053,"Crime, Drama",le jour se l ve,FAM0138
+The Long Night,1947,https://www.themoviedb.org/movie/44626,44626,"Drama, Thriller, Crime, Romance",long night,FAM0138
+The Magnificent Fraud,1939,https://www.themoviedb.org/movie/164424,164424,Drama,magnificent fraud,FAM0139
+Moon over Parador,1988,https://www.themoviedb.org/movie/34014,34014,"Comedy, Romance",moon over parador,FAM0139
+Midnight,1939,https://www.themoviedb.org/movie/31993,31993,"Comedy, Romance",midnight,FAM0140
+Masquerade in Mexico,1945,https://www.themoviedb.org/movie/325551,325551,"Comedy, Music",masquerade in mexico,FAM0140
+Ninotchka,1939,https://www.themoviedb.org/movie/1859,1859,"Comedy, Romance",ninotchka,FAM0141
+Silk Stockings,1957,https://www.themoviedb.org/movie/43239,43239,"Comedy, Music, Romance",silk stockings,FAM0141
+The Women,1939,https://www.themoviedb.org/movie/22490,22490,"Comedy, Drama",women,FAM0142
+The Women,2008,https://www.themoviedb.org/movie/13972,13972,"Drama, Comedy",women,FAM0142
+Gaslight,1940,https://www.themoviedb.org/movie/55207,55207,"Thriller, Mystery",gaslight,FAM0143
+Gaslight,1944,https://www.themoviedb.org/movie/13528,13528,"Thriller, Drama, Mystery, Crime",gaslight,FAM0143
+The Letter,1940,https://www.themoviedb.org/movie/17801,17801,"Crime, Drama",letter,FAM0144
+The Unfaithful,1947,https://www.themoviedb.org/movie/72847,72847,"Thriller, Drama, Mystery",unfaithful,FAM0144
+My Favorite Wife,1940,https://www.themoviedb.org/movie/41463,41463,"Comedy, Romance",my favorite wife,FAM0145
+"Move Over, Darling",1963,https://www.themoviedb.org/movie/30204,30204,"Comedy, Romance",move over darling,FAM0145
+Pinocchio,1940,https://www.themoviedb.org/movie/10895,10895,"Animation, Family, Fantasy",pinocchio,FAM0146
+Pinocchio,2022,https://www.themoviedb.org/movie/532639,532639,"Fantasy, Adventure, Family",pinocchio,FAM0146
+Ball of Fire,1941,https://www.themoviedb.org/movie/29884,29884,"Comedy, Romance, Crime",ball of fire,FAM0147
+A Song Is Born,1948,https://www.themoviedb.org/movie/17829,17829,"Comedy, Music",song is born,FAM0147
+The Lady Eve,1941,https://www.themoviedb.org/movie/3086,3086,"Comedy, Romance",lady eve,FAM0148
+The Birds and the Bees,1956,https://www.themoviedb.org/movie/148196,148196,Comedy,birds and the bees,FAM0148
+Dumbo,1941,https://www.themoviedb.org/movie/11360,11360,"Animation, Family",dumbo,FAM0149
+Dumbo,2019,https://www.themoviedb.org/movie/329996,329996,"Family, Fantasy, Adventure",dumbo,FAM0149
+Here Comes Mr. Jordan,1941,https://www.themoviedb.org/movie/38914,38914,"Comedy, Fantasy, Romance",here comes mr jordan,FAM0150
+Heaven Can Wait,1978,https://www.themoviedb.org/movie/12185,12185,"Fantasy, Comedy, Romance",heaven can wait,FAM0150
+High Sierra,1941,https://www.themoviedb.org/movie/27725,27725,"Crime, Drama, Action",high sierra,FAM0151
+I Died a Thousand Times,1955,https://www.themoviedb.org/movie/28490,28490,"Crime, Thriller",i died a thousand times,FAM0151
+It Started with Eve,1941,https://www.themoviedb.org/movie/33112,33112,"Comedy, Romance, Music",it started with eve,FAM0152
+I'd Rather Be Rich,1964,https://www.themoviedb.org/movie/192985,192985,Comedy,i d rather be rich,FAM0152
+Premier rendez-vous,1941,https://www.themoviedb.org/movie/333269,333269,Romance,premier rendez vous,FAM0153
+Ihr erstes Rendezvous,1955,https://www.themoviedb.org/movie/265476,265476,Comedy,ihr erstes rendezvous,FAM0153
+Swamp Water,1941,https://www.themoviedb.org/movie/45215,45215,"Crime, Drama",swamp water,FAM0154
+Lure of the Wilderness,1952,https://www.themoviedb.org/movie/249846,249846,"Adventure, Drama, Romance",lure of the wilderness,FAM0154
+The Wolf Man,1941,https://www.themoviedb.org/movie/13666,13666,"Horror, Drama",wolf man,FAM0155
+The Wolfman,2010,https://www.themoviedb.org/movie/7978,7978,Horror,wolfman,FAM0155
+You Can't Escape Forever,1942,https://www.themoviedb.org/movie/27897,27897,Thriller,you can t escape forever,FAM0156
+Abbott and Costello in Hollywood,1945,https://www.themoviedb.org/movie/46068,46068,Comedy,abbott and costello in hollywood,FAM0156
+"Joe Smith, American",1942,https://www.themoviedb.org/movie/97584,97584,"Crime, Thriller, Drama",joe smith american,FAM0157
+The Big Operator,1959,https://www.themoviedb.org/movie/239000,239000,"Drama, Crime",big operator,FAM0157
+Cat People,1942,https://www.themoviedb.org/movie/25508,25508,"Mystery, Horror, Romance",cat people,FAM0158
+Cat People,1982,https://www.themoviedb.org/movie/6217,6217,"Fantasy, Horror",cat people,FAM0158
+The Major and the Minor,1942,https://www.themoviedb.org/movie/39871,39871,"Comedy, Romance",major and the minor,FAM0159
+You're Never Too Young,1955,https://www.themoviedb.org/movie/53441,53441,Comedy,you re never too young,FAM0159
+My Sister Eileen,1942,https://www.themoviedb.org/movie/33052,33052,Comedy,my sister eileen,FAM0160
+My Sister Eileen,1955,https://www.themoviedb.org/movie/60966,60966,"Music, Comedy, Romance",my sister eileen,FAM0160
+To Be or Not to Be,1942,https://www.themoviedb.org/movie/198,198,"Comedy, War, Romance",to be or not to be,FAM0161
+To Be or Not to Be,1983,https://www.themoviedb.org/movie/22998,22998,"Comedy, Drama, War",to be or not to be,FAM0161
+Le Corbeau,1943,https://www.themoviedb.org/movie/29084,29084,"Mystery, Drama, Thriller",le corbeau,FAM0162
+The 13th Letter,1951,https://www.themoviedb.org/movie/39306,39306,"Crime, Mystery, Thriller",13th letter,FAM0162
+A Guy Named Joe,1943,https://www.themoviedb.org/movie/43306,43306,"Drama, Romance, War, Fantasy",guy named joe,FAM0163
+Always,1989,https://www.themoviedb.org/movie/11352,11352,"Romance, Fantasy, Drama",always,FAM0163
+Chicken Little,1943,https://www.themoviedb.org/movie/64648,64648,"Animation, Family",chicken little,FAM0164
+Chicken Little,2005,https://www.themoviedb.org/movie/9982,9982,"Animation, Family, Comedy",chicken little,FAM0164
+Journey into Fear,1943,https://www.themoviedb.org/movie/21366,21366,"Thriller, War",journey into fear,FAM0165
+Journey into Fear,1975,https://www.themoviedb.org/movie/200331,200331,Thriller,journey into fear,FAM0165
+Sahara,1943,https://www.themoviedb.org/movie/18783,18783,"Adventure, War",sahara,FAM0166
+Last of the Comanches,1953,https://www.themoviedb.org/movie/41468,41468,Western,last of the comanches,FAM0166
+The More the Merrier,1943,https://www.themoviedb.org/movie/80616,80616,"Comedy, Romance",more the merrier,FAM0167
+"Walk, Don't Run",1966,https://www.themoviedb.org/movie/38720,38720,"Comedy, Romance",walk don t run,FAM0167
+Kismet,1944,https://www.themoviedb.org/movie/43501,43501,"Adventure, Fantasy, Romance",kismet,FAM0168
+Kismet,1955,https://www.themoviedb.org/movie/4822,4822,"Music, Romance, Adventure, Fantasy",kismet,FAM0168
+Lifeboat,1944,https://www.themoviedb.org/movie/13321,13321,"War, Drama",lifeboat,FAM0169
+Lifepod,1993,https://www.themoviedb.org/movie/19553,19553,"Mystery, Science Fiction, Thriller, TV Movie",lifepod,FAM0169
+The Miracle of Morgan's Creek,1944,https://www.themoviedb.org/movie/42879,42879,"Comedy, Romance, War",miracle of morgan s creek,FAM0170
+Rock-A-Bye Baby,1958,https://www.themoviedb.org/movie/42581,42581,Comedy,rock a bye baby,FAM0170
+Christmas in Connecticut,1945,https://www.themoviedb.org/movie/13669,13669,"Comedy, Romance",christmas in connecticut,FAM0171
+Christmas in Connecticut,1992,https://www.themoviedb.org/movie/55596,55596,"Comedy, Romance, TV Movie",christmas in connecticut,FAM0171
+My Name Is Julia Ross,1945,https://www.themoviedb.org/movie/42077,42077,"Thriller, Mystery",my name is julia ross,FAM0172
+Dead of Winter,1987,https://www.themoviedb.org/movie/70199,70199,"Thriller, Horror",dead of winter,FAM0172
+La Otra,1945,https://www.themoviedb.org/movie/119806,119806,"Drama, Thriller",la otra,FAM0173
+Dead Ringer,1964,https://www.themoviedb.org/movie/22543,22543,"Crime, Drama, Horror",dead ringer,FAM0173
+The Wicked Lady,1945,https://www.themoviedb.org/movie/41073,41073,"Drama, Adventure, History",wicked lady,FAM0174
+The Wicked Lady,1983,https://www.themoviedb.org/movie/110683,110683,"Drama, Adventure",wicked lady,FAM0174
+Sentimental Journey,1946,https://www.themoviedb.org/movie/247728,247728,Drama,sentimental journey,FAM0175
+The Gift of Love,1958,https://www.themoviedb.org/movie/134774,134774,"Drama, Romance",gift of love,FAM0175
+Out of the Past,1947,https://www.themoviedb.org/movie/678,678,"Crime, Thriller",out of the past,FAM0176
+Against All Odds,1984,https://www.themoviedb.org/movie/22160,22160,"Crime, Drama, Romance, Thriller",against all odds,FAM0176
+The Bishop's Wife,1947,https://www.themoviedb.org/movie/19490,19490,"Comedy, Fantasy, Drama, Romance",bishop s wife,FAM0177
+The Preacher's Wife,1996,https://www.themoviedb.org/movie/21539,21539,"Family, Fantasy, Drama, Comedy, Romance",preacher s wife,FAM0177
+Body and Soul,1947,https://www.themoviedb.org/movie/17487,17487,Drama,body and soul,FAM0178
+Body and Soul,1981,https://www.themoviedb.org/movie/167951,167951,Drama,body and soul,FAM0178
+Christmas Eve,1947,https://www.themoviedb.org/movie/58799,58799,"Comedy, Drama",christmas eve,FAM0179
+Christmas Eve,1986,https://www.themoviedb.org/movie/374438,374438,"Drama, TV Movie",christmas eve,FAM0179
+Kiss of Death,1947,https://www.themoviedb.org/movie/21454,21454,"Crime, Thriller",kiss of death,FAM0180
+The Fiend Who Walked the West,1958,https://www.themoviedb.org/movie/125420,125420,Western,fiend who walked the west,FAM0180
+The Secret Life of Walter Mitty,1947,https://www.themoviedb.org/movie/40092,40092,"Comedy, Fantasy, Romance",secret life of walter mitty,FAM0181
+The Secret Life of Walter Mitty,2013,https://www.themoviedb.org/movie/116745,116745,"Adventure, Comedy, Drama, Fantasy",secret life of walter mitty,FAM0181
+The Big Clock,1948,https://www.themoviedb.org/movie/19974,19974,"Crime, Thriller",big clock,FAM0182
+No Way Out,1987,https://www.themoviedb.org/movie/10083,10083,"Thriller, Drama",no way out,FAM0182
+Brighton Rock,1948,https://www.themoviedb.org/movie/13385,13385,"Crime, Drama, Thriller",brighton rock,FAM0183
+Brighton Rock,2010,https://www.themoviedb.org/movie/62728,62728,"Drama, Thriller, Crime",brighton rock,FAM0183
+Yellow Sky,1948,https://www.themoviedb.org/movie/20638,20638,Western,yellow sky,FAM0184
+The Jackals,1967,https://www.themoviedb.org/movie/18805,18805,"Action, Drama, Romance, Adventure, Western",jackals,FAM0184
+Mr. Blandings Builds His Dream House,1948,https://www.themoviedb.org/movie/32294,32294,Comedy,mr blandings builds his dream house,FAM0185
+The Money Pit,1986,https://www.themoviedb.org/movie/10466,10466,"Comedy, Romance",money pit,FAM0185
+The Paleface,1948,https://www.themoviedb.org/movie/17804,17804,"Comedy, Western",paleface,FAM0186
+The Shakiest Gun in the West,1968,https://www.themoviedb.org/movie/20238,20238,"Comedy, Family, Western",shakiest gun in the west,FAM0186
+Panhandle,1948,https://www.themoviedb.org/movie/188238,188238,Western,panhandle,FAM0187
+The Texican,1966,https://www.themoviedb.org/movie/95410,95410,Western,texican,FAM0187
+Spring in a Small Town,1948,https://www.themoviedb.org/movie/21058,21058,"Drama, Romance",spring in a small town,FAM0188
+Springtime in a Small Town,2002,https://www.themoviedb.org/movie/61485,61485,"Drama, Romance",springtime in a small town,FAM0188
+Unfaithfully Yours,1948,https://www.themoviedb.org/movie/33115,33115,"Comedy, Romance",unfaithfully yours,FAM0189
+Unfaithfully Yours,1984,https://www.themoviedb.org/movie/50812,50812,"Comedy, Romance",unfaithfully yours,FAM0189
+The Window,1949,https://www.themoviedb.org/movie/32684,32684,"Thriller, Crime",window,FAM0190
+The Boy Cried Murder,1966,https://www.themoviedb.org/movie/319945,319945,"Crime, Drama, Thriller",boy cried murder,FAM0190
+House of Strangers,1949,https://www.themoviedb.org/movie/20003,20003,"Drama, Crime, Thriller",house of strangers,FAM0191
+Broken Lance,1954,https://www.themoviedb.org/movie/42328,42328,"Adventure, Drama, Western",broken lance,FAM0191
+Criss Cross,1949,https://www.themoviedb.org/movie/22112,22112,"Crime, Thriller",criss cross,FAM0192
+The Underneath,1995,https://www.themoviedb.org/movie/36141,36141,"Crime, Drama, Thriller",underneath,FAM0192
+The House Across the Street,1949,https://www.themoviedb.org/movie/33808,33808,"Comedy, Drama, Crime",house across the street,FAM0193
+On the Riviera,1951,https://www.themoviedb.org/movie/29577,29577,"Comedy, Music, Romance",on the riviera,FAM0193
+Mighty Joe Young,1949,https://www.themoviedb.org/movie/39314,39314,"Adventure, Fantasy, Drama, Action",mighty joe young,FAM0194
+Mighty Joe Young,1998,https://www.themoviedb.org/movie/9822,9822,"Adventure, Family, Action, Fantasy",mighty joe young,FAM0194
+Born Yesterday,1950,https://www.themoviedb.org/movie/24481,24481,"Comedy, Romance",born yesterday,FAM0195
+Born Yesterday,1993,https://www.themoviedb.org/movie/44968,44968,"Comedy, Romance",born yesterday,FAM0195
+Cheaper by the Dozen,1950,https://www.themoviedb.org/movie/33839,33839,"Comedy, Drama, Family",cheaper by the dozen,FAM0196
+Cheaper by the Dozen,2003,https://www.themoviedb.org/movie/11007,11007,"Comedy, Family, Drama",cheaper by the dozen,FAM0196
+Cinderella,1950,https://www.themoviedb.org/movie/11224,11224,"Family, Fantasy, Animation, Romance",cinderella,FAM0197
+Cinderella,2015,https://www.themoviedb.org/movie/150689,150689,"Romance, Fantasy, Family, Drama",cinderella,FAM0197
+D.O.A.,1950,https://www.themoviedb.org/movie/16958,16958,"Crime, Drama",d o a,FAM0198
+D.O.A.,1988,https://www.themoviedb.org/movie/9748,9748,"Mystery, Thriller",d o a,FAM0198
+Father of the Bride,1950,https://www.themoviedb.org/movie/20758,20758,"Comedy, Romance, Drama",father of the bride,FAM0199
+Father of the Bride,1991,https://www.themoviedb.org/movie/11846,11846,"Comedy, Romance, Drama",father of the bride,FAM0199
+Last Holiday,1950,https://www.themoviedb.org/movie/16939,16939,"Comedy, Drama",last holiday,FAM0200
+Last Holiday,2006,https://www.themoviedb.org/movie/17379,17379,"Adventure, Comedy, Drama",last holiday,FAM0200
+Night and the City,1950,https://www.themoviedb.org/movie/19119,19119,"Drama, Crime",night and the city,FAM0201
+Night and the City,1992,https://www.themoviedb.org/movie/36288,36288,"Crime, Drama",night and the city,FAM0201
+Rashomon,1950,https://www.themoviedb.org/movie/548,548,"Crime, Drama, Mystery",rashomon,FAM0202
+The Outrage,1964,https://www.themoviedb.org/movie/85609,85609,"Drama, Crime, Western",outrage,FAM0202
+Angels in the Outfield,1951,https://www.themoviedb.org/movie/45588,45588,"Comedy, Drama, Family, Fantasy",angels in the outfield,FAM0203
+Angels in the Outfield,1994,https://www.themoviedb.org/movie/24795,24795,"Comedy, Family, Fantasy",angels in the outfield,FAM0203
+The Day the Earth Stood Still,1951,https://www.themoviedb.org/movie/828,828,"Science Fiction, Thriller, Drama",day the earth stood still,FAM0204
+The Day the Earth Stood Still,2008,https://www.themoviedb.org/movie/10200,10200,"Drama, Science Fiction, Thriller",day the earth stood still,FAM0204
+Against All Flags,1952,https://www.themoviedb.org/movie/44631,44631,"Drama, Adventure",against all flags,FAM0205
+The King's Pirate,1967,https://www.themoviedb.org/movie/260127,260127,Adventure,king s pirate,FAM0205
+Holiday for Henrietta,1952,https://www.themoviedb.org/movie/4709,4709,Comedy,holiday for henrietta,FAM0206
+Paris When It Sizzles,1964,https://www.themoviedb.org/movie/22829,22829,"Romance, Comedy",paris when it sizzles,FAM0206
+The Narrow Margin,1952,https://www.themoviedb.org/movie/31713,31713,"Thriller, Crime",narrow margin,FAM0207
+Narrow Margin,1990,https://www.themoviedb.org/movie/31597,31597,"Action, Thriller, Crime, Mystery",narrow margin,FAM0207
+Cat-Women of the Moon,1953,https://www.themoviedb.org/movie/43341,43341,Science Fiction,cat women of the moon,FAM0208
+Missile to the Moon,1958,https://www.themoviedb.org/movie/43120,43120,"Science Fiction, Horror",missile to the moon,FAM0208
+Invaders from Mars,1953,https://www.themoviedb.org/movie/20424,20424,"Science Fiction, Horror",invaders from mars,FAM0209
+Invaders from Mars,1986,https://www.themoviedb.org/movie/31909,31909,"Horror, Science Fiction",invaders from mars,FAM0209
+Peter Pan,1953,https://www.themoviedb.org/movie/10693,10693,"Animation, Family, Adventure, Fantasy",peter pan,FAM0210
+Peter Pan & Wendy,2023,https://www.themoviedb.org/movie/420808,420808,"Family, Fantasy, Action, Adventure",peter pan wendy,FAM0210
+The Wages of Fear,1953,https://www.themoviedb.org/movie/204,204,"Drama, Thriller, Adventure",wages of fear,FAM0211
+Sorcerer,1977,https://www.themoviedb.org/movie/38985,38985,"Thriller, Adventure, Drama",sorcerer,FAM0211
+Destry,1954,https://www.themoviedb.org/movie/94176,94176,"Western, War",destry,FAM0212
+Back from Eternity,1956,https://www.themoviedb.org/movie/46525,46525,"Adventure, Drama",back from eternity,FAM0212
+The Desperado,1954,https://www.themoviedb.org/movie/381998,381998,Western,desperado,FAM0213
+"Cole Younger, Gunfighter",1958,https://www.themoviedb.org/movie/144471,144471,Western,cole younger gunfighter,FAM0213
+Dial M for Murder,1954,https://www.themoviedb.org/movie/521,521,"Thriller, Crime, Drama",dial m for murder,FAM0214
+A Perfect Murder,1998,https://www.themoviedb.org/movie/1965,1965,"Crime, Thriller, Drama",perfect murder,FAM0214
+Rear Window,1954,https://www.themoviedb.org/movie/567-rear-window,567,"Mystery, Thriller",rear window,FAM0215
+Rear Window,1998,https://www.themoviedb.org/movie/11603-rear-window,11603,"Mystery, Thriller",rear window,FAM0215
+Sabrina,1954,https://www.themoviedb.org/movie/6620,6620,"Comedy, Romance, Drama",sabrina,FAM0216
+Sabrina,1995,https://www.themoviedb.org/movie/11860,11860,"Romance, Drama, Comedy",sabrina,FAM0216
+The Desperate Hours,1955,https://www.themoviedb.org/movie/18612,18612,"Crime, Thriller",desperate hours,FAM0217
+Desperate Hours,1990,https://www.themoviedb.org/movie/31676,31676,"Thriller, Crime",desperate hours,FAM0217
+Les Diaboliques,1955,https://www.themoviedb.org/movie/827,827,"Thriller, Mystery",les diaboliques,FAM0218
+Diabolique,1996,https://www.themoviedb.org/movie/10988,10988,"Mystery, Thriller, Horror",diabolique,FAM0218
+Lady and the Tramp,1955,https://www.themoviedb.org/movie/10340,10340,"Animation, Family, Romance, Adventure, Comedy",lady and the tramp,FAM0219
+Lady and the Tramp,2019,https://www.themoviedb.org/movie/512895,512895,"Family, Romance, Comedy",lady and the tramp,FAM0219
+The Ladykillers,1955,https://www.themoviedb.org/movie/5506,5506,"Comedy, Crime",ladykillers,FAM0220
+The Ladykillers,2004,https://www.themoviedb.org/movie/5516,5516,"Comedy, Crime, Thriller",ladykillers,FAM0220
+The Private War of Major Benson,1955,https://www.themoviedb.org/movie/110502,110502,"Comedy, Family, Romance",private war of major benson,FAM0221
+Major Payne,1995,https://www.themoviedb.org/movie/11008,11008,"Adventure, Comedy, Family",major payne,FAM0221
+We're No Angels,1955,https://www.themoviedb.org/movie/5996,5996,"Comedy, Crime",we re no angels,FAM0222
+We're No Angels,1989,https://www.themoviedb.org/movie/5971,5971,"Comedy, Crime",we re no angels,FAM0222
+Anastasia,1956,https://www.themoviedb.org/movie/38171,38171,"Drama, Romance",anastasia,FAM0223
+Anastasia,1997,https://www.themoviedb.org/movie/9444,9444,"Animation, Family, Fantasy, Adventure",anastasia,FAM0223
+Around the World in 80 Days,1956,https://www.themoviedb.org/movie/2897,2897,"Adventure, Comedy, Family, Fantasy, Romance",around the world in 80 days,FAM0224
+Around the World in 80 Days,2004,https://www.themoviedb.org/movie/10204,10204,"Action, Adventure, Comedy",around the world in 80 days,FAM0224
+Beyond a Reasonable Doubt,1956,https://www.themoviedb.org/movie/20330,20330,"Crime, Drama",beyond a reasonable doubt,FAM0225
+Beyond a Reasonable Doubt,2009,https://www.themoviedb.org/movie/25137,25137,Thriller,beyond a reasonable doubt,FAM0225
+The Burmese Harp,1956,https://www.themoviedb.org/movie/33319,33319,"Drama, War",burmese harp,FAM0226
+The Burmese Harp,1985,https://www.themoviedb.org/movie/385221,385221,"Drama, War",burmese harp,FAM0226
+Ransom!,1956,https://www.themoviedb.org/movie/110754,110754,"Crime, Drama, Thriller",ransom,FAM0227
+Ransom,1996,https://www.themoviedb.org/movie/3595,3595,"Action, Thriller",ransom,FAM0227
+Runaway Daughters,1956,https://www.themoviedb.org/movie/251380,251380,"Drama, Crime",runaway daughters,FAM0228
+Runaway Daughters,1994,https://www.themoviedb.org/movie/98287,98287,"Comedy, TV Movie, Drama",runaway daughters,FAM0228
+12 Angry Men,1957,https://www.themoviedb.org/movie/389,389,Drama,12 angry men,FAM0229
+12 Angry Men,1997,https://www.themoviedb.org/movie/12219,12219,"Drama, TV Movie",12 angry men,FAM0229
+3:10 to Yuma,1957,https://www.themoviedb.org/movie/14168,14168,"Western, Drama, Thriller",3 10 to yuma,FAM0230
+3:10 to Yuma,2007,https://www.themoviedb.org/movie/5176,5176,"Western, Drama",3 10 to yuma,FAM0230
+Last of the Badmen,1957,https://www.themoviedb.org/movie/282677,282677,Western,last of the badmen,FAM0231
+Gunfight at Comanche Creek,1963,https://www.themoviedb.org/movie/95677,95677,Western,gunfight at comanche creek,FAM0231
+Zero Hour!,1957,https://www.themoviedb.org/movie/54541,54541,"Drama, Thriller",zero hour,FAM0232
+Terror in the Sky,1971,https://www.themoviedb.org/movie/237520,237520,"Drama, TV Movie, Thriller",terror in the sky,FAM0232
+Witness for the Prosecution,1957,https://www.themoviedb.org/movie/37257,37257,"Drama, Mystery, Crime",witness for the prosecution,FAM0233
+Witness for the Prosecution,1982,https://www.themoviedb.org/movie/5972,5972,"Crime, Drama, TV Movie",witness for the prosecution,FAM0233
+Attack of the 50 Foot Woman,1958,https://www.themoviedb.org/movie/18724,18724,"Science Fiction, Drama, Horror",attack of the 50 foot woman,FAM0234
+Attack of the 50 Ft. Woman,1993,https://www.themoviedb.org/movie/74629,74629,"Science Fiction, Comedy, TV Movie",attack of the 50 ft woman,FAM0234
+The Blob,1958,https://www.themoviedb.org/movie/8851,8851,"Horror, Science Fiction",blob,FAM0235
+The Blob,1988,https://www.themoviedb.org/movie/9599,9599,"Horror, Science Fiction",blob,FAM0235
+The Defiant Ones,1958,https://www.themoviedb.org/movie/11414,11414,"Crime, Drama, Adventure, Thriller",defiant ones,FAM0236
+The Defiant Ones,1986,https://www.themoviedb.org/movie/279984,279984,"TV Movie, Drama",defiant ones,FAM0236
+The Fly,1958,https://www.themoviedb.org/movie/11815,11815,"Science Fiction, Horror, Drama",fly,FAM0237
+The Fly,1986,https://www.themoviedb.org/movie/9426,9426,"Horror, Science Fiction",fly,FAM0237
+How to Make a Monster,1958,https://www.themoviedb.org/movie/116327,116327,"Horror, Science Fiction",how to make a monster,FAM0238
+How to Make a Monster,2001,https://www.themoviedb.org/movie/38510,38510,"TV Movie, Horror, Science Fiction, Thriller",how to make a monster,FAM0238
+A Bucket of Blood,1959,https://www.themoviedb.org/movie/22642,22642,"Comedy, Horror",bucket of blood,FAM0239
+A Bucket of Blood,1995,https://www.themoviedb.org/movie/222858,222858,"Thriller, Comedy, Horror, TV Movie",bucket of blood,FAM0239
+The Captain's Table,1959,https://www.themoviedb.org/movie/285555,285555,Comedy,captain s table,FAM0240
+The Captain,1971,https://www.themoviedb.org/movie/117890,117890,"Crime, Drama",captain,FAM0240
+House on Haunted Hill,1959,https://www.themoviedb.org/movie/15856,15856,"Horror, Mystery",house on haunted hill,FAM0241
+House on Haunted Hill,1999,https://www.themoviedb.org/movie/11377,11377,Horror,house on haunted hill,FAM0241
+The Shaggy Dog,1959,https://www.themoviedb.org/movie/15944,15944,"Comedy, Family, Fantasy",shaggy dog,FAM0242
+The Shaggy Dog,2006,https://www.themoviedb.org/movie/10067,10067,"Comedy, Family",shaggy dog,FAM0242
+13 Ghosts,1960,https://www.themoviedb.org/movie/29756,29756,Horror,13 ghosts,FAM0243
+Thirteen Ghosts,2001,https://www.themoviedb.org/movie/9378,9378,"Horror, Thriller",thirteen ghosts,FAM0243
+Breathless,1960,https://www.themoviedb.org/movie/269,269,"Drama, Crime",breathless,FAM0244
+Breathless,1983,https://www.themoviedb.org/movie/1058,1058,"Romance, Drama, Action",breathless,FAM0244
+The Little Shop of Horrors,1960,https://www.themoviedb.org/movie/24452,24452,"Horror, Comedy, Fantasy",little shop of horrors,FAM0245
+Little Shop of Horrors,1986,https://www.themoviedb.org/movie/10776,10776,"Horror, Comedy",little shop of horrors,FAM0245
+The Magnificent Seven,1960,https://www.themoviedb.org/movie/966,966,"Western, Action, Adventure",magnificent seven,FAM0246
+The Magnificent Seven,2016,https://www.themoviedb.org/movie/333484,333484,"Adventure, Action, Western",magnificent seven,FAM0246
+Ocean's 11,1960,https://www.themoviedb.org/movie/299,299,"Crime, Comedy, Thriller",ocean s 11,FAM0247
+Ocean's Eleven,2001,https://www.themoviedb.org/movie/161,161,"Thriller, Crime",ocean s eleven,FAM0247
+Psycho,1960,https://www.themoviedb.org/movie/539,539,"Horror, Thriller, Mystery",psycho,FAM0248
+Psycho,1998,https://www.themoviedb.org/movie/11252,11252,"Horror, Mystery, Thriller",psycho,FAM0248
+Purple Noon,1960,https://www.themoviedb.org/movie/10363,10363,"Crime, Drama, Thriller",purple noon,FAM0249
+The Talented Mr. Ripley,1999,https://www.themoviedb.org/movie/1213,1213,"Thriller, Crime, Drama",talented mr ripley,FAM0249
+School for Scoundrels,1960,https://www.themoviedb.org/movie/36741,36741,Comedy,school for scoundrels,FAM0250
+School for Scoundrels,2006,https://www.themoviedb.org/movie/9842,9842,"Comedy, Romance",school for scoundrels,FAM0250
+The Time Machine,1960,https://www.themoviedb.org/movie/2134,2134,"Thriller, Adventure, Fantasy, Science Fiction, Romance",time machine,FAM0251
+The Time Machine,2002,https://www.themoviedb.org/movie/2135,2135,"Science Fiction, Adventure, Action",time machine,FAM0251
+Village of the Damned,1960,https://www.themoviedb.org/movie/11773,11773,"Horror, Science Fiction",village of the damned,FAM0252
+Village of the Damned,1995,https://www.themoviedb.org/movie/12122,12122,"Thriller, Horror, Science Fiction",village of the damned,FAM0252
+Where the Boys Are,1960,https://www.themoviedb.org/movie/43049,43049,"Comedy, Drama, Romance",where the boys are,FAM0253
+Where the Boys Are '84,1984,https://www.themoviedb.org/movie/59897,59897,"Comedy, Romance",where the boys are 84,FAM0253
+One Hundred and One Dalmatians,1961,https://www.themoviedb.org/movie/12230,12230,"Adventure, Animation, Comedy, Family",one hundred and one dalmatians,FAM0254
+101 Dalmatians,1996,https://www.themoviedb.org/movie/11674,11674,"Family, Comedy",101 dalmatians,FAM0254
+The Absent-Minded Professor,1961,https://www.themoviedb.org/movie/17984,17984,"Comedy, Family, Science Fiction",absent minded professor,FAM0255
+Flubber,1997,https://www.themoviedb.org/movie/9574,9574,"Comedy, Family, Science Fiction",flubber,FAM0255
+Two Half Times in Hell,1961,https://www.themoviedb.org/movie/163363,163363,"War, Drama",two half times in hell,FAM0256
+Escape to Victory,1981,https://www.themoviedb.org/movie/17360,17360,"Drama, War",escape to victory,FAM0256
+The Parent Trap,1961,https://www.themoviedb.org/movie/19186,19186,"Comedy, Family, Romance",parent trap,FAM0257
+The Parent Trap,1998,https://www.themoviedb.org/movie/9820,9820,"Comedy, Family, Romance",parent trap,FAM0257
+The Roman Spring of Mrs. Stone,1961,https://www.themoviedb.org/movie/36731,36731,"Drama, Romance",roman spring of mrs stone,FAM0258
+The Roman Spring of Mrs. Stone,2003,https://www.themoviedb.org/movie/158928,158928,"Drama, Romance, TV Movie",roman spring of mrs stone,FAM0258
+Splendor in the Grass,1961,https://www.themoviedb.org/movie/28569,28569,"Drama, Romance",splendor in the grass,FAM0259
+Splendor in the Grass,1981,https://www.themoviedb.org/movie/468749,468749,"Drama, TV Movie",splendor in the grass,FAM0259
+West Side Story,1961,https://www.themoviedb.org/movie/1725,1725,"Crime, Drama, Romance",west side story,FAM0260
+West Side Story,2021,https://www.themoviedb.org/movie/511809,511809,"Drama, Romance, Crime",west side story,FAM0260
+Cape Fear,1962,https://www.themoviedb.org/movie/11349,11349,"Thriller, Drama, Crime",cape fear,FAM0261
+Cape Fear,1991,https://www.themoviedb.org/movie/1598,1598,"Drama, Crime, Thriller",cape fear,FAM0261
+Harakiri,1962,https://www.themoviedb.org/movie/14537,14537,"Action, Drama, History",harakiri,FAM0262
+Hara-Kiri: Death of a Samurai,2011,https://www.themoviedb.org/movie/85836,85836,"Drama, History",hara kiri death of a samurai,FAM0262
+The Manchurian Candidate,1962,https://www.themoviedb.org/movie/982,982,"Thriller, Drama",manchurian candidate,FAM0263
+The Manchurian Candidate,2004,https://www.themoviedb.org/movie/14462,14462,"Drama, Thriller, Mystery",manchurian candidate,FAM0263
+13 Assassins,1963,https://www.themoviedb.org/movie/52011,52011,"Adventure, Drama, Action",13 assassins,FAM0264
+13 Assassins,2010,https://www.themoviedb.org/movie/58857,58857,"Adventure, Drama, Action",13 assassins,FAM0264
+Charade,1963,https://www.themoviedb.org/movie/4808,4808,"Comedy, Mystery, Romance",charade,FAM0265
+The Truth About Charlie,2002,https://www.themoviedb.org/movie/13440,13440,"Thriller, Mystery",truth about charlie,FAM0265
+Flipper,1963,https://www.themoviedb.org/movie/19893,19893,"Adventure, Drama, Family",flipper,FAM0266
+Flipper,1996,https://www.themoviedb.org/movie/36355,36355,"Adventure, Family",flipper,FAM0266
+The Haunting,1963,https://www.themoviedb.org/movie/11772,11772,Horror,haunting,FAM0267
+The Haunting,1999,https://www.themoviedb.org/movie/11618,11618,"Horror, Thriller, Fantasy, Mystery",haunting,FAM0267
+The Incredible Journey,1963,https://www.themoviedb.org/movie/37969,37969,"Adventure, Family",incredible journey,FAM0268
+Homeward Bound: The Incredible Journey,1993,https://www.themoviedb.org/movie/6878,6878,"Adventure, Comedy, Family",homeward bound the incredible journey,FAM0268
+The Nutty Professor,1963,https://www.themoviedb.org/movie/18331,18331,"Comedy, Science Fiction, Romance",nutty professor,FAM0269
+The Nutty Professor,1996,https://www.themoviedb.org/movie/9327,9327,"Fantasy, Comedy, Romance, Science Fiction",nutty professor,FAM0269
+Two Thousand Maniacs!,1964,https://www.themoviedb.org/movie/28177,28177,Horror,two thousand maniacs,FAM0270
+2001 Maniacs,2005,https://www.themoviedb.org/movie/10845,10845,"Horror, Comedy",2001 maniacs,FAM0270
+Castle of Blood,1964,https://www.themoviedb.org/movie/28532,28532,Horror,castle of blood,FAM0271
+Web of the Spider,1971,https://www.themoviedb.org/movie/49130,49130,Horror,web of the spider,FAM0271
+36 Hours,1965,https://www.themoviedb.org/movie/37684,37684,"Drama, Thriller, War",36 hours,FAM0272
+Breaking Point,1989,https://www.themoviedb.org/movie/585952,585952,"Mystery, Romance, Thriller, War, TV Movie",breaking point,FAM0272
+The Flight of the Phoenix,1965,https://www.themoviedb.org/movie/10243,10243,"Adventure, Drama",flight of the phoenix,FAM0273
+Flight of the Phoenix,2004,https://www.themoviedb.org/movie/11866,11866,"Action, Adventure, Drama",flight of the phoenix,FAM0273
+I Saw What You Did,1965,https://www.themoviedb.org/movie/28295,28295,"Thriller, Horror, Crime",i saw what you did,FAM0274
+I Saw What You Did,1988,https://www.themoviedb.org/movie/121518,121518,"Thriller, TV Movie",i saw what you did,FAM0274
+That Darn Cat!,1965,https://www.themoviedb.org/movie/20723,20723,"Family, Crime, Comedy",that darn cat,FAM0275
+That Darn Cat,1997,https://www.themoviedb.org/movie/20735,20735,"Family, Comedy",that darn cat,FAM0275
+Alfie,1966,https://www.themoviedb.org/movie/15598,15598,"Comedy, Drama, Romance",alfie,FAM0276
+Alfie,2004,https://www.themoviedb.org/movie/8849,8849,"Comedy, Drama, Romance",alfie,FAM0276
+Fahrenheit 451,1966,https://www.themoviedb.org/movie/1714,1714,"Drama, Science Fiction",fahrenheit 451,FAM0277
+Fahrenheit 451,2018,https://www.themoviedb.org/movie/401905,401905,"Drama, Science Fiction, Thriller",fahrenheit 451,FAM0277
+Gambit,1966,https://www.themoviedb.org/movie/28270,28270,"Comedy, Crime",gambit,FAM0278
+Gambit,2012,https://www.themoviedb.org/movie/97434,97434,"Comedy, Crime",gambit,FAM0278
+Le Deuxième Souffle,1966,https://www.themoviedb.org/movie/25047,25047,"Action, Drama, Crime",le deuxi me souffle,FAM0279
+The Second Wind,2007,https://www.themoviedb.org/movie/59918,59918,"Drama, Crime, Mystery, Thriller",second wind,FAM0279
+Bedazzled,1967,https://www.themoviedb.org/movie/18209,18209,"Fantasy, Comedy, Romance",bedazzled,FAM0280
+Bedazzled,2000,https://www.themoviedb.org/movie/1636,1636,"Fantasy, Comedy, Romance",bedazzled,FAM0280
+Guess Who's Coming to Dinner,1967,https://www.themoviedb.org/movie/1879,1879,"Drama, Romance",guess who s coming to dinner,FAM0281
+Guess Who,2005,https://www.themoviedb.org/movie/11638,11638,"Comedy, Romance",guess who,FAM0281
+The Jungle Book,1967,https://www.themoviedb.org/movie/9325,9325,"Family, Animation, Adventure",jungle book,FAM0282
+The Jungle Book,2016,https://www.themoviedb.org/movie/278927,278927,"Family, Adventure, Fantasy",jungle book,FAM0282
+Oscar,1967,https://www.themoviedb.org/movie/2798,2798,Comedy,oscar,FAM0283
+Oscar,1991,https://www.themoviedb.org/movie/11890,11890,Comedy,oscar,FAM0283
+Point Blank,1967,https://www.themoviedb.org/movie/26039,26039,"Crime, Thriller, Drama",point blank,FAM0284
+The Outfit,1973,https://www.themoviedb.org/movie/26762,26762,"Crime, Drama",outfit,FAM0284
+The Plank,1967,https://www.themoviedb.org/movie/18879,18879,Comedy,plank,FAM0285
+The Plank,1979,https://www.themoviedb.org/movie/120557,120557,Comedy,plank,FAM0285
+Planet of the Apes,1968,https://www.themoviedb.org/movie/871,871,"Science Fiction, Adventure, Drama, Action",planet of the apes,FAM0286
+Planet of the Apes,2001,https://www.themoviedb.org/movie/869,869,"Thriller, Science Fiction, Action, Adventure",planet of the apes,FAM0286
+The Thomas Crown Affair,1968,https://www.themoviedb.org/movie/912,912,"Crime, Romance",thomas crown affair,FAM0287
+The Thomas Crown Affair,1999,https://www.themoviedb.org/movie/913,913,"Drama, Crime, Romance",thomas crown affair,FAM0287
+"Yours, Mine and Ours",1968,https://www.themoviedb.org/movie/27983,27983,Comedy,yours mine and ours,FAM0288
+"Yours, Mine & Ours",2005,https://www.themoviedb.org/movie/13499,13499,"Comedy, Family, Romance",yours mine ours,FAM0288
+The Computer Wore Tennis Shoes,1969,https://www.themoviedb.org/movie/29228,29228,"Comedy, Family, Drama",computer wore tennis shoes,FAM0289
+The Computer Wore Tennis Shoes,1995,https://www.themoviedb.org/movie/177229,177229,"Science Fiction, Comedy, TV Movie",computer wore tennis shoes,FAM0289
+The Italian Job,1969,https://www.themoviedb.org/movie/10536,10536,"Crime, Comedy, Thriller",italian job,FAM0290
+The Italian Job,2003,https://www.themoviedb.org/movie/9654,9654,"Action, Crime",italian job,FAM0290
+Mississippi Mermaid,1969,https://www.themoviedb.org/movie/1651,1651,"Romance, Drama, Crime, Thriller",mississippi mermaid,FAM0291
+Original Sin,2001,https://www.themoviedb.org/movie/2057,2057,"Thriller, Drama, Mystery, Romance, History",original sin,FAM0291
+True Grit,1969,https://www.themoviedb.org/movie/17529,17529,Western,true grit,FAM0292
+True Grit,2010,https://www.themoviedb.org/movie/44264,44264,"Drama, Adventure, Western",true grit,FAM0292
+And Soon the Darkness,1970,https://www.themoviedb.org/movie/51992,51992,"Mystery, Thriller, Crime",and soon the darkness,FAM0293
+And Soon the Darkness,2010,https://www.themoviedb.org/movie/33107,33107,"Mystery, Thriller",and soon the darkness,FAM0293
+The Things of Life,1970,https://www.themoviedb.org/movie/3423,3423,"Drama, Romance",things of life,FAM0294
+Intersection,1994,https://www.themoviedb.org/movie/46717,46717,"Drama, Romance",intersection,FAM0294
+The Out-of-Towners,1970,https://www.themoviedb.org/movie/20444,20444,Comedy,out of towners,FAM0295
+The Out-of-Towners,1999,https://www.themoviedb.org/movie/8970,8970,"Comedy, Romance, Adventure",out of towners,FAM0295
+The Wizard of Gore,1970,https://www.themoviedb.org/movie/23506,23506,Horror,wizard of gore,FAM0296
+The Wizard of Gore,2007,https://www.themoviedb.org/movie/13903,13903,"Mystery, Horror",wizard of gore,FAM0296
+Brian's Song,1971,https://www.themoviedb.org/movie/18047,18047,"Drama, TV Movie",brian s song,FAM0297
+Brian's Song,2001,https://www.themoviedb.org/movie/18048,18048,"Action, Drama, TV Movie",brian s song,FAM0297
+Willy Wonka & the Chocolate Factory,1971,https://www.themoviedb.org/movie/252,252,"Family, Fantasy, Comedy",willy wonka the chocolate factory,FAM0298
+Charlie and the Chocolate Factory,2005,https://www.themoviedb.org/movie/118,118,"Adventure, Comedy, Family, Fantasy",charlie and the chocolate factory,FAM0298
+Straw Dogs,1971,https://www.themoviedb.org/movie/994,994,"Thriller, Drama, Crime",straw dogs,FAM0299
+Straw Dogs,2011,https://www.themoviedb.org/movie/64639,64639,"Drama, Thriller",straw dogs,FAM0299
+Vanishing Point,1971,https://www.themoviedb.org/movie/11951,11951,"Action, Crime, Drama, Thriller",vanishing point,FAM0300
+Vanishing Point,1997,https://www.themoviedb.org/movie/27312,27312,"Action, Adventure, Thriller, TV Movie",vanishing point,FAM0300
+The Heartbreak Kid,1972,https://www.themoviedb.org/movie/40687,40687,"Romance, Comedy",heartbreak kid,FAM0301
+The Heartbreak Kid,2007,https://www.themoviedb.org/movie/9038,9038,"Comedy, Romance",heartbreak kid,FAM0301
+The Last House on the Left,1972,https://www.themoviedb.org/movie/15516,15516,"Horror, Crime",last house on the left,FAM0302
+The Last House on the Left,2009,https://www.themoviedb.org/movie/18405,18405,"Crime, Thriller, Horror, Drama",last house on the left,FAM0302
+The Tall Blond Man with One Black Shoe,1972,https://www.themoviedb.org/movie/12089,12089,"Comedy, Mystery",tall blond man with one black shoe,FAM0303
+The Man with One Red Shoe,1985,https://www.themoviedb.org/movie/10905,10905,"Action, Comedy",man with one red shoe,FAM0303
+The Mechanic,1972,https://www.themoviedb.org/movie/19403,19403,"Action, Thriller",mechanic,FAM0304
+The Mechanic,2011,https://www.themoviedb.org/movie/27582,27582,"Action, Thriller, Crime",mechanic,FAM0304
+L'emmerdeur,1973,https://www.themoviedb.org/movie/11670,11670,"Comedy, Drama",l emmerdeur,FAM0305
+Buddy Buddy,1981,https://www.themoviedb.org/movie/36133,36133,"Comedy, Crime",buddy buddy,FAM0305
+Charlotte's Web,1973,https://www.themoviedb.org/movie/15171,15171,"Family, Animation, Drama",charlotte s web,FAM0306
+Charlotte's Web,2006,https://www.themoviedb.org/movie/9986,9986,"Comedy, Family, Fantasy",charlotte s web,FAM0306
+The Crazies,1973,https://www.themoviedb.org/movie/29425,29425,"Science Fiction, Horror, Action",crazies,FAM0307
+The Crazies,2010,https://www.themoviedb.org/movie/29427,29427,"Mystery, Horror, Action",crazies,FAM0307
+The Day of the Jackal,1973,https://www.themoviedb.org/movie/4909,4909,"Action, Thriller",day of the jackal,FAM0308
+The Jackal,1997,https://www.themoviedb.org/movie/4824,4824,"Action, Thriller, Adventure, Crime",jackal,FAM0308
+La bonne année,1973,https://www.themoviedb.org/movie/76329,76329,"Comedy, Crime, Drama, Romance",la bonne ann e,FAM0309
+Happy New Year,1987,https://www.themoviedb.org/movie/133781,133781,"Comedy, Crime, Romance",happy new year,FAM0309
+Papillon,1973,https://www.themoviedb.org/movie/5924,5924,"Crime, Drama",papillon,FAM0310
+Papillon,2017,https://www.themoviedb.org/movie/433498,433498,"Adventure, Crime, Drama",papillon,FAM0310
+Sisters,1973,https://www.themoviedb.org/movie/22307,22307,"Thriller, Horror, Mystery",sisters,FAM0311
+Sisters,2006,https://www.themoviedb.org/movie/52788,52788,"Mystery, Thriller, Horror",sisters,FAM0311
+World on a Wire,1973,https://www.themoviedb.org/movie/394385,394385,Documentary,world on a wire,FAM0312
+The Thirteenth Floor,1999,https://www.themoviedb.org/movie/1090,1090,"Thriller, Science Fiction, Mystery",thirteenth floor,FAM0312
+Walking Tall,1973,https://www.themoviedb.org/movie/25473,25473,"Action, Crime, Drama",walking tall,FAM0313
+Walking Tall,2004,https://www.themoviedb.org/movie/11358,11358,"Adventure, Drama, Action, Thriller",walking tall,FAM0313
+The Wicker Man,1973,https://www.themoviedb.org/movie/16307,16307,Horror,wicker man,FAM0314
+The Wicker Man,2006,https://www.themoviedb.org/movie/9708,9708,"Horror, Mystery, Thriller",wicker man,FAM0314
+The Arena,1974,https://www.themoviedb.org/movie/29039,29039,"Action, Adventure",arena,FAM0315
+The Arena,2001,https://www.themoviedb.org/movie/152437,152437,Action,arena,FAM0315
+Black Christmas,1974,https://www.themoviedb.org/movie/16938,16938,"Horror, Mystery, Crime",black christmas,FAM0316
+Black Christmas,2006,https://www.themoviedb.org/movie/9656,9656,"Horror, Mystery",black christmas,FAM0316
+Blazing Saddles,1974,https://www.themoviedb.org/movie/11072,11072,"Western, Comedy",blazing saddles,FAM0317
+Paws of Fury: The Legend of Hank,2022,https://www.themoviedb.org/movie/366672,366672,"Animation, Adventure, Comedy, Family",paws of fury the legend of hank,FAM0317
+The Front Page,1974,https://www.themoviedb.org/movie/987,987,Comedy,front page,FAM0318
+The Champ,1979,https://www.themoviedb.org/movie/30547,30547,Drama,champ,FAM0318
+Death Wish,1974,https://www.themoviedb.org/movie/13939,13939,"Crime, Drama, Action",death wish,FAM0319
+Death Wish,2018,https://www.themoviedb.org/movie/395990,395990,"Action, Crime, Thriller, Drama",death wish,FAM0319
+The Gambler,1974,https://www.themoviedb.org/movie/44800,44800,"Drama, Crime",gambler,FAM0320
+The Gambler,2014,https://www.themoviedb.org/movie/284536,284536,"Thriller, Crime, Drama",gambler,FAM0320
+Gone in 60 Seconds,1974,https://www.themoviedb.org/movie/16246,16246,"Action, Crime, Thriller, Drama",gone in 60 seconds,FAM0321
+Gone in 60 Seconds,2000,https://www.themoviedb.org/movie/9679,9679,"Action, Crime, Thriller",gone in 60 seconds,FAM0321
+It's Alive,1974,https://www.themoviedb.org/movie/28153,28153,"Horror, Science Fiction",it s alive,FAM0322
+It's Alive,2009,https://www.themoviedb.org/movie/23174,23174,"Horror, Science Fiction",it s alive,FAM0322
+Profumo di donna,1974,https://www.themoviedb.org/movie/47848,47848,"Comedy, Drama",profumo di donna,FAM0323
+Scent of a Woman,1992,https://www.themoviedb.org/movie/9475,9475,Drama,scent of a woman,FAM0323
+Swept Away,1974,https://www.themoviedb.org/movie/37916,37916,"Comedy, Drama, Romance",swept away,FAM0324
+Swept Away,2002,https://www.themoviedb.org/movie/12779,12779,"Comedy, Romance",swept away,FAM0324
+The Texas Chain Saw Massacre,1974,https://www.themoviedb.org/movie/30497,30497,Horror,texas chain saw massacre,FAM0325
+The Texas Chainsaw Massacre,2003,https://www.themoviedb.org/movie/9373,9373,Horror,texas chainsaw massacre,FAM0325
+Cousin Cousine,1975,https://www.themoviedb.org/movie/5618,5618,"Comedy, Romance",cousin cousine,FAM0326
+Cousins,1989,https://www.themoviedb.org/movie/31674,31674,"Comedy, Romance",cousins,FAM0326
+The Land That Time Forgot,1975,https://www.themoviedb.org/movie/27085,27085,"Science Fiction, Action, Adventure",land that time forgot,FAM0327
+The Land That Time Forgot,2009,https://www.themoviedb.org/movie/21260,21260,"Action, Fantasy, Science Fiction, Adventure",land that time forgot,FAM0327
+Rollerball,1975,https://www.themoviedb.org/movie/11484,11484,"Science Fiction, Action",rollerball,FAM0328
+Rollerball,2002,https://www.themoviedb.org/movie/11535,11535,"Action, Science Fiction, Thriller",rollerball,FAM0328
+Assault on Precinct 13,1976,https://www.themoviedb.org/movie/17814,17814,"Thriller, Action, Crime",assault on precinct 13,FAM0329
+Assault on Precinct 13,2005,https://www.themoviedb.org/movie/8978,8978,"Thriller, Action, Adventure, Crime",assault on precinct 13,FAM0329
+The Bad News Bears,1976,https://www.themoviedb.org/movie/23479,23479,"Family, Comedy",bad news bears,FAM0330
+Bad News Bears,2005,https://www.themoviedb.org/movie/13341,13341,Comedy,bad news bears,FAM0330
+Carrie,1976,https://www.themoviedb.org/movie/7340,7340,"Horror, Thriller",carrie,FAM0331
+Carrie,2002,https://www.themoviedb.org/movie/7342,7342,"Horror, Drama, TV Movie",carrie,FAM0331
+Dona Flor and Her Two Husbands,1976,https://www.themoviedb.org/movie/42234,42234,"Comedy, Drama, Fantasy, Romance",dona flor and her two husbands,FAM0332
+Kiss Me Goodbye,1982,https://www.themoviedb.org/movie/81001,81001,"Comedy, Fantasy, Romance",kiss me goodbye,FAM0332
+Freaky Friday,1976,https://www.themoviedb.org/movie/16084,16084,"Fantasy, Comedy, Family",freaky friday,FAM0333
+Freaky Friday,2003,https://www.themoviedb.org/movie/10330,10330,"Family, Fantasy, Drama, Comedy",freaky friday,FAM0333
+Le Jouet,1976,https://www.themoviedb.org/movie/56648,56648,"Comedy, Drama",le jouet,FAM0334
+The Toy,1982,https://www.themoviedb.org/movie/23805,23805,"Comedy, Family",toy,FAM0334
+The Omen,1976,https://www.themoviedb.org/movie/794,794,"Horror, Thriller",omen,FAM0335
+The Omen,2006,https://www.themoviedb.org/movie/806,806,"Horror, Mystery, Thriller",omen,FAM0335
+Pardon Mon Affaire,1976,https://www.themoviedb.org/movie/2459,2459,"Comedy, Romance",pardon mon affaire,FAM0336
+The Woman in Red,1984,https://www.themoviedb.org/movie/5968,5968,"Comedy, Romance",woman in red,FAM0336
+Storm Boy,1976,https://www.themoviedb.org/movie/14302,14302,"Drama, Family",storm boy,FAM0337
+Storm Boy,2019,https://www.themoviedb.org/movie/505953,505953,"Drama, Adventure, Family",storm boy,FAM0337
+Death Game,1977,https://www.themoviedb.org/movie/86743,86743,"Thriller, Horror",death game,FAM0338
+Knock Knock,2015,https://www.themoviedb.org/movie/263472,263472,"Horror, Thriller",knock knock,FAM0338
+Fun with Dick and Jane,1977,https://www.themoviedb.org/movie/24109,24109,"Comedy, Crime",fun with dick and jane,FAM0339
+Fun with Dick and Jane,2005,https://www.themoviedb.org/movie/7552,7552,"Comedy, Crime",fun with dick and jane,FAM0339
+The Goodbye Girl,1977,https://www.themoviedb.org/movie/14741,14741,"Comedy, Drama, Romance",goodbye girl,FAM0340
+The Goodbye Girl,2004,https://www.themoviedb.org/movie/66722,66722,"Comedy, Romance, TV Movie",goodbye girl,FAM0340
+The Hills Have Eyes,1977,https://www.themoviedb.org/movie/12262,12262,Horror,hills have eyes,FAM0341
+The Hills Have Eyes,2006,https://www.themoviedb.org/movie/9792,9792,"Horror, Thriller",hills have eyes,FAM0341
+The Man Who Loved Women,1977,https://www.themoviedb.org/movie/1421,1421,"Drama, Comedy, Romance",man who loved women,FAM0342
+The Man Who Loved Women,1983,https://www.themoviedb.org/movie/69928,69928,"Comedy, Drama, Romance",man who loved women,FAM0342
+Pete's Dragon,1977,https://www.themoviedb.org/movie/11114,11114,"Fantasy, Animation, Comedy, Family",pete s dragon,FAM0343
+Pete's Dragon,2016,https://www.themoviedb.org/movie/294272,294272,"Adventure, Family, Fantasy",pete s dragon,FAM0343
+Suspiria,1977,https://www.themoviedb.org/movie/11906,11906,Horror,suspiria,FAM0344
+Suspiria,2018,https://www.themoviedb.org/movie/361292,361292,"Horror, Mystery, Drama",suspiria,FAM0344
+The Yellow Handkerchief,1977,https://www.themoviedb.org/movie/22557,22557,"Comedy, Drama",yellow handkerchief,FAM0345
+The Yellow Handkerchief,2008,https://www.themoviedb.org/movie/22556,22556,"Drama, Romance",yellow handkerchief,FAM0345
+The 39 Steps,1978,https://www.themoviedb.org/movie/60287,60287,"Mystery, Thriller",39 steps,FAM0346
+The 39 Steps,2008,https://www.themoviedb.org/movie/16877,16877,"Thriller, Mystery, Adventure, TV Movie",39 steps,FAM0346
+Fingers,1978,https://www.themoviedb.org/movie/63435,63435,"Drama, Action, Thriller, Crime",fingers,FAM0347
+The Beat That My Heart Skipped,2005,https://www.themoviedb.org/movie/1553,1553,"Drama, Crime",beat that my heart skipped,FAM0347
+La Cage aux Folles,1978,https://www.themoviedb.org/movie/4484,4484,Comedy,la cage aux folles,FAM0348
+The Birdcage,1996,https://www.themoviedb.org/movie/11000,11000,Comedy,birdcage,FAM0348
+Dawn of the Dead,1978,https://www.themoviedb.org/movie/923,923,"Horror, Science Fiction",dawn of the dead,FAM0349
+Dawn of the Dead,2004,https://www.themoviedb.org/movie/924,924,"Horror, Action",dawn of the dead,FAM0349
+Halloween,1978,https://www.themoviedb.org/movie/948,948,"Horror, Thriller",halloween,FAM0350
+Halloween,2007,https://www.themoviedb.org/movie/2082,2082,Horror,halloween,FAM0350
+I Spit on Your Grave,1978,https://www.themoviedb.org/movie/25239,25239,"Horror, Thriller",i spit on your grave,FAM0351
+I Spit on Your Grave,2010,https://www.themoviedb.org/movie/43947,43947,"Thriller, Crime, Horror",i spit on your grave,FAM0351
+Ice Castles,1978,https://www.themoviedb.org/movie/50541,50541,"Drama, Romance",ice castles,FAM0352
+Ice Castles,2010,https://www.themoviedb.org/movie/33570,33570,Drama,ice castles,FAM0352
+The Toolbox Murders,1978,https://www.themoviedb.org/movie/27495,27495,"Horror, Mystery, Thriller",toolbox murders,FAM0353
+Toolbox Murders,2004,https://www.themoviedb.org/movie/16764,16764,"Horror, Mystery",toolbox murders,FAM0353
+The Amityville Horror,1979,https://www.themoviedb.org/movie/11449,11449,Horror,amityville horror,FAM0354
+The Amityville Horror,2005,https://www.themoviedb.org/movie/10065,10065,Horror,amityville horror,FAM0354
+Going in Style,1979,https://www.themoviedb.org/movie/65066,65066,"Crime, Drama, Comedy",going in style,FAM0355
+Going in Style,2017,https://www.themoviedb.org/movie/353070,353070,"Crime, Comedy",going in style,FAM0355
+The In-Laws,1979,https://www.themoviedb.org/movie/19827,19827,"Action, Adventure, Comedy, Mystery",in laws,FAM0356
+The In-Laws,2003,https://www.themoviedb.org/movie/5146,5146,"Action, Comedy",in laws,FAM0356
+Maula Jatt,1979,https://www.themoviedb.org/movie/170078,170078,"Drama, Action",maula jatt,FAM0357
+Jeene Nahi Doonga,1984,https://www.themoviedb.org/movie/309146,309146,"Action, Drama",jeene nahi doonga,FAM0357
+When a Stranger Calls,1979,https://www.themoviedb.org/movie/45964,45964,"Horror, Thriller",when a stranger calls,FAM0358
+When a Stranger Calls,2006,https://www.themoviedb.org/movie/10053,10053,"Horror, Mystery",when a stranger calls,FAM0358
+Antropophagus,1980,https://www.themoviedb.org/movie/5424,5424,Horror,antropophagus,FAM0359
+Anthropophagous 2000,1999,https://www.themoviedb.org/movie/67382,67382,"Horror, Crime, Thriller",anthropophagous 2000,FAM0359
+Diversion,1980,https://www.themoviedb.org/movie/253402,253402,Comedy,diversion,FAM0360
+Fatal Attraction,1987,https://www.themoviedb.org/movie/10998,10998,"Thriller, Drama, Romance",fatal attraction,FAM0360
+Fame,1980,https://www.themoviedb.org/movie/3537,3537,"Drama, Music",fame,FAM0361
+Fame,2009,https://www.themoviedb.org/movie/28665,28665,"Music, Comedy, Drama, Romance",fame,FAM0361
+The Fog,1980,https://www.themoviedb.org/movie/790,790,Horror,fog,FAM0362
+The Fog,2005,https://www.themoviedb.org/movie/791,791,"Horror, Mystery",fog,FAM0362
+Gloria,1980,https://www.themoviedb.org/movie/10889,10889,"Crime, Drama, Thriller",gloria,FAM0363
+Gloria,1999,https://www.themoviedb.org/movie/45712,45712,"Drama, Crime, Thriller",gloria,FAM0363
+Little Miss Marker,1980,https://www.themoviedb.org/movie/47876,47876,"Comedy, Romance",little miss marker,FAM0364
+The Jazz Singer,1980,https://www.themoviedb.org/movie/15310,15310,"Drama, Music, Romance",jazz singer,FAM0364
+Mother's Day,1980,https://www.themoviedb.org/movie/14929,14929,"Action, Horror, Comedy",mother s day,FAM0365
+Mother's Day,2010,https://www.themoviedb.org/movie/101669,101669,"Crime, Horror, Thriller",mother s day,FAM0365
+Prom Night,1980,https://www.themoviedb.org/movie/36599,36599,"Horror, Mystery, Thriller",prom night,FAM0366
+Prom Night,2008,https://www.themoviedb.org/movie/8617,8617,"Horror, Drama, Mystery",prom night,FAM0366
+Arthur,1981,https://www.themoviedb.org/movie/13665,13665,"Comedy, Drama, Romance",arthur,FAM0367
+Arthur,2011,https://www.themoviedb.org/movie/49012,49012,"Comedy, Romance",arthur,FAM0367
+Clash of the Titans,1981,https://www.themoviedb.org/movie/10323,10323,"Adventure, Fantasy, Action",clash of the titans,FAM0368
+Clash of the Titans,2010,https://www.themoviedb.org/movie/18823,18823,"Adventure, Fantasy, Action",clash of the titans,FAM0368
+Garde à Vue,1981,https://www.themoviedb.org/movie/5062,5062,"Crime, Drama, Thriller",garde vue,FAM0369
+Under Suspicion,2000,https://www.themoviedb.org/movie/10562,10562,"Thriller, Crime, Drama",under suspicion,FAM0369
+My Bloody Valentine,1981,https://www.themoviedb.org/movie/39874,39874,"Horror, Thriller",my bloody valentine,FAM0370
+My Bloody Valentine 3D,2009,https://www.themoviedb.org/movie/14435,14435,"Horror, Thriller",my bloody valentine 3d,FAM0370
+Annie,1982,https://www.themoviedb.org/movie/15739,15739,"Comedy, Drama, Family",annie,FAM0371
+Annie,2014,https://www.themoviedb.org/movie/196867,196867,"Comedy, Drama, Family",annie,FAM0371
+Arth,1982,https://www.themoviedb.org/movie/96156,96156,Documentary,arth,FAM0372
+Arth - The Destination,2017,https://www.themoviedb.org/movie/500144,500144,"Drama, Music, Romance",arth the destination,FAM0372
+Le Père Noël est une ordure,1982,https://www.themoviedb.org/movie/14645,14645,Comedy,le p re no l est une ordure,FAM0373
+Mixed Nuts,1994,https://www.themoviedb.org/movie/24070,24070,"Comedy, Drama, Romance",mixed nuts,FAM0373
+Victor/Victoria,1982,https://www.themoviedb.org/movie/12614,12614,"Music, Comedy, Romance",victor victoria,FAM0374
+Love Affair,1994,https://www.themoviedb.org/movie/43742,43742,"Drama, Romance",love affair,FAM0374
+Poltergeist,1982,https://www.themoviedb.org/movie/609,609,Horror,poltergeist,FAM0375
+Poltergeist,2015,https://www.themoviedb.org/movie/243688,243688,Horror,poltergeist,FAM0375
+The Lift,1983,https://www.themoviedb.org/movie/11417,11417,"Horror, Thriller, Comedy",lift,FAM0376
+Down,2001,https://www.themoviedb.org/movie/19058,19058,"Horror, Mystery, Thriller",down,FAM0376
+Les Compères,1983,https://www.themoviedb.org/movie/10484,10484,Comedy,les comp res,FAM0377
+Fathers' Day,1997,https://www.themoviedb.org/movie/12499,12499,"Comedy, Family",fathers day,FAM0377
+The House on Sorority Row,1983,https://www.themoviedb.org/movie/40229,40229,"Horror, Mystery, Thriller",house on sorority row,FAM0378
+Sorority Row,2009,https://www.themoviedb.org/movie/26688,26688,"Horror, Mystery",sorority row,FAM0378
+Valley Girl,1983,https://www.themoviedb.org/movie/19053,19053,"Comedy, Romance",valley girl,FAM0379
+Valley Girl,2020,https://www.themoviedb.org/movie/482273,482273,"Comedy, Romance, Music",valley girl,FAM0379
+Footloose,1984,https://www.themoviedb.org/movie/1788,1788,"Drama, Romance",footloose,FAM0380
+Footloose,2011,https://www.themoviedb.org/movie/68817,68817,"Drama, Music, Romance",footloose,FAM0380
+Frankenweenie,1984,https://www.themoviedb.org/movie/33914,33914,"Horror, Family, Science Fiction, Comedy",frankenweenie,FAM0381
+Frankenweenie,2012,https://www.themoviedb.org/movie/62214,62214,"Animation, Comedy, Family",frankenweenie,FAM0381
+The Karate Kid,1984,https://www.themoviedb.org/movie/1885,1885,"Action, Drama",karate kid,FAM0382
+The Karate Kid,2010,https://www.themoviedb.org/movie/38575,38575,"Action, Adventure, Drama, Family",karate kid,FAM0382
+Le jumeau,1984,https://www.themoviedb.org/movie/39978,39978,Comedy,le jumeau,FAM0383
+Two Much,1996,https://www.themoviedb.org/movie/46029,46029,"Comedy, Romance",two much,FAM0383
+A Nightmare on Elm Street,1984,https://www.themoviedb.org/movie/377,377,Horror,nightmare on elm street,FAM0384
+A Nightmare on Elm Street,2010,https://www.themoviedb.org/movie/23437,23437,"Horror, Mystery, Thriller",nightmare on elm street,FAM0384
+Red Dawn,1984,https://www.themoviedb.org/movie/1880,1880,"Action, Thriller, War, Drama",red dawn,FAM0385
+Red Dawn,2012,https://www.themoviedb.org/movie/60747,60747,"Action, Thriller",red dawn,FAM0385
+Fright Night,1985,https://www.themoviedb.org/movie/11797,11797,"Comedy, Horror",fright night,FAM0386
+Fright Night,2011,https://www.themoviedb.org/movie/58151,58151,"Horror, Comedy",fright night,FAM0386
+April Fool's Day,1986,https://www.themoviedb.org/movie/24913,24913,"Horror, Mystery",april fool s day,FAM0387
+April Fool's Day,2008,https://www.themoviedb.org/movie/26233,26233,Horror,april fool s day,FAM0387
+Heat,1986,https://www.themoviedb.org/movie/42023,42023,"Action, Thriller",heat,FAM0388
+Wild Card,2015,https://www.themoviedb.org/movie/265208,265208,"Thriller, Crime, Action",wild card,FAM0388
+The Hitcher,1986,https://www.themoviedb.org/movie/9542,9542,"Horror, Action, Thriller",hitcher,FAM0389
+The Hitcher,2007,https://www.themoviedb.org/movie/8398,8398,"Crime, Horror, Thriller",hitcher,FAM0389
+Les Fugitifs,1986,https://www.themoviedb.org/movie/30163,30163,Comedy,les fugitifs,FAM0390
+Three Fugitives,1989,https://www.themoviedb.org/movie/31608,31608,"Comedy, Crime",three fugitives,FAM0390
+Witchboard,1986,https://www.themoviedb.org/movie/17994,17994,"Horror, Mystery, Thriller",witchboard,FAM0391
+Witchboard,2024,https://www.themoviedb.org/movie/1107325,1107325,Horror,witchboard,FAM0391
+Can't Buy Me Love,1987,https://www.themoviedb.org/movie/12919,12919,"Comedy, Romance",can t buy me love,FAM0392
+Love Don't Cost a Thing,2003,https://www.themoviedb.org/movie/21542,21542,"Comedy, Drama, Family, Romance",love don t cost a thing,FAM0392
+Wings of Desire,1987,https://www.themoviedb.org/movie/144,144,"Drama, Fantasy, Romance",wings of desire,FAM0393
+City of Angels,1998,https://www.themoviedb.org/movie/795,795,"Romance, Drama, Fantasy",city of angels,FAM0393
+The Grand Highway,1987,https://www.themoviedb.org/movie/60797,60797,Drama,grand highway,FAM0394
+Paradise,1991,https://www.themoviedb.org/movie/68430,68430,Drama,paradise,FAM0394
+Pathfinder,1987,https://www.themoviedb.org/movie/2172,2172,Adventure,pathfinder,FAM0395
+Pathfinder,2006,https://www.themoviedb.org/movie/1534,1534,"Adventure, Action",pathfinder,FAM0395
+RoboCop,1987,https://www.themoviedb.org/movie/5548,5548,"Action, Thriller, Science Fiction",robocop,FAM0396
+RoboCop,2014,https://www.themoviedb.org/movie/97020,97020,"Action, Adventure, Crime, Science Fiction, Thriller",robocop,FAM0396
+The Stepfather,1987,https://www.themoviedb.org/movie/25155,25155,"Horror, Thriller",stepfather,FAM0397
+The Stepfather,2009,https://www.themoviedb.org/movie/19904,19904,"Horror, Thriller",stepfather,FAM0397
+Child's Play,1988,https://www.themoviedb.org/movie/10585,10585,Horror,child s play,FAM0398
+Child's Play,2019,https://www.themoviedb.org/movie/533642,533642,"Horror, Thriller",child s play,FAM0398
+Night of the Demons,1988,https://www.themoviedb.org/movie/24924,24924,"Horror, Comedy",night of the demons,FAM0399
+Night of the Demons,2009,https://www.themoviedb.org/movie/27646,27646,"Horror, Action, Comedy",night of the demons,FAM0399
+Shame,1988,https://www.themoviedb.org/movie/113747,113747,"Drama, Crime",shame,FAM0400
+Shame,1992,https://www.themoviedb.org/movie/291666,291666,"Drama, TV Movie",shame,FAM0400
+The Vanishing,1988,https://www.themoviedb.org/movie/8740,8740,"Thriller, Mystery",vanishing,FAM0401
+The Vanishing,1993,https://www.themoviedb.org/movie/1644,1644,"Thriller, Drama, Mystery, Horror",vanishing,FAM0401
+The Firm,1989,https://www.themoviedb.org/movie/17300,17300,"Drama, Crime",firm,FAM0402
+The Firm,2009,https://www.themoviedb.org/movie/31218,31218,Drama,firm,FAM0402
+The Little Mermaid,1989,https://www.themoviedb.org/movie/10144,10144,"Animation, Family, Fantasy",little mermaid,FAM0403
+The Little Mermaid,2023,https://www.themoviedb.org/movie/447277,447277,"Adventure, Family, Fantasy, Romance",little mermaid,FAM0403
+Agneepath,1990,https://www.themoviedb.org/movie/37403,37403,"Action, Crime, Drama",agneepath,FAM0404
+Agneepath,2012,https://www.themoviedb.org/movie/84858,84858,"Action, Crime, Drama",agneepath,FAM0404
+Flatliners,1990,https://www.themoviedb.org/movie/1551,1551,"Drama, Science Fiction, Horror",flatliners,FAM0405
+Flatliners,2017,https://www.themoviedb.org/movie/400710,400710,"Drama, Horror, Thriller",flatliners,FAM0405
+Total Recall,1990,https://www.themoviedb.org/movie/861,861,"Action, Adventure, Science Fiction",total recall,FAM0406
+Total Recall,2012,https://www.themoviedb.org/movie/64635,64635,"Action, Science Fiction, Thriller",total recall,FAM0406
+Beauty and the Beast,1991,https://www.themoviedb.org/movie/10020,10020,"Romance, Family, Animation, Fantasy",beauty and the beast,FAM0407
+Beauty and the Beast,2017,https://www.themoviedb.org/movie/321612,321612,"Family, Fantasy, Romance",beauty and the beast,FAM0407
+La Totale!,1991,https://www.themoviedb.org/movie/75944,75944,"Adventure, Comedy",la totale,FAM0408
+True Lies,1994,https://www.themoviedb.org/movie/36955,36955,"Action, Thriller",true lies,FAM0408
+My Father the Hero,1991,https://www.themoviedb.org/movie/20978,20978,"Comedy, Drama",my father the hero,FAM0409
+My Father the Hero,1994,https://www.themoviedb.org/movie/10486,10486,"Family, Comedy, Romance",my father the hero,FAM0409
+Point Break,1991,https://www.themoviedb.org/movie/1089,1089,"Action, Thriller, Crime",point break,FAM0410
+Point Break,2015,https://www.themoviedb.org/movie/257088,257088,"Action, Adventure, Crime, Thriller",point break,FAM0410
+Aladdin,1992,https://www.themoviedb.org/movie/812,812,"Animation, Family, Adventure, Fantasy, Romance",aladdin,FAM0411
+Aladdin,2019,https://www.themoviedb.org/movie/420817,420817,"Adventure, Fantasy, Romance, Family",aladdin,FAM0411
+Meet the Parents,1992,https://www.themoviedb.org/movie/236405,236405,"Comedy, Romance",meet the parents,FAM0412
+Meet the Parents,2000,https://www.themoviedb.org/movie/1597,1597,"Comedy, Romance",meet the parents,FAM0412
+White Men Can't Jump,1992,https://www.themoviedb.org/movie/10158,10158,"Comedy, Drama",white men can t jump,FAM0413
+White Men Can't Jump,2023,https://www.themoviedb.org/movie/920125,920125,"Comedy, Drama",white men can t jump,FAM0413
+Hodet over vannet,1993,https://www.themoviedb.org/movie/40918,40918,"Comedy, Thriller",hodet over vannet,FAM0414
+Head Above Water,1996,https://www.themoviedb.org/movie/11103,11103,"Comedy, Thriller",head above water,FAM0414
+Les Visiteurs,1993,https://www.themoviedb.org/movie/11687,11687,"Fantasy, Comedy",les visiteurs,FAM0415
+Just Visiting,2001,https://www.themoviedb.org/movie/56715,56715,"Comedy, Fantasy, Science Fiction",just visiting,FAM0415
+Eat Drink Man Woman,1994,https://www.themoviedb.org/movie/10451,10451,"Comedy, Drama, Romance",eat drink man woman,FAM0416
+Tortilla Soup,2001,https://www.themoviedb.org/movie/15104,15104,"Comedy, Drama, Romance",tortilla soup,FAM0416
+"Louis 19, King of the Airwaves",1994,https://www.themoviedb.org/movie/196875,196875,Comedy,louis 19 king of the airwaves,FAM0417
+EDtv,1999,https://www.themoviedb.org/movie/11374,11374,Comedy,edtv,FAM0417
+Forrest Gump,1994,https://www.themoviedb.org/movie/13,13,"Comedy, Drama, Romance",forrest gump,FAM0418
+Laal Singh Chaddha,2022,https://www.themoviedb.org/movie/601635,601635,"Drama, Romance, Comedy",laal singh chaddha,FAM0418
+Un indien dans la ville,1994,https://www.themoviedb.org/movie/11479,11479,"Adventure, Drama, Family, Comedy",un indien dans la ville,FAM0419
+Jungle 2 Jungle,1997,https://www.themoviedb.org/movie/9446,9446,"Comedy, Family",jungle 2 jungle,FAM0419
+The Lion King,1994,https://www.themoviedb.org/movie/8587,8587,"Animation, Family, Drama, Adventure",lion king,FAM0420
+The Lion King,2019,https://www.themoviedb.org/movie/420818,420818,"Adventure, Drama, Family, Animation",lion king,FAM0420
+Neuf mois,1994,https://www.themoviedb.org/movie/63150,63150,Comedy,neuf mois,FAM0421
+Nine Months,1995,https://www.themoviedb.org/movie/11472,11472,"Romance, Comedy",nine months,FAM0421
+Nightwatch,1994,https://www.themoviedb.org/movie/6498,6498,"Horror, Thriller",nightwatch,FAM0422
+Nightwatch,1997,https://www.themoviedb.org/movie/2212,2212,"Drama, Horror, Mystery, Thriller",nightwatch,FAM0422
+Kiss of Death,1995,https://www.themoviedb.org/movie/6071,6071,"Crime, Thriller, Drama",kiss of death,FAM0423
+The Mighty Kong,1998,https://www.themoviedb.org/movie/291309,291309,"Adventure, Animation, Family",mighty kong,FAM0423
+The Apartment,1996,https://www.themoviedb.org/movie/12531,12531,"Thriller, Comedy",apartment,FAM0424
+Wicker Park,2004,https://www.themoviedb.org/movie/11208,11208,"Drama, Mystery, Romance, Thriller",wicker park,FAM0424
+Don't Look Up,1996,https://www.themoviedb.org/movie/58405,58405,Horror,don t look up,FAM0425
+Ghost Theater,2015,https://www.themoviedb.org/movie/371241,371241,Horror,ghost theater,FAM0425
+Shall We Dance?,1996,https://www.themoviedb.org/movie/11239,11239,"Music, Comedy, Drama, Romance",shall we dance,FAM0426
+Shall We Dance?,2004,https://www.themoviedb.org/movie/4380,4380,"Drama, Romance, Comedy",shall we dance,FAM0426
+Cube,1997,https://www.themoviedb.org/movie/431,431,"Thriller, Science Fiction, Mystery",cube,FAM0427
+Cube,2021,https://www.themoviedb.org/movie/792678,792678,"Thriller, Mystery, Science Fiction",cube,FAM0427
+Funny Games,1997,https://www.themoviedb.org/movie/10234,10234,"Drama, Horror, Thriller",funny games,FAM0428
+Funny Games,2007,https://www.themoviedb.org/movie/8461,8461,"Thriller, Horror",funny games,FAM0428
+Insomnia,1997,https://www.themoviedb.org/movie/26610,26610,"Thriller, Crime, Mystery",insomnia,FAM0429
+Insomnia,2002,https://www.themoviedb.org/movie/320,320,"Thriller, Crime, Drama",insomnia,FAM0429
+My Father's Dragon,1997,https://www.themoviedb.org/movie/92113,92113,"Animation, Fantasy",my father s dragon,FAM0430
+My Father's Dragon,2022,https://www.themoviedb.org/movie/560052,560052,"Animation, Adventure, Family, Fantasy, Comedy",my father s dragon,FAM0430
+Open Your Eyes,1997,https://www.themoviedb.org/movie/1902,1902,"Drama, Thriller, Science Fiction",open your eyes,FAM0431
+Vanilla Sky,2001,https://www.themoviedb.org/movie/1903,1903,"Mystery, Romance, Science Fiction",vanilla sky,FAM0431
+Cats,1998,https://www.themoviedb.org/movie/26598,26598,"Music, Fantasy",cats,FAM0432
+Cats,2019,https://www.themoviedb.org/movie/536869,536869,"Fantasy, Comedy, Drama",cats,FAM0432
+Mulan,1998,https://www.themoviedb.org/movie/10674,10674,"Animation, Family, Adventure",mulan,FAM0433
+Mulan,2020,https://www.themoviedb.org/movie/337401,337401,"Adventure, Fantasy, Action",mulan,FAM0433
+Pokémon: The First Movie,1998,https://www.themoviedb.org/movie/10228,10228,"Animation, Family, Adventure, Fantasy, Action",pok mon the first movie,FAM0434
+Pokémon: Mewtwo Strikes Back – Evolution,2019,https://www.themoviedb.org/movie/571891,571891,"Animation, Adventure, Fantasy, Action, Family",pok mon mewtwo strikes back evolution,FAM0434
+Ringu,1998,https://www.themoviedb.org/movie/2671,2671,"Horror, Thriller",ringu,FAM0435
+The Ring,2002,https://www.themoviedb.org/movie/565,565,"Horror, Mystery",ring,FAM0435
+Stepmom,1998,https://www.themoviedb.org/movie/9441,9441,"Drama, Romance, Comedy",stepmom,FAM0436
+We Are Family,2010,https://www.themoviedb.org/movie/44972,44972,"Drama, Family",we are family,FAM0436
+Taxi,1998,https://www.themoviedb.org/movie/2330,2330,"Action, Comedy, Crime, Adventure",taxi,FAM0437
+Taxi,2004,https://www.themoviedb.org/movie/11045,11045,"Action, Comedy, Thriller, Crime",taxi,FAM0437
+Bangkok Dangerous,1999,https://www.themoviedb.org/movie/3173,3173,"Thriller, Action, Crime",bangkok dangerous,FAM0438
+Bangkok Dangerous,2008,https://www.themoviedb.org/movie/13184,13184,"Action, Crime, Thriller",bangkok dangerous,FAM0438
+Body and Soul,1999,https://www.themoviedb.org/movie/132785,132785,Drama,body and soul,FAM0439
+Down to Earth,2001,https://www.themoviedb.org/movie/16300,16300,"Fantasy, Comedy, Romance",down to earth,FAM0439
+Himitsu,1999,https://www.themoviedb.org/movie/88517,88517,"Drama, Fantasy",himitsu,FAM0440
+The Secret,2007,https://www.themoviedb.org/movie/15403,15403,"Animation, Science Fiction, Family, TV Movie, Action",secret,FAM0440
+The Mummy,1999,https://www.themoviedb.org/movie/564,564,"Adventure, Action, Fantasy",mummy,FAM0441
+The Mummy,2017,https://www.themoviedb.org/movie/282035,282035,"Fantasy, Thriller, Action, Adventure, Horror",mummy,FAM0441
+Nueve Reinas,2000,https://www.themoviedb.org/movie/18079,18079,"Crime, Thriller, Drama",nueve reinas,FAM0442
+Criminal,2004,https://www.themoviedb.org/movie/14198,14198,"Action, Comedy, Thriller",criminal,FAM0442
+Das Experiment,2001,https://www.themoviedb.org/movie/575,575,"Drama, Thriller",das experiment,FAM0443
+The Experiment,2010,https://www.themoviedb.org/movie/43549,43549,"Thriller, Drama",experiment,FAM0443
+I Am Sam,2001,https://www.themoviedb.org/movie/10950,10950,Drama,i am sam,FAM0444
+Main Aisa Hi Hoon,2005,https://www.themoviedb.org/movie/316812,316812,"Drama, Family",main aisa hi hoon,FAM0444
+The Last Kiss,2001,https://www.themoviedb.org/movie/12308,12308,"Comedy, Drama, Romance",last kiss,FAM0445
+The Last Kiss,2006,https://www.themoviedb.org/movie/7511,7511,"Comedy, Drama, Romance",last kiss,FAM0445
+Mostly Martha,2001,https://www.themoviedb.org/movie/3640,3640,"Romance, Comedy",mostly martha,FAM0446
+No Reservations,2007,https://www.themoviedb.org/movie/3638,3638,"Comedy, Romance, Drama",no reservations,FAM0446
+Pulse,2001,https://www.themoviedb.org/movie/27324,27324,"Horror, Thriller, Mystery",pulse,FAM0447
+Pulse,2006,https://www.themoviedb.org/movie/9682,9682,"Horror, Science Fiction, Mystery, Drama",pulse,FAM0447
+Cabin Fever,2002,https://www.themoviedb.org/movie/11547,11547,Horror,cabin fever,FAM0448
+Cabin Fever,2016,https://www.themoviedb.org/movie/298584,298584,Horror,cabin fever,FAM0448
+Dark Water,2002,https://www.themoviedb.org/movie/12205,12205,"Horror, Mystery, Thriller",dark water,FAM0449
+Dark Water,2005,https://www.themoviedb.org/movie/9009,9009,"Horror, Mystery",dark water,FAM0449
+Infernal Affairs,2002,https://www.themoviedb.org/movie/10775,10775,"Drama, Action, Thriller, Crime, Mystery",infernal affairs,FAM0450
+The Departed,2006,https://www.themoviedb.org/movie/1422,1422,"Drama, Thriller, Crime",departed,FAM0450
+Lilo & Stitch,2002,https://www.themoviedb.org/movie/11544,11544,"Animation, Family, Comedy",lilo stitch,FAM0451
+Lilo & Stitch,2025,https://www.themoviedb.org/movie/552524,552524,"Family, Science Fiction, Comedy",lilo stitch,FAM0451
+Ben Hur,2003,https://www.themoviedb.org/movie/64609,64609,"Family, Animation",ben hur,FAM0452
+Ben-Hur,2016,https://www.themoviedb.org/movie/271969,271969,"Action, History, Adventure, Drama",ben hur,FAM0452
+Nathalie...,2003,https://www.themoviedb.org/movie/38376,38376,Drama,nathalie,FAM0453
+Chloe,2009,https://www.themoviedb.org/movie/468086,468086,"Comedy, Romance, Family",chloe,FAM0453
+Kaakha Kaakha,2003,https://www.themoviedb.org/movie/330629,330629,"Crime, Thriller, Action",kaakha kaakha,FAM0454
+Gharshana,2004,https://www.themoviedb.org/movie/63671,63671,"Crime, Action, Thriller",gharshana,FAM0454
+Interview,2003,https://www.themoviedb.org/movie/36350,36350,Drama,interview,FAM0455
+Interview,2007,https://www.themoviedb.org/movie/8414,8414,Drama,interview,FAM0455
+Midsommer,2003,https://www.themoviedb.org/movie/16032,16032,"Drama, Horror, Mystery, Thriller",midsommer,FAM0456
+Solstice,2008,https://www.themoviedb.org/movie/14660,14660,"Drama, Horror, Mystery",solstice,FAM0456
+The Room,2003,https://www.themoviedb.org/movie/17473,17473,"Drama, Romance",room,FAM0457
+The Room Returns!,2025,https://www.themoviedb.org/movie/1097699,1097699,"Drama, Romance",room returns,FAM0457
+Brødre,2004,https://www.themoviedb.org/movie/3875,3875,"Drama, War",br dre,FAM0458
+Brothers,2009,https://www.themoviedb.org/movie/7445,7445,"Drama, Thriller, War",brothers,FAM0458
+District 13,2004,https://www.themoviedb.org/movie/10045,10045,"Action, Thriller, Science Fiction",district 13,FAM0459
+Brick Mansions,2014,https://www.themoviedb.org/movie/254473,254473,"Action, Crime, Drama",brick mansions,FAM0459
+Sigaw,2004,https://www.themoviedb.org/movie/110285,110285,"Thriller, Horror",sigaw,FAM0460
+The Echo,2008,https://www.themoviedb.org/movie/25329,25329,"Horror, Thriller, Drama, Mystery",echo,FAM0460
+Murder,2004,https://www.themoviedb.org/movie/20534,20534,"Drama, Thriller",murder,FAM0461
+House of Wax,2005,https://www.themoviedb.org/movie/10066,10066,"Horror, Thriller, Mystery",house of wax,FAM0461
+Le Convoyeur,2004,https://www.themoviedb.org/movie/21776,21776,"Action, Drama, Crime, Thriller",le convoyeur,FAM0462
+Wrath of Man,2021,https://www.themoviedb.org/movie/637649,637649,"Thriller, Crime, Drama",wrath of man,FAM0462
+One Missed Call,2004,https://www.themoviedb.org/movie/9694,9694,"Horror, Mystery, Fantasy",one missed call,FAM0463
+One Missed Call,2008,https://www.themoviedb.org/movie/6933,6933,"Horror, Mystery, Thriller",one missed call,FAM0463
+Sideways,2004,https://www.themoviedb.org/movie/9675,9675,"Comedy, Drama, Romance",sideways,FAM0464
+Sideways,2009,https://www.themoviedb.org/movie/128169,128169,"Comedy, Romance",sideways,FAM0464
+13 Tzameti,2005,https://www.themoviedb.org/movie/6077,6077,"Action, Thriller",13 tzameti,FAM0465
+13,2010,https://www.themoviedb.org/movie/44982,44982,"Drama, Thriller",13,FAM0465
+Anthony Zimmer,2005,https://www.themoviedb.org/movie/11604,11604,"Thriller, Crime, Drama, Romance",anthony zimmer,FAM0466
+The Tourist,2010,https://www.themoviedb.org/movie/37710,37710,"Action, Thriller, Romance",tourist,FAM0466
+King Kong,2005,https://www.themoviedb.org/movie/254,254,"Adventure, Drama, Action",king kong,FAM0467
+Carrie,2013,https://www.themoviedb.org/movie/133805,133805,"Drama, Horror",carrie,FAM0467
+Ghajini,2005,https://www.themoviedb.org/movie/69636,69636,"Action, Romance, Thriller",ghajini,FAM0468
+Ghajini,2008,https://www.themoviedb.org/movie/14070,14070,"Action, Romance, Thriller",ghajini,FAM0468
+Classmates,2006,https://www.themoviedb.org/movie/325914,325914,"Mystery, Romance",classmates,FAM0469
+Classmates,2007,https://www.themoviedb.org/movie/533852,533852,"Drama, Romance",classmates,FAM0469
+Billa,2007,https://www.themoviedb.org/movie/23767,23767,"Action, Thriller",billa,FAM0470
+Billa,2009,https://www.themoviedb.org/movie/23766,23766,"Comedy, Drama",billa,FAM0470
+Death at a Funeral,2007,https://www.themoviedb.org/movie/2196,2196,"Comedy, Drama",death at a funeral,FAM0471
+Death at a Funeral,2010,https://www.themoviedb.org/movie/34803,34803,Comedy,death at a funeral,FAM0471
+The Debt,2007,https://www.themoviedb.org/movie/35941,35941,Documentary,debt,FAM0472
+The Debt,2010,https://www.themoviedb.org/movie/48289,48289,"Drama, Thriller",debt,FAM0472
+REC,2007,https://www.themoviedb.org/movie/38410,38410,"Horror, Mystery, Crime, Thriller",rec,FAM0473
+Quarantine,2008,https://www.themoviedb.org/movie/13812,13812,"Horror, Science Fiction, Thriller",quarantine,FAM0473
+Anything for Her,2008,https://www.themoviedb.org/movie/14556,14556,"Drama, Thriller",anything for her,FAM0474
+The Next Three Days,2010,https://www.themoviedb.org/movie/43539,43539,"Romance, Drama, Thriller, Crime",next three days,FAM0474
+Loft,2008,https://www.themoviedb.org/movie/17845,17845,"Drama, Mystery, Romance",loft,FAM0475
+Loft,2010,https://www.themoviedb.org/movie/57059,57059,Thriller,loft,FAM0475
+LOL (Laughing Out Loud),2008,https://www.themoviedb.org/movie/21861,21861,Comedy,lol laughing out loud,FAM0476
+LOL,2012,https://www.themoviedb.org/movie/80271,80271,"Drama, Comedy, Romance",lol,FAM0476
+Martyrs,2008,https://www.themoviedb.org/movie/9539,9539,"Horror, Drama, Thriller",martyrs,FAM0477
+Martyrs,2015,https://www.themoviedb.org/movie/362057,362057,"Horror, Mystery",martyrs,FAM0477
+Suspect X aka Yôgisha X no kenshin,2008,https://www.themoviedb.org/movie/42341,42341,"Crime, Drama, Mystery",suspect x aka y gisha x no kenshin,FAM0478
+Perfect Number aka Yong-eui-ja X,2012,https://www.themoviedb.org/movie/138665,138665,"Thriller, Mystery",perfect number aka yong eui ja x,FAM0478
+Ready,2008,https://www.themoviedb.org/movie/15110,15110,"Action, Documentary",ready,FAM0479
+Ready,2011,https://www.themoviedb.org/movie/65946,65946,"Action, Comedy",ready,FAM0479
+Scandal Makers,2008,https://www.themoviedb.org/movie/18384,18384,"Comedy, Drama",scandal makers,FAM0480
+Scandal Maker,2016,https://www.themoviedb.org/movie/498833,498833,"Comedy, Family, Drama",scandal maker,FAM0480
+Gulumaal: The Escape,2009,https://www.themoviedb.org/movie/330505,330505,"Thriller, Comedy",gulumaal the escape,FAM0481
+All the Best,2012,https://www.themoviedb.org/movie/226292,226292,"Drama, Comedy",all the best,FAM0481
+Bride Wars,2009,https://www.themoviedb.org/movie/10521,10521,"Comedy, Romance",bride wars,FAM0482
+Bride Wars,2015,https://www.themoviedb.org/movie/362519,362519,"Comedy, Romance",bride wars,FAM0482
+The Girl with the Dragon Tattoo,2009,https://www.themoviedb.org/movie/15472-man-som-hatar-kvinnor?language=en-US,15472,"Thriller, Drama",girl with the dragon tattoo,FAM0483
+The Girl with the Dragon Tattoo,2011,https://www.themoviedb.org/movie/65754-the-girl-with-the-dragon-tattoo?language=en-US,65754,"Thriller, Crime",girl with the dragon tattoo,FAM0483
+Kick,2009,https://www.themoviedb.org/movie/35067,35067,"Action, Adventure",kick,FAM0484
+Kick,2014,https://www.themoviedb.org/movie/280690,280690,"Action, Romance, Comedy, Crime",kick,FAM0484
+The Secret in Their Eyes (El secreto de sus ojos),2009,https://www.themoviedb.org/movie/25376,25376,"Mystery, Thriller, Drama",secret in their eyes el secreto de sus ojos,FAM0485
+Secret in Their Eyes,2015,https://www.themoviedb.org/movie/290751,290751,"Thriller, Mystery, Crime",secret in their eyes,FAM0485
+How to Train Your Dragon,2010,https://www.themoviedb.org/movie/10191,10191,"Fantasy, Adventure, Animation, Family",how to train your dragon,FAM0486
+How to Train Your Dragon,2025,https://www.themoviedb.org/movie/1087192,1087192,"Fantasy, Family, Action, Adventure",how to train your dragon,FAM0486
+Blind,2011,https://www.themoviedb.org/movie/79374,79374,Thriller,blind,FAM0487
+The Witness,2015,https://www.themoviedb.org/movie/356332,356332,Documentary,witness,FAM0487
+The Intouchables,2011,https://www.themoviedb.org/movie/77338,77338,"Drama, Comedy",intouchables,FAM0488
+The Upside,2019,https://www.themoviedb.org/movie/440472,440472,"Comedy, Drama",upside,FAM0488
+The Body (El Cuerpo),2012,https://www.themoviedb.org/movie/111083,111083,"Thriller, Mystery",body el cuerpo,FAM0489
+The Body,2019,https://www.themoviedb.org/movie/648316,648316,"Thriller, Mystery",body,FAM0489
+Chef,2014,https://www.themoviedb.org/movie/212778,212778,Comedy,chef,FAM0490
+Chef,2017,https://www.themoviedb.org/movie/471972,471972,"Drama, Comedy, Family",chef,FAM0490
+Veeram,2014,https://www.themoviedb.org/movie/247504,247504,"Action, Comedy",veeram,FAM0491
+Kisi Ka Bhai Kisi Ki Jaan,2023,https://www.themoviedb.org/movie/966719,966719,"Romance, Action",kisi ka bhai kisi ki jaan,FAM0491
+The Loft,2014,https://www.themoviedb.org/movie/72784,72784,Thriller,loft,FAM0492
+Kolamba Sanniya Returns,2018,https://www.themoviedb.org/movie/1050911,1050911,Comedy,kolamba sanniya returns,FAM0492
+Last Shift,2014,https://www.themoviedb.org/movie/296065,296065,"Horror, Mystery",last shift,FAM0493
+Malum,2023,https://www.themoviedb.org/movie/1094403,1094403,Horror,malum,FAM0493
+Wonderful Nightmare,2015,https://www.themoviedb.org/movie/342055,342055,Comedy,wonderful nightmare,FAM0494
+Beautiful Accident,2017,https://www.themoviedb.org/movie/420635,420635,"Comedy, Fantasy, Romance",beautiful accident,FAM0494
+A Man Called Ove,2015,https://www.themoviedb.org/movie/348678,348678,"Comedy, Drama",man called ove,FAM0495
+A Man Called Otto,2022,https://www.themoviedb.org/movie/937278,937278,"Comedy, Drama",man called otto,FAM0495
+The Guilty,2018,https://www.themoviedb.org/movie/486947,486947,"Thriller, Drama, Crime",guilty,FAM0496
+The Guilty,2021,https://www.themoviedb.org/movie/567748,567748,"Drama, Thriller",guilty,FAM0496
+Black Christmas,2019,https://www.themoviedb.org/movie/551808,551808,"Horror, Mystery",black christmas,FAM0497
+The Legend of Maula Jatt,2021,https://www.themoviedb.org/movie/464293,464293,"Drama, Fantasy, Action",legend of maula jatt,FAM0497
+Jersey,2019,https://www.themoviedb.org/movie/795776,795776,Drama,jersey,FAM0498
+Jersey,2022,https://www.themoviedb.org/movie/1032682,1032682,"Drama, Documentary",jersey,FAM0498
+Father of the Bride,2022,https://www.themoviedb.org/movie/746419,746419,"Romance, Comedy, Drama",father of the bride,FAM0499
+Vengeance in the Dreary Night,2025,https://www.themoviedb.org/movie/1463298,1463298,"Crime, Drama, Mystery, Thriller",vengeance in the dreary night,FAM0499
+Nosferatu,2023,https://www.themoviedb.org/movie/394151,394151,Horror,nosferatu,FAM0500
+Nosferatu,2024,https://www.themoviedb.org/movie/426063,426063,"Horror, Fantasy",nosferatu,FAM0500
+Vash,2023,https://www.themoviedb.org/movie/1155640,1155640,Horror,vash,FAM0501
+Shaitaan,2024,https://www.themoviedb.org/movie/1187619,1187619,"Thriller, Horror",shaitaan,FAM0501

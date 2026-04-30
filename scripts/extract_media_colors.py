@@ -2,13 +2,13 @@
 Extract visual color artifacts from poster and trailer assets.
 
 For each movie in data/analisis/movies_enriched.json:
-  1) Download poster (from TMDB) and extract a 10×5 k-means palette grid.
+  1) Download poster (from TMDB) and extract an 8×5 per-cell k-means palette grid.
   2) Download a low-quality trailer (via yt-dlp) and extract a dominant
      color for every second of video.
 
 Outputs (consolidated, written incrementally so interrupting a run
 never loses already-processed films):
-  - data/analisis/poster_palettes.json    {tmdbId: 10×5 grid of [R,G,B]}
+  - data/analisis/poster_palettes.json    {tmdbId: 8×5 grid of [R,G,B]}
   - data/analisis/trailer_timelines.json  {tmdbId: [[R,G,B], ...]} (index=sec)
   - data/poster/poster_<tmdb_id>.jpg      cached poster
   - data/trailers/trailer_<tmdb_id>.mp4   cached trailer
@@ -17,8 +17,15 @@ Usage:
   # Everything, all movies (posters + trailers). Slow. Safe to resume.
   python3 scripts/extract_media_colors.py
 
-  # Posters only — ~5-10 min for all movies.
+  # Posters only — then regenerate analytics so dominantRgb uses poster_palette:
   python3 scripts/extract_media_colors.py --skip-trailers
+  python3 scripts/generate_color_analytics.py
+
+  # Only films missing a valid 8×5 grid (catch-up).
+  python3 scripts/extract_media_colors.py --skip-trailers --only-missing
+
+  # Coverage report vs analytics.json
+  python3 scripts/report_poster_palette_coverage.py
 
   # Trailers only — re-uses posters from a previous run.
   python3 scripts/extract_media_colors.py --skip-posters
@@ -58,6 +65,50 @@ TRAILER_DIR = ROOT / "data" / "trailers"
 FEATURED_FAMILIES = {"Carrie", "Great Gatsby", "Star Is Born", "Little Mermaid"}
 GRID_ROWS = 8
 GRID_COLS = 5
+# Older runs used 10 horizontal bands × 5 columns; the UI uses the first 8 rows.
+GRID_LEGACY_ROWS = 10
+
+
+def _looks_like_image(data: bytes) -> bool:
+    if len(data) < 500:
+        return False
+    if data[:2] == b"\xff\xd8":
+        return True
+    if data[:8] == b"\x89PNG\r\n\x1a\n":
+        return True
+    if data[:4] in (b"GIF87a", b"GIF89a"):
+        return True
+    if len(data) >= 12 and data[:4] == b"RIFF" and data[8:12] == b"WEBP":
+        return True
+    return False
+
+
+def tmdb_poster_urls(poster_ref: str) -> list[str]:
+    ref = (poster_ref or "").strip()
+    if ref.startswith("http://") or ref.startswith("https://"):
+        return [ref]
+    if not ref.startswith("/"):
+        ref = "/" + ref
+    sizes = ("w500", "w780", "w342", "original")
+    return [f"https://image.tmdb.org/t/p/{sz}{ref}" for sz in sizes]
+
+
+def poster_grid_valid(grid: Any) -> bool:
+    if not isinstance(grid, list) or len(grid) not in (GRID_ROWS, GRID_LEGACY_ROWS):
+        return False
+    for row in grid:
+        if not isinstance(row, list) or len(row) != GRID_COLS:
+            return False
+        for cell in row:
+            if not isinstance(cell, (list, tuple)) or len(cell) != 3:
+                return False
+            if not all(isinstance(x, (int, float)) for x in cell):
+                return False
+    return True
+
+
+def trailer_timeline_valid(flat: Any) -> bool:
+    return isinstance(flat, list) and len(flat) > 0
 
 
 # -------------------------------------------------------------------
@@ -127,8 +178,21 @@ def dominant_repeated_pixel_rgb(
     return [int(bgr[2]), int(bgr[1]), int(bgr[0])]
 
 
-def extract_poster_grid(poster_path: Path) -> list[list[list[int]]]:
+def _poster_bgr(poster_path: Path) -> np.ndarray | None:
     img = cv2.imread(str(poster_path))
+    if img is not None and img.size > 0:
+        return img
+    try:
+        from PIL import Image
+
+        rgb = np.array(Image.open(poster_path).convert("RGB"))
+        return cv2.cvtColor(rgb, cv2.COLOR_RGB2BGR)
+    except Exception:
+        return None
+
+
+def extract_poster_grid(poster_path: Path) -> list[list[list[int]]]:
+    img = _poster_bgr(poster_path)
     if img is None:
         return []
     h, w = img.shape[:2]
@@ -184,17 +248,46 @@ def extract_trailer_timeline(
 # Downloads
 # -------------------------------------------------------------------
 
-def download_poster(url: str, output_path: Path) -> bool:
-    if output_path.exists() and output_path.stat().st_size > 0:
+def download_poster(urls: list[str], output_path: Path, *, force: bool = False) -> bool:
+    """
+    Try each URL until one yields image bytes. Reuse an existing file if it
+    decodes unless `force`.
+    Returns True when `output_path` contains a readable poster afterwards.
+    """
+    if (
+        output_path.exists()
+        and output_path.stat().st_size > 512
+        and not force
+        and _poster_bgr(output_path) is not None
+    ):
         return True
-    try:
-        response = requests.get(url, timeout=30)
-        response.raise_for_status()
-    except Exception as exc:  # noqa: BLE001
-        print(f"    poster download failed: {exc}")
-        return False
-    output_path.write_bytes(response.content)
-    return True
+    headers = {
+        "User-Agent": (
+            "RemakingColorPosterBot/1.0 "
+            "(film colour research atlas; collage-based poster sampling)"
+        ),
+    }
+    for url in urls:
+        try:
+            response = requests.get(url, timeout=45, headers=headers)
+            if response.status_code != 200:
+                continue
+            data = response.content
+            if not _looks_like_image(data):
+                continue
+            output_path.parent.mkdir(parents=True, exist_ok=True)
+            output_path.write_bytes(data)
+            if _poster_bgr(output_path) is not None:
+                return True
+            output_path.unlink(missing_ok=True)
+        except Exception as exc:  # noqa: BLE001
+            print(f"    poster fetch failed ({url[:64]}…): {exc}")
+            continue
+    return (
+        output_path.exists()
+        and output_path.stat().st_size > 512
+        and _poster_bgr(output_path) is not None
+    )
 
 
 def download_trailer(trailer_key: str, output_path: Path) -> bool:
@@ -302,6 +395,7 @@ def process_movie(
     skip_posters: bool,
     skip_trailers: bool,
     force: bool,
+    only_missing: bool,
 ) -> bool:
     tmdb_id = movie.get("tmdbId")
     if not tmdb_id:
@@ -313,26 +407,36 @@ def process_movie(
 
     # --- Poster ---
     poster_file = POSTER_DIR / f"poster_{tmdb_id}.jpg"
-    if not skip_posters and (force or key not in poster_store):
-        poster_path = movie.get("posterPath")
-        if poster_path:
-            poster_url = f"https://image.tmdb.org/t/p/w500{poster_path}"
-            if download_poster(poster_url, poster_file):
-                grid = extract_poster_grid(poster_file)
-                if grid:
-                    poster_store[key] = grid
-                    changed = True
+    if not skip_posters:
+        poster_ref = movie.get("posterPath")
+        if poster_ref:
+            existing = poster_store.get(key)
+            skip_poster = only_missing and not force and poster_grid_valid(existing)
+            if not skip_poster and (force or not poster_grid_valid(existing)):
+                urls = tmdb_poster_urls(str(poster_ref))
+                download_poster(urls, poster_file, force=force)
+                if poster_file.exists() and _poster_bgr(poster_file) is not None:
+                    grid = extract_poster_grid(poster_file)
+                    if poster_grid_valid(grid):
+                        poster_store[key] = grid
+                        changed = True
+                    else:
+                        print("    poster: could not produce a valid 8×5 grid")
 
     # --- Trailer ---
     trailer_file = TRAILER_DIR / f"trailer_{tmdb_id}.mp4"
-    if not skip_trailers and (force or key not in trailer_store):
+    if not skip_trailers:
         trailer_key = movie.get("trailerKey")
-        if trailer_key and download_trailer(str(trailer_key), trailer_file):
-            timeline = extract_trailer_timeline(trailer_file)
-            flat = _timeline_to_flat(timeline)
-            if flat:
-                trailer_store[key] = flat
-                changed = True
+        if trailer_key:
+            existing_t = trailer_store.get(key)
+            skip_trailer = only_missing and not force and trailer_timeline_valid(existing_t)
+            if not skip_trailer and (force or not trailer_timeline_valid(existing_t)):
+                if download_trailer(str(trailer_key), trailer_file):
+                    timeline = extract_trailer_timeline(trailer_file)
+                    flat = _timeline_to_flat(timeline)
+                    if flat:
+                        trailer_store[key] = flat
+                        changed = True
 
     return changed
 
@@ -356,6 +460,11 @@ def main() -> None:
         action="store_true",
         help="Re-analyse even if a JSON artifact already exists for the film.",
     )
+    parser.add_argument(
+        "--only-missing",
+        action="store_true",
+        help="Skip poster rows that already have a valid 8×5 grid, and trailer rows with a non-empty timeline.",
+    )
     args = parser.parse_args()
 
     movies = load_movies()
@@ -377,21 +486,14 @@ def main() -> None:
     poster_store = _load_json(POSTER_PALETTES)
     trailer_store = _load_json(TRAILER_TIMELINES)
 
-    # When --force, drop in-memory entries whose grid shape does not match
-    # the current GRID_ROWS × GRID_COLS config. This lets a run with
-    # `--force --skip-trailers` replace stale 5×10 grids with fresh 5×8s
-    # WITHOUT wiping films that aren't in the current filter set.
+    # When --force, drop in-memory poster rows that are not a valid 8×5 grid so
+    # they get re-extracted without touching films outside the current filter.
     if args.force:
-        stale = [
-            tid for tid, grid in poster_store.items()
-            if not grid
-            or len(grid) != GRID_ROWS
-            or len(grid[0] or []) != GRID_COLS
-        ]
+        stale = [tid for tid, grid in poster_store.items() if not poster_grid_valid(grid)]
         for tid in stale:
             poster_store.pop(tid)
         if stale:
-            print(f"dropped {len(stale)} stale-shape poster entries; will re-extract")
+            print(f"dropped {len(stale)} invalid poster entries; will re-extract")
 
     total = len(movies)
     start = time.time()
@@ -411,6 +513,7 @@ def main() -> None:
                 skip_posters=args.skip_posters,
                 skip_trailers=args.skip_trailers,
                 force=args.force,
+                only_missing=args.only_missing,
             )
             processed += 1
             if changed:

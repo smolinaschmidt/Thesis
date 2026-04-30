@@ -1,15 +1,28 @@
 import { el, clear } from "./color.js";
 import { renderIntro } from "./intro.js";
 import { renderTimeline, computeTimelineLayout, timelineDotX } from "./timeline.js";
-import { renderMorph, renderMorphScrolly, renderSentimentToScatterPinned } from "./morph.js";
+import { renderMorphScrolly, renderSentimentToScatterPinned } from "./morph.js";
 import { renderConclusion } from "./conclusion.js";
 import { openPosterAnalysis } from "./poster-analysis.js";
+import { SHOW_SENTIMENT_UI } from "./ui-flags.js";
+
+if (!SHOW_SENTIMENT_UI) {
+  document.body.classList.add("sentiment-ui-hidden");
+}
 
 /**
  * Editorial long-form — single centered column with figures that break out.
  * Each chapter has: number, italic serif heading, body, and an inline figure.
  * Figures are rendered lazily the first time they enter the viewport.
  */
+
+const C2_BODY_WITH_SENTIMENT =
+  "These are aesthetic questions, but they are also measurable. Across 650 films we extract a single dominant color and a single sentiment score — two numbers per movie, two coordinates on a map.";
+const C2_BODY_COLOR_ONLY =
+  "These are aesthetic questions, but they are also measurable. Across 650 films we extract a single dominant color per poster — one number per film, one point on a map.";
+const C2_LEDE_WITH_SENTIMENT =
+  "How does the color identity of a story change across cinematic eras? And what happens to its emotional tone?";
+const C2_LEDE_COLOR_ONLY = "How does the color identity of a story change across cinematic eras?";
 
 const CHAPTERS = [
   {
@@ -27,10 +40,8 @@ const CHAPTERS = [
     id: "c2",
     num: "02",
     heading: "A question of color.",
-    lede:
-      "How does the color identity of a story change across cinematic eras? And what happens to its emotional tone?",
-    body:
-      "These are aesthetic questions, but they are also measurable. Across 650 films we extract a single dominant color and a single sentiment score — two numbers per movie, two coordinates on a map.",
+    lede: SHOW_SENTIMENT_UI ? C2_LEDE_WITH_SENTIMENT : C2_LEDE_COLOR_ONLY,
+    body: SHOW_SENTIMENT_UI ? C2_BODY_WITH_SENTIMENT : C2_BODY_COLOR_ONLY,
     figWidth: "narrow",
     render: null,
   },
@@ -65,12 +76,24 @@ const CHAPTERS = [
         analytics: ctx.analytics,
         families: ctx.families,
         onSelectFamily: ctx.onSelectFamily,
+        showSentimentSummary: SHOW_SENTIMENT_UI,
       }),
   },
 ];
 
 /** Chapter ids with no static heading in <section>; copy lives inside pinned figures. */
-const PINNED_NO_STATIC_COPY = new Set(["c3", "c7"]);
+const PINNED_NO_STATIC_COPY = new Set(["c3", ...(SHOW_SENTIMENT_UI ? ["c7"] : [])]);
+
+function visibleChapters() {
+  return CHAPTERS.filter(
+    (ch) => (SHOW_SENTIMENT_UI || ch.id !== "c7") && ch.id !== "c2"
+  );
+}
+
+function chapterIndexById(id) {
+  const i = visibleChapters().findIndex((ch) => ch.id === id);
+  return i >= 0 ? i : 0;
+}
 
 const state = {
   combined: null,
@@ -312,7 +335,7 @@ function renderPinnedChapter3(slot, ctx) {
 
   const timelineAnchors = new Map();
   const tmdbToLane = new Map();
-  const TL = computeTimelineLayout(ctx.families);
+  const TL = computeTimelineLayout(ctx.families, { movies: ctx.movies });
   if (TL) {
     for (const d of TL.data) {
       if (d.tmdbId != null && Number.isFinite(d.tmdbId)) {
@@ -332,7 +355,11 @@ function renderPinnedChapter3(slot, ctx) {
     margin: { top: 44, right: 22, bottom: 44, left: 220 },
   };
 
-  const timelineApiRaw = renderTimeline(layerT, { families: ctx.families, omitDots: true });
+  const timelineApiRaw = renderTimeline(layerT, {
+    families: ctx.families,
+    movies: ctx.movies,
+    omitDots: true,
+  });
   let lastCh3Mt = 0;
 
   const morphApi = renderMorphScrolly(layerM, {
@@ -430,43 +457,168 @@ loadData().then(() => {
 /* ---------------- build ---------------- */
 
 function buildMasthead() {
+  const dek = SHOW_SENTIMENT_UI
+    ? "This project examines how the color identity of the same story transforms across cinematic eras. By analyzing film remakes, it traces how visual palettes evolve over time and reflect changing aesthetic conventions."
+    : "This project examines how the color identity of the same story transforms across cinematic eras. By analyzing film remakes, it traces how visual palettes evolve over time and reflect changing aesthetic conventions.";
+  const bylineSpans = SHOW_SENTIMENT_UI
+    ? [el("span", {}, "By Sofia Molina Schmidt")]
+    : [el("span", {}, "By Sofia Molina Schmidt")];
+
+  const side = el(
+    "aside",
+    { class: "feel-side", "aria-hidden": "true" },
+    el("div", { class: "feel-side__mark" })
+  );
+
+  const blob = el("div", { class: "feel-blob", "aria-hidden": "true" });
+
+  const statTop = el(
+    "div",
+    { class: "feel-stat feel-stat--top", "aria-hidden": "true" },
+    el("div", { class: "feel-stat__label" }, "+450"),
+    el("div", { class: "feel-stat__sub" }, "remake families")
+  );
+
+  const statBottom = el(
+    "div",
+    { class: "feel-stat feel-stat--bottom", "aria-hidden": "true" },
+    el("div", { class: "feel-stat__label" }, "+1000"),
+    el("div", { class: "feel-stat__sub" }, "movies")
+  );
+
+  const statLeft = el(
+    "div",
+    { class: "feel-stat feel-stat--left", "aria-hidden": "true" },
+    el("div", { class: "feel-stat__label" }, "TMDB"),
+    el("div", { class: "feel-stat__sub" }, "dataset")
+  );
+  
+
+  const hero = el(
+    "div",
+    { class: "feel-hero" },
+    el("p", { class: "feel-kicker" }, "Remaking Color"),
+    el("h1", { class: "feel-title", html: "Same story.<br/>Different color." }),
+    el("p", { class: "feel-dek" }, dek),
+    el("p", { class: "byline" }, ...bylineSpans)
+  );
+
+  const stage = el(
+    "div",
+    { class: "feel-stage" },
+    hero,
+    el("div", { class: "feel-right" }, blob, statLeft, statTop, statBottom)
+  );
+
   essay.append(
     el(
       "header",
       { class: "masthead" },
-      el("p", { class: "crumb" }, "Thesis · Data visualization · 2026"),
-      el("h1", { html: "Remaking <em>Color.</em>" }),
-      el(
-        "p",
-        { class: "dek" },
-        "The same story, retold across time, never looks the same. A visual essay on color and sentiment in film remakes, 1930 to today."
-      ),
-      el(
-        "p",
-        { class: "byline" },
-        el("span", {}, "By Sofia"),
-        el("span", {}, "Color · Sentiment"),
-        el("span", {}, "TMDB · 650 films")
-      )
+      side,
+      stage
     )
   );
+
+  // Hue wheel lightness: move mouse up/down to brighten/darken.
+  const mast = essay.querySelector(".masthead");
+  const wheel = mast?.querySelector?.(".feel-blob");
+  if (mast && wheel) {
+    const prefersReduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!prefersReduce) {
+      let targetB = 1.0;
+      let currentB = 1.0;
+      let targetRot = 0;
+      let currentRot = 0;
+      let targetX = 0;
+      let currentX = 0;
+      let targetY = 0;
+      let currentY = 0;
+      let raf = 0;
+
+      const setVar = () => {
+        wheel.style.setProperty("--wheelB", currentB.toFixed(3));
+        wheel.style.setProperty("--wheelRot", `${currentRot.toFixed(2)}deg`);
+        wheel.style.setProperty("--blobX", `${currentX.toFixed(1)}px`);
+        wheel.style.setProperty("--blobY", `${currentY.toFixed(1)}px`);
+      };
+
+      const tick = () => {
+        raf = 0;
+        currentB += (targetB - currentB) * 0.10;
+        currentX += (targetX - currentX) * 0.14;
+        currentY += (targetY - currentY) * 0.14;
+        // shortest-path angular easing
+        let d = ((targetRot - currentRot + 540) % 360) - 180;
+        currentRot = (currentRot + d * 0.10 + 360) % 360;
+        setVar();
+        if (
+          Math.abs(targetB - currentB) + Math.abs(d) > 0.12 ||
+          Math.abs(targetX - currentX) + Math.abs(targetY - currentY) > 0.6
+        )
+          raf = requestAnimationFrame(tick);
+      };
+
+      const onMove = (e) => {
+        const r = mast.getBoundingClientRect();
+        if (!r.height || !r.width) return;
+        const nx = (e.clientX - r.left) / r.width; // 0..1
+        const ny = (e.clientY - r.top) / r.height; // 0..1
+        const x01 = Math.max(0, Math.min(1, nx));
+        const y01 = Math.max(0, Math.min(1, ny));
+        const dx = Math.max(-1, Math.min(1, (e.clientX - (r.left + r.width / 2)) / (r.width / 2)));
+        const dy = Math.max(-1, Math.min(1, (e.clientY - (r.top + r.height / 2)) / (r.height / 2)));
+        const maxPx = Math.min(34, r.width * 0.07);
+        targetX = dx * maxPx;
+        targetY = dy * maxPx * 0.75;
+        // Top = brighter, bottom = darker. Make it more noticeable.
+        targetB = 1.35 - y01 * 0.75; // ~[0.60..1.35]
+        // Rotate wheel with mouse X.
+        targetRot = x01 * 360;
+        if (!raf) raf = requestAnimationFrame(tick);
+      };
+
+      mast.addEventListener("mousemove", onMove, { passive: true });
+      mast.addEventListener(
+        "mouseleave",
+        () => {
+          targetB = 1.0;
+          targetRot = 0;
+          targetX = 0;
+          targetY = 0;
+          if (!raf) raf = requestAnimationFrame(tick);
+        },
+        { passive: true }
+      );
+      setVar();
+    }
+  }
 }
 
 function buildChapters() {
-  CHAPTERS.forEach((ch, idx) => {
+  visibleChapters().forEach((ch, idx) => {
     let sectionClass = "chapter";
     if (ch.id === "c3") sectionClass = "chapter chapter--ch3-pinned";
     else if (ch.id === "c7") sectionClass = "chapter chapter--pinned-morph";
     else if (ch.id === "c10") sectionClass = "chapter chapter--bleed-shell";
-    else if (ch.id === "c1" || ch.id === "c2")
+    else if (ch.id === "c1")
       sectionClass = "chapter chapter--bleed-shell chapter--pinned-copy-rhythm";
     const section = el("section", { class: sectionClass, id: ch.id, "data-index": String(idx) });
+    const chapterNumDisplayed = String(idx + 1).padStart(2, "0");
 
     if (!PINNED_NO_STATIC_COPY.has(ch.id)) {
-      section.append(el("p", { class: "chapter-num" }, ch.num));
-      if (ch.heading) section.append(el("h2", {}, ch.heading));
-      if (ch.lede) section.append(el("p", { class: "lede" }, ch.lede));
-      if (ch.body) section.append(el("p", { class: "body" }, ch.body));
+      if (ch.id === "c1") {
+        const copy = el("div", { class: "ch01-intro-copy" });
+        copy.append(el("p", { class: "chapter-num" }, chapterNumDisplayed));
+        if (ch.heading) copy.append(el("h2", {}, ch.heading));
+        if (ch.lede) copy.append(el("p", { class: "lede" }, ch.lede));
+        if (ch.body) copy.append(el("p", { class: "body" }, ch.body));
+        section.append(copy);
+      } else {
+        section.append(el("p", { class: "chapter-num" }, chapterNumDisplayed));
+        if (ch.heading) section.append(el("h2", {}, ch.heading));
+        if (ch.lede) section.append(el("p", { class: "lede" }, ch.lede));
+        if (ch.body) section.append(el("p", { class: "body" }, ch.body));
+      }
     }
 
     if (ch.render) {
@@ -481,8 +633,8 @@ function buildChapters() {
 
     essay.append(section);
 
-    // Pull quote halfway through
-    if (idx === 2) {
+    // Pull quote after the comparison chapter (was third section when c2 existed)
+    if (ch.id === "c3") {
       essay.append(
         el(
           "aside",
@@ -577,7 +729,7 @@ function resolveSearch(query) {
   if (!match?.tmdbId) return;
   state.selectedFilmId = Number(match.tmdbId);
   // Re-render the case study chapter
-  renderChapter(4, true);
+  renderChapter(chapterIndexById("c10"), true);
   document.getElementById("c10")?.scrollIntoView({ behavior: "smooth" });
 }
 
@@ -600,7 +752,7 @@ function setupRevealAnimations() {
         io.unobserve(entry.target);
       });
     },
-    { threshold: 0.07, rootMargin: "0px 0px -6% 0px" }
+    { threshold: 0.03, rootMargin: "0px 0px -12% 0px" }
   );
 
   document.querySelectorAll(".masthead, section.chapter, aside.chapter").forEach((el) => {
@@ -611,7 +763,7 @@ function setupRevealAnimations() {
     document.querySelectorAll(".masthead, section.chapter, aside.chapter").forEach((el) => {
       if (el.classList.contains("is-revealed")) return;
       const r = el.getBoundingClientRect();
-      if (r.top < window.innerHeight * 0.92 && r.bottom > 0) el.classList.add("is-revealed");
+      if (r.top < window.innerHeight * 0.96 && r.bottom > 0) el.classList.add("is-revealed");
     });
   });
 }
@@ -636,7 +788,7 @@ function setupLazyRender() {
 function renderChapter(idx, force) {
   if (!state.combined || !state.analytics) return;
   if (!force && state.rendered.has(idx)) return;
-  const chapter = CHAPTERS[idx];
+  const chapter = visibleChapters()[idx];
   if (!chapter?.render) return;
 
   const fig = document.querySelector(`[data-render="${idx}"]`);

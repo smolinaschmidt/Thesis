@@ -69,10 +69,12 @@ def enrich_row(row: dict[str, str], api_key: str, cache: dict[str, Any]) -> dict
     tmdb_id = (row.get("tmdb_id") or "").strip()
     details = {}
     videos = {}
+    images = {}
 
     if tmdb_id:
         details_key = f"movie:{tmdb_id}:details"
         videos_key = f"movie:{tmdb_id}:videos"
+        images_key = f"movie:{tmdb_id}:images"
 
         if details_key not in cache:
             cache[details_key] = tmdb_get(f"/movie/{tmdb_id}", api_key)
@@ -84,6 +86,16 @@ def enrich_row(row: dict[str, str], api_key: str, cache: dict[str, Any]) -> dict
         details = cache.get(details_key, {})
         videos = cache.get(videos_key, {})
 
+        # Some TMDB entries omit poster_path even though posters exist. Fall back
+        # to the images endpoint to grab the first poster file_path.
+        if (details.get("poster_path") is None) and images_key not in cache:
+            try:
+                cache[images_key] = tmdb_get(f"/movie/{tmdb_id}/images", api_key)
+                time.sleep(0.06)
+            except Exception:
+                cache[images_key] = {}
+        images = cache.get(images_key, {})
+
     genres = []
     if details.get("genres"):
         genres = [genre.get("name") for genre in details["genres"] if genre.get("name")]
@@ -93,6 +105,11 @@ def enrich_row(row: dict[str, str], api_key: str, cache: dict[str, Any]) -> dict
     overview = details.get("overview")
     trailer_key = pick_trailer_key(videos) if videos else None
     poster_path = details.get("poster_path")
+    if not poster_path and images.get("posters"):
+        try:
+            poster_path = images["posters"][0].get("file_path")
+        except Exception:
+            poster_path = poster_path
 
     return {
         "title": row.get("movie", ""),

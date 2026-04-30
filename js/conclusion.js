@@ -5,18 +5,20 @@ import { el, clear } from "./color.js";
  * Each remake family reduced to a colored strip: one swatch per film,
  * in chronological order. Click a cell to load it in the case study.
  */
-export function renderConclusion(container, { combined, analytics, families, onSelectFamily }) {
+export function renderConclusion(
+  container,
+  { combined, analytics, families, onSelectFamily, showSentimentSummary = true } = {}
+) {
   clear(container);
 
-  container.append(
-    el(
-      "p",
-      { class: "small" },
-      `${analytics?.summary?.totalFamilies ?? 0} families · ${
-        analytics?.summary?.totalMovies ?? combined?.summary?.totalMovies ?? 0
-      } films · ${combined?.sentiment?.summary?.moviesWithSentiment ?? 0} with scored plot summaries`
-    )
-  );
+  let summary =
+    `${analytics?.summary?.totalFamilies ?? 0} families · ${
+      analytics?.summary?.totalMovies ?? combined?.summary?.totalMovies ?? 0
+    } films`;
+  if (showSentimentSummary) {
+    summary += ` · ${combined?.sentiment?.summary?.moviesWithSentiment ?? 0} with scored plot summaries`;
+  }
+  container.append(el("p", { class: "small" }, summary));
 
   const items = [...(families || [])]
     .filter((f) => (f.movies || []).length > 0)

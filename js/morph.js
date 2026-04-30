@@ -1,6 +1,13 @@
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 import { clear, classifyColor, brightness, COLOR_GROUPS, COLOR_MAP } from "./color.js";
 import { showTooltip, moveTooltip, hideTooltip } from "./tooltip.js";
+import {
+  morphNicedYearDomain,
+  morphDecadeStartsForBands,
+  morphBottomDecadeTickYears,
+  morphRawYearExtents,
+  morphTimeScale,
+} from "./shared-morph-time-axis.js";
 
 /**
  * Sections 5–8 — morph figures share width 2040; height 760 except ch.05 scrolly (taller canvas).
@@ -51,35 +58,37 @@ function smoothstep01(t, edge0, edge1) {
   return x * x * (3 - 2 * x);
 }
 
-/** Fixed genre columns for ch.05 scrolly (order on the x-axis). */
+/** Default when the film has no genres or none could be mapped. */
+const FALLBACK_GENRE_BUCKET = "Drama";
+
+/** Fixed genre columns for morph-by-genre (order on x-axis). Only these appear in the chart. */
 const SCROLL_GENRE_ORDER = [
-  "Action",
-  "Adventure",
-  "Animation",
-  "Comedy",
   "Drama",
-  "Fantasy",
-  "Horror",
-  "Musical",
-  "Romance",
-  "Science fiction",
+  "Comedy",
   "Thriller",
-  "Western",
+  "Action",
+  "Crime",
+  "Romance",
+  "Science Fiction",
+  "Horror",
 ];
 
-function canonicalScrollGenre(raw) {
-  if (raw == null) return null;
-  const s = String(raw)
+function normalizeGenreKey(raw) {
+  return String(raw ?? "")
     .trim()
     .toLowerCase()
     .replace(/\s+/g, " ");
+}
+
+/** Exact match to one of the eight columns (TMDB spelling). */
+function canonicalScrollGenre(raw) {
+  if (raw == null) return null;
+  const s = normalizeGenreKey(raw);
   const aliases = {
-    "science fiction": "Science fiction",
-    "science-fiction": "Science fiction",
-    "sci-fi": "Science fiction",
-    "sci fi": "Science fiction",
-    musical: "Musical",
-    music: "Musical",
+    "science fiction": "Science Fiction",
+    "science-fiction": "Science Fiction",
+    "sci-fi": "Science Fiction",
+    "sci fi": "Science Fiction",
   };
   if (aliases[s]) return aliases[s];
   for (const label of SCROLL_GENRE_ORDER) {
@@ -88,19 +97,66 @@ function canonicalScrollGenre(raw) {
   return null;
 }
 
-/** First TMDB genre on the record that matches one of the 12 columns (scan full list). */
-function bucketForFilm(d) {
-  const list = Array.isArray(d.genres) ? d.genres : [];
-  for (const g of list) {
-    const c = canonicalScrollGenre(g);
-    if (c) return c;
-  }
+/**
+ * Map any other TMDB genre string to one of the eight buckets when the title
+ * is not literally one of SCROLL_GENRE_ORDER (e.g. Adventure → Action).
+ */
+function heuristicBucketFromTmdbGenre(raw) {
+  const s = normalizeGenreKey(raw);
+  if (!s) return null;
+  const MAP = {
+    mystery: "Thriller",
+    "film noir": "Crime",
+    noir: "Crime",
+    fantasy: "Science Fiction",
+    adventure: "Action",
+    animation: "Comedy",
+    family: "Drama",
+    war: "Drama",
+    history: "Drama",
+    documentary: "Drama",
+    music: "Drama",
+    musical: "Drama",
+    western: "Action",
+    "tv movie": "Drama",
+    "tv film": "Drama",
+    sport: "Drama",
+    news: "Drama",
+    "science fiction": "Science Fiction",
+    "science-fiction": "Science Fiction",
+    "sci-fi": "Science Fiction",
+    "sci fi": "Science Fiction",
+  };
+  if (MAP[s]) return MAP[s];
   return null;
+}
+
+/** One genre string → bucket: direct eight, else heuristic, else null. */
+function genreToEightBucket(raw) {
+  return canonicalScrollGenre(raw) ?? heuristicBucketFromTmdbGenre(raw);
+}
+
+/**
+ * Chooses a bucket in order: try 1st TMDB genre, then 2nd, then 3rd…
+ * (direct match or heuristic). If nothing fits, every film still gets
+ * {@link FALLBACK_GENRE_BUCKET}.
+ */
+function bucketGenreForFilm(genresArray) {
+  const list = Array.isArray(genresArray) ? genresArray : [];
+  for (const g of list) {
+    const b = genreToEightBucket(g);
+    if (b) return b;
+  }
+  return FALLBACK_GENRE_BUCKET;
+}
+
+function bucketForFilm(d) {
+  return bucketGenreForFilm(d.genres);
 }
 
 /**
  * Sticky scrolly: year×lightness → genre stacks → horizontal colour stripes (barcode).
- * @param {{ movies: unknown[], embedInParentScroll?: boolean, embedSpec?: { viewHeight: number, margin: { top: number, right: number, bottom: number, left: number } }, timelineAnchors?: Map<string, { x: number, y: number, r: number }>, getHandoffLerp?: () => number, timelineClick?: { handoffMax: number, laneForTmdb: (tmdbKey: string) => string | null, selectLane: (laneId: string) => void }, getTimelinePanelOpen?: () => boolean, timelineYearToX?: (year: number, panelOpen: boolean) => number }} opts
+ * @param {{ movies: unknown[], embedInParentScroll?: boolean, embedSpec?: { viewHeight: number, margin: { top: number, right: number, bottom: number, left: number } }, timelineAnchors?: Map<string, { x: number, y: number, r: number }>, getHandoffLerp?: () => number, timelineClick?: { handoffMax: number, laneForTmdb: (tmdbKey: string) => string | null, selectLane: (laneId: string) => void }, getTimelinePanelOpen?: () => boolean, timelineFilmToX?: (tmdbKey: string, panelOpen: boolean) => number, timelineYearToX?: (year: number, panelOpen: boolean) => number }} opts
  */
 export function renderMorphScrolly(
   container,
@@ -112,18 +168,15 @@ export function renderMorphScrolly(
     getHandoffLerp = null,
     timelineClick = null,
     getTimelinePanelOpen = null,
+    timelineFilmToX = null,
     timelineYearToX = null,
   } = {}
 ) {
   clear(container);
 
   const MIN_VOTES = 20;
-  const radiusDomain = [5, 8.5];
-  const radiusRange = [5, 18];
-  const rScale = d3.scalePow().exponent(1.55).domain(radiusDomain).range(radiusRange).clamp(true);
-  const neutralRadius = 8;
-  const radiusFor = (d) =>
-    d.voteAverage != null && d.voteCount >= MIN_VOTES ? rScale(d.voteAverage) : neutralRadius;
+  const filmDotRadius = 12;
+  const radiusFor = () => filmDotRadius;
   const isRated = (d) => d.voteAverage != null && d.voteCount >= MIN_VOTES;
 
   const nodes = (movies || [])
@@ -154,15 +207,12 @@ export function renderMorphScrolly(
   const bottom = isEmbed && em ? scrollH - em.bottom : scrollH - MARGIN.bottom;
   const left = isEmbed && em ? em.left : MARGIN.left;
   const right = isEmbed && em ? VIEW.width - em.right : VIEW.width - MARGIN.right;
-  const yearExtent = d3.extent(nodes, (d) => d.year);
-  const xTime = d3.scaleLinear().domain(yearExtent).nice().range([left, right]);
+  const yearExtentRaw = d3.extent(nodes, (d) => d.year);
+  const domainNice = morphNicedYearDomain(yearExtentRaw);
+  const xTime = morphTimeScale(left, right, domainNice);
   const yTime = d3.scaleLinear().domain([0, 100]).nice().range([bottom, top]);
-  const yByYear = d3.scaleLinear().domain(yearExtent).nice().range([bottom - 14, top + 10]);
-  const decadeTickYearsY = d3.range(
-    Math.floor(d3.min(nodes, (d) => d.year) / 10) * 10,
-    Math.ceil(d3.max(nodes, (d) => d.year) / 10) * 10 + 1,
-    10
-  );
+  const yByLum = d3.scaleLinear().domain([0, 100]).nice().range([bottom - 14, top + 10]);
+  const brightnessTicks = [0, 20, 40, 60, 80, 100];
 
   const sim = d3
     .forceSimulation(nodes)
@@ -200,16 +250,17 @@ export function renderMorphScrolly(
   const stackGap = 4;
   const rStack = (d) => Math.max(4.2, Math.min(11, radiusFor(d) * 0.62));
 
+  // Stack layout (genre columns): vertical position by brightness (lum).
   genreLabels.forEach((lab) => {
     const col = nodes
       .filter((d) => d.bucket === lab)
-      .sort((a, b) => a.year - b.year || String(a.id).localeCompare(String(b.id)));
+      .sort((a, b) => a.lum - b.lum || String(a.id).localeCompare(String(b.id)));
     const cx = xBand(lab) + xBand.bandwidth() / 2;
     let belowCenter = null;
     let belowR = 0;
     col.forEach((n) => {
       const rr = rStack(n);
-      let cy = yByYear(n.year);
+      let cy = yByLum(n.lum);
       if (belowCenter != null) {
         const maxCy = belowCenter - belowR - stackGap - rr;
         cy = Math.min(cy, maxCy);
@@ -241,11 +292,11 @@ export function renderMorphScrolly(
     genreLabels.forEach((lab) => {
       const col = nodes
         .filter((d) => d.bucket === lab)
-        .sort((a, b) => a.year - b.year || String(a.title).localeCompare(String(b.title)));
+        .sort((a, b) => a.lum - b.lum || String(a.title).localeCompare(String(b.title)));
       const bw = Math.max(4, xBand.bandwidth() - 2);
       const xLeft = xBand(lab) + 1;
       col.forEach((n) => {
-        const cy = yByYear(n.year);
+        const cy = yByLum(n.lum);
         n.barX = xLeft;
         n.barW = bw;
         n.barH = lineH;
@@ -290,9 +341,9 @@ export function renderMorphScrolly(
 
   const svg = d3.select(svgNode);
 
-  const d0 = Math.floor(d3.min(nodes, (d) => d.year) / 10) * 10;
-  const d1 = Math.ceil(d3.max(nodes, (d) => d.year) / 10) * 10;
-  const decadeYears = d3.range(d0, d1 + 1, 10);
+  const yrExt = morphRawYearExtents(nodes);
+  const decadeYears =
+    yrExt != null ? morphDecadeStartsForBands(yrExt[0], yrExt[1]) : [];
 
   const gBandsTime = svg.append("g").attr("class", "morph-bands-time");
   for (let i = 0; i < decadeYears.length - 1; i++) {
@@ -362,7 +413,7 @@ export function renderMorphScrolly(
       .attr("fill", MUTED)
       .attr("font-family", FONT)
       .attr("font-size", 17)
-      .text("Scroll — the same films regroup into the twelve genre columns below.");
+      .text("Scroll — the same films regroup into eight genre columns below.");
 
     gHeaderGenre
       .append("text")
@@ -381,7 +432,7 @@ export function renderMorphScrolly(
       .attr("font-family", FONT)
       .attr("font-size", 17)
       .text(
-        "Each film uses the first TMDB genre that matches the fixed list. The vertical scale is by decade (older toward the bottom)."
+        "Each film is assigned using its TMDB genres in order: the first that maps to one of the eight columns (direct match or mapped, e.g. Adventure→Action). Vertical scale is poster brightness (darker toward the bottom)."
       );
 
     gHeaderBarcode
@@ -401,7 +452,7 @@ export function renderMorphScrolly(
       .attr("font-family", FONT)
       .attr("font-size", 17)
       .text(
-        "Horizontal stripes — one film per stripe, aligned to the same decade scale on the left."
+        "Horizontal stripes — one film per stripe, aligned to the same brightness scale on the left."
       );
   } else {
     gHeaderTime.style("display", "none");
@@ -409,11 +460,8 @@ export function renderMorphScrolly(
     gHeaderBarcode.style("display", "none");
   }
 
-  const decadeTicks = d3.range(
-    Math.ceil(d3.min(nodes, (d) => d.year) / 10) * 10,
-    d3.max(nodes, (d) => d.year) + 1,
-    10
-  );
+  const decadeTicks =
+    yrExt != null ? morphBottomDecadeTickYears(yrExt[0], yrExt[1]) : [];
   const gAxisTimeX = svg
     .append("g")
     .attr("transform", `translate(0, ${bottom})`)
@@ -446,9 +494,9 @@ export function renderMorphScrolly(
     .attr("transform", `translate(${left}, 0)`)
     .call(
       d3
-        .axisLeft(yByYear)
-        .tickValues(decadeTickYearsY)
-        .tickFormat((y) => `${y}s`)
+        .axisLeft(yByLum)
+        .tickValues(brightnessTicks)
+        .tickFormat((v) => String(Math.round(v)))
         .tickSize(0)
     )
     .call((g) => g.select(".domain").remove());
@@ -463,7 +511,7 @@ export function renderMorphScrolly(
   genreLabels.forEach((lab) => {
     const cx = xBand(lab) + xBand.bandwidth() / 2;
     const short =
-      lab === "Science fiction"
+      lab === "Science Fiction"
         ? "Sci-fi"
         : lab.length > 11
           ? `${lab.slice(0, 10)}…`
@@ -620,7 +668,11 @@ export function renderMorphScrolly(
       if (anc && hlRaw < 1) {
         const panelOpen = typeof getTimelinePanelOpen === "function" ? getTimelinePanelOpen() : false;
         const anchorX =
-          typeof timelineYearToX === "function" ? timelineYearToX(d.year, panelOpen) : anc.x;
+          typeof timelineFilmToX === "function"
+            ? timelineFilmToX(d.id, panelOpen)
+            : typeof timelineYearToX === "function"
+              ? timelineYearToX(d.year, panelOpen)
+              : anc.x;
         const cxm = x + w / 2;
         const cym = y + h / 2;
         const rm = Math.min(rx, w / 2, h / 2);
@@ -1069,13 +1121,8 @@ function hash32(str) {
 
 function drawColorOverTime(svg, movies) {
   const MIN_VOTES = 20;
-  const radiusDomain = [5, 8.5];
-  const radiusRange = [5, 18];
-  const rScale = d3.scalePow().exponent(1.55).domain(radiusDomain).range(radiusRange).clamp(true);
-  const neutralRadius = 8;
-
-  const radiusFor = (d) =>
-    d.voteAverage != null && d.voteCount >= MIN_VOTES ? rScale(d.voteAverage) : neutralRadius;
+  const filmDotRadius = 12;
+  const radiusFor = () => filmDotRadius;
   const isRated = (d) => d.voteAverage != null && d.voteCount >= MIN_VOTES;
 
   const nodes = (movies || [])
@@ -1098,7 +1145,7 @@ function drawColorOverTime(svg, movies) {
   drawMorphHeader(
     svg,
     "Colour through the years",
-    "Each dot is one remake. Horizontal: release year · Vertical: how light the dominant colour is · Fill: that colour · Size: TMDB popularity (score, when enough votes)"
+    "Each dot is one remake. Horizontal: release year · Vertical: how light the dominant colour is · Fill: that colour"
   );
 
   const { top, bottom, left, right } = plotBounds();
@@ -1237,22 +1284,25 @@ function drawColorOverTime(svg, movies) {
 
 function buildGenreRows(movies) {
   const table = new Map();
+  SCROLL_GENRE_ORDER.forEach((g) => table.set(g, new Map()));
+
   (movies || []).forEach((movie) => {
+    const bucket = bucketGenreForFilm(movie.genres);
     const group = classifyColor(movie.dominantHex);
-    (movie.genres || []).forEach((genre) => {
-      if (!table.has(genre)) table.set(genre, new Map());
-      const row = table.get(genre);
-      row.set(group, (row.get(group) || 0) + 1);
-    });
+    const row = table.get(bucket);
+    if (!row) return;
+    row.set(group, (row.get(group) || 0) + 1);
   });
-  return [...table.entries()]
-    .map(([genre, map]) => ({
+
+  return SCROLL_GENRE_ORDER.map((genre) => {
+    const map = table.get(genre);
+    const total = [...map.values()].reduce((a, b) => a + b, 0);
+    return {
       genre,
-      total: [...map.values()].reduce((a, b) => a + b, 0),
+      total,
       dist: COLOR_GROUPS.map((group) => ({ group, value: map.get(group) || 0 })),
-    }))
-    .sort((a, b) => b.total - a.total)
-    .slice(0, 8);
+    };
+  }).filter((r) => r.total > 0);
 }
 
 function drawGenreStacks(svg, genreRows) {
@@ -1261,7 +1311,7 @@ function drawGenreStacks(svg, genreRows) {
   drawMorphHeader(
     svg,
     "Which hues show up in each genre?",
-    "Bars are TMDB genres (top 8 by film count). Segments stack our seven chromatic families — counts of remakes whose dominant colour falls in each family."
+    "Bars are counts for the eight genre columns. Each film is assigned by scanning TMDB genres in order (first match among the eight, or a mapped equivalent like Adventure→Action); if nothing matches, Drama."
   );
 
   const stackData = genreRows.map((genre) => {
