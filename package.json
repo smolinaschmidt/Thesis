@@ -7,8 +7,5 @@
     "start": "python3 -m http.server 5173",
     "serve": "python3 -m http.server 5173"
   },
-  "license": "MIT",
-  "dependencies": {
-    "gsap": "^3.15.0"
-  }
+  "license": "MIT"
 }

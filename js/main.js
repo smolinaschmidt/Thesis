@@ -458,21 +458,140 @@ loadData().then(() => {
 
 function buildMasthead() {
   const dek = SHOW_SENTIMENT_UI
-    ? "The same story, retold across time, never looks the same. A visual essay on color and sentiment in film remakes, 1930 to today."
-    : "The same story, retold across time, never looks the same. A visual essay on color in film remakes, 1930 to today.";
+    ? "This project examines how the color identity of the same story transforms across cinematic eras. By analyzing film remakes, it traces how visual palettes evolve over time and reflect changing aesthetic conventions."
+    : "This project examines how the color identity of the same story transforms across cinematic eras. By analyzing film remakes, it traces how visual palettes evolve over time and reflect changing aesthetic conventions.";
   const bylineSpans = SHOW_SENTIMENT_UI
-    ? [el("span", {}, "By Sofia"), el("span", {}, "Color · Sentiment"), el("span", {}, "TMDB · 650 films")]
-    : [el("span", {}, "By Sofia"), el("span", {}, "Color"), el("span", {}, "TMDB · 650 films")];
+    ? [el("span", {}, "By Sofia Molina Schmidt")]
+    : [el("span", {}, "By Sofia Molina Schmidt")];
+
+  const side = el(
+    "aside",
+    { class: "feel-side", "aria-hidden": "true" },
+    el("div", { class: "feel-side__mark" })
+  );
+
+  const blob = el("div", { class: "feel-blob", "aria-hidden": "true" });
+
+  const statTop = el(
+    "div",
+    { class: "feel-stat feel-stat--top", "aria-hidden": "true" },
+    el("div", { class: "feel-stat__label" }, "+450"),
+    el("div", { class: "feel-stat__sub" }, "remake families")
+  );
+
+  const statBottom = el(
+    "div",
+    { class: "feel-stat feel-stat--bottom", "aria-hidden": "true" },
+    el("div", { class: "feel-stat__label" }, "+1000"),
+    el("div", { class: "feel-stat__sub" }, "movies")
+  );
+
+  const statLeft = el(
+    "div",
+    { class: "feel-stat feel-stat--left", "aria-hidden": "true" },
+    el("div", { class: "feel-stat__label" }, "TMDB"),
+    el("div", { class: "feel-stat__sub" }, "dataset")
+  );
+  
+
+  const hero = el(
+    "div",
+    { class: "feel-hero" },
+    el("p", { class: "feel-kicker" }, "Remaking Color"),
+    el("h1", { class: "feel-title", html: "Same story.<br/>Different color." }),
+    el("p", { class: "feel-dek" }, dek),
+    el("p", { class: "byline" }, ...bylineSpans)
+  );
+
+  const stage = el(
+    "div",
+    { class: "feel-stage" },
+    hero,
+    el("div", { class: "feel-right" }, blob, statLeft, statTop, statBottom)
+  );
+
   essay.append(
     el(
       "header",
       { class: "masthead" },
-      el("p", { class: "crumb" }, "Thesis · Data visualization · 2026"),
-      el("h1", { html: "Remaking <em>Color.</em>" }),
-      el("p", { class: "dek" }, dek),
-      el("p", { class: "byline" }, ...bylineSpans)
+      side,
+      stage
     )
   );
+
+  // Hue wheel lightness: move mouse up/down to brighten/darken.
+  const mast = essay.querySelector(".masthead");
+  const wheel = mast?.querySelector?.(".feel-blob");
+  if (mast && wheel) {
+    const prefersReduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!prefersReduce) {
+      let targetB = 1.0;
+      let currentB = 1.0;
+      let targetRot = 0;
+      let currentRot = 0;
+      let targetX = 0;
+      let currentX = 0;
+      let targetY = 0;
+      let currentY = 0;
+      let raf = 0;
+
+      const setVar = () => {
+        wheel.style.setProperty("--wheelB", currentB.toFixed(3));
+        wheel.style.setProperty("--wheelRot", `${currentRot.toFixed(2)}deg`);
+        wheel.style.setProperty("--blobX", `${currentX.toFixed(1)}px`);
+        wheel.style.setProperty("--blobY", `${currentY.toFixed(1)}px`);
+      };
+
+      const tick = () => {
+        raf = 0;
+        currentB += (targetB - currentB) * 0.10;
+        currentX += (targetX - currentX) * 0.14;
+        currentY += (targetY - currentY) * 0.14;
+        // shortest-path angular easing
+        let d = ((targetRot - currentRot + 540) % 360) - 180;
+        currentRot = (currentRot + d * 0.10 + 360) % 360;
+        setVar();
+        if (
+          Math.abs(targetB - currentB) + Math.abs(d) > 0.12 ||
+          Math.abs(targetX - currentX) + Math.abs(targetY - currentY) > 0.6
+        )
+          raf = requestAnimationFrame(tick);
+      };
+
+      const onMove = (e) => {
+        const r = mast.getBoundingClientRect();
+        if (!r.height || !r.width) return;
+        const nx = (e.clientX - r.left) / r.width; // 0..1
+        const ny = (e.clientY - r.top) / r.height; // 0..1
+        const x01 = Math.max(0, Math.min(1, nx));
+        const y01 = Math.max(0, Math.min(1, ny));
+        const dx = Math.max(-1, Math.min(1, (e.clientX - (r.left + r.width / 2)) / (r.width / 2)));
+        const dy = Math.max(-1, Math.min(1, (e.clientY - (r.top + r.height / 2)) / (r.height / 2)));
+        const maxPx = Math.min(34, r.width * 0.07);
+        targetX = dx * maxPx;
+        targetY = dy * maxPx * 0.75;
+        // Top = brighter, bottom = darker. Make it more noticeable.
+        targetB = 1.35 - y01 * 0.75; // ~[0.60..1.35]
+        // Rotate wheel with mouse X.
+        targetRot = x01 * 360;
+        if (!raf) raf = requestAnimationFrame(tick);
+      };
+
+      mast.addEventListener("mousemove", onMove, { passive: true });
+      mast.addEventListener(
+        "mouseleave",
+        () => {
+          targetB = 1.0;
+          targetRot = 0;
+          targetX = 0;
+          targetY = 0;
+          if (!raf) raf = requestAnimationFrame(tick);
+        },
+        { passive: true }
+      );
+      setVar();
+    }
+  }
 }
 
 function buildChapters() {
@@ -633,7 +752,7 @@ function setupRevealAnimations() {
         io.unobserve(entry.target);
       });
     },
-    { threshold: 0.07, rootMargin: "0px 0px -6% 0px" }
+    { threshold: 0.03, rootMargin: "0px 0px -12% 0px" }
   );
 
   document.querySelectorAll(".masthead, section.chapter, aside.chapter").forEach((el) => {
@@ -644,7 +763,7 @@ function setupRevealAnimations() {
     document.querySelectorAll(".masthead, section.chapter, aside.chapter").forEach((el) => {
       if (el.classList.contains("is-revealed")) return;
       const r = el.getBoundingClientRect();
-      if (r.top < window.innerHeight * 0.92 && r.bottom > 0) el.classList.add("is-revealed");
+      if (r.top < window.innerHeight * 0.96 && r.bottom > 0) el.classList.add("is-revealed");
     });
   });
 }
