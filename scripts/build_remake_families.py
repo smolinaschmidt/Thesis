@@ -282,30 +282,6 @@ def attach_singletons_into_pairs(movies: list[Movie], uf: UnionFind) -> int:
                 uf.union(a, b)
                 paired += 1
 
-    # Last resort: if the user requires no singletons, pair any remaining singletons
-    # by nearest year so we create minimal (size-2) families instead of one giant bucket.
-    comps = defaultdict(list)
-    for i in range(n):
-        comps[uf.find(i)].append(i)
-    remaining = [idxs[0] for idxs in comps.values() if len(idxs) == 1]
-    if len(remaining) >= 2:
-        remaining.sort(key=lambda i: (movies[i].year if movies[i].year is not None else 9999, movies[i].normalized_title))
-        while len(remaining) >= 2:
-            a = remaining.pop(0)
-            ay = movies[a].year if movies[a].year is not None else 9999
-            # choose nearest-year mate
-            best_j = 0
-            best_d = 10_000
-            for j, b in enumerate(remaining):
-                by = movies[b].year if movies[b].year is not None else 9999
-                d = abs(by - ay)
-                if d < best_d:
-                    best_d = d
-                    best_j = j
-            b = remaining.pop(best_j)
-            uf.union(a, b)
-            paired += 1
-
     return paired
 
 

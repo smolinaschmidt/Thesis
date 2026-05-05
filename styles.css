@@ -519,12 +519,23 @@ aside.chapter {
   margin-right: 0;
   padding: clamp(0.8rem, 2.2vh, 2rem) 5vw;
   text-align: left;
+  /* Pull-quote blocks should not consume a full viewport. */
+  min-height: auto;
+  scroll-snap-stop: normal;
 }
 
 #c3.chapter--ch3-pinned {
   min-height: auto;
   padding: 0;
   max-width: none;
+  /* Make the exit into the next chapter feel softer. */
+  scroll-snap-stop: normal;
+  margin-bottom: clamp(22px, 6vh, 64px);
+}
+
+/* Add whitespace before the next chapter after section 2. */
+#c3 + section.chapter {
+  padding-top: clamp(18px, 5vh, 56px);
 }
 
 .chapter--ch3-pinned .fig--bleed {
@@ -1217,7 +1228,7 @@ svg text { font-family: var(--font-ui); }
   background: var(--ink);
   color: #fff;
   padding: 8px 12px;
-  border-top: 2px solid var(--accent);
+  border-top: 2px solid var(--tooltip-accent, var(--accent));
   font-family: var(--font-ui);
   font-size: 11px;
   letter-spacing: 0.02em;
@@ -1562,6 +1573,80 @@ svg text { font-family: var(--font-ui); }
   margin-top: 8px;
 }
 
+.atlas-controls {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 18px;
+  margin-top: 8px;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+}
+
+.atlas-controls__left,
+.atlas-controls__right {
+  display: flex;
+  align-items: flex-end;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.atlas-control {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 160px;
+}
+
+.atlas-control--search {
+  min-width: min(360px, 90vw);
+}
+
+.atlas-control__label {
+  font-family: var(--font-ui);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.atlas-control__select,
+.atlas-control__search {
+  font-family: var(--font-ui);
+  font-size: 14px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--rule, #e0e0e0);
+  background: transparent;
+  color: var(--ink, #111);
+  outline: none;
+}
+
+.atlas-control__select:focus,
+.atlas-control__search:focus {
+  border-color: var(--ink-faint, #999);
+}
+
+.atlas-range {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.atlas-range__input {
+  width: 220px;
+}
+
+.atlas-range__value {
+  font-family: var(--font-ui);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft, #444);
+  min-width: 52px;
+  text-align: right;
+}
+
 .sm-cell {
   border: none;
   padding: 0;
@@ -1662,7 +1747,7 @@ svg text { font-family: var(--font-ui); }
   line-height: 1.28;
   color: var(--ink);
   max-width: 28ch;
-  margin: 6vh 0;
+  margin: clamp(1.25rem, 2.5vh, 2rem) 0;
   padding-left: 1.5rem;
   border-left: 4px solid var(--accent);
 }

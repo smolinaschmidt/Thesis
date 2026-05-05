@@ -1,5 +1,5 @@
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
-import { clear, classifyColor, brightness, COLOR_GROUPS, COLOR_MAP } from "./color.js";
+import { clear, classifyColor, hueDegrees, brightness, COLOR_GROUPS, COLOR_MAP } from "./color.js";
 import { showTooltip, moveTooltip, hideTooltip } from "./tooltip.js";
 import {
   morphNicedYearDomain,
@@ -29,6 +29,16 @@ const INK = "#0a0a0a";
 const MUTED = "#5c5c5c";
 const RULE = "#e6e6e6";
 const FONT = 'IBM Plex Sans, "Helvetica Neue", sans-serif';
+// Keep axis typography consistent across charts.
+const AXIS_TICK_PX = 16;
+const AXIS_CAPTION_PX = 16;
+
+function brightnessPlusMinusTick(v) {
+  // Brightness scales in this project are always 0..100.
+  if (v >= 100) return "+";
+  if (v <= 0) return "-";
+  return "";
+}
 
 /** First genre only, in the same order as stored on each film (TMDB / analytics). */
 function formatGenreLine(genres) {
@@ -47,7 +57,7 @@ function showFilmTooltip(event, d) {
   showTooltip(
     event,
     `<span class="t-title">${escape(d.title)}</span><span class="t-sub">${sub}</span>`,
-    { film: true }
+    { film: true, accent: d.color || d.dominantHex || null }
   );
 }
 
@@ -178,6 +188,14 @@ export function renderMorphScrolly(
   const filmDotRadius = 12;
   const radiusFor = () => filmDotRadius;
   const isRated = (d) => d.voteAverage != null && d.voteCount >= MIN_VOTES;
+  const colorOrder = new Map(COLOR_GROUPS.map((g, i) => [g, i]));
+  const colorSortKey = (d) => colorOrder.get(d.group) ?? 999;
+  // Quantize brightness so "secondary ordering by color" is visually legible.
+  // With continuous lum, almost every film has a unique y, so color ordering
+  // rarely appears. Binning keeps the brightness axis, but creates ties where
+  // we can order by hue/group.
+  const LUM_BIN_SIZE = 4; // 0..100 in ~25 levels
+  const quantLum = (lum) => Math.round(lum / LUM_BIN_SIZE) * LUM_BIN_SIZE;
 
   const nodes = (movies || [])
     .filter((m) => m.year && m.dominantHex)
@@ -185,9 +203,11 @@ export function renderMorphScrolly(
       id: String(m.tmdbId ?? `${m.title}-${m.year}`),
       year: m.year,
       lum: brightness(m.dominantHex),
+      lumQ: quantLum(brightness(m.dominantHex)),
       color: m.dominantHex,
       title: m.title,
       group: classifyColor(m.dominantHex),
+      hue: hueDegrees(m.dominantHex),
       genres: Array.isArray(m.genres) ? m.genres : [],
       voteAverage:
         typeof m.voteAverage === "number" && m.voteAverage > 0 ? m.voteAverage : null,
@@ -212,7 +232,8 @@ export function renderMorphScrolly(
   const xTime = morphTimeScale(left, right, domainNice);
   const yTime = d3.scaleLinear().domain([0, 100]).nice().range([bottom, top]);
   const yByLum = d3.scaleLinear().domain([0, 100]).nice().range([bottom - 14, top + 10]);
-  const brightnessTicks = [0, 20, 40, 60, 80, 100];
+  // Shared axis scale (identical Y axis across "over time" and "by genre" views).
+  const yAxisBright = d3.scaleLinear().domain([0, 100]).range([bottom, top]);
 
   const sim = d3
     .forceSimulation(nodes)
@@ -254,13 +275,20 @@ export function renderMorphScrolly(
   genreLabels.forEach((lab) => {
     const col = nodes
       .filter((d) => d.bucket === lab)
-      .sort((a, b) => a.lum - b.lum || String(a.id).localeCompare(String(b.id)));
+      .sort(
+        (a, b) =>
+          a.lumQ - b.lumQ ||
+          colorSortKey(a) - colorSortKey(b) ||
+          a.hue - b.hue ||
+          a.lum - b.lum ||
+          String(a.id).localeCompare(String(b.id))
+      );
     const cx = xBand(lab) + xBand.bandwidth() / 2;
     let belowCenter = null;
     let belowR = 0;
     col.forEach((n) => {
       const rr = rStack(n);
-      let cy = yByLum(n.lum);
+      let cy = yByLum(n.lumQ);
       if (belowCenter != null) {
         const maxCy = belowCenter - belowR - stackGap - rr;
         cy = Math.min(cy, maxCy);
@@ -292,11 +320,18 @@ export function renderMorphScrolly(
     genreLabels.forEach((lab) => {
       const col = nodes
         .filter((d) => d.bucket === lab)
-        .sort((a, b) => a.lum - b.lum || String(a.title).localeCompare(String(b.title)));
+        .sort(
+          (a, b) =>
+            a.lumQ - b.lumQ ||
+            colorSortKey(a) - colorSortKey(b) ||
+            a.hue - b.hue ||
+            a.lum - b.lum ||
+            String(a.title).localeCompare(String(b.title))
+        );
       const bw = Math.max(4, xBand.bandwidth() - 2);
       const xLeft = xBand(lab) + 1;
       col.forEach((n) => {
-        const cy = yByLum(n.lum);
+        const cy = yByLum(n.lumQ);
         n.barX = xLeft;
         n.barW = bw;
         n.barH = lineH;
@@ -355,7 +390,7 @@ export function renderMorphScrolly(
       .attr("y", top)
       .attr("width", Math.max(0, xb - xa))
       .attr("height", bottom - top)
-      .attr("fill", i % 2 === 0 ? "#fafafa" : "#ffffff")
+      .attr("fill", "none")
       .attr("stroke", "none");
   }
 
@@ -369,7 +404,7 @@ export function renderMorphScrolly(
       .attr("y", top)
       .attr("width", bw)
       .attr("height", bottom - top)
-      .attr("fill", i % 2 === 0 ? "#f6f6f4" : "#ffffff")
+      .attr("fill", "none")
       .attr("stroke", "none");
   });
 
@@ -473,39 +508,22 @@ export function renderMorphScrolly(
     .selectAll("text")
     .attr("fill", MUTED)
     .attr("font-family", FONT)
-    .style("font-size", "16px")
+    .style("font-size", `${AXIS_TICK_PX}px`)
     .style("font-weight", "600");
 
   const gAxisTimeY = svg
     .append("g")
     .attr("transform", `translate(${left}, 0)`)
-    .call(d3.axisLeft(yTime).ticks(6).tickSize(0))
+    .call(
+      d3.axisLeft(yAxisBright).tickValues([0, 100]).tickFormat(brightnessPlusMinusTick).tickSize(0)
+    )
     .call((g) => g.select(".domain").remove());
   gAxisTimeY
     .selectAll("text")
     .attr("fill", MUTED)
     .attr("font-family", FONT)
-    .style("font-size", "16px")
+    .style("font-size", `${AXIS_TICK_PX}px`)
     .style("font-weight", "500");
-
-  const gAxisGenreY = svg
-    .append("g")
-    .attr("class", "morph-axis-genre-y")
-    .attr("transform", `translate(${left}, 0)`)
-    .call(
-      d3
-        .axisLeft(yByLum)
-        .tickValues(brightnessTicks)
-        .tickFormat((v) => String(Math.round(v)))
-        .tickSize(0)
-    )
-    .call((g) => g.select(".domain").remove());
-  gAxisGenreY
-    .selectAll("text")
-    .attr("fill", MUTED)
-    .attr("font-family", FONT)
-    .style("font-size", "15px")
-    .style("font-weight", "600");
 
   const gAxisGenre = svg.append("g").attr("class", "morph-axis-genre").style("opacity", 0);
   genreLabels.forEach((lab) => {
@@ -537,7 +555,7 @@ export function renderMorphScrolly(
     .attr("text-anchor", "middle")
     .attr("fill", MUTED)
     .attr("font-family", FONT)
-    .attr("font-size", 15)
+    .attr("font-size", AXIS_CAPTION_PX)
     .attr("font-weight", 700)
     .text("← Darker … lighter →");
 
@@ -549,7 +567,7 @@ export function renderMorphScrolly(
     .attr("text-anchor", "end")
     .attr("fill", MUTED)
     .attr("font-family", FONT)
-    .attr("font-size", 15)
+    .attr("font-size", AXIS_CAPTION_PX)
     .attr("font-weight", 700)
     .text("Release year →");
 
@@ -586,7 +604,17 @@ export function renderMorphScrolly(
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   function frame(t) {
-    const tt = reduceMotion ? 1 : t;
+    const tt0 = reduceMotion ? 1 : t;
+    // Add a "pause" before the next view: hold the scroll progress for a slice
+    // so the reader has one extra scroll beat before the chart morphs.
+    const HOLD_AT = 0.34;
+    // Bigger pause after "Color over time" before transitioning.
+    const HOLD_LEN = 0.22;
+    let tt = tt0;
+    if (tt0 > HOLD_AT && tt0 < HOLD_AT + HOLD_LEN) tt = HOLD_AT;
+    else if (tt0 >= HOLD_AT + HOLD_LEN) tt = tt0 - HOLD_LEN;
+    tt = Math.max(0, Math.min(1, tt / (1 - HOLD_LEN)));
+
     const pStack = smoothstep01(tt, 0, 0.36);
     const pBar = smoothstep01(tt, 0.48, 0.94);
 
@@ -605,16 +633,23 @@ export function renderMorphScrolly(
     const hlSmooth = hlRaw * hlRaw * (3 - 2 * hlRaw);
     const chromeTime = Math.max(0.03, hlSmooth);
 
+    const yAxisOp = Math.max(uTime, uAxisGenre) * chromeTime;
     gBandsTime.style("opacity", uTime * chromeTime);
     gAxisTimeX.style("opacity", uTime * chromeTime);
-    gAxisTimeY.style("opacity", uTime * chromeTime);
-    gAxisGenreY.style("opacity", uAxisGenre * Math.max(0.2, hlSmooth));
-    svg.selectAll(".morph-caption-time-y, .morph-caption-time-x").style("opacity", uTime * chromeTime);
+    gAxisTimeY.style("opacity", yAxisOp);
+    svg.selectAll(".morph-caption-time-y").style("opacity", yAxisOp);
+    svg.selectAll(".morph-caption-time-x").style("opacity", uTime * chromeTime);
     gHeaderTime.style("opacity", uTime * chromeTime);
     gBandsGenre.style("opacity", Math.min(1, uGenreBands) * Math.max(0.15, hlSmooth));
     gAxisGenre.style("opacity", uAxisGenre * Math.max(0.15, hlSmooth));
     gHeaderGenre.style("opacity", uGenreStackHdr * Math.max(0.15, hlSmooth));
     gHeaderBarcode.style("opacity", uBarcodeHdr * Math.max(0.15, hlSmooth));
+
+    // Disable tooltips in "Color by genre" (genre stacks / barcode).
+    // Keep tooltips only for the initial "Color over time" view.
+    const tooltipsOn = uTime > 0.65;
+    marks.style("pointer-events", tooltipsOn ? "auto" : "none");
+    if (!tooltipsOn) hideTooltip();
 
     marks.each(function (d) {
       const baseOp = isRated(d) ? 0.92 : 0.4;
@@ -811,7 +846,7 @@ export function renderSentimentToScatterPinned(container, { movies, sentimentFea
       .attr("y", top)
       .attr("width", Math.max(0, xa1 - xa0))
       .attr("height", bottom - top)
-      .attr("fill", i % 2 === 0 ? "#fafafa" : "#ffffff")
+      .attr("fill", "none")
       .attr("stroke", "none");
   }
 
@@ -861,8 +896,7 @@ export function renderSentimentToScatterPinned(container, { movies, sentimentFea
     .attr("cy", (d) => y(d.mean))
     .attr("r", 5.5)
     .attr("fill", ACCENT)
-    .attr("stroke", "#fff")
-    .attr("stroke-width", 2)
+    .attr("stroke", "none")
     .style("opacity", 0);
 
   const notesG = svg.append("g").attr("class", "ss-notes");
@@ -1085,7 +1119,7 @@ function drawPlotGrid(svg, x, decadeYears) {
       .attr("y", top)
       .attr("width", Math.max(0, x1 - x0))
       .attr("height", bottom - top)
-      .attr("fill", i % 2 === 0 ? "#fafafa" : "#ffffff")
+      .attr("fill", "none")
       .attr("stroke", "none");
   }
   bg.append("line")
@@ -1233,7 +1267,7 @@ function drawColorOverTime(svg, movies) {
         .selectAll("text")
         .attr("fill", MUTED)
         .attr("font-family", FONT)
-        .style("font-size", "16px")
+        .style("font-size", `${AXIS_TICK_PX}px`)
         .style("font-weight", "600")
     );
 
@@ -1243,7 +1277,8 @@ function drawColorOverTime(svg, movies) {
     .call(
       d3
         .axisLeft(y)
-        .ticks(6)
+        .tickValues([0, 100])
+        .tickFormat(brightnessPlusMinusTick)
         .tickSize(0)
     )
     .call((g) => g.select(".domain").remove())
@@ -1252,7 +1287,7 @@ function drawColorOverTime(svg, movies) {
         .selectAll("text")
         .attr("fill", MUTED)
         .attr("font-family", FONT)
-        .style("font-size", "16px")
+        .style("font-size", `${AXIS_TICK_PX}px`)
         .style("font-weight", "500")
     );
 
@@ -1263,7 +1298,7 @@ function drawColorOverTime(svg, movies) {
     .attr("text-anchor", "end")
     .attr("fill", MUTED)
     .attr("font-family", FONT)
-    .attr("font-size", 15)
+    .attr("font-size", AXIS_CAPTION_PX)
     .attr("font-weight", 700)
     .text("Release year →");
 
@@ -1273,7 +1308,7 @@ function drawColorOverTime(svg, movies) {
     .attr("text-anchor", "middle")
     .attr("fill", MUTED)
     .attr("font-family", FONT)
-    .attr("font-size", 15)
+    .attr("font-size", AXIS_CAPTION_PX)
     .attr("font-weight", 700)
     .text("← Darker colour … lighter colour →");
 }
@@ -1345,8 +1380,8 @@ function drawGenreStacks(svg, genreRows) {
     .attr("width", x.bandwidth())
     .attr("y", y(0))
     .attr("height", 0)
-    .attr("stroke", "#fff")
-    .attr("stroke-width", 1.5)
+    .attr("stroke", "rgba(15, 15, 15, 0.06)")
+    .attr("stroke-width", 1)
     .transition()
     .duration(600)
     .attr("y", (d) => y(d[1]))
@@ -1535,8 +1570,7 @@ function drawSentimentStrip(svg, points, opts = {}) {
     .attr("cy", (d) => y(d.mean))
     .attr("r", 5.5)
     .attr("fill", ACCENT)
-    .attr("stroke", "#fff")
-    .attr("stroke-width", 2);
+    .attr("stroke", "none");
 
   axes(svg, x, y, {
     xLabel: "Release year",

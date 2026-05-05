@@ -12,6 +12,8 @@ export function showTooltip(event, html, options = {}) {
   if (!node) return;
   node.innerHTML = html;
   node.classList.toggle("tooltip--film", Boolean(options.film));
+  if (options.accent) node.style.setProperty("--tooltip-accent", String(options.accent));
+  else node.style.removeProperty("--tooltip-accent");
   node.classList.add("is-visible");
   moveTooltip(event);
 }

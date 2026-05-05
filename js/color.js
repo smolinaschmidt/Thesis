@@ -50,6 +50,24 @@ export function classifyColor(hex) {
   return "Purple";
 }
 
+/** Hue angle (0..360). Useful for deterministic ordering within color groups. */
+export function hueDegrees(hex) {
+  const [rr, gg, bb] = hexToRgb(hex);
+  const r = rr / 255;
+  const g = gg / 255;
+  const b = bb / 255;
+  const max = Math.max(r, g, b);
+  const min = Math.min(r, g, b);
+  const delta = max - min;
+  let hue = 0;
+  if (delta !== 0) {
+    if (max === r) hue = ((g - b) / delta) % 6;
+    else if (max === g) hue = (b - r) / delta + 2;
+    else hue = (r - g) / delta + 4;
+  }
+  return (hue * 60 + 360) % 360;
+}
+
 export function brightness(hex) {
   const [r, g, b] = hexToRgb(hex).map((v) => v / 255);
   return (0.2126 * r + 0.7152 * g + 0.0722 * b) * 100;

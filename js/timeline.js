@@ -83,11 +83,35 @@ export function computeTimelineLayout(families, options = {}) {
   const radiusFor = () => filmDotRadius;
   const isRated = (d) => d.voteAverage != null && d.voteCount >= MIN_VOTES;
 
+  // Ensure lane labels never clip: compute left margin from widest label.
+  const measureLabelPx = (text) => {
+    const s = String(text || "").toUpperCase();
+    // matches laneLabels: 15px, weight 600, uppercase, letter-spacing 0.06em
+    const fontSize = 15;
+    const letterSpacingPx = 0.06 * fontSize;
+    const canvas = document.createElement("canvas");
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return 220;
+    ctx.font = `600 ${fontSize}px ${MORPH_CHART_FONT}`;
+    const base = ctx.measureText(s).width;
+    const spaced = base + Math.max(0, s.length - 1) * letterSpacingPx;
+    return spaced;
+  };
+  const maxLabel = d3.max(FEATURED_LANES, (lane) => measureLabelPx(lane.label)) || 0;
+  const leftPad = 14; // gap from label end to baseline
+  const leftMin = 220;
+  const leftMax = 520;
+
   const fullWidth = VIEW_WIDTH;
   const panelWidth = 320;
   const panelGap = 28;
   const height = 640;
-  const margin = { top: 44, right: 22, bottom: 44, left: 220 };
+  const margin = {
+    top: 44,
+    right: 22,
+    bottom: 44,
+    left: Math.max(leftMin, Math.min(leftMax, Math.ceil(maxLabel + leftPad + 16))),
+  };
   const plotTop = margin.top;
   const plotBottom = height - margin.bottom;
   const plotInnerHeight = plotBottom - plotTop;
@@ -194,15 +218,7 @@ export function renderTimeline(container, { families, movies = null, omitDots = 
     .attr("stroke", MORPH_RULE)
     .attr("stroke-width", 1.5);
 
-  const baselineLeft = svg
-    .append("line")
-    .attr("class", "morph-baseline-left timeline-morph-shared")
-    .attr("x1", margin.left)
-    .attr("x2", margin.left)
-    .attr("y1", plotTop)
-    .attr("y2", plotBottom)
-    .attr("stroke", MORPH_RULE)
-    .attr("stroke-width", 1.5);
+  // Only one left rule (avoid "double y-axis" look).
 
   // Transparent hit target over plot (bands sit behind).
   const chartBg = svg
@@ -252,7 +268,7 @@ export function renderTimeline(container, { families, movies = null, omitDots = 
         (update) => update,
         (exit) => exit.remove()
       )
-      .attr("fill", (d) => (d.i % 2 === 0 ? "#fafafa" : "#ffffff"))
+      .attr("fill", "none")
       .attr("stroke", "none");
 
     bandRects.each(function (d) {
@@ -305,7 +321,47 @@ export function renderTimeline(container, { families, movies = null, omitDots = 
     .attr("font-weight", 600)
     .attr("letter-spacing", "0.06em")
     .style("text-transform", "uppercase")
-    .text((id) => (labelById.get(id) || "").slice(0, 36));
+    .text((id) => labelById.get(id) || "");
+
+  // Arrows between films in the same lane (chronological).
+  const defs = svg.append("defs");
+  defs
+    .append("marker")
+    .attr("id", "lane-arrow")
+    .attr("viewBox", "0 -5 10 10")
+    .attr("refX", 9)
+    .attr("refY", 0)
+    .attr("markerWidth", 6)
+    .attr("markerHeight", 6)
+    .attr("orient", "auto")
+    .append("path")
+    .attr("d", "M0,-5L10,0L0,5")
+    .attr("fill", "rgba(10,10,10,0.35)");
+
+  const gArrows = svg.append("g").attr("class", "timeline-arrows");
+  const arrowSegments = [];
+  for (const laneId of laneIds) {
+    const seq = data
+      .filter((d) => d.laneId === laneId)
+      .slice()
+      .sort((a, b) => a.year - b.year);
+    for (let i = 0; i < seq.length - 1; i++) {
+      arrowSegments.push({ laneId, a: seq[i], b: seq[i + 1] });
+    }
+  }
+  const arrows = gArrows
+    .selectAll("line.arrow")
+    .data(arrowSegments, (d) => `${d.laneId}-${d.a.year}-${d.b.year}`)
+    .join("line")
+    .attr("class", "arrow")
+    .attr("x1", (d) => x(d.a.year))
+    .attr("y1", (d) => y(d.laneId))
+    .attr("x2", (d) => x(d.b.year))
+    .attr("y2", (d) => y(d.laneId))
+    .attr("stroke", "rgba(10,10,10,0.28)")
+    .attr("stroke-width", 1.15)
+    .attr("marker-end", "url(#lane-arrow)")
+    .style("pointer-events", "none");
 
   let dots = null;
   if (!omitDots) {
@@ -321,13 +377,18 @@ export function renderTimeline(container, { families, movies = null, omitDots = 
       .attr("fill-opacity", (d) => (isRated(d) ? 1 : 0.35))
       .attr("stroke", "#111")
       .attr("stroke-width", 0.85)
-      .attr("stroke-dasharray", (d) => (isRated(d) ? null : "2 2"));
+      .attr("stroke-dasharray", (d) => (isRated(d) ? null : "2 2"))
+      .style("pointer-events", "none");
 
     dots
       .transition()
       .duration(700)
       .delay((_, i) => i * 18)
-      .attr("r", radiusFor);
+      .attr("r", radiusFor)
+      .on("end", function () {
+        // Enable hover only once dots are visible.
+        d3.select(this).style("pointer-events", "auto");
+      });
   }
 
   const fmtRating = (d) =>
@@ -445,6 +506,7 @@ export function renderTimeline(container, { families, movies = null, omitDots = 
       // still interrupts the radius tween and leaves circles at r=0.
       chartBg.attr("width", chartRight - margin.left);
       lanes.attr("x2", chartRight);
+      arrows.attr("x1", (d) => x(d.a.year)).attr("x2", (d) => x(d.b.year));
       if (dots) dots.attr("cx", (d) => x(d.year));
       const panelX = open ? chartRight + panelGap : fullWidth;
       panelGroup
@@ -454,6 +516,12 @@ export function renderTimeline(container, { families, movies = null, omitDots = 
     } else {
       chartBg.transition().duration(dur).attr("width", chartRight - margin.left);
       lanes.transition().duration(dur).attr("x2", chartRight);
+      arrows
+        .interrupt()
+        .transition()
+        .duration(dur)
+        .attr("x1", (d) => x(d.a.year))
+        .attr("x2", (d) => x(d.b.year));
       if (dots)
         dots.interrupt().transition().duration(dur).attr("cx", (d) => x(d.year));
       const panelX = open ? chartRight + panelGap : fullWidth;
@@ -512,7 +580,7 @@ export function renderTimeline(container, { families, movies = null, omitDots = 
         showTooltip(
           event,
           `<span class="t-title">${d.title}</span><span class="t-sub">${d.year} · ${fmtRating(d)}</span>`
-        );
+        , { accent: d.color || d.dominantHex || null });
       })
       .on("mousemove", moveTooltip)
       .on("mouseleave", () => {

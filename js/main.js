@@ -295,7 +295,7 @@ function renderPinnedChapter3(slot, ctx) {
 
   const root = el("div", { class: "ch3-scrolly-root" });
   const sticky = el("div", { class: "ch3-scrolly-sticky" });
-  const num = el("p", { class: "ch3-pinned-num chapter-num" }, "03");
+  const num = el("p", { class: "ch3-pinned-num chapter-num" }, "02");
   const copyStack = el("div", { class: "ch3-copy-stack" });
   const copyA = el(
     "div",
@@ -424,7 +424,8 @@ function renderPinnedChapter3(slot, ctx) {
     layerT.style.opacity = String(Math.max(0, Math.min(1, uTim)));
     layerM.style.opacity = "1";
     layerT.style.pointerEvents = uTim > 0.12 ? "auto" : "none";
-    layerM.style.pointerEvents = "auto";
+    // Critical: prevent hover/tooltip events from invisible layers.
+    layerM.style.pointerEvents = uChrome > 0.12 ? "auto" : "none";
 
     morphApi.frame(mt);
     lastCh3Mt = mt;
@@ -632,21 +633,6 @@ function buildChapters() {
     }
 
     essay.append(section);
-
-    // Pull quote after the comparison chapter (was third section when c2 existed)
-    if (ch.id === "c3") {
-      essay.append(
-        el(
-          "aside",
-          { class: "chapter" },
-          el(
-            "blockquote",
-            { class: "pull" },
-            "“A remake doesn't just retell a story — it repaints it.”"
-          )
-        )
-      );
-    }
   });
 }
 

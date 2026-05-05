@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-30T05:50:37.346378+00:00",
+  "generatedAt": "2026-05-05T14:28:30.242933+00:00",
   "summary": {
     "totalMovies": 1025,
     "uniqueGenres": 19
@@ -348,11 +348,11 @@
           "movieCount": 15
         },
         {
-          "genre": "Western",
+          "genre": "Horror",
           "movieCount": 10
         },
         {
-          "genre": "Horror",
+          "genre": "Western",
           "movieCount": 10
         },
         {
@@ -476,11 +476,11 @@
           "movieCount": 28
         },
         {
-          "genre": "Thriller",
+          "genre": "Horror",
           "movieCount": 24
         },
         {
-          "genre": "Horror",
+          "genre": "Thriller",
           "movieCount": 24
         },
         {
@@ -594,11 +594,11 @@
           "movieCount": 4
         },
         {
-          "genre": "Adventure",
+          "genre": "Music",
           "movieCount": 3
         },
         {
-          "genre": "Music",
+          "genre": "Adventure",
           "movieCount": 3
         },
         {
@@ -842,6 +842,10 @@
           "movieCount": 9
         },
         {
+          "genre": "Comedy",
+          "movieCount": 8
+        },
+        {
           "genre": "Adventure",
           "movieCount": 8
         },
@@ -850,8 +854,8 @@
           "movieCount": 8
         },
         {
-          "genre": "Comedy",
-          "movieCount": 8
+          "genre": "Romance",
+          "movieCount": 7
         },
         {
           "genre": "Action",
@@ -859,10 +863,6 @@
         },
         {
           "genre": "Thriller",
-          "movieCount": 7
-        },
-        {
-          "genre": "Romance",
           "movieCount": 7
         },
         {

@@ -544,7 +544,11 @@ function slopeChartForFamily(family) {
       const year = c.getAttribute("data-year") || "—";
       const hex = c.getAttribute("data-hex") || "—";
       const br = c.getAttribute("data-bright") || "—";
-      showTooltip(event, `<span class="t-title">${hex}</span><span class="t-sub">${year} · brightness ${br}</span>`);
+      showTooltip(
+        event,
+        `<span class="t-title">${hex}</span><span class="t-sub">${year} · brightness ${br}</span>`,
+        { accent: hex }
+      );
     };
     c.addEventListener("mouseenter", onEnter);
     c.addEventListener("mousemove", (event) => moveTooltip(event));
