@@ -1,6 +1,6 @@
 # Remaking Color
 
-### XXX
+### 
 
 By Sofía Molina // [View live project](https://sofiams.com/Thesis/) // Parsons 2026 Data Visualization
 
