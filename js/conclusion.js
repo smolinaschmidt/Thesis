@@ -7,7 +7,7 @@ import { el, clear } from "./color.js";
  */
 export function renderConclusion(
   container,
-  { combined, analytics, families, onSelectFamily, showSentimentSummary = true } = {}
+  { analytics, families, onSelectFamily } = {}
 ) {
   clear(container);
 
@@ -88,7 +88,7 @@ export function renderConclusion(
   }
 
   const allFamilies = [...(families || [])]
-    .filter((f) => (f.movies || []).length > 0)
+    .filter((f) => (f.movies || []).length > 1)
     .sort((a, b) =>
       String(a.familyTitle || "")
         .toLowerCase()

@@ -30,8 +30,6 @@ ANALYTICS_OUT = PROCESSED / "analytics.json"
 FAMILIES_OUT = PROCESSED / "families.json"
 COLOR_ANALYSIS_OUT = PROCESSED / "color_analysis.json"
 GENRE_ANALYSIS_OUT = PROCESSED / "genre_analysis.json"
-SENTIMENT_FEATURES_PATH = PROCESSED / "sentiment_features.json"
-SENTIMENT_ANALYSIS_OUT = PROCESSED / "sentiment_analysis.json"
 COMBINED_ANALYSIS_OUT = PROCESSED / "combined_analysis.json"
 
 LOCAL_COLOR_FILES = {
@@ -274,15 +272,6 @@ def build_distribution(counter: Counter[str]) -> list[dict[str, Any]]:
     ]
 
 
-def load_sentiment_features() -> list[dict[str, Any]]:
-    if not SENTIMENT_FEATURES_PATH.exists():
-        return []
-    payload = json.loads(SENTIMENT_FEATURES_PATH.read_text(encoding="utf-8"))
-    if isinstance(payload, list):
-        return payload
-    return []
-
-
 def _record_sort_key(record: dict[str, Any]) -> tuple:
     fam = str(record.get("familyId") or record.get("family_id") or "UNASSIGNED")
     y = record.get("year")
@@ -297,7 +286,7 @@ def _record_sort_key(record: dict[str, Any]) -> tuple:
     return (fam, ysort, title)
 
 
-def build() -> tuple[dict[str, Any], list[dict[str, Any]], dict[str, Any], dict[str, Any], dict[str, Any]]:
+def build() -> tuple[dict[str, Any], list[dict[str, Any]], dict[str, Any], dict[str, Any]]:
     raw_records = load_input_records()
     raw_records = sorted(raw_records, key=_record_sort_key)
     tmdb_ratings = load_tmdb_ratings()
@@ -453,68 +442,30 @@ def build() -> tuple[dict[str, Any], list[dict[str, Any]], dict[str, Any], dict[
         ],
     }
 
-    sentiments = load_sentiment_features()
-    sentiment_label_counter = Counter(
-        str(entry.get("sentimentLabel", "neutral")).lower() for entry in sentiments
-    )
-    sentiment_by_decade: dict[int, Counter[str]] = defaultdict(Counter)
-    translated_count = 0
-    for entry in sentiments:
-        label = str(entry.get("sentimentLabel", "neutral")).lower()
-        year = entry.get("year")
-        if isinstance(year, int):
-            sentiment_by_decade[to_decade(year)][label] += 1
-        if entry.get("translatedToEnglish"):
-            translated_count += 1
-
-    sentiment_analysis = {
-        "generatedAt": generated_at,
-        "summary": {
-            "totalMovies": len(movies),
-            "moviesWithSentiment": len(sentiments),
-            "translatedToEnglish": translated_count,
-            "missingSentiment": max(0, len(movies) - len(sentiments)),
-        },
-        "distribution": build_distribution(sentiment_label_counter),
-        "byDecade": [
-            {
-                "decade": decade,
-                "movieCount": sum(counter.values()),
-                "distribution": build_distribution(counter),
-            }
-            for decade, counter in sorted(sentiment_by_decade.items(), key=lambda item: item[0])
-        ],
-        "sourceFile": str(SENTIMENT_FEATURES_PATH.relative_to(ROOT)),
-        "notes": [] if sentiments else ["sentiment_features.json not found; run build_sentiment_features.py."],
-    }
-
-    return analytics, families, color_analysis, genre_analysis, sentiment_analysis
+    return analytics, families, color_analysis, genre_analysis
 
 
 def main() -> None:
     PROCESSED.mkdir(parents=True, exist_ok=True)
-    analytics, families, color_analysis, genre_analysis, sentiment_analysis = build()
+    analytics, families, color_analysis, genre_analysis = build()
     combined_analysis = {
         "generatedAt": analytics["generatedAt"],
         "summary": {
             "totalMovies": analytics["summary"]["totalMovies"],
-            "sources": ["color_analysis", "genre_analysis", "sentiment_analysis"],
+            "sources": ["color_analysis", "genre_analysis"],
         },
         "color": color_analysis,
         "genre": genre_analysis,
-        "sentiment": sentiment_analysis,
     }
     ANALYTICS_OUT.write_text(json.dumps(analytics, indent=2), encoding="utf-8")
     FAMILIES_OUT.write_text(json.dumps(families, indent=2), encoding="utf-8")
     COLOR_ANALYSIS_OUT.write_text(json.dumps(color_analysis, indent=2), encoding="utf-8")
     GENRE_ANALYSIS_OUT.write_text(json.dumps(genre_analysis, indent=2), encoding="utf-8")
-    SENTIMENT_ANALYSIS_OUT.write_text(json.dumps(sentiment_analysis, indent=2), encoding="utf-8")
     COMBINED_ANALYSIS_OUT.write_text(json.dumps(combined_analysis, indent=2), encoding="utf-8")
     print(f"Wrote {ANALYTICS_OUT}")
     print(f"Wrote {FAMILIES_OUT}")
     print(f"Wrote {COLOR_ANALYSIS_OUT}")
     print(f"Wrote {GENRE_ANALYSIS_OUT}")
-    print(f"Wrote {SENTIMENT_ANALYSIS_OUT}")
     print(f"Wrote {COMBINED_ANALYSIS_OUT}")
 
 

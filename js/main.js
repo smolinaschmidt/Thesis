@@ -1,28 +1,9 @@
 import { el, clear } from "./color.js";
 import { renderIntro } from "./intro.js";
 import { renderTimeline, computeTimelineLayout, timelineDotX } from "./timeline.js";
-import { renderMorphScrolly, renderSentimentToScatterPinned } from "./morph.js";
+import { renderMorphScrolly } from "./morph.js";
 import { renderConclusion } from "./conclusion.js";
 import { openPosterAnalysis } from "./poster-analysis.js";
-import { SHOW_SENTIMENT_UI } from "./ui-flags.js";
-
-if (!SHOW_SENTIMENT_UI) {
-  document.body.classList.add("sentiment-ui-hidden");
-}
-
-/**
- * Editorial long-form — single centered column with figures that break out.
- * Each chapter has: number, italic serif heading, body, and an inline figure.
- * Figures are rendered lazily the first time they enter the viewport.
- */
-
-const C2_BODY_WITH_SENTIMENT =
-  "These are aesthetic questions, but they are also measurable. Across 650 films we extract a single dominant color and a single sentiment score — two numbers per movie, two coordinates on a map.";
-const C2_BODY_COLOR_ONLY =
-  "These are aesthetic questions, but they are also measurable. Across 650 films we extract a single dominant color per poster — one number per film, one point on a map.";
-const C2_LEDE_WITH_SENTIMENT =
-  "How does the color identity of a story change across cinematic eras? And what happens to its emotional tone?";
-const C2_LEDE_COLOR_ONLY = "How does the color identity of a story change across cinematic eras?";
 
 const CHAPTERS = [
   {
@@ -40,8 +21,9 @@ const CHAPTERS = [
     id: "c2",
     num: "02",
     heading: "A question of color.",
-    lede: SHOW_SENTIMENT_UI ? C2_LEDE_WITH_SENTIMENT : C2_LEDE_COLOR_ONLY,
-    body: SHOW_SENTIMENT_UI ? C2_BODY_WITH_SENTIMENT : C2_BODY_COLOR_ONLY,
+    lede: "How does the color identity of a story change across cinematic eras?",
+    body:
+      "These are aesthetic questions, but they are also measurable. Across 650 films we extract a single dominant color per poster — one number per film, one point on a map.",
     figWidth: "narrow",
     render: null,
   },
@@ -55,39 +37,25 @@ const CHAPTERS = [
     render: (slot, ctx) => renderPinnedChapter3(slot, ctx),
   },
   {
-    id: "c7",
-    num: "04",
-    heading: null,
-    lede: null,
-    body: null,
-    figWidth: "bleed",
-    render: (slot, ctx) => renderPinnedChapterSentimentScatter(slot, ctx),
-  },
-  {
     id: "c10",
-    num: "05",
+    num: "04",
     heading: "The atlas of remakes.",
     lede: "Films don’t just change how they look. They change how they feel.",
     body: "Every family, reduced to a chromatic strip. Click any title to inspect it.",
     figWidth: "bleed",
     render: (c, ctx) =>
       renderConclusion(c, {
-        combined: ctx.combined,
         analytics: ctx.analytics,
         families: ctx.families,
         onSelectFamily: ctx.onSelectFamily,
-        showSentimentSummary: SHOW_SENTIMENT_UI,
       }),
   },
 ];
 
-/** Chapter ids with no static heading in <section>; copy lives inside pinned figures. */
-const PINNED_NO_STATIC_COPY = new Set(["c3", ...(SHOW_SENTIMENT_UI ? ["c7"] : [])]);
+const PINNED_NO_STATIC_COPY = new Set(["c3"]);
 
 function visibleChapters() {
-  return CHAPTERS.filter(
-    (ch) => (SHOW_SENTIMENT_UI || ch.id !== "c7") && ch.id !== "c2"
-  );
+  return CHAPTERS.filter((ch) => ch.id !== "c2");
 }
 
 function chapterIndexById(id) {
@@ -96,13 +64,31 @@ function chapterIndexById(id) {
 }
 
 const state = {
-  combined: null,
   analytics: null,
   families: [],
-  sentimentFeatures: [],
   selectedFilmId: null,
   rendered: new Set(),
 };
+
+/** Remake comparisons need at least two films in the family. */
+function familiesRemakeOnly(families) {
+  return (families || []).filter((f) => (f.movies || []).length > 1);
+}
+
+function tmdbIdsInFamilies(families) {
+  const ids = new Set();
+  for (const f of families || []) {
+    for (const m of f.movies || []) {
+      if (m.tmdbId != null) ids.add(Number(m.tmdbId));
+    }
+  }
+  return ids;
+}
+
+function moviesThatBelongToRemakeFamilies(families, analyticsMovies) {
+  const ids = tmdbIdsInFamilies(families);
+  return (analyticsMovies || []).filter((m) => ids.has(Number(m.tmdbId)));
+}
 
 const essay = document.getElementById("essay");
 const searchDock = document.getElementById("search-dock");
@@ -110,7 +96,6 @@ const searchInput = document.getElementById("search");
 const datalist = document.getElementById("film-list");
 
 function forceStartAtTop() {
-  // Prevent browser/session history from restoring previous scroll position.
   if ("scrollRestoration" in history) {
     history.scrollRestoration = "manual";
   }
@@ -122,11 +107,14 @@ function forceStartAtTop() {
 
 forceStartAtTop();
 window.addEventListener("load", forceStartAtTop, { once: true });
-window.addEventListener("pageshow", forceStartAtTop);
+window.addEventListener("pageshow", (e) => {
+  /** Only cold loads or full reloads; skip BFCache restores so scroll position survives back navigation — and never clashes with modal close. */
+  if (!e.persisted) forceStartAtTop();
+});
 
 const CH3_COMPARISON_TITLE = "The first comparison";
 const CH3_COMPARISON_LEDE =
-  "Remake families hold the story constant. What changes is the decade, the filmmaker, the palette — the zeitgeist. Each lane is one family across time; each dot is a film, coloured by its dominant colour.";
+  "Remake families hold the story constant. What changes is the decade, the filmmaker, the palette — the zeitgeist. Each lane is one family across time; each dot is a film, colored by its dominant color.";
 const CH3_COMPARISON_BODY =
   "This shows how the same narrative can shift from the muted tones of the 1930s to the high-contrast or saturated palettes of the 2020s.";
 
@@ -142,23 +130,7 @@ const CH3_GENRE_TITLE = "Color by genre.";
 const CH3_GENRE_P1 =
   'Since each line reflects the dominant color of its movie poster, the visualization reveals distinct "color signatures" for different genres—such as the dark, moody palettes of Horror and Thriller versus the bright, eclectic spectrum found in Comedy.';
 const CH3_GENRE_P2 =
-  "By stacking these posters chronologically, the graph also illustrates the exponential growth of the film industry, showing how sparse distributions in the 1930s evolved into the dense, saturated blocks of color seen in the modern era.";
-
-const CH7_SENT_TITLE = "Sentiment drifts.";
-const CH7_SENT_P1 =
-  "While our previous charts focused on the dominant colors of posters, we now layer in Natural Language Processing to analyze TMDB plot summaries, measuring how \"upbeat\" or \"heavy\" a film’s story actually is.";
-const CH7_SENT_P2 =
-  "The steady blue trend line tracks the emotional pulse of the industry across decades, allowing us to see if the \"moodier\" dark palettes we detected earlier align with more somber storytelling.";
-const CH7_SENT_P3 =
-  "By comparing the evolution of color with these emotional shifts, we can finally see a complete picture of the cinematic zeitgeist: how the look and the feel of movies move together to reflect the spirit of their time.";
-
-const CH8_SCATTER_TITLE = "Color × Sentiment.";
-const CH8_SCATTER_P1 =
-  "By plotting poster brightness on the horizontal axis against narrative sentiment on the vertical axis, this chart directly visualizes the correlation between a film’s visuals and its actual story.";
-const CH8_SCATTER_P2 =
-  "Most films cluster along a diagonal where visuals match the vibe: bright posters typically signal upbeat stories, while dark tones suggest heavier themes.";
-const CH8_SCATTER_P3 =
-  "The real intrigue lies in the outliers—the \"visual subversions\" that defy expectations. These represent the deliberate visual choices where a gritty story is hidden behind a cheerful palette, or a positive tale is framed in moody shadows, highlighting the tension between a film’s true soul and its public face.";
+  "Each stripe has the same thickness in every column (set by the busiest genres); sparser columns breathe with empty space again. Within a genre, stripes sit on the shared brightness scale, then nudge apart where they overlap. Columns run from smaller genres toward the busier ones.";
 
 function ch3Smoothstep01(t, edge0, edge1) {
   if (t <= edge0) return 0;
@@ -167,127 +139,6 @@ function ch3Smoothstep01(t, edge0, edge1) {
   return x * x * (3 - 2 * x);
 }
 
-function bindPinnedScroll(root, tick) {
-  tick();
-  let sched = false;
-  function onScr() {
-    if (sched) return;
-    sched = true;
-    requestAnimationFrame(() => {
-      sched = false;
-      tick();
-    });
-  }
-  window.addEventListener("scroll", onScr, { passive: true });
-  window.addEventListener("resize", onScr);
-}
-
-/** Pinned ch.04: sentiment strip → brightness×sentiment scatter; one sticky chart frame, copy steps like ch.03. */
-function renderPinnedChapterSentimentScatter(slot, ctx) {
-  clear(slot);
-  slot.textContent = "";
-  slot.className = "fig-slot ch7-figure-root";
-
-  const root = el("div", { class: "ch7-scrolly-root" });
-  const sticky = el("div", { class: "ch7-scrolly-sticky" });
-  const num = el("p", { class: "ch7-pinned-num chapter-num" }, "04");
-  const copyStack = el("div", { class: "ch7-copy-stack" });
-  const copyS1 = el(
-    "div",
-    { class: "ch7-copy ch7-copy--s1" },
-    el("h2", { class: "ch7-pinned-h2" }, CH7_SENT_TITLE),
-    el("p", { class: "ch7-pinned-lede" }, CH7_SENT_P1)
-  );
-  const copyS2 = el(
-    "div",
-    { class: "ch7-copy ch7-copy--s2" },
-    el("h2", { class: "ch7-pinned-h2" }, CH7_SENT_TITLE),
-    el("p", { class: "ch7-pinned-body" }, CH7_SENT_P2)
-  );
-  const copyS3 = el(
-    "div",
-    { class: "ch7-copy ch7-copy--s3" },
-    el("h2", { class: "ch7-pinned-h2" }, CH7_SENT_TITLE),
-    el("p", { class: "ch7-pinned-body" }, CH7_SENT_P3)
-  );
-  const copyC1 = el(
-    "div",
-    { class: "ch7-copy ch7-copy--c1" },
-    el("h2", { class: "ch7-pinned-h2" }, CH8_SCATTER_TITLE),
-    el("p", { class: "ch7-pinned-lede" }, CH8_SCATTER_P1)
-  );
-  const copyC2 = el(
-    "div",
-    { class: "ch7-copy ch7-copy--c2" },
-    el("h2", { class: "ch7-pinned-h2" }, CH8_SCATTER_TITLE),
-    el("p", { class: "ch7-pinned-body" }, CH8_SCATTER_P2)
-  );
-  const copyC3 = el(
-    "div",
-    { class: "ch7-copy ch7-copy--c3" },
-    el("h2", { class: "ch7-pinned-h2" }, CH8_SCATTER_TITLE),
-    el("p", { class: "ch7-pinned-body" }, CH8_SCATTER_P3)
-  );
-  copyStack.append(copyS1, copyS2, copyS3, copyC1, copyC2, copyC3);
-  const viz = el("div", { class: "ch7-viz-layers" });
-  const layer = el("div", { class: "ch7-layer" });
-  viz.append(layer);
-  sticky.append(num, copyStack, viz);
-  root.append(sticky);
-  slot.append(root);
-
-  const chart = renderSentimentToScatterPinned(layer, {
-    movies: ctx.movies,
-    sentimentFeatures: ctx.sentimentFeatures,
-  });
-  if (!chart) return;
-
-  function tick() {
-    const r = root.getBoundingClientRect();
-    const travel = Math.max(1, root.offsetHeight - window.innerHeight);
-    const scrolled = Math.min(Math.max(-r.top, 0), travel);
-    const p = scrolled / travel;
-
-    const pSent = 1 - ch3Smoothstep01(p, 0.4, 0.48);
-    const w12 = ch3Smoothstep01(p, 0.06, 0.19);
-    const w23 = ch3Smoothstep01(p, 0.21, 0.36);
-    const uS1 = pSent * (1 - w12);
-    const uS2 = pSent * w12 * (1 - w23);
-    const uS3 = pSent * w23;
-
-    const pScat = ch3Smoothstep01(p, 0.44, 0.52);
-    const wC12 = ch3Smoothstep01(p, 0.48, 0.6);
-    const wC23 = ch3Smoothstep01(p, 0.62, 0.76);
-    const uC1 = pScat * (1 - wC12);
-    const uC2 = pScat * wC12 * (1 - wC23);
-    const uC3 = pScat * wC23;
-
-    const wMorph = ch3Smoothstep01(p, 0.26, 0.54);
-
-    copyS1.style.opacity = String(uS1);
-    copyS2.style.opacity = String(uS2);
-    copyS3.style.opacity = String(uS3);
-    copyC1.style.opacity = String(uC1);
-    copyC2.style.opacity = String(uC2);
-    copyC3.style.opacity = String(uC3);
-    copyS1.style.visibility = uS1 < 0.035 ? "hidden" : "visible";
-    copyS2.style.visibility = uS2 < 0.035 ? "hidden" : "visible";
-    copyS3.style.visibility = uS3 < 0.035 ? "hidden" : "visible";
-    copyC1.style.visibility = uC1 < 0.035 ? "hidden" : "visible";
-    copyC2.style.visibility = uC2 < 0.035 ? "hidden" : "visible";
-    copyC3.style.visibility = uC3 < 0.035 ? "hidden" : "visible";
-
-    const meanLine = Math.min(1, (1 - uS1) * pSent);
-    const notesOp = 0;
-    const lblOp = uC1 * 0.35 + uC2 * 0.65 + uC3 * 1;
-
-    chart.frame({ morph: wMorph, notes: notesOp, scatterLbl: lblOp, meanLine });
-  }
-
-  bindPinnedScroll(root, tick);
-}
-
-/** One pinned viewport: scroll swaps copy and crossfades timeline → morph, then drives morph like the old ch.05 track. */
 function renderPinnedChapter3(slot, ctx) {
   clear(slot);
   slot.textContent = "";
@@ -455,15 +306,11 @@ loadData().then(() => {
   setupLazyRender();
 });
 
-/* ---------------- build ---------------- */
 
 function buildMasthead() {
-  const dek = SHOW_SENTIMENT_UI
-    ? "This project examines how the color identity of the same story transforms across cinematic eras. By analyzing film remakes, it traces how visual palettes evolve over time and reflect changing aesthetic conventions."
-    : "This project examines how the color identity of the same story transforms across cinematic eras. By analyzing film remakes, it traces how visual palettes evolve over time and reflect changing aesthetic conventions.";
-  const bylineSpans = SHOW_SENTIMENT_UI
-    ? [el("span", {}, "By Sofia Molina Schmidt")]
-    : [el("span", {}, "By Sofia Molina Schmidt")];
+  const dek =
+    "This project examines how the color identity of the same story transforms across cinematic eras. By analyzing film remakes, it traces how visual palettes evolve over time and reflect changing aesthetic conventions.";
+  const bylineSpans = [el("span", {}, "By Sofia Molina Schmidt")];
 
   const side = el(
     "aside",
@@ -476,14 +323,14 @@ function buildMasthead() {
   const statTop = el(
     "div",
     { class: "feel-stat feel-stat--top", "aria-hidden": "true" },
-    el("div", { class: "feel-stat__label" }, "+450"),
+    el("div", { class: "feel-stat__label" }, "450+"),
     el("div", { class: "feel-stat__sub" }, "remake families")
   );
 
   const statBottom = el(
     "div",
     { class: "feel-stat feel-stat--bottom", "aria-hidden": "true" },
-    el("div", { class: "feel-stat__label" }, "+1000"),
+    el("div", { class: "feel-stat__label" }, "1000+"),
     el("div", { class: "feel-stat__sub" }, "movies")
   );
 
@@ -499,7 +346,7 @@ function buildMasthead() {
     "div",
     { class: "feel-hero" },
     el("p", { class: "feel-kicker" }, "Remaking Color"),
-    el("h1", { class: "feel-title", html: "Same story.<br/>Different color." }),
+    el("h1", { class: "feel-title", html: "Same story,<br/>different color." }),
     el("p", { class: "feel-dek" }, dek),
     el("p", { class: "byline" }, ...bylineSpans)
   );
@@ -599,7 +446,6 @@ function buildChapters() {
   visibleChapters().forEach((ch, idx) => {
     let sectionClass = "chapter";
     if (ch.id === "c3") sectionClass = "chapter chapter--ch3-pinned";
-    else if (ch.id === "c7") sectionClass = "chapter chapter--pinned-morph";
     else if (ch.id === "c10") sectionClass = "chapter chapter--bleed-shell";
     else if (ch.id === "c1")
       sectionClass = "chapter chapter--bleed-shell chapter--pinned-copy-rhythm";
@@ -640,20 +486,16 @@ function buildChapters() {
 
 async function loadData() {
   try {
-    const [combined, analytics, families, sentimentFeatures] = await Promise.all([
-      fetch("./data/analisis/combined_analysis.json").then((r) => r.json()),
+    const [analytics, families] = await Promise.all([
       fetch("./data/analisis/analytics.json").then((r) => r.json()),
       fetch("./data/analisis/families.json").then((r) => r.json()),
-      fetch("./data/analisis/sentiment_features.json").then((r) => r.json()),
     ]);
-    state.combined = combined;
     state.analytics = analytics;
-    state.families = families;
-    state.sentimentFeatures = sentimentFeatures;
+    state.families = familiesRemakeOnly(families);
 
-    const biggest = [...(families || [])]
-      .filter((f) => (f.movieCount || 0) > 1)
-      .sort((a, b) => (b.movieCount || 0) - (a.movieCount || 0))[0];
+    const biggest = [...state.families].sort(
+      (a, b) => (b.movies?.length || 0) - (a.movies?.length || 0)
+    )[0];
     const firstMovie = biggest?.movies?.[0];
     if (firstMovie?.tmdbId) state.selectedFilmId = Number(firstMovie.tmdbId);
   } catch (err) {
@@ -663,9 +505,10 @@ async function loadData() {
 
 function setupDatalist() {
   clear(datalist);
+  const allowed = tmdbIdsInFamilies(state.families);
   const movies = state.analytics?.movies || [];
   const options = movies
-    .filter((m) => m.title && m.tmdbId != null)
+    .filter((m) => m.title && m.tmdbId != null && allowed.has(Number(m.tmdbId)))
     .map((m) => ({ id: Number(m.tmdbId), label: `${m.title} (${m.year ?? "—"})` }))
     .sort((a, b) => a.label.localeCompare(b.label))
     .slice(0, 800);
@@ -708,11 +551,12 @@ function setupSearch() {
 
 function resolveSearch(query) {
   if (!query) return;
+  const allowed = tmdbIdsInFamilies(state.families);
   const movies = state.analytics?.movies || [];
   const match =
     movies.find((m) => `${m.title} (${m.year ?? "—"})`.toLowerCase() === query) ||
     movies.find((m) => (m.title || "").toLowerCase().includes(query));
-  if (!match?.tmdbId) return;
+  if (!match?.tmdbId || !allowed.has(Number(match.tmdbId))) return;
   state.selectedFilmId = Number(match.tmdbId);
   // Re-render the case study chapter
   renderChapter(chapterIndexById("c10"), true);
@@ -772,7 +616,7 @@ function setupLazyRender() {
 }
 
 function renderChapter(idx, force) {
-  if (!state.combined || !state.analytics) return;
+  if (!state.analytics) return;
   if (!force && state.rendered.has(idx)) return;
   const chapter = visibleChapters()[idx];
   if (!chapter?.render) return;
@@ -785,11 +629,9 @@ function renderChapter(idx, force) {
   slot.textContent = "";
 
   chapter.render(slot, {
-    combined: state.combined,
     analytics: state.analytics,
-    movies: state.analytics.movies || [],
+    movies: moviesThatBelongToRemakeFamilies(state.families, state.analytics?.movies || []),
     families: state.families,
-    sentimentFeatures: state.sentimentFeatures,
     currentSelectedFilm: () =>
       (state.analytics?.movies || []).find(
         (m) => Number(m.tmdbId) === Number(state.selectedFilmId)

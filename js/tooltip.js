@@ -12,6 +12,7 @@ export function showTooltip(event, html, options = {}) {
   if (!node) return;
   node.innerHTML = html;
   node.classList.toggle("tooltip--film", Boolean(options.film));
+  node.classList.toggle("tooltip--ch1", Boolean(options.ch1));
   if (options.accent) node.style.setProperty("--tooltip-accent", String(options.accent));
   else node.style.removeProperty("--tooltip-accent");
   node.classList.add("is-visible");
@@ -28,5 +29,6 @@ export function moveTooltip(event) {
 export function hideTooltip() {
   const node = getNode();
   if (!node) return;
-  node.classList.remove("is-visible", "tooltip--film");
+  node.classList.remove("is-visible", "tooltip--film", "tooltip--ch1");
+  node.style.removeProperty("--tooltip-accent");
 }

@@ -23,7 +23,7 @@ export const FEATURED_LANES = [
   { laneId: "mermaid", label: "The Little Mermaid", familyTitles: ["Little Mermaid"] },
   {
     laneId: "chocolate",
-    label: "Charlie / Willy Wonka",
+    label: "Willy Wonka",
     familyTitles: [
       "Willy Wonka The Chocolate Factory",
       "Charlie And The Chocolate Factory",
@@ -40,6 +40,9 @@ export const FEATURED_LANES = [
   { laneId: "rearwindow", label: "Rear Window", familyTitles: ["Rear Window"] },
   { laneId: "westside", label: "West Side Story", familyTitles: ["West Side Story"] },
 ];
+
+/** Space between the right edge of lane titles (text-anchor end) and the vertical rulings at `margin.left`. */
+const LANE_LABEL_TO_LINE_GAP_PX = 22;
 
 /** Featured rows as minimal movie-shaped objects — only for axis fallback without analytics.movies */
 function featuredRowsAsYearExtents(data) {
@@ -98,7 +101,6 @@ export function computeTimelineLayout(families, options = {}) {
     return spaced;
   };
   const maxLabel = d3.max(FEATURED_LANES, (lane) => measureLabelPx(lane.label)) || 0;
-  const leftPad = 14; // gap from label end to baseline
   const leftMin = 220;
   const leftMax = 520;
 
@@ -110,7 +112,10 @@ export function computeTimelineLayout(families, options = {}) {
     top: 44,
     right: 22,
     bottom: 44,
-    left: Math.max(leftMin, Math.min(leftMax, Math.ceil(maxLabel + leftPad + 16))),
+    left: Math.max(
+      leftMin,
+      Math.min(leftMax, Math.ceil(maxLabel + LANE_LABEL_TO_LINE_GAP_PX + 16))
+    ),
   };
   const plotTop = margin.top;
   const plotBottom = height - margin.bottom;
@@ -312,7 +317,7 @@ export function renderTimeline(container, { families, movies = null, omitDots = 
     .selectAll("text")
     .data(laneIds)
     .join("text")
-    .attr("x", margin.left - 14)
+    .attr("x", margin.left - LANE_LABEL_TO_LINE_GAP_PX)
     .attr("y", (id) => y(id))
     .attr("dy", "0.35em")
     .attr("text-anchor", "end")
@@ -579,8 +584,9 @@ export function renderTimeline(container, { families, movies = null, omitDots = 
         if (!selectedLaneId) highlightLane(d.laneId);
         showTooltip(
           event,
-          `<span class="t-title">${d.title}</span><span class="t-sub">${d.year} · ${fmtRating(d)}</span>`
-        , { accent: d.color || d.dominantHex || null });
+          `<span class="t-title">${d.title}</span><span class="t-sub">${d.year} · ${fmtRating(d)}</span>`,
+          { accent: d.color || d.dominantHex || null }
+        );
       })
       .on("mousemove", moveTooltip)
       .on("mouseleave", () => {

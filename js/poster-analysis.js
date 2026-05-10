@@ -1,11 +1,9 @@
-import { el, clear, posterUrl, classifyColor, brightness } from "./color.js";
+import { el, clear, posterUrl, classifyColor, hexToRgb } from "./color.js";
 import { loadMediaColors, rgbToHex } from "./case-study.js";
 import { showTooltip, moveTooltip, hideTooltip } from "./tooltip.js";
 
 const GRID_ROWS = 8;
 const GRID_COLS = 5;
-
-const SLOPE_FAMILY_IDS = new Set(["FAM0003", "FAM0018"]); // (legacy) previously limited slope chart; now shown for all
 
 function clamp01(x) {
   return Math.max(0, Math.min(1, x));
@@ -225,11 +223,25 @@ function plural(n, one, many) {
   return k === 1 ? one : many;
 }
 
+/** Poster modal subtitle: `Title, 1937 / Title, 1954 / …` in chronological order. */
+function formatPosterModalFilmLine(moviesSorted) {
+  const parts = (moviesSorted || []).map((m) => {
+    const name = (m.title != null ? String(m.title) : "").trim() || "—";
+    const year = m.year ?? "—";
+    return `${name}, ${year}`;
+  });
+  return parts.join(" / ");
+}
+
 function renderFamilyScrolly(family, moviesSorted) {
+  const posterN = (moviesSorted || []).length || 0;
   const track = el("div", {
     class: "pa-scrolly-track",
-    "data-count": String((moviesSorted || []).length || 0),
+    "data-count": String(posterN),
   });
+  if (posterN > 0) {
+    track.style.setProperty("--pa-poster-count", String(Math.max(1, posterN)));
+  }
   const sticky = el("div", { class: "pa-scrolly-sticky" });
   const stages = el("div", { class: "pa-scrolly-stages" });
 
@@ -242,7 +254,6 @@ function renderFamilyScrolly(family, moviesSorted) {
   const gridPoster = makeGrid("pa-stage-grid--poster");
   const grid58 = makeGrid("pa-stage-grid--58");
   const grid4 = makeGrid("pa-stage-grid--4");
-  const gridFinal = makeGrid("pa-stage-grid--final");
 
   function posterBox(node) {
     return el("div", { class: "pa-box pa-box--poster" }, node);
@@ -259,12 +270,6 @@ function renderFamilyScrolly(family, moviesSorted) {
     wrap.append(quad);
     return wrap;
   }
-  function finalBar(hex) {
-    const c = hex || "#888888";
-    // Use style attribute string so CSS custom prop is applied reliably.
-    return el("div", { class: "pa-final-bar", style: `--c:${c}` });
-  }
-
   moviesSorted.forEach((movie, i) => {
     const url = posterUrl(movie.posterPath);
     const fallbackHex = movie.dominantHex || rgbToHex(fallbackRgb(movie)) || "#888888";
@@ -284,8 +289,6 @@ function renderFamilyScrolly(family, moviesSorted) {
 
     const quadWrap = quadBox([fallbackHex, fallbackHex, fallbackHex, fallbackHex]);
     grid4.append(quadWrap);
-
-    gridFinal.append(finalBar(fallbackHex));
 
     // Async upgrade: load poster palette grid (if available) and compute kmeans 4.
     loadMediaColors(movie.tmdbId).then((media) => {
@@ -308,8 +311,8 @@ function renderFamilyScrolly(family, moviesSorted) {
   gridStage.append(grid58);
   tonesStage.append(grid4);
 
-  const slope = slopeChartForFamily({ ...family, movies: moviesSorted });
-  const finalWrap = el("div", { class: "pa-final-wrap" }, gridFinal, slope || null);
+  const comparison = keyDifferencesForFamily({ ...family, movies: moviesSorted });
+  const finalWrap = el("div", { class: "pa-final-wrap" }, comparison || null);
   finalStage.append(finalWrap);
 
   stages.append(posterStage, gridStage, tonesStage, finalStage);
@@ -321,32 +324,42 @@ function renderFamilyScrolly(family, moviesSorted) {
     el("div", { class: "pa-scrolly-spacer", "aria-hidden": "true" })
   );
 
-  function computeProgress(rootEl) {
-    const r = track.getBoundingClientRect();
-    const vh = window.innerHeight;
-    const travel = Math.max(1, track.offsetHeight - vh);
-    const scrolled = Math.min(Math.max(-r.top, 0), travel);
-    return scrolled / travel;
+  /** Scroll progress inside the modal body (not the viewport — panel stays fixed). */
+  function computeProgress(scrollParent) {
+    if (!scrollParent) return 0;
+    const travel = Math.max(1, scrollParent.scrollHeight - scrollParent.clientHeight);
+    return clamp01(scrollParent.scrollTop / travel);
   }
 
   function stageOpacities(p) {
-    // 0..1 scroll progress mapped to 4 stages with soft overlaps
-    const a = 1 - smoothstep01((p - 0.18) / 0.18);
-    const b = smoothstep01((p - 0.12) / 0.22) * (1 - smoothstep01((p - 0.44) / 0.18));
-    const c = smoothstep01((p - 0.38) / 0.22) * (1 - smoothstep01((p - 0.70) / 0.18));
-    const d = smoothstep01((p - 0.64) / 0.24);
+    // Wider crossover bands so each stage lasts longer (pairs with taller .pa-scrolly-spacer)
+    const a = 1 - smoothstep01((p - 0.14) / 0.2);
+    const b =
+      smoothstep01((p - 0.1) / 0.22) *
+      (1 - smoothstep01((p - 0.42) / 0.2));
+    const c =
+      smoothstep01((p - 0.36) / 0.22) *
+      (1 - smoothstep01((p - 0.68) / 0.2));
+    const d = smoothstep01((p - 0.58) / 0.26);
     return [a, b, c, d].map(clamp01);
   }
 
   let raf = 0;
-  function tick(rootEl) {
-    if (!rootEl || rootEl.hidden) return;
-    const p = computeProgress(rootEl);
+  function tick(scrollParent) {
+    if (!scrollParent?.isConnected) return;
+    const p = computeProgress(scrollParent);
     const [o0, o1, o2, o3] = stageOpacities(p);
     posterStage.style.opacity = String(o0);
     gridStage.style.opacity = String(o1);
     tonesStage.style.opacity = String(o2);
     finalStage.style.opacity = String(o3);
+
+    const finalLayout = o3 > 0.5;
+    stages.classList.toggle("pa-scrolly-stages--final-layout", finalLayout);
+    posterStage.style.pointerEvents = o0 < 0.08 ? "none" : "";
+    gridStage.style.pointerEvents = o1 < 0.08 ? "none" : "";
+    tonesStage.style.pointerEvents = o2 < 0.08 ? "none" : "";
+    finalStage.style.pointerEvents = o3 < 0.08 ? "none" : "";
 
     // subtle depth/scale for smoother feel
     posterStage.style.transform = `translateY(${(1 - o0) * 10}px) scale(${0.998 + o0 * 0.002})`;
@@ -355,24 +368,22 @@ function renderFamilyScrolly(family, moviesSorted) {
     finalStage.style.transform = `translateY(${(1 - o3) * 10}px) scale(${0.998 + o3 * 0.002})`;
   }
 
-  function onScroll(rootEl) {
+  function onScroll(scrollParent) {
     if (raf) return;
     raf = requestAnimationFrame(() => {
       raf = 0;
-      tick(rootEl);
+      tick(scrollParent);
     });
   }
 
-  // Hook is installed by openPosterAnalysis, which passes the modal root.
-  track.__paAttachScroll = (rootEl) => {
-    const scroller = rootEl; // .poster-analysis is scroll container
-    const handler = () => onScroll(rootEl);
-    scroller.addEventListener("scroll", handler, { passive: true });
+  /** Pass `.poster-analysis__rows` so the white panel does not scroll with content. */
+  track.__paAttachScroll = (scrollParent) => {
+    const handler = () => onScroll(scrollParent);
+    scrollParent.addEventListener("scroll", handler, { passive: true });
     window.addEventListener("resize", handler);
-    // initial
-    tick(rootEl);
+    tick(scrollParent);
     return () => {
-      scroller.removeEventListener("scroll", handler);
+      scrollParent.removeEventListener("scroll", handler);
       window.removeEventListener("resize", handler);
     };
   };
@@ -423,7 +434,7 @@ function renderFilmRow(movie, { index, total }) {
     stageCard("Poster", "Key art", posterCol),
     stageCard("Poster sample", "5 × 8 regions", gridSlot),
     stageCard("Four tones", "k-means", d4),
-    stageCard("Final colour", "dataset", renderDominant1(dominantHex))
+    stageCard("Final color", "dataset", renderDominant1(dominantHex))
   );
 
   const row = el("article", { class: "pa-row" }, strip);
@@ -461,111 +472,491 @@ function renderFilmRow(movie, { index, total }) {
 let shell = null;
 let onKey = null;
 
-function fmtBrightness(b) {
-  if (b == null || !Number.isFinite(b)) return "—";
-  return `${Math.round(b)}`;
+/** Element that opened the modal (atlas tile / search hits) — restore focus without scrolling the page */
+let paPriorFocusEl = null;
+
+/** Page scroll Y to restore; `overflow:hidden` alone is not enough on Safari / trackpad overscroll. */
+let lockedBodyScrollY = null;
+
+function capturePageScrollY() {
+  const yWin = window.scrollY ?? window.pageYOffset ?? 0;
+  if (yWin !== 0) return yWin;
+  const rt = document.documentElement?.scrollTop ?? 0;
+  if (rt !== 0) return rt;
+  return document.body?.scrollTop ?? 0;
 }
 
-function slopeChartForFamily(family) {
+function lockBodyScroll() {
+  document.documentElement.classList.add("pa-modal-scroll-quiet");
+  lockedBodyScrollY = capturePageScrollY();
+  document.documentElement.style.overflow = "hidden";
+  document.body.style.overflow = "hidden";
+  document.body.style.position = "fixed";
+  document.body.style.top = `-${lockedBodyScrollY}px`;
+  document.body.style.left = "0";
+  document.body.style.right = "0";
+  document.body.style.width = "100%";
+}
+
+/**
+ * Releases body lock + restores viewport Y without chapter snap fighting the fixed-body unwind.
+ */
+function unlockBodyScroll(onDone) {
+  document.body.style.position = "";
+  document.body.style.top = "";
+  document.body.style.left = "";
+  document.body.style.right = "";
+  document.body.style.width = "";
+  document.documentElement.style.overflow = "";
+  document.body.style.overflow = "";
+  const raw = lockedBodyScrollY;
+  lockedBodyScrollY = null;
+  const top = Number.isFinite(raw) ? Math.max(0, raw) : 0;
+
+  const apply = () => window.scrollTo({ left: 0, top, behavior: "auto" });
+  apply();
+  requestAnimationFrame(() => {
+    apply();
+    requestAnimationFrame(() => {
+      apply();
+      document.documentElement.classList.remove("pa-modal-scroll-quiet");
+      onDone?.();
+    });
+  });
+}
+
+function blurModalFocus() {
+  try {
+    const a = document.activeElement;
+    if (!(a instanceof HTMLElement) || !shell?.root.contains(a)) return;
+    a.blur();
+  } catch {
+    /* ignore */
+  }
+}
+
+function restorePriorFocusPreventScroll() {
+  const target = paPriorFocusEl;
+  paPriorFocusEl = null;
+  if (!(target instanceof HTMLElement) || !target.isConnected) return;
+  try {
+    target.focus({ preventScroll: true });
+  } catch {
+    target.focus();
+  }
+}
+
+/** HSL (CSS semantics): H 0–360, S/L 0–100 */
+function escapeHtml(s) {
+  return String(s)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/"/g, "&quot;");
+}
+
+function hexToHsl(hex) {
+  const [r255, g255, b255] = hexToRgb(hex);
+  const r = r255 / 255;
+  const g = g255 / 255;
+  const b = b255 / 255;
+  const max = Math.max(r, g, b);
+  const min = Math.min(r, g, b);
+  const l = (max + min) / 2;
+  let h = 0;
+  let s = 0;
+  if (max !== min) {
+    const d = max - min;
+    s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+    switch (max) {
+      case r:
+        h = ((g - b) / d + (g < b ? 6 : 0)) / 6;
+        break;
+      case g:
+        h = ((b - r) / d + 2) / 6;
+        break;
+      default:
+        h = ((r - g) / d + 4) / 6;
+    }
+  }
+  return { h: (h * 360 + 360) % 360, s: s * 100, l: l * 100 };
+}
+
+function relativeLuminance(hex) {
+  const [r, g, b] = hexToRgb(hex).map((c) => {
+    const x = c / 255;
+    return x <= 0.03928 ? x / 12.92 : ((x + 0.055) / 1.055) ** 2.4;
+  });
+  return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+}
+
+function lightDarkYearCaption(lightMovie, darkMovie) {
+  const ly = lightMovie?.year ?? "—";
+  const dy = darkMovie?.year ?? "—";
+  return `Light: ${ly} · Dark: ${dy}`;
+}
+
+function bindPosterHover(elNode, movie) {
+  const url = posterUrl(movie?.posterPath);
+  if (!url || !elNode) return;
+  elNode.classList.add("pa-cmp-hover");
+  elNode.style.cursor = "pointer";
+  const title = escapeHtml(movie.title || "Poster");
+  const yearStr =
+    movie.year != null ? escapeHtml(String(movie.year)) : "";
+  const accent = movie.dominantHex || "#888888";
+  const html = `<img class="intro-tip-poster" src="${url}" alt="" /><span class="t-title">${title}</span><span class="t-sub">${yearStr}</span>`;
+  elNode.addEventListener("mouseenter", (e) =>
+    showTooltip(e, html, { film: true, accent })
+  );
+  elNode.addEventListener("mousemove", moveTooltip);
+  elNode.addEventListener("mouseleave", hideTooltip);
+}
+
+function keyDifferencesForFamily(family) {
   let movies = [...(family?.movies || [])].filter((m) => m?.dominantHex && m?.year != null);
   if (movies.length < 2) return null;
-  movies = movies.sort((a, b) => (a.year ?? 9999) - (b.year ?? 9999));
+  movies.sort((a, b) => (a.year ?? 9999) - (b.year ?? 9999));
 
-  const W = 560;
-  const H = 190;
-  const pad = { top: 18, right: 42, bottom: 18, left: 42 };
-  const innerW = W - pad.left - pad.right;
-  const innerH = H - pad.top - pad.bottom;
+  const txtOn = (hex) =>
+    relativeLuminance(hex) > 0.42
+      ? { color: "#121212", textShadow: "none" }
+      : { color: "#fff", textShadow: "0 1px 2px rgba(0,0,0,0.35)" };
 
-  const x = (i) => {
-    if (movies.length <= 1) return pad.left;
-    return pad.left + (i / (movies.length - 1)) * innerW;
-  };
-  const y = (v) => pad.top + (1 - Math.max(0, Math.min(100, v)) / 100) * innerH;
-  const pts = movies.map((m, i) => ({
-    i,
-    year: m.year,
-    hex: m.dominantHex,
-    b: brightness(m.dominantHex),
-    x: x(i),
-    y: y(brightness(m.dominantHex)),
-  }));
-
-  const ns = "http://www.w3.org/2000/svg";
-  const svg = document.createElementNS(ns, "svg");
-  svg.setAttribute("class", "pa-slope");
-  svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
-  svg.setAttribute("role", "img");
-  svg.setAttribute("aria-label", `Brightness over time from ${pts[0].year} to ${pts[pts.length - 1].year}.`);
-
-  const mk = (tag, attrs = {}) => {
-    const n = document.createElementNS(ns, tag);
-    for (const [k, v] of Object.entries(attrs)) n.setAttribute(k, String(v));
-    return n;
-  };
-
-  // side axes
-  svg.appendChild(mk("line", { x1: pad.left, x2: pad.left, y1: pad.top, y2: pad.top + innerH, class: "pa-slope__axis" }));
-  svg.appendChild(mk("line", { x1: pad.left + innerW, x2: pad.left + innerW, y1: pad.top, y2: pad.top + innerH, class: "pa-slope__axis" }));
-
-  // dashed gridlines (no numeric labels; sketch-like)
-  const ticks = [85, 65, 45, 25];
-  for (const t of ticks) {
-    const yy = y(t);
-    svg.appendChild(mk("line", { x1: pad.left, x2: pad.left + innerW, y1: yy, y2: yy, class: "pa-slope__grid" }));
+  function barRow(movie, pct, fillHex) {
+    const w = Math.max(0, Math.min(100, pct));
+    const yearLabel = movie.year ?? "—";
+    const fill = el("span", {
+      class: "pa-diff-fill",
+      style: {
+        width: `${w}%`,
+        background: fillHex,
+      },
+    });
+    bindPosterHover(fill, movie);
+    return el(
+      "div",
+      { class: "pa-diff-row" },
+      el("span", { class: "pa-diff-row__year" }, String(yearLabel)),
+      el(
+        "div",
+        { class: "pa-diff-track", "aria-hidden": "true" },
+        fill
+      ),
+      el("span", { class: "pa-diff-pct" }, `${Math.round(w)}%`)
+    );
   }
 
-  // + / - markers like the sketch
-  const plusL = mk("text", { x: pad.left - 16, y: pad.top + 10, class: "pa-slope__pm" }); plusL.textContent = "+";
-  const minusL = mk("text", { x: pad.left - 16, y: pad.top + innerH, class: "pa-slope__pm" }); minusL.textContent = "−";
-  const plusR = mk("text", { x: pad.left + innerW + 16, y: pad.top + 10, class: "pa-slope__pm pa-slope__pm--r" }); plusR.textContent = "+";
-  const minusR = mk("text", { x: pad.left + innerW + 16, y: pad.top + innerH, class: "pa-slope__pm pa-slope__pm--r" }); minusR.textContent = "−";
-  svg.appendChild(plusL); svg.appendChild(minusL); svg.appendChild(plusR); svg.appendChild(minusR);
+  function sectionLabel(text) {
+    return el("p", { class: "pa-cmp-section__label" }, text);
+  }
 
-  // slope polyline through every film
-  const d = pts.map((p) => `${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(" ");
-  svg.appendChild(mk("polyline", { points: d, class: "pa-slope__line", fill: "none" }));
-
-  // points (no visible years; show on hover via <title>)
-  pts.forEach((p, i) => {
-    const c = mk("circle", {
-      cx: p.x,
-      cy: p.y,
-      r: 10,
-      fill: p.hex,
-      class: "pa-slope__dot",
-      tabindex: "0",
-      "data-year": p.year,
-      "data-hex": String(p.hex || "").toUpperCase(),
-      "data-bright": Math.round(p.b),
+  function colorCard(movie) {
+    const hsl = hexToHsl(movie.dominantHex);
+    const colorBg = el("div", {
+      class: "pa-cmp-card__color-bg",
+      style: { background: movie.dominantHex },
     });
+    const colorTop = el(
+      "div",
+      { class: "pa-cmp-card__color-top" },
+      colorBg
+    );
+    const pills = el(
+      "div",
+      { class: "pa-cmp-card__pills" },
+      el("span", { class: "pa-cmp-pill" }, `H ${Math.round(hsl.h)}°`),
+      el("span", { class: "pa-cmp-pill" }, `L ${Math.round(hsl.l)}%`)
+    );
+    return el(
+      "div",
+      { class: "pa-cmp-card pa-cmp-card--split" },
+      colorTop,
+      el(
+        "div",
+        { class: "pa-cmp-card__panel" },
+        el(
+          "code",
+          { class: "pa-cmp-card__hex" },
+          movie.dominantHex.toUpperCase()
+        ),
+        pills
+      )
+    );
+  }
 
-    const onEnter = (event) => {
-      const year = c.getAttribute("data-year") || "—";
-      const hex = c.getAttribute("data-hex") || "—";
-      const br = c.getAttribute("data-bright") || "—";
-      showTooltip(
-        event,
-        `<span class="t-title">${hex}</span><span class="t-sub">${year} · brightness ${br}</span>`,
-        { accent: hex }
+  const nMovies = movies.length;
+  if (nMovies === 3 || nMovies === 4) {
+    function peerDarkestAmongOthers(idx) {
+      let ref = movies[0];
+      let minLum = Infinity;
+      for (let i = 0; i < nMovies; i++) {
+        if (i === idx) continue;
+        const L = relativeLuminance(movies[i].dominantHex);
+        if (L < minLum) {
+          minLum = L;
+          ref = movies[i];
+        }
+      }
+      return ref;
+    }
+
+    function buildGradientMulti(list) {
+      const n = list.length;
+      const hexes = list.map((m) => m.dominantHex);
+      const bg =
+        n <= 1
+          ? hexes[0]
+          : `linear-gradient(90deg, ${hexes
+              .map((h, i) => `${h} ${(i / (n - 1)) * 100}%`)
+              .join(", ")})`;
+      return el(
+        "div",
+        { class: "pa-cmp-gradient" },
+        el(
+          "div",
+          { class: "pa-cmp-gradient__bar-wrap" },
+          el("div", {
+            class: "pa-cmp-gradient__bar",
+            style: { background: bg },
+          })
+        )
       );
-    };
-    c.addEventListener("mouseenter", onEnter);
-    c.addEventListener("mousemove", (event) => moveTooltip(event));
-    c.addEventListener("mouseleave", () => hideTooltip());
-    c.addEventListener("focus", (event) => onEnter(event));
-    c.addEventListener("blur", () => hideTooltip());
+    }
 
-    svg.appendChild(c);
+    function metricBlockMulti(title, list, valueFn) {
+      const block = el(
+        "div",
+        { class: "pa-diff-metric" },
+        el("h4", { class: "pa-diff-metric__title" }, title)
+      );
+      for (const m of list) {
+        block.append(barRow(m, valueFn(m), m.dominantHex));
+      }
+      return block;
+    }
+
+    function pairContrastPair(a, b) {
+      const lumA = relativeLuminance(a.dominantHex);
+      const lumB = relativeLuminance(b.dominantHex);
+      const lightFirst = lumA >= lumB;
+      const mvLight = lightFirst ? a : b;
+      const mvDark = lightFirst ? b : a;
+      const hexLight = mvLight.dominantHex;
+      const hexDark = mvDark.dominantHex;
+
+      const halfL = el(
+        "span",
+        {
+          class: "pa-diff-contrast-split__half pa-diff-contrast-split__half--a",
+          style: { background: hexLight, ...txtOn(hexLight) },
+        },
+        String(mvLight.year ?? "—")
+      );
+      const halfR = el(
+        "span",
+        {
+          class: "pa-diff-contrast-split__half pa-diff-contrast-split__half--b",
+          style: { background: hexDark, ...txtOn(hexDark) },
+        },
+        String(mvDark.year ?? "—")
+      );
+      bindPosterHover(halfL, mvLight);
+      bindPosterHover(halfR, mvDark);
+      return el(
+        "div",
+        { class: "pa-cmp-pair-block" },
+        el("div", { class: "pa-diff-contrast-split" }, halfL, halfR),
+        el(
+          "p",
+          {
+            class: "pa-diff-contrast__note pa-diff-contrast__note--compact",
+          },
+          lightDarkYearCaption(mvLight, mvDark)
+        )
+      );
+    }
+
+    const cards = el("div", {
+      class: "pa-cmp-cards pa-cmp-cards--multi",
+      "data-pa-cards": String(nMovies),
+    });
+    movies.forEach((m) => cards.append(colorCard(m)));
+
+    const pairsEl = el("div", { class: "pa-cmp-pairs" });
+    if (nMovies === 4) {
+      pairsEl.append(
+        pairContrastPair(movies[0], movies[1]),
+        pairContrastPair(movies[2], movies[3])
+      );
+    } else {
+      pairsEl.append(
+        pairContrastPair(movies[0], movies[1]),
+        pairContrastPair(movies[1], movies[2])
+      );
+    }
+
+    const yStart = movies[0].year ?? "—";
+    const yEnd = movies[nMovies - 1].year ?? "—";
+
+    return el(
+      "section",
+      {
+        class: "pa-cmp-wrap pa-cmp-wrap--dashboard",
+        "aria-label": `Dominant color comparison (${yStart}–${yEnd})`,
+      },
+      el(
+        "div",
+        { class: "pa-cmp-section" },
+        sectionLabel("Selected colors"),
+        cards
+      ),
+      el(
+        "div",
+        { class: "pa-cmp-section" },
+        sectionLabel("Luminance gradient"),
+        buildGradientMulti(movies)
+      ),
+      el(
+        "div",
+        { class: "pa-cmp-section pa-cmp-section--keydiff" },
+        sectionLabel("Key differences"),
+        metricBlockMulti("Luminosity", movies, (m) => hexToHsl(m.dominantHex).l)
+      ),
+      el(
+        "div",
+        { class: "pa-cmp-section pa-cmp-section--contrast" },
+        sectionLabel("Pairwise contrast"),
+        pairsEl
+      )
+    );
+  }
+
+  const older = movies[0];
+  const newer = movies[movies.length - 1];
+  const hexO = older.dominantHex;
+  const hexN = newer.dominantHex;
+  const hslO = hexToHsl(hexO);
+  const hslN = hexToHsl(hexN);
+  const yO = older.year ?? "—";
+  const yN = newer.year ?? "—";
+
+  const lumO = relativeLuminance(hexO);
+  const lumN = relativeLuminance(hexN);
+  const lightFirst = lumO >= lumN;
+
+  const movieLight = lightFirst ? older : newer;
+  const movieDark = lightFirst ? newer : older;
+
+  const hexLight = lightFirst ? hexO : hexN;
+  const hexDark = lightFirst ? hexN : hexO;
+
+  function metricBlockLuminosity(title, pctOlder, pctNewer) {
+    return el(
+      "div",
+      { class: "pa-diff-metric" },
+      el("h4", { class: "pa-diff-metric__title" }, title),
+      barRow(older, pctOlder, hexO),
+      barRow(newer, pctNewer, hexN)
+    );
+  }
+
+  const hitL = el("div", {
+    class: "pa-cmp-gradient__hit pa-cmp-gradient__hit--left",
   });
+  const hitR = el("div", {
+    class: "pa-cmp-gradient__hit pa-cmp-gradient__hit--right",
+  });
+  bindPosterHover(hitL, movieLight);
+  bindPosterHover(hitR, movieDark);
+  const gradientHits = el("div", { class: "pa-cmp-gradient__hits" }, hitL, hitR);
 
-  const wrap = el(
-    "section",
-    { class: "pa-slope-wrap", "aria-label": "Brightness change" },
-    el("h3", { class: "pa-slope-title" }, "Brightness slope"),
-    svg
+  const gradientBlock = el(
+    "div",
+    { class: "pa-cmp-gradient" },
+    el(
+      "div",
+      { class: "pa-cmp-gradient__bar-wrap" },
+      el("div", {
+        class: "pa-cmp-gradient__bar",
+        style: {
+          background: `linear-gradient(90deg, ${hexLight} 0%, ${hexDark} 100%)`,
+        },
+      }),
+      gradientHits
+    )
   );
-  return wrap;
+
+  const halfL = el(
+    "span",
+    {
+      class: "pa-diff-contrast-split__half pa-diff-contrast-split__half--a",
+      style: { background: hexLight, ...txtOn(hexLight) },
+    },
+    String(movieLight.year ?? "—")
+  );
+  const halfD = el(
+    "span",
+    {
+      class: "pa-diff-contrast-split__half pa-diff-contrast-split__half--b",
+      style: { background: hexDark, ...txtOn(hexDark) },
+    },
+    String(movieDark.year ?? "—")
+  );
+  bindPosterHover(halfL, movieLight);
+  bindPosterHover(halfD, movieDark);
+
+  const contrastSplit = el("div", { class: "pa-diff-contrast-split" }, [
+    halfL,
+    halfD,
+  ]);
+
+  return el(
+    "section",
+    {
+      class: "pa-cmp-wrap",
+      "aria-label": `Dominant color comparison ${yO} vs ${yN}`,
+    },
+    el(
+      "div",
+      { class: "pa-cmp-section" },
+      sectionLabel("Selected colors"),
+      el(
+        "div",
+        { class: "pa-cmp-cards" },
+        colorCard(older),
+        colorCard(newer)
+      )
+    ),
+    el(
+      "div",
+      { class: "pa-cmp-section" },
+      sectionLabel("Brightness slope"),
+      gradientBlock
+    ),
+    el(
+      "div",
+      { class: "pa-cmp-section pa-cmp-section--keydiff" },
+      sectionLabel("Key differences"),
+      metricBlockLuminosity("Luminosity", hslO.l, hslN.l)
+    ),
+    el(
+      "div",
+      { class: "pa-cmp-section pa-cmp-section--contrast" },
+      sectionLabel("Contrast between colors"),
+      el(
+        "div",
+        { class: "pa-diff-contrast pa-diff-contrast--solo" },
+        contrastSplit,
+        el(
+          "p",
+          {
+            class: "pa-diff-contrast__note pa-diff-contrast__note--compact",
+          },
+          lightDarkYearCaption(movieLight, movieDark)
+        )
+      )
+    )
+  );
 }
 
 function buildShell() {
@@ -607,24 +998,44 @@ function buildShell() {
 
 export function closePosterAnalysis() {
   if (!shell) return;
+  shell.rows.scrollTop = 0;
+  blurModalFocus();
   shell.root.hidden = true;
   shell.root.setAttribute("aria-hidden", "true");
   if (onKey) {
     document.removeEventListener("keydown", onKey);
     onKey = null;
   }
-  document.body.style.overflow = "";
+  unlockBodyScroll(() =>
+    requestAnimationFrame(() => restorePriorFocusPreventScroll())
+  );
 }
 
 export function openPosterAnalysis({ familyId, families }) {
   const family = (families || []).find((f) => f.familyId === familyId);
   if (!family || !(family.movies || []).length) return;
 
+  paPriorFocusEl =
+    document.activeElement instanceof HTMLElement ? document.activeElement : null;
+
   if (!shell) shell = buildShell();
   if (shell._detachScroll) {
     shell._detachScroll();
     shell._detachScroll = null;
   }
+
+  // Defensive: dedupe by tmdbId so repeated IDs don't render repeated posters.
+  const uniq = [];
+  const seen = new Set();
+  for (const m of family.movies) {
+    const k = m?.tmdbId != null ? String(m.tmdbId) : `${m?.title || ""}-${m?.year || ""}`;
+    if (seen.has(k)) continue;
+    seen.add(k);
+    uniq.push(m);
+  }
+  const sorted = uniq.sort((a, b) => (a.year ?? 9999) - (b.year ?? 9999));
+  const filmYearLine = formatPosterModalFilmLine(sorted);
+  const nPosters = sorted.length;
 
   clear(shell.header);
   clear(shell.rows);
@@ -640,31 +1051,32 @@ export function openPosterAnalysis({ familyId, families }) {
       ),
       el(
         "p",
-        { class: "poster-analysis__dek" },
-        `${(family.movies || []).length} ${plural((family.movies || []).length, "poster", "posters")} in this remake family. Scroll to watch the image reduce from poster → pixels → tones → a single colour.`
+        { class: "poster-analysis__remake-line", id: "poster-analysis-remakes" },
+        filmYearLine
+      ),
+      el(
+        "p",
+        {
+          class: "poster-analysis__dek poster-analysis__dek--scroll-hint",
+        },
+        `${nPosters} ${plural(nPosters, "poster", "posters")} in this remake family. Scroll to watch the image reduce from poster → pixels → tones → a single color.`
       )
     )
   );
 
-  // Defensive: dedupe by tmdbId so repeated IDs don't render repeated posters.
-  const uniq = [];
-  const seen = new Set();
-  for (const m of family.movies) {
-    const k = m?.tmdbId != null ? String(m.tmdbId) : `${m?.title || ""}-${m?.year || ""}`;
-    if (seen.has(k)) continue;
-    seen.add(k);
-    uniq.push(m);
-  }
-  const sorted = uniq.sort((a, b) => (a.year ?? 9999) - (b.year ?? 9999));
   const scrolly = renderFamilyScrolly(family, sorted);
   shell.rows.append(scrolly);
-  shell._detachScroll = typeof scrolly.__paAttachScroll === "function" ? scrolly.__paAttachScroll(shell.root) : null;
-
-  // Slope chart is rendered inside the scrolly final stage for selected families.
 
   shell.root.hidden = false;
   shell.root.setAttribute("aria-hidden", "false");
-  document.body.style.overflow = "hidden";
+  lockBodyScroll();
+  shell.rows.scrollTop = 0;
+
+  shell._detachScroll = typeof scrolly.__paAttachScroll === "function" ? scrolly.__paAttachScroll(shell.rows) : null;
+
+  requestAnimationFrame(() => {
+    shell.rows.scrollTop = 0;
+  });
 
   if (!onKey) {
     onKey = (e) => {
@@ -673,5 +1085,9 @@ export function openPosterAnalysis({ familyId, families }) {
     document.addEventListener("keydown", onKey);
   }
 
-  shell.closeBtn?.focus?.();
+  try {
+    shell.closeBtn?.focus?.({ preventScroll: true });
+  } catch {
+    shell.closeBtn?.focus?.();
+  }
 }

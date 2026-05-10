@@ -176,7 +176,7 @@ function renderTrailerCol(movie) {
 
 /* ---------- one full row per film ---------- */
 
-function renderRow(movie, role, sentimentScore) {
+function renderRow(movie, role) {
   if (!movie) {
     return el(
       "article",
@@ -216,27 +216,6 @@ function renderRow(movie, role, sentimentScore) {
     metricRow("Warmth", m.warmth)
   );
 
-  if (sentimentScore !== null && sentimentScore !== undefined) {
-    const pct = ((sentimentScore + 1) / 2) * 100;
-    const labelText = movie.sentimentLabel
-      ? `Summary tone (${String(movie.sentimentLabel)})`
-      : "Summary tone (overview text)";
-    metricsWrap.append(
-      el(
-        "div",
-        { class: "case-metric is-sentiment" },
-        el("span", { class: "label" }, labelText),
-        el("span", { class: "bar" }, el("span", { class: "marker", style: { "--v": String(pct) } })),
-        el("span", { class: "case-metric__value" }, `${sentimentScore.toFixed(2)} (−1 gloomy … +1 upbeat)`),
-        el(
-          "p",
-          { class: "case-metric__hint" },
-          "RoBERTa score on the TMDB overview (English). Only some films in the dataset have this."
-        )
-      )
-    );
-  }
-
   const row = el("article", { class: "media-row" }, header, mediaGrid, metricsWrap);
   if (movie.overview) row.append(el("p", { class: "case-overview" }, movie.overview));
   return row;
@@ -244,24 +223,13 @@ function renderRow(movie, role, sentimentScore) {
 
 /* ---------- main ---------- */
 
-export function renderCaseStudy(container, { families, selectedFilm, sentimentFeatures }) {
+export function renderCaseStudy(container, { families, selectedFilm }) {
   clear(container);
 
   const family = (families || []).find((f) =>
     (f.movies || []).some((m) => Number(m.tmdbId) === Number(selectedFilm?.tmdbId))
   );
   const sorted = family ? [...family.movies].sort((a, b) => (a.year ?? 9999) - (b.year ?? 9999)) : [];
-
-  const sentimentMap = new Map();
-  for (const item of sentimentFeatures || []) {
-    if (String(item.sentimentLabel || "").toLowerCase() === "no_overview") continue;
-    const id = Number(item.tmdbId);
-    if (!Number.isFinite(id)) continue;
-    sentimentMap.set(id, {
-      score: Number(item.sentimentScores?.positive || 0) - Number(item.sentimentScores?.negative || 0),
-      sentimentLabel: item.sentimentLabel || "",
-    });
-  }
 
   container.append(
     el(
@@ -281,10 +249,7 @@ export function renderCaseStudy(container, { families, selectedFilm, sentimentFe
 
   const rows = el("div", { class: "case-rows" });
   sorted.forEach((movie, i) => {
-    const meta = sentimentMap.get(Number(movie.tmdbId));
-    const score = meta != null ? meta.score : null;
-    const enriched = meta != null ? { ...movie, sentimentLabel: meta.sentimentLabel } : movie;
-    rows.append(renderRow(enriched, roles[i], score));
+    rows.append(renderRow(movie, roles[i]));
   });
   container.append(rows);
 }

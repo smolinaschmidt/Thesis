@@ -61,7 +61,7 @@ export function renderIntro(container, { families }) {
               `<span class="t-title">${escapeHtml(movie.title)}</span><span class="t-sub">No poster · ${
                 movie.year ?? "—"
               }</span>`,
-              { film: true }
+              { film: true, accent: hex, ch1: true }
             );
           } else {
             showTooltip(
@@ -69,7 +69,7 @@ export function renderIntro(container, { families }) {
               `<img class="intro-tip-poster" src="${u}" alt="" /><span class="t-title">${escapeHtml(
                 movie.title
               )}</span><span class="t-sub">${movie.year ?? "—"}</span>`,
-              { film: true }
+              { film: true, accent: hex, ch1: true }
             );
           }
           moveTooltip(event);

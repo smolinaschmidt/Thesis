@@ -15,13 +15,7 @@ import {
  */
 
 const VIEW = { width: 2040, height: 760 };
-/** Ch.04 pinned sentiment→scatter: same height as ch.03 timeline / morph embed for one visual size. */
-const SENTIMENT_SCATTER_PINNED = {
-  width: 2040,
-  height: 640,
-  margin: { top: 96, right: 22, bottom: 44, left: 92 },
-};
-/** Ch.05 scrolly only — taller than VIEW so the chart fills more vertical space on screen. */
+/** Ch.03 scrolly only — taller than VIEW so the chart fills more vertical space on screen. */
 const VIEW_SCROLLY_HEIGHT = 1020;
 const MARGIN = { top: 124, right: 28, bottom: 60, left: 92 };
 const ACCENT = "var(--accent)";
@@ -48,12 +42,7 @@ function formatGenreLine(genres) {
 
 function showFilmTooltip(event, d) {
   const year = d.year != null ? d.year : "—";
-  let sub = `${year} · ${formatGenreLine(d.genres)}`;
-  if (d.toneScore != null && Number.isFinite(d.toneScore)) {
-    const label = d.sentimentLabel ? String(d.sentimentLabel).replace(/^\w/, (c) => c.toUpperCase()) : "";
-    const toneBit = label ? `${label} · score ${d.toneScore.toFixed(2)}` : `Tone score ${d.toneScore.toFixed(2)}`;
-    sub += ` · ${toneBit}`;
-  }
+  const sub = `${year} · ${formatGenreLine(d.genres)}`;
   showTooltip(
     event,
     `<span class="t-title">${escape(d.title)}</span><span class="t-sub">${sub}</span>`,
@@ -164,6 +153,23 @@ function bucketForFilm(d) {
   return bucketGenreForFilm(d.genres);
 }
 
+/** Left→right: genres with fewer films first (clearer stripes), dense columns (Drama, Comedy) last. */
+function genreColumnOrder(nodes) {
+  const counts = new Map(
+    SCROLL_GENRE_ORDER.map((g) => [g, 0])
+  );
+  for (const d of nodes) {
+    const b = d.bucket;
+    if (b && counts.has(b)) counts.set(b, (counts.get(b) || 0) + 1);
+  }
+  return [...SCROLL_GENRE_ORDER].sort((a, b) => {
+    const ca = counts.get(a) ?? 0;
+    const cb = counts.get(b) ?? 0;
+    if (ca !== cb) return ca - cb;
+    return SCROLL_GENRE_ORDER.indexOf(a) - SCROLL_GENRE_ORDER.indexOf(b);
+  });
+}
+
 /**
  * Sticky scrolly: year×lightness → genre stacks → horizontal colour stripes (barcode).
  * @param {{ movies: unknown[], embedInParentScroll?: boolean, embedSpec?: { viewHeight: number, margin: { top: number, right: number, bottom: number, left: number } }, timelineAnchors?: Map<string, { x: number, y: number, r: number }>, getHandoffLerp?: () => number, timelineClick?: { handoffMax: number, laneForTmdb: (tmdbKey: string) => string | null, selectLane: (laneId: string) => void }, getTimelinePanelOpen?: () => boolean, timelineFilmToX?: (tmdbKey: string, panelOpen: boolean) => number, timelineYearToX?: (year: number, panelOpen: boolean) => number }} opts
@@ -266,7 +272,7 @@ export function renderMorphScrolly(
     d.bucket = bucketForFilm(d);
   });
 
-  const genreLabels = [...SCROLL_GENRE_ORDER];
+  const genreLabels = genreColumnOrder(nodes);
   const xBand = d3.scaleBand().domain(genreLabels).range([left, right]).padding(0.38);
   const stackGap = 4;
   const rStack = (d) => Math.max(4.2, Math.min(11, radiusFor(d) * 0.62));
@@ -312,11 +318,14 @@ export function renderMorphScrolly(
   });
 
   function computeBarcodeLayout() {
+    /* Same stripe thickness (barH) in every genre column; sparse columns keep white gaps like before. */
     const maxN =
       d3.max(genreLabels, (lab) => nodes.filter((d) => d.bucket === lab).length) || 1;
-    const lineH = Math.max(1.55, Math.min(4.6, (bottom - top - 20) / maxN));
+    const plotH = bottom - top - 20;
+    const lineH = Math.max(1.55, Math.min(4.8, plotH / maxN));
     const vGap = 0.34;
     const barMaxBottom = bottom - 2;
+
     genreLabels.forEach((lab) => {
       const col = nodes
         .filter((d) => d.bucket === lab)
@@ -326,7 +335,7 @@ export function renderMorphScrolly(
             colorSortKey(a) - colorSortKey(b) ||
             a.hue - b.hue ||
             a.lum - b.lum ||
-            String(a.title).localeCompare(String(b.title))
+            String(a.id).localeCompare(String(b.id))
         );
       const bw = Math.max(4, xBand.bandwidth() - 2);
       const xLeft = xBand(lab) + 1;
@@ -440,7 +449,7 @@ export function renderMorphScrolly(
       .attr("font-family", FONT)
       .attr("font-size", 28)
       .attr("font-weight", 700)
-      .text("Colour through the years");
+      .text("Color through the years");
     gHeaderTime
       .append("text")
       .attr("x", left)
@@ -478,7 +487,7 @@ export function renderMorphScrolly(
       .attr("font-family", FONT)
       .attr("font-size", 28)
       .attr("font-weight", 700)
-      .text("Genre colour barcodes");
+      .text("Genre color barcodes");
     gHeaderBarcode
       .append("text")
       .attr("x", left)
@@ -689,12 +698,17 @@ export function renderMorphScrolly(
         w = w0 + pBar * (d.barW - w0);
         h = h0 + pBar * (d.barH - h0);
         rx = Math.min(rS * (1 - pBar) + pBar * 0.25, w / 2, h / 2);
-        const thin = pBar > 0.88 ? 0.18 : 0.75;
+        const lumPoster = brightness(d.color);
+        const lightPoster = lumPoster > 66;
+        let strokeWide = pBar > 0.88 ? 0.22 : 0.75;
+        if (pBar > 0.82 && lightPoster) strokeWide = Math.max(strokeWide, 0.48);
         x = cx - w / 2;
         y = cy - h / 2;
         fillOp = baseOp;
-        strokeOp = baseOp * (pBar > 0.9 ? 0.35 : 1);
-        strokeW = thin;
+        strokeOp =
+          baseOp *
+          (pBar > 0.9 ? (lightPoster ? 0.52 : 0.38) : 1);
+        strokeW = strokeWide;
         dash = pBar > 0.15 || isRated(d) ? null : "2.5 2.5";
       }
 
@@ -766,315 +780,6 @@ export function renderMorphScrolly(
   window.addEventListener("resize", onScroll);
 }
 
-export function renderMorph(container, { stage, byDecade, movies, sentimentFeatures }) {
-  clear(container);
-
-  const svgNode = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-  svgNode.setAttribute("viewBox", `0 0 ${VIEW.width} ${VIEW.height}`);
-  svgNode.setAttribute("width", "100%");
-  svgNode.setAttribute("height", "auto");
-  container.append(svgNode);
-  const svg = d3.select(svgNode);
-
-  if (stage === 0) drawColorOverTime(svg, movies);
-  else if (stage === 1) drawGenreStacks(svg, buildGenreRows(movies));
-  else if (stage === 2)
-    drawSentimentStrip(svg, buildSentimentPoints(movies, sentimentFeatures), { embed: false });
-  else drawScatter(svg, buildScatter(movies, sentimentFeatures), { embed: false });
-}
-
-function buildSentimentToScatterNodes(movies, sentimentFeatures) {
-  const meta = sentimentFeatureByTmdb(sentimentFeatures);
-  return (movies || [])
-    .filter((m) => m.year && m.dominantHex && meta.has(Number(m.tmdbId)))
-    .map((m, i) => {
-      const { toneScore, sentimentLabel } = meta.get(Number(m.tmdbId));
-      return {
-        tmdbId: Number(m.tmdbId),
-        year: m.year,
-        lum: brightness(m.dominantHex),
-        score: toneScore,
-        toneScore,
-        sentimentLabel,
-        color: m.dominantHex,
-        title: m.title,
-        genres: Array.isArray(m.genres) ? m.genres : [],
-        jitter: ((hash32(`${m.tmdbId}-${i}`) % 1000) / 1000 - 0.5) * 10,
-      };
-    });
-}
-
-/**
- * Pinned ch.04: year×sentiment strip morphs into brightness×sentiment scatter (same films, same y).
- * Copy lives in HTML; optional notes + scatter labels fade via frame().
- */
-export function renderSentimentToScatterPinned(container, { movies, sentimentFeatures }) {
-  clear(container);
-  const PW = SENTIMENT_SCATTER_PINNED.width;
-  const PH = SENTIMENT_SCATTER_PINNED.height;
-  const PM = SENTIMENT_SCATTER_PINNED.margin;
-  const svgNode = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-  svgNode.setAttribute("viewBox", `0 0 ${PW} ${PH}`);
-  svgNode.setAttribute("width", "100%");
-  svgNode.setAttribute("height", "100%");
-  container.append(svgNode);
-  const svg = d3.select(svgNode);
-
-  const nodes = buildSentimentToScatterNodes(movies, sentimentFeatures);
-  if (!nodes.length) return null;
-
-  const left = PM.left;
-  const right = PW - PM.right;
-  const top = PM.top;
-  const bottom = PH - PM.bottom;
-  const yearExtent = d3.extent(nodes, (d) => d.year);
-  const xYear = d3.scaleLinear().domain(yearExtent).nice().range([left, right]);
-  const xLum = d3.scaleLinear().domain([0, 100]).range([left, right]);
-  const y = d3.scaleLinear().domain([-1, 1]).range([bottom, top]);
-
-  const d0 = Math.floor(yearExtent[0] / 10) * 10;
-  const d1 = Math.ceil(yearExtent[1] / 10) * 10;
-  const decadeYears = d3.range(d0, d1 + 1, 10);
-
-  const gBands = svg.append("g").attr("class", "ss-bands");
-  for (let i = 0; i < decadeYears.length - 1; i++) {
-    const xa0 = Math.max(left, xYear(decadeYears[i]));
-    const xa1 = Math.min(right, xYear(decadeYears[i + 1]));
-    gBands
-      .append("rect")
-      .attr("x", xa0)
-      .attr("y", top)
-      .attr("width", Math.max(0, xa1 - xa0))
-      .attr("height", bottom - top)
-      .attr("fill", "none")
-      .attr("stroke", "none");
-  }
-
-  svg
-    .append("line")
-    .attr("class", "ss-zero")
-    .attr("x1", left)
-    .attr("x2", right)
-    .attr("y1", y(0))
-    .attr("y2", y(0))
-    .attr("stroke", RULE)
-    .attr("stroke-width", 1.5);
-
-  const byDecade = d3
-    .rollups(
-      nodes,
-      (v) => d3.mean(v, (p) => p.score),
-      (p) => Math.floor(p.year / 10) * 10
-    )
-    .map(([decade, mean]) => ({ decade, mean }))
-    .sort((a, b) => a.decade - b.decade);
-
-  const meanLine = d3
-    .line()
-    .x((d) => xYear(d.decade + 5))
-    .y((d) => y(d.mean))
-    .curve(d3.curveMonotoneX);
-
-  const gMean = svg.append("g").attr("class", "ss-mean");
-  const meanPath = gMean
-    .append("path")
-    .datum(byDecade)
-    .attr("fill", "none")
-    .attr("stroke", ACCENT)
-    .attr("stroke-width", 3)
-    .attr("stroke-linecap", "round")
-    .attr("d", meanLine);
-  const meanLen = meanPath.node().getTotalLength();
-  meanPath.attr("stroke-dasharray", `${meanLen}`).attr("stroke-dashoffset", `${meanLen}`);
-
-  gMean
-    .selectAll("circle.mean")
-    .data(byDecade)
-    .join("circle")
-    .attr("class", "mean")
-    .attr("cx", (d) => xYear(d.decade + 5))
-    .attr("cy", (d) => y(d.mean))
-    .attr("r", 5.5)
-    .attr("fill", ACCENT)
-    .attr("stroke", "none")
-    .style("opacity", 0);
-
-  const notesG = svg.append("g").attr("class", "ss-notes");
-  const noteY0 = 54;
-  [
-    "Blue line & blue dots on it: for each release decade we average the tone scores of every film in that decade,",
-    "plot that one number at the decade’s centre, and connect the points — so it summarizes the era, not a single film.",
-  ].forEach((txt, i) => {
-    notesG
-      .append("text")
-      .attr("x", PM.left)
-      .attr("y", noteY0 + i * 20)
-      .attr("fill", MUTED)
-      .attr("font-family", FONT)
-      .attr("font-size", 15)
-      .attr("font-weight", 500)
-      .text(txt);
-  });
-
-  const extremes = [...nodes]
-    .map((p) => ({ ...p, dist: Math.abs(p.score) + Math.abs(p.lum - 50) / 80 }))
-    .sort((a, b) => b.dist - a.dist)
-    .slice(0, 3);
-
-  const gLbl = svg.append("g").attr("class", "ss-scatter-lbl");
-  gLbl
-    .selectAll("text.lbl")
-    .data(extremes)
-    .join("text")
-    .attr("class", "lbl")
-    .attr("fill", INK)
-    .attr("font-family", FONT)
-    .attr("font-size", 16)
-    .attr("font-weight", 700)
-    .text((d) => `${d.title} (${d.year})`);
-
-  const yAxisG = svg.append("g").attr("class", "ss-axis-y");
-  const yAxisGen = d3
-    .axisLeft(y)
-    .tickValues([-1, 0, 1])
-    .tickFormat((v) => (v >= 1 ? "Positive" : v <= -1 ? "Negative" : "Neutral"));
-  yAxisG
-    .attr("transform", `translate(${PM.left}, 0)`)
-    .call(yAxisGen)
-    .call((g) => g.select(".domain").attr("stroke", RULE))
-    .call((g) => g.selectAll(".tick line").attr("stroke", RULE));
-  yAxisG
-    .selectAll("text")
-    .attr("fill", MUTED)
-    .attr("font-family", FONT)
-    .style("font-size", "16px")
-    .style("font-weight", "500");
-
-  const xStripG = svg.append("g").attr("class", "ss-axis-x-strip");
-  const xStripAxis = d3
-    .axisBottom(xYear)
-    .tickValues(decadeYears)
-    .tickFormat((d) => String(Math.round(d)));
-  xStripG
-    .attr("transform", `translate(0, ${PH - PM.bottom})`)
-    .call(xStripAxis)
-    .call((g) => g.select(".domain").attr("stroke", RULE))
-    .call((g) => g.selectAll(".tick line").attr("stroke", RULE));
-  xStripG
-    .selectAll("text")
-    .attr("fill", MUTED)
-    .attr("font-family", FONT)
-    .style("font-size", "16px")
-    .style("font-weight", "500");
-
-  const brightnessTicks = [0, 20, 40, 60, 80, 100];
-  const xScatG = svg.append("g").attr("class", "ss-axis-x-scatter");
-  const xScatAxis = d3
-    .axisBottom(xLum)
-    .tickValues(brightnessTicks)
-    .tickFormat((d) => String(Math.round(d)));
-  xScatG
-    .attr("transform", `translate(0, ${PH - PM.bottom})`)
-    .call(xScatAxis)
-    .call((g) => g.select(".domain").attr("stroke", RULE))
-    .call((g) => g.selectAll(".tick line").attr("stroke", RULE));
-  xScatG
-    .selectAll("text")
-    .attr("fill", MUTED)
-    .attr("font-family", FONT)
-    .style("font-size", "16px")
-    .style("font-weight", "500");
-
-  const capStrip = svg
-    .append("text")
-    .attr("class", "ss-cap-strip")
-    .attr("x", PW - PM.right)
-    .attr("y", PH - 16)
-    .attr("text-anchor", "end")
-    .attr("fill", MUTED)
-    .attr("font-family", FONT)
-    .attr("font-size", 15)
-    .attr("font-weight", 700)
-    .text("Release year");
-
-  const capScat = svg
-    .append("text")
-    .attr("class", "ss-cap-scatter")
-    .attr("x", PW - PM.right)
-    .attr("y", PH - 16)
-    .attr("text-anchor", "end")
-    .attr("fill", MUTED)
-    .attr("font-family", FONT)
-    .attr("font-size", 15)
-    .attr("font-weight", 700)
-    .text("Poster brightness");
-
-  const gDots = svg.append("g").attr("class", "ss-dots");
-  const DOT_R0 = 5;
-  const DOT_R1 = 5.5;
-
-  const filmDots = gDots
-    .selectAll("circle")
-    .data(nodes)
-    .join("circle")
-    .attr("r", DOT_R0)
-    .attr("fill", (d) => d.color)
-    .attr("fill-opacity", (d) => (d.color ? 0.92 : 0.55))
-    .attr("stroke", "rgba(10,10,10,0.18)")
-    .attr("stroke-width", 0.6)
-    .style("cursor", "pointer")
-    .on("mouseenter", (event, d) => showFilmTooltip(event, d))
-    .on("mousemove", moveTooltip)
-    .on("mouseleave", hideTooltip);
-
-  function posFor(d, morph) {
-    const jit = d.jitter * (1 - morph);
-    const xS = xYear(d.year) + jit;
-    const xE = xLum(d.lum);
-    const cx = xS + morph * (xE - xS);
-    const cy = y(d.score);
-    return { cx, cy };
-  }
-
-  function updateLabels(morph) {
-    gLbl.selectAll("text.lbl").each(function (d) {
-      const { cx, cy } = posFor(d, morph);
-      d3.select(this).attr("x", cx + 14).attr("y", cy + 4);
-    });
-  }
-
-  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  return {
-    frame(opts) {
-      let morph = Math.max(0, Math.min(1, opts.morph));
-      if (reduceMotion) morph = 1;
-      const notesOp = Math.max(0, Math.min(1, opts.notes ?? 1));
-      const lblOp = Math.max(0, Math.min(1, opts.scatterLbl ?? 0));
-      const meanLineOp = Math.max(0, Math.min(1, opts.meanLine ?? 1));
-      const stripOp = 1 - morph;
-
-      gBands.style("opacity", stripOp * 0.92);
-      gMean.style("opacity", stripOp);
-      meanPath.attr("stroke-dashoffset", meanLen * (1 - meanLineOp));
-      gMean.selectAll("circle.mean").style("opacity", meanLineOp);
-      notesG.style("opacity", notesOp);
-      xStripG.style("opacity", stripOp);
-      capStrip.style("opacity", stripOp);
-      xScatG.style("opacity", morph);
-      capScat.style("opacity", morph);
-
-      filmDots.each(function (d) {
-        const { cx, cy } = posFor(d, morph);
-        d3.select(this).attr("cx", cx).attr("cy", cy).attr("r", DOT_R0 + morph * (DOT_R1 - DOT_R0));
-      });
-
-      updateLabels(morph);
-      gLbl.style("opacity", lblOp);
-    },
-  };
-}
-
 /* ---------- shared header + grid ---------- */
 
 function plotBounds() {
@@ -1143,16 +848,6 @@ function drawPlotGrid(svg, x, decadeYears) {
    Y = how light the dominant color reads (0 dark … 100 light).
    ========================================================= */
 
-function hash32(str) {
-  let h = 2166136261;
-  const s = String(str);
-  for (let i = 0; i < s.length; i++) {
-    h ^= s.charCodeAt(i);
-    h = Math.imul(h, 16777619);
-  }
-  return Math.abs(h);
-}
-
 function drawColorOverTime(svg, movies) {
   const MIN_VOTES = 20;
   const filmDotRadius = 12;
@@ -1178,8 +873,8 @@ function drawColorOverTime(svg, movies) {
 
   drawMorphHeader(
     svg,
-    "Colour through the years",
-    "Each dot is one remake. Horizontal: release year · Vertical: how light the dominant colour is · Fill: that colour"
+    "Color through the years",
+    "Each dot is one remake. Horizontal: release year · Vertical: how light the dominant color is · Fill: that color"
   );
 
   const { top, bottom, left, right } = plotBounds();
@@ -1310,11 +1005,11 @@ function drawColorOverTime(svg, movies) {
     .attr("font-family", FONT)
     .attr("font-size", AXIS_CAPTION_PX)
     .attr("font-weight", 700)
-    .text("← Darker colour … lighter colour →");
+    .text("← Darker color … lighter color →");
 }
 
 /* =========================================================
-   STAGE 1 — Genre × colour groups (cleaner stack + legend)
+   STAGE 1 — Genre × color groups (cleaner stack + legend)
    ========================================================= */
 
 function buildGenreRows(movies) {
@@ -1403,294 +1098,6 @@ function drawGenreStacks(svg, genreRows) {
       .attr("font-weight", 600)
       .text(name);
   });
-}
-
-/* =========================================================
-   STAGE 2 — Sentiment vs year
-   ========================================================= */
-
-function sentimentFeatureByTmdb(sentimentFeatures) {
-  const map = new Map();
-  for (const item of sentimentFeatures || []) {
-    const id = Number(item.tmdbId);
-    if (!Number.isFinite(id)) continue;
-    if (String(item.sentimentLabel || "").toLowerCase() === "no_overview") continue;
-    const pos = Number(item.sentimentScores?.positive || 0);
-    const neg = Number(item.sentimentScores?.negative || 0);
-    map.set(id, {
-      toneScore: pos - neg,
-      sentimentLabel: item.sentimentLabel || "",
-    });
-  }
-  return map;
-}
-
-function buildSentimentPoints(movies, sentimentFeatures) {
-  const meta = sentimentFeatureByTmdb(sentimentFeatures);
-  return (movies || [])
-    .filter((m) => m.year && meta.has(Number(m.tmdbId)))
-    .map((m, i) => {
-      const { toneScore, sentimentLabel } = meta.get(Number(m.tmdbId));
-      return {
-        year: m.year,
-        score: toneScore,
-        toneScore,
-        sentimentLabel,
-        title: m.title,
-        color: m.dominantHex || null,
-        genres: Array.isArray(m.genres) ? m.genres : [],
-        jitter: ((hash32(`${m.tmdbId}-${i}`) % 1000) / 1000 - 0.5) * 10,
-      };
-    });
-}
-
-function drawSentimentStrip(svg, points, opts = {}) {
-  const { embed = false } = opts;
-  if (!points.length) return { notesGroup: null };
-
-  const DOT_R = 5;
-  let notesGroup = null;
-
-  if (!embed) {
-    drawMorphHeader(
-      svg,
-      "How plot summaries sound over time",
-      `Each dot is one film with a scored overview (${points.length} films). Vertical: summary tone from the English text (−1…+1). Horizontal: release year. Dot fill: dominant poster colour; same size for all.`
-    );
-  }
-
-  const noteY0 = embed ? 72 : 100;
-  const noteMount = embed
-    ? (notesGroup = svg.append("g").attr("class", "sentiment-embed-notes"))
-    : svg;
-  [
-    "Blue line & blue dots on it: for each release decade we average the tone scores of every film in that decade,",
-    "plot that one number at the decade’s centre, and connect the points — so it summarizes the era, not a single film.",
-  ].forEach((line, i) => {
-    noteMount
-      .append("text")
-      .attr("x", MARGIN.left)
-      .attr("y", noteY0 + i * 22)
-      .attr("fill", MUTED)
-      .attr("font-family", FONT)
-      .attr("font-size", 15)
-      .attr("font-weight", 500)
-      .text(line);
-  });
-  if (!embed) notesGroup = null;
-
-  const x = d3
-    .scaleLinear()
-    .domain(d3.extent(points, (d) => d.year))
-    .nice()
-    .range([MARGIN.left, VIEW.width - MARGIN.right]);
-  const y = d3
-    .scaleLinear()
-    .domain([-1, 1])
-    .range([VIEW.height - MARGIN.bottom, MARGIN.top]);
-
-  const fillFor = (d) => d.color || "#c4c2be";
-
-  svg
-    .append("line")
-    .attr("x1", MARGIN.left)
-    .attr("x2", VIEW.width - MARGIN.right)
-    .attr("y1", y(0))
-    .attr("y2", y(0))
-    .attr("stroke", RULE)
-    .attr("stroke-width", 1.5);
-
-  const byDecade = d3
-    .rollups(
-      points,
-      (v) => d3.mean(v, (p) => p.score),
-      (p) => Math.floor(p.year / 10) * 10
-    )
-    .map(([decade, mean]) => ({ decade, mean }))
-    .sort((a, b) => a.decade - b.decade);
-
-  const yearExtent = d3.extent(points, (d) => d.year);
-  const decadeX0 = Math.floor(yearExtent[0] / 10) * 10;
-  const decadeX1 = Math.ceil(yearExtent[1] / 10) * 10;
-  const decadeTicks = d3.range(decadeX0, decadeX1 + 1, 10);
-
-  const dots = svg
-    .append("g")
-    .selectAll("circle")
-    .data(points)
-    .join("circle")
-    .attr("cx", (d) => x(d.year) + d.jitter)
-    .attr("cy", (d) => y(d.score))
-    .attr("r", 0)
-    .attr("fill", (d) => fillFor(d))
-    .attr("fill-opacity", (d) => (d.color ? 0.92 : 0.55))
-    .attr("stroke", "rgba(10,10,10,0.18)")
-    .attr("stroke-width", 0.6);
-
-  dots
-    .transition()
-    .duration(480)
-    .delay((_, i) => Math.min(i * 1.2, 500))
-    .attr("r", DOT_R);
-
-  dots
-    .on("mouseenter", (event, d) => showFilmTooltip(event, d))
-    .on("mousemove", moveTooltip)
-    .on("mouseleave", hideTooltip);
-
-  const line = d3
-    .line()
-    .x((d) => x(d.decade + 5))
-    .y((d) => y(d.mean))
-    .curve(d3.curveMonotoneX);
-
-  const path = svg
-    .append("path")
-    .datum(byDecade)
-    .attr("fill", "none")
-    .attr("stroke", ACCENT)
-    .attr("stroke-width", 3)
-    .attr("stroke-linecap", "round")
-    .attr("d", line);
-  const len = path.node().getTotalLength();
-  path
-    .attr("stroke-dasharray", `${len}`)
-    .attr("stroke-dashoffset", `${len}`)
-    .transition()
-    .duration(1000)
-    .attr("stroke-dashoffset", 0);
-
-  svg
-    .append("g")
-    .selectAll("circle.mean")
-    .data(byDecade)
-    .join("circle")
-    .attr("class", "mean")
-    .attr("cx", (d) => x(d.decade + 5))
-    .attr("cy", (d) => y(d.mean))
-    .attr("r", 5.5)
-    .attr("fill", ACCENT)
-    .attr("stroke", "none");
-
-  axes(svg, x, y, {
-    xLabel: "Release year",
-    xTickValues: decadeTicks,
-    xTickFormat: (d) => String(Math.round(d)),
-    yTickValues: [-1, 0, 1],
-    yTickFormat: (v) => (v >= 1 ? "Positive" : v <= -1 ? "Negative" : "Neutral"),
-  });
-
-  return { notesGroup: embed ? notesGroup : null };
-}
-
-/* =========================================================
-   STAGE 3 — Brightness × sentiment
-   ========================================================= */
-
-function buildScatter(movies, sentimentFeatures) {
-  const meta = sentimentFeatureByTmdb(sentimentFeatures);
-  return (movies || [])
-    .filter((movie) => meta.has(Number(movie.tmdbId)) && movie.dominantHex)
-    .slice(0, 650)
-    .map((movie) => {
-      const { toneScore, sentimentLabel } = meta.get(Number(movie.tmdbId));
-      return {
-        id: Number(movie.tmdbId),
-        title: movie.title,
-        year: movie.year,
-        x: brightness(movie.dominantHex),
-        y: toneScore,
-        toneScore,
-        sentimentLabel,
-        color: movie.dominantHex,
-        genres: Array.isArray(movie.genres) ? movie.genres : [],
-      };
-    });
-}
-
-function drawScatter(svg, points, opts = {}) {
-  const { embed = false } = opts;
-
-  if (!points.length) {
-    if (!embed) {
-      drawMorphHeader(svg, "Poster brightness vs. summary tone", "No scored films to plot.");
-    }
-    return { labelsGroup: null };
-  }
-
-  if (!embed) {
-    drawMorphHeader(
-      svg,
-      "Poster brightness vs. summary tone",
-      `Same ${points.length} scored films as above. Horizontal: how light the dominant poster colour reads (dark left … light right). Vertical: summary tone. Fill: that film’s poster colour — bright look vs. dark wording (or the reverse) is easy to spot.`
-    );
-  }
-
-  const x = d3.scaleLinear().domain([0, 100]).range([MARGIN.left, VIEW.width - MARGIN.right]);
-  const y = d3.scaleLinear().domain([-1, 1]).range([VIEW.height - MARGIN.bottom, MARGIN.top]);
-  const brightnessTicks = [0, 20, 40, 60, 80, 100];
-
-  svg
-    .append("line")
-    .attr("x1", MARGIN.left)
-    .attr("x2", VIEW.width - MARGIN.right)
-    .attr("y1", y(0))
-    .attr("y2", y(0))
-    .attr("stroke", RULE)
-    .attr("stroke-width", 1.5);
-
-  const dots = svg
-    .append("g")
-    .selectAll("circle")
-    .data(points)
-    .join("circle")
-    .attr("cx", (d) => x(d.x))
-    .attr("cy", (d) => y(d.y))
-    .attr("r", 0)
-    .attr("fill", (d) => d.color)
-    .attr("fill-opacity", 0.88)
-    .attr("stroke", "rgba(10,10,10,0.22)")
-    .attr("stroke-width", 0.65);
-
-  dots
-    .transition()
-    .duration(480)
-    .delay((_, i) => Math.min(i * 1.5, 400))
-    .attr("r", 5.5);
-
-  dots
-    .on("mouseenter", (event, d) => showFilmTooltip(event, d))
-    .on("mousemove", moveTooltip)
-    .on("mouseleave", hideTooltip);
-
-  const extremes = [...points]
-    .map((p) => ({ ...p, dist: Math.abs(p.y) + Math.abs(p.x - 50) / 80 }))
-    .sort((a, b) => b.dist - a.dist)
-    .slice(0, 3);
-
-  const labelRoot = embed ? svg.append("g").attr("class", "scatter-embed-labels") : svg;
-  labelRoot
-    .selectAll("text.lbl")
-    .data(extremes)
-    .join("text")
-    .attr("class", "lbl")
-    .attr("x", (d) => x(d.x) + 14)
-    .attr("y", (d) => y(d.y) + 4)
-    .attr("fill", INK)
-    .attr("font-family", FONT)
-    .attr("font-size", 16)
-    .attr("font-weight", 700)
-    .text((d) => `${d.title} (${d.year})`);
-
-  axes(svg, x, y, {
-    xLabel: "Poster brightness",
-    xTickValues: brightnessTicks,
-    xTickFormat: (d) => String(Math.round(d)),
-    yTickValues: [-1, 0, 1],
-    yTickFormat: (v) => (v >= 1 ? "Positive" : v <= -1 ? "Negative" : "Neutral"),
-  });
-
-  return { labelsGroup: embed ? labelRoot : null };
 }
 
 /* ---------- axes ---------- */
