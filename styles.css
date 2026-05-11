@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,700;9..40,800&display=swap');
+
 :root {
   --ink: #0a0a0a;
   --ink-soft: #454545;
@@ -15,7 +17,7 @@
   --col-bleed: 1640px;
 
   --font-ui: "Varela", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
-  --font-display: "Varela", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --font-display: "DM Sans", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
 
   font-family: var(--font-ui);
   color: var(--ink);
