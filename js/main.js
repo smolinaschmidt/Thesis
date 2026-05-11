@@ -11,9 +11,9 @@ const CHAPTERS = [
     num: "01",
     heading: "The same story, again.",
     lede:
-      "Every remake is a reinterpretation — of the story, of the time, and, in ways we rarely notice, of its color.",
+      "Studios remake films. What they can't remake is the era.",
     body:
-      "A film remake is the same narrative dressed for a different decade. This essay asks what that redressing does to the image itself — and to how it feels.",
+      "The palette of a poster isn't chosen at random, it's chosen from whatever was in the air. The film gets remade. The color gets reinvented. Sometimes barely, sometimes completely.",
     figWidth: "bleed",
     render: (c, ctx) => renderIntro(c, ctx),
   },
@@ -40,9 +40,9 @@ const CHAPTERS = [
     id: "c10",
     num: "04",
     heading: "The atlas of remakes.",
-    lede: "Films don’t just change how they look. They change how they feel.",
-    body: "Every family, reduced to a chromatic strip. Click any title to inspect it.",
-    figWidth: "bleed",
+    lede: "Every story here has been told at least twice. The color is never the same.",
+    body: "Each strip is a remake family. One film, multiple decades, one color per version. Filter, search, or click any title to go deeper.",
+    // figWidth: "bleed",
     render: (c, ctx) =>
       renderConclusion(c, {
         analytics: ctx.analytics,
@@ -73,6 +73,51 @@ const state = {
 /** Remake comparisons need at least two films in the family. */
 function familiesRemakeOnly(families) {
   return (families || []).filter((f) => (f.movies || []).length > 1);
+}
+
+function normalizeFamilyTitle(title) {
+  return String(title ?? "")
+    .trim()
+    .toLowerCase()
+    .replace(/\s+/g, " ");
+}
+
+function mergeFamiliesByTitle(families) {
+  const merged = new Map();
+
+  for (const family of families || []) {
+    const key = normalizeFamilyTitle(family.familyTitle);
+    if (!key) continue;
+
+    const existing = merged.get(key);
+    const movies = [...(family.movies || [])];
+
+    if (!existing) {
+      merged.set(key, {
+        ...family,
+        movies,
+      });
+      continue;
+    }
+
+    const seen = new Set(
+      (existing.movies || []).map((movie) => String(movie?.tmdbId ?? `${movie?.title ?? ""}_${movie?.year ?? ""}`))
+    );
+
+    for (const movie of movies) {
+      const movieKey = String(movie?.tmdbId ?? `${movie?.title ?? ""}_${movie?.year ?? ""}`);
+      if (seen.has(movieKey)) continue;
+      seen.add(movieKey);
+      existing.movies.push(movie);
+    }
+  }
+
+  return [...merged.values()].map((family) => ({
+    ...family,
+    movies: [...(family.movies || [])].sort(
+      (a, b) => (a.year ?? 9999) - (b.year ?? 9999)
+    ),
+  }));
 }
 
 function tmdbIdsInFamilies(families) {
@@ -114,23 +159,21 @@ window.addEventListener("pageshow", (e) => {
 
 const CH3_COMPARISON_TITLE = "The first comparison";
 const CH3_COMPARISON_LEDE =
-  "Remake families hold the story constant. What changes is the decade, the filmmaker, the palette — the zeitgeist. Each lane is one family across time; each dot is a film, colored by its dominant color.";
+  "Same film. New decade. New palette.";
 const CH3_COMPARISON_BODY =
-  "This shows how the same narrative can shift from the muted tones of the 1930s to the high-contrast or saturated palettes of the 2020s.";
+  "Each row is one story, remade across time. Each dot is the color that decade chose for it. Some films barely shift. Others look like they belong to completely different genres. Press any dot to see its code.";
 
 const CH3_MORPH_TITLE = "Color over time.";
 const CH3_MORPH_LEDE =
-  "Now let’s shift the focus to the luminosity and density of film aesthetics across a century of cinema.";
+  "Film posters used to be bright. Then, somewhere around the 2000s, they got darker and stayed there.";
 const CH3_MORPH_BODY =
-  "The vertical axis now measures how light or dark the film’s key color is—with higher dots representing brighter, more vibrant palettes and lower dots indicating \"moodier\" or darker frames.";
-const CH3_MORPH_P3 =
-  "The data illustrates a historical trend toward darker, more desaturated tones in modern posters compared to the mid-20th century.";
+  "Each dot is a poster, placed by year and brightness. The drift downward isn't random, it tracks with how cinema learned to signal seriousness.";
 
 const CH3_GENRE_TITLE = "Color by genre.";
 const CH3_GENRE_P1 =
-  'Since each line reflects the dominant color of its movie poster, the visualization reveals distinct "color signatures" for different genres—such as the dark, moody palettes of Horror and Thriller versus the bright, eclectic spectrum found in Comedy.';
+  'Genre has a palette. It\'s not accidental. Every stripe here is a poster. Stack them by genre and the columns start to separate.';
 const CH3_GENRE_P2 =
-  "Each stripe has the same thickness in every column (set by the busiest genres); sparser columns breathe with empty space again. Within a genre, stripes sit on the shared brightness scale, then nudge apart where they overlap. Columns run from smaller genres toward the busier ones.";
+  "Horror earns its darkness, romance keeps things warm and mid-range, comedy refuses to commit to anything. What looks like an aesthetic choice turns out to be a genre convention.";
 
 function ch3Smoothstep01(t, edge0, edge1) {
   if (t <= edge0) return 0;
@@ -160,8 +203,7 @@ function renderPinnedChapter3(slot, ctx) {
     { class: "ch3-copy ch3-copy--b" },
     el("h2", { class: "ch3-pinned-h2" }, CH3_MORPH_TITLE),
     el("p", { class: "ch3-pinned-lede" }, CH3_MORPH_LEDE),
-    el("p", { class: "ch3-pinned-body" }, CH3_MORPH_BODY),
-    el("p", { class: "ch3-pinned-body" }, CH3_MORPH_P3)
+    el("p", { class: "ch3-pinned-body" }, CH3_MORPH_BODY)
   );
   const copyC1 = el(
     "div",
@@ -491,7 +533,7 @@ async function loadData() {
       fetch("./data/analisis/families.json").then((r) => r.json()),
     ]);
     state.analytics = analytics;
-    state.families = familiesRemakeOnly(families);
+    state.families = mergeFamiliesByTitle(familiesRemakeOnly(families));
 
     const biggest = [...state.families].sort(
       (a, b) => (b.movies?.length || 0) - (a.movies?.length || 0)

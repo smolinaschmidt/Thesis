@@ -14,7 +14,6 @@ import {
   MORPH_RULE,
 } from "./shared-morph-time-axis.js";
 
-/** Timeline + intro ch.01 atlas — same curated 12 remake families. */
 export const FEATURED_LANES = [
   { laneId: "gatsby", label: "The Great Gatsby", familyTitles: ["Great Gatsby"] },
   { laneId: "starisborn", label: "A Star Is Born", familyTitles: ["Star Is Born"] },
@@ -41,15 +40,12 @@ export const FEATURED_LANES = [
   { laneId: "westside", label: "West Side Story", familyTitles: ["West Side Story"] },
 ];
 
-/** Space between the right edge of lane titles (text-anchor end) and the vertical rulings at `margin.left`. */
 const LANE_LABEL_TO_LINE_GAP_PX = 22;
 
-/** Featured rows as minimal movie-shaped objects — only for axis fallback without analytics.movies */
 function featuredRowsAsYearExtents(data) {
   return data.filter((d) => d.year);
 }
 
-/** Optional `movies`: same pool as morph scrolly (analytics.movies); shared domain + zebra + ticks when set. */
 export function computeTimelineLayout(families, options = {}) {
   const byFamilyTitle = new Map(
     (families || []).map((f) => [(f.familyTitle || "").toLowerCase(), f])
@@ -81,15 +77,12 @@ export function computeTimelineLayout(families, options = {}) {
   if (!data.length) return null;
 
   const MIN_VOTES = 20;
-  /** Uniform dot size (remakes timeline — “The first comparison”). */
   const filmDotRadius = 16;
   const radiusFor = () => filmDotRadius;
   const isRated = (d) => d.voteAverage != null && d.voteCount >= MIN_VOTES;
 
-  // Ensure lane labels never clip: compute left margin from widest label.
   const measureLabelPx = (text) => {
     const s = String(text || "").toUpperCase();
-    // matches laneLabels: 15px, weight 600, uppercase, letter-spacing 0.06em
     const fontSize = 15;
     const letterSpacingPx = 0.06 * fontSize;
     const canvas = document.createElement("canvas");
@@ -169,7 +162,6 @@ export function computeTimelineLayout(families, options = {}) {
   };
 }
 
-/** X position by release year — same linear time axis as the morph “all films” view; panel narrows range. */
 export function timelineDotX(TL, year, panelOpen) {
   if (!TL || year == null || !Number.isFinite(year)) return 0;
   const right = panelOpen ? TL.chartRightSplit : TL.chartRightFull;
@@ -210,7 +202,6 @@ export function renderTimeline(container, { families, movies = null, omitDots = 
 
   svg.attr("viewBox", `0 0 ${fullWidth} ${height}`);
 
-  /** Matches morph (`morph-bands-time`): zebra by decade stripe. */
   const gBandsTime = svg.append("g").attr("class", "morph-bands-time");
 
   const baselineBottom = svg
@@ -223,9 +214,6 @@ export function renderTimeline(container, { families, movies = null, omitDots = 
     .attr("stroke", MORPH_RULE)
     .attr("stroke-width", 1.5);
 
-  // Only one left rule (avoid "double y-axis" look).
-
-  // Transparent hit target over plot (bands sit behind).
   const chartBg = svg
     .append("rect")
     .attr("x", margin.left)
@@ -249,7 +237,6 @@ export function renderTimeline(container, { families, movies = null, omitDots = 
     .attr("font-weight", 700)
     .text("Release year →");
 
-  /** Same decade bands + axis + baselines + caption x as morph scrolly (shared numbers / styling). */
   function drawMorphTimeAxis(chartRight, dur) {
     const left = margin.left;
     x.range([left, chartRight]);
@@ -328,7 +315,6 @@ export function renderTimeline(container, { families, movies = null, omitDots = 
     .style("text-transform", "uppercase")
     .text((id) => labelById.get(id) || "");
 
-  // Arrows between films in the same lane (chronological).
   const defs = svg.append("defs");
   defs
     .append("marker")
@@ -391,7 +377,6 @@ export function renderTimeline(container, { families, movies = null, omitDots = 
       .delay((_, i) => i * 18)
       .attr("r", radiusFor)
       .on("end", function () {
-        // Enable hover only once dots are visible.
         d3.select(this).style("pointer-events", "auto");
       });
   }
@@ -410,7 +395,6 @@ export function renderTimeline(container, { families, movies = null, omitDots = 
 
   const cardsGroup = panelGroup.append("g");
 
-  // Helpers: pick readable text color over a given fill.
   const luminance = (hex) => {
     const m = /^#?([0-9a-f]{6})$/i.exec(hex || "");
     if (!m) return 0.5;
@@ -507,8 +491,6 @@ export function renderTimeline(container, { families, movies = null, omitDots = 
     drawMorphTimeAxis(chartRight, dur);
 
     if (dur === 0) {
-      // Do not use transitions on `dots` here: a zero-duration transition
-      // still interrupts the radius tween and leaves circles at r=0.
       chartBg.attr("width", chartRight - margin.left);
       lanes.attr("x2", chartRight);
       arrows.attr("x1", (d) => x(d.a.year)).attr("x2", (d) => x(d.b.year));
@@ -610,7 +592,6 @@ export function renderTimeline(container, { families, movies = null, omitDots = 
   applyLayout(false);
 
   return {
-    /** Toggle comparison panel for this remake lane (same behaviour as clicking a dot). */
     selectLane: (laneId) => selectLane(laneId),
     isPanelOpen: () => Boolean(selectedLaneId),
   };

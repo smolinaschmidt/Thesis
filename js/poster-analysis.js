@@ -1053,13 +1053,6 @@ export function openPosterAnalysis({ familyId, families }) {
         "p",
         { class: "poster-analysis__remake-line", id: "poster-analysis-remakes" },
         filmYearLine
-      ),
-      el(
-        "p",
-        {
-          class: "poster-analysis__dek poster-analysis__dek--scroll-hint",
-        },
-        `${nPosters} ${plural(nPosters, "poster", "posters")} in this remake family. Scroll to watch the image reduce from poster → pixels → tones → a single color.`
       )
     )
   );

@@ -11,8 +11,8 @@
   --accent-soft: rgba(0, 0, 255, 0.12);
 
   --col: 720px;
-  --col-wide: 1240px;
-  --col-bleed: 1500px;
+  --col-wide: 1380px;
+  --col-bleed: 1640px;
 
   --font-ui: "Varela", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
   --font-display: "Varela", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
@@ -55,6 +55,7 @@ html.pa-modal-scroll-quiet {
 
 
 .search-dock {
+  display: none !important;
   position: fixed;
   top: 18px;
   right: 5vw;
@@ -179,13 +180,13 @@ aside.chapter.is-revealed blockquote.pull {
 
 .masthead {
   box-sizing: border-box;
-  max-width: min(var(--col-bleed), 100%);
+  max-width: none;
   margin: 0 auto;
   min-height: 100dvh;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  padding: 2.5vh 0 7vh;
+  padding: 2.5vh clamp(0.9rem, 2.5vw, 1.85rem) 7vh;
   text-align: left;
   scroll-snap-align: start;
   scroll-snap-stop: always;
@@ -199,7 +200,7 @@ aside.chapter.is-revealed blockquote.pull {
   grid-template-columns: 54px 1fr auto;
   align-items: center;
   gap: 18px;
-  padding: 10px 0 18px;
+  padding: 10px clamp(0.9rem, 2.5vw, 1.85rem) 18px;
 }
 
 .feel-nav__logo {
@@ -506,10 +507,10 @@ aside.chapter.is-revealed blockquote.pull {
 
 .chapter {
   box-sizing: border-box;
-  max-width: none;
-  margin: 0;
+  max-width: var(--col-wide);
+  margin: 0 auto;
   min-height: clamp(700px, 88dvh, 920px);
-  padding: clamp(0.8rem, 2.2vh, 2rem) 5vw;
+  padding: clamp(0.8rem, 2.2vh, 2rem) 0;
   scroll-snap-align: start;
   scroll-snap-stop: normal;
   text-align: left;
@@ -520,10 +521,10 @@ aside.chapter {
   align-items: flex-start;
   justify-content: flex-start;
   box-sizing: border-box;
-  max-width: none;
-  margin-left: 0;
-  margin-right: 0;
-  padding: clamp(0.8rem, 2.2vh, 2rem) 5vw;
+  max-width: var(--col-wide);
+  margin-left: auto;
+  margin-right: auto;
+  padding: clamp(0.8rem, 2.2vh, 2rem) 0;
   text-align: left;
   /* Pull-quote blocks should not consume a full viewport. */
   min-height: auto;
@@ -533,7 +534,7 @@ aside.chapter {
 #c3.chapter--ch3-pinned {
   min-height: auto;
   padding: 0;
-  max-width: none;
+  max-width: var(--col-wide);
   /* Make the exit into the next chapter feel softer. */
   scroll-snap-stop: normal;
   margin-bottom: clamp(22px, 6vh, 64px);
@@ -680,7 +681,7 @@ aside.chapter {
 }
 
 .chapter--bleed-shell {
-  max-width: min(var(--col-bleed), 100%);
+  max-width: var(--col-wide);
 }
 
 .chapter--pinned-copy-rhythm > .chapter-num,
@@ -691,7 +692,7 @@ aside.chapter {
 .chapter--pinned-copy-rhythm > h2,
 .chapter--pinned-copy-rhythm .ch01-intro-copy > h2 {
   max-width: 32ch;
-  font-size: clamp(1.45rem, 2.75vw, 2.05rem);
+  font-size: clamp(2rem, 4.2vw, 3.25rem);
   line-height: 1.12;
   letter-spacing: -0.02em;
   text-align: left;
@@ -845,10 +846,10 @@ aside.chapter {
 }
 
 .fig--bleed {
-  max-width: none;
-  width: calc(100vw - 10vw);
-  margin-left: calc(50% - 50vw + 5vw);
-  margin-right: calc(50% - 50vw + 5vw);
+  max-width: var(--col-wide);
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .morph-scrolly-track {
@@ -1480,15 +1481,18 @@ svg text { font-family: var(--font-ui); }
   font-size: 14px;
   padding: 10px 12px;
   border-radius: 10px;
-  border: 1px solid var(--rule, #e0e0e0);
-  background: transparent;
+  border: 1px solid var(--rule);
+  background: var(--paper);
   color: var(--ink, #111);
   outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .atlas-control__select:focus,
 .atlas-control__search:focus {
-  border-color: var(--ink-faint, #999);
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
 }
 
 .atlas-range {
@@ -1722,7 +1726,7 @@ svg text { font-family: var(--font-ui); }
 .poster-analysis__remake-line {
   margin: 0.65rem 0 0;
   font-family: var(--font-ui);
-  font-size: 0.9375rem;
+  font-size: 1.25rem;
   font-weight: 500;
   line-height: 1.58;
   color: var(--ink-soft);
@@ -2854,7 +2858,7 @@ svg text { font-family: var(--font-ui); }
   box-sizing: border-box;
   max-width: var(--col);
   margin: 40px auto 80px;
-  padding: 28px 5vw 0;
+  padding: 28px clamp(0.9rem, 2.5vw, 1.85rem) 0;
   min-height: 28vh;
   border-top: 1px solid var(--rule);
   display: flex;

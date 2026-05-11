@@ -1,7 +1,3 @@
-/**
- * Shared color utilities + the 7 color groups used across the site.
- * Pure functions, no DOM.
- */
 
 export const COLOR_GROUPS = ["Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Neutral"];
 
@@ -50,7 +46,6 @@ export function classifyColor(hex) {
   return "Purple";
 }
 
-/** Hue angle (0..360). Useful for deterministic ordering within color groups. */
 export function hueDegrees(hex) {
   const [rr, gg, bb] = hexToRgb(hex);
   const r = rr / 255;
@@ -86,10 +81,6 @@ export function posterUrl(path) {
   return path ? `https://image.tmdb.org/t/p/w500${path}` : null;
 }
 
-/**
- * Tiny DOM helper — creates an element with attributes, classes, and children.
- * Keeps render functions declarative without a framework.
- */
 export function el(tag, attrs = {}, ...children) {
   const node = document.createElement(tag);
   for (const [k, v] of Object.entries(attrs || {})) {
