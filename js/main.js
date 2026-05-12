@@ -157,7 +157,7 @@ window.addEventListener("pageshow", (e) => {
   if (!e.persisted) forceStartAtTop();
 });
 
-const CH3_COMPARISON_TITLE = "The first comparison";
+const CH3_COMPARISON_TITLE = "The first comparison.";
 const CH3_COMPARISON_LEDE =
   "Same film. New decade. New palette.";
 const CH3_COMPARISON_BODY =
