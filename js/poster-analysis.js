@@ -33,7 +33,6 @@ function pickInitialCentroids(points, k) {
   return out;
 }
 
-/** k-means on RGB points; returns centroids sorted by cluster size (largest first). */
 function kMeansRgbs(points, k, maxIter = 40) {
   if (!points.length || k <= 0) return [];
   if (k === 1) {
@@ -319,12 +318,10 @@ function renderFamilyScrolly(family, moviesSorted) {
   sticky.append(stages);
   track.append(sticky);
 
-  // Add scroll length inside modal: 4 stages with overlap.
   track.append(
     el("div", { class: "pa-scrolly-spacer", "aria-hidden": "true" })
   );
 
-  /** Scroll progress inside the modal body (not the viewport — panel stays fixed). */
   function computeProgress(scrollParent) {
     if (!scrollParent) return 0;
     const travel = Math.max(1, scrollParent.scrollHeight - scrollParent.clientHeight);
@@ -332,7 +329,6 @@ function renderFamilyScrolly(family, moviesSorted) {
   }
 
   function stageOpacities(p) {
-    // Wider crossover bands so each stage lasts longer (pairs with taller .pa-scrolly-spacer)
     const a = 1 - smoothstep01((p - 0.14) / 0.2);
     const b =
       smoothstep01((p - 0.1) / 0.22) *
@@ -361,7 +357,6 @@ function renderFamilyScrolly(family, moviesSorted) {
     tonesStage.style.pointerEvents = o2 < 0.08 ? "none" : "";
     finalStage.style.pointerEvents = o3 < 0.08 ? "none" : "";
 
-    // subtle depth/scale for smoother feel
     posterStage.style.transform = `translateY(${(1 - o0) * 10}px) scale(${0.998 + o0 * 0.002})`;
     gridStage.style.transform = `translateY(${(1 - o1) * 10}px) scale(${0.996 + o1 * 0.004})`;
     tonesStage.style.transform = `translateY(${(1 - o2) * 10}px) scale(${0.996 + o2 * 0.004})`;
@@ -376,7 +371,6 @@ function renderFamilyScrolly(family, moviesSorted) {
     });
   }
 
-  /** Pass `.poster-analysis__rows` so the white panel does not scroll with content. */
   track.__paAttachScroll = (scrollParent) => {
     const handler = () => onScroll(scrollParent);
     scrollParent.addEventListener("scroll", handler, { passive: true });
@@ -472,10 +466,8 @@ function renderFilmRow(movie, { index, total }) {
 let shell = null;
 let onKey = null;
 
-/** Element that opened the modal (atlas tile / search hits) — restore focus without scrolling the page */
 let paPriorFocusEl = null;
 
-/** Page scroll Y to restore; `overflow:hidden` alone is not enough on Safari / trackpad overscroll. */
 let lockedBodyScrollY = null;
 
 function capturePageScrollY() {
@@ -498,9 +490,6 @@ function lockBodyScroll() {
   document.body.style.width = "100%";
 }
 
-/**
- * Releases body lock + restores viewport Y without chapter snap fighting the fixed-body unwind.
- */
 function unlockBodyScroll(onDone) {
   document.body.style.position = "";
   document.body.style.top = "";
@@ -531,7 +520,6 @@ function blurModalFocus() {
     if (!(a instanceof HTMLElement) || !shell?.root.contains(a)) return;
     a.blur();
   } catch {
-    /* ignore */
   }
 }
 
@@ -546,7 +534,6 @@ function restorePriorFocusPreventScroll() {
   }
 }
 
-/** HSL (CSS semantics): H 0–360, S/L 0–100 */
 function escapeHtml(s) {
   return String(s)
     .replace(/&/g, "&amp;")
@@ -1024,7 +1011,6 @@ export function openPosterAnalysis({ familyId, families }) {
     shell._detachScroll = null;
   }
 
-  // Defensive: dedupe by tmdbId so repeated IDs don't render repeated posters.
   const uniq = [];
   const seen = new Set();
   for (const m of family.movies) {

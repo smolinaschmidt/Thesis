@@ -10,10 +10,6 @@ function escapeHtml(s) {
     .replace(/"/g, "&quot;");
 }
 
-/**
- * Intro ch.01 — same 12 remake families as `FEATURED_LANES` in the timeline,
- * laid out like the conclusion atlas (strip + years). Hover each swatch for the poster.
- */
 export function renderIntro(container, { families }) {
   clear(container);
 

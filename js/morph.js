@@ -9,11 +9,6 @@ import {
   morphTimeScale,
 } from "./shared-morph-time-axis.js";
 
-/**
- * Sections 5–8 — morph figures share width 2040; height 760 except ch.05 scrolly (taller canvas).
- * Design goal: each chart explains one idea, with on-canvas titles + legible axes.
- */
-
 const VIEW = { width: 2040, height: 760 };
 /** Ch.03 scrolly only — taller than VIEW so the chart fills more vertical space on screen. */
 const VIEW_SCROLLY_HEIGHT = 1020;
@@ -23,18 +18,15 @@ const INK = "#0a0a0a";
 const MUTED = "#5c5c5c";
 const RULE = "#e6e6e6";
 const FONT = 'IBM Plex Sans, "Helvetica Neue", sans-serif';
-// Keep axis typography consistent across charts.
 const AXIS_TICK_PX = 16;
 const AXIS_CAPTION_PX = 16;
 
 function brightnessPlusMinusTick(v) {
-  // Brightness scales in this project are always 0..100.
   if (v >= 100) return "+";
   if (v <= 0) return "-";
   return "";
 }
 
-/** First genre only, in the same order as stored on each film (TMDB / analytics). */
 function formatGenreLine(genres) {
   if (!Array.isArray(genres) || !genres.length) return "—";
   return escape(String(genres[0]));
@@ -57,10 +49,8 @@ function smoothstep01(t, edge0, edge1) {
   return x * x * (3 - 2 * x);
 }
 
-/** Default when the film has no genres or none could be mapped. */
 const FALLBACK_GENRE_BUCKET = "Drama";
 
-/** Fixed genre columns for morph-by-genre (order on x-axis). Only these appear in the chart. */
 const SCROLL_GENRE_ORDER = [
   "Drama",
   "Comedy",
@@ -79,7 +69,6 @@ function normalizeGenreKey(raw) {
     .replace(/\s+/g, " ");
 }
 
-/** Exact match to one of the eight columns (TMDB spelling). */
 function canonicalScrollGenre(raw) {
   if (raw == null) return null;
   const s = normalizeGenreKey(raw);
@@ -96,10 +85,6 @@ function canonicalScrollGenre(raw) {
   return null;
 }
 
-/**
- * Map any other TMDB genre string to one of the eight buckets when the title
- * is not literally one of SCROLL_GENRE_ORDER (e.g. Adventure → Action).
- */
 function heuristicBucketFromTmdbGenre(raw) {
   const s = normalizeGenreKey(raw);
   if (!s) return null;
@@ -130,14 +115,11 @@ function heuristicBucketFromTmdbGenre(raw) {
   return null;
 }
 
-/** One genre string → bucket: direct eight, else heuristic, else null. */
 function genreToEightBucket(raw) {
   return canonicalScrollGenre(raw) ?? heuristicBucketFromTmdbGenre(raw);
 }
 
 /**
- * Chooses a bucket in order: try 1st TMDB genre, then 2nd, then 3rd…
- * (direct match or heuristic). If nothing fits, every film still gets
  * {@link FALLBACK_GENRE_BUCKET}.
  */
 function bucketGenreForFilm(genresArray) {
@@ -153,7 +135,6 @@ function bucketForFilm(d) {
   return bucketGenreForFilm(d.genres);
 }
 
-/** Left→right: genres with fewer films first (clearer stripes), dense columns (Drama, Comedy) last. */
 function genreColumnOrder(nodes) {
   const counts = new Map(
     SCROLL_GENRE_ORDER.map((g) => [g, 0])
@@ -171,7 +152,6 @@ function genreColumnOrder(nodes) {
 }
 
 /**
- * Sticky scrolly: year×lightness → genre stacks → horizontal colour stripes (barcode).
  * @param {{ movies: unknown[], embedInParentScroll?: boolean, embedSpec?: { viewHeight: number, margin: { top: number, right: number, bottom: number, left: number } }, timelineAnchors?: Map<string, { x: number, y: number, r: number }>, getHandoffLerp?: () => number, timelineClick?: { handoffMax: number, laneForTmdb: (tmdbKey: string) => string | null, selectLane: (laneId: string) => void }, getTimelinePanelOpen?: () => boolean, timelineFilmToX?: (tmdbKey: string, panelOpen: boolean) => number, timelineYearToX?: (year: number, panelOpen: boolean) => number }} opts
  */
 export function renderMorphScrolly(
@@ -196,10 +176,6 @@ export function renderMorphScrolly(
   const isRated = (d) => d.voteAverage != null && d.voteCount >= MIN_VOTES;
   const colorOrder = new Map(COLOR_GROUPS.map((g, i) => [g, i]));
   const colorSortKey = (d) => colorOrder.get(d.group) ?? 999;
-  // Quantize brightness so "secondary ordering by color" is visually legible.
-  // With continuous lum, almost every film has a unique y, so color ordering
-  // rarely appears. Binning keeps the brightness axis, but creates ties where
-  // we can order by hue/group.
   const LUM_BIN_SIZE = 4; // 0..100 in ~25 levels
   const quantLum = (lum) => Math.round(lum / LUM_BIN_SIZE) * LUM_BIN_SIZE;
 
@@ -238,7 +214,6 @@ export function renderMorphScrolly(
   const xTime = morphTimeScale(left, right, domainNice);
   const yTime = d3.scaleLinear().domain([0, 100]).nice().range([bottom, top]);
   const yByLum = d3.scaleLinear().domain([0, 100]).nice().range([bottom - 14, top + 10]);
-  // Shared axis scale (identical Y axis across "over time" and "by genre" views).
   const yAxisBright = d3.scaleLinear().domain([0, 100]).range([bottom, top]);
 
   const sim = d3
@@ -277,7 +252,6 @@ export function renderMorphScrolly(
   const stackGap = 4;
   const rStack = (d) => Math.max(4.2, Math.min(11, radiusFor(d) * 0.62));
 
-  // Stack layout (genre columns): vertical position by brightness (lum).
   genreLabels.forEach((lab) => {
     const col = nodes
       .filter((d) => d.bucket === lab)
@@ -318,7 +292,6 @@ export function renderMorphScrolly(
   });
 
   function computeBarcodeLayout() {
-    /* Same stripe thickness (barH) in every genre column; sparse columns keep white gaps like before. */
     const maxN =
       d3.max(genreLabels, (lab) => nodes.filter((d) => d.bucket === lab).length) || 1;
     const plotH = bottom - top - 20;
@@ -614,10 +587,7 @@ export function renderMorphScrolly(
 
   function frame(t) {
     const tt0 = reduceMotion ? 1 : t;
-    // Add a "pause" before the next view: hold the scroll progress for a slice
-    // so the reader has one extra scroll beat before the chart morphs.
     const HOLD_AT = 0.34;
-    // Bigger pause after "Color over time" before transitioning.
     const HOLD_LEN = 0.22;
     let tt = tt0;
     if (tt0 > HOLD_AT && tt0 < HOLD_AT + HOLD_LEN) tt = HOLD_AT;
@@ -654,8 +624,6 @@ export function renderMorphScrolly(
     gHeaderGenre.style("opacity", uGenreStackHdr * Math.max(0.15, hlSmooth));
     gHeaderBarcode.style("opacity", uBarcodeHdr * Math.max(0.15, hlSmooth));
 
-    // Disable tooltips in "Color by genre" (genre stacks / barcode).
-    // Keep tooltips only for the initial "Color over time" view.
     const tooltipsOn = uTime > 0.65;
     marks.style("pointer-events", tooltipsOn ? "auto" : "none");
     if (!tooltipsOn) hideTooltip();
@@ -780,7 +748,6 @@ export function renderMorphScrolly(
   window.addEventListener("resize", onScroll);
 }
 
-/* ---------- shared header + grid ---------- */
 
 function plotBounds() {
   return {
@@ -843,10 +810,6 @@ function drawPlotGrid(svg, x, decadeYears) {
     .attr("stroke-width", 1.5);
 }
 
-/* =========================================================
-   STAGE 0 — Color over time: year × luminosity (readable)
-   Y = how light the dominant color reads (0 dark … 100 light).
-   ========================================================= */
 
 function drawColorOverTime(svg, movies) {
   const MIN_VOTES = 20;
@@ -1008,9 +971,6 @@ function drawColorOverTime(svg, movies) {
     .text("← Darker color … lighter color →");
 }
 
-/* =========================================================
-   STAGE 1 — Genre × color groups (cleaner stack + legend)
-   ========================================================= */
 
 function buildGenreRows(movies) {
   const table = new Map();
@@ -1100,7 +1060,6 @@ function drawGenreStacks(svg, genreRows) {
   });
 }
 
-/* ---------- axes ---------- */
 
 function axes(svg, x, y, opts = {}) {
   const xAxisGen = d3.axisBottom(x);

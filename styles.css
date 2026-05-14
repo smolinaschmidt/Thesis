@@ -43,7 +43,6 @@ html, body {
   }
 }
 
-/** Poster-analysis modal: avoid viewport snap/smooth chasing after unlock (fixed-body restore). */
 html.pa-modal-scroll-quiet {
   scroll-snap-type: none !important;
   scroll-behavior: auto !important;
@@ -194,8 +193,6 @@ aside.chapter.is-revealed blockquote.pull {
   background: var(--paper);
 }
 
-/* Landing: minimal, airy nav (Nucleate-like reference). */
-/* Landing: “Tell me how you really feel” style */
 .feel-nav {
   display: grid;
   grid-template-columns: 54px 1fr auto;
@@ -341,7 +338,6 @@ aside.chapter.is-revealed blockquote.pull {
   --wheelRot: 0deg;
   --blobX: 0px;
   --blobY: 0px;
-  /* HSL hue wheel (chromatic roulette) */
   background:
     radial-gradient(circle at 50% 50%, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.0) 58%),
     conic-gradient(
@@ -527,7 +523,6 @@ aside.chapter {
   margin-right: auto;
   padding: clamp(0.8rem, 2.2vh, 2rem) 0;
   text-align: left;
-  /* Pull-quote blocks should not consume a full viewport. */
   min-height: auto;
   scroll-snap-stop: normal;
 }
@@ -536,12 +531,10 @@ aside.chapter {
   min-height: auto;
   padding: 0;
   max-width: var(--col-wide);
-  /* Make the exit into the next chapter feel softer. */
   scroll-snap-stop: normal;
   margin-bottom: clamp(22px, 6vh, 64px);
 }
 
-/* Add whitespace before the next chapter after section 2. */
 #c3 + section.chapter {
   padding-top: clamp(18px, 5vh, 56px);
 }
@@ -715,7 +708,6 @@ aside.chapter {
   text-align: left;
 }
 
-/* Cap. 1: ocupa al menos un viewport para que, al hacer snap, no se asome el cap. 3 */
 #c1.chapter--bleed-shell {
   min-height: 100dvh;
   box-sizing: border-box;
@@ -1172,7 +1164,6 @@ svg text { font-family: var(--font-ui); }
   line-height: 1.4;
 }
 
-/* Cap. 1 intro atlas only: igual ancho, título hasta 2 líneas, borde = color dominante */
 .tooltip.tooltip--film.tooltip--ch1 {
   box-sizing: border-box;
   width: min(160px, calc(100vw - 28px));
@@ -1564,8 +1555,6 @@ svg text { font-family: var(--font-ui); }
   justify-content: space-between;
 }
 
-/* ch.01 intro — same 12 lanes as timeline atlas; posters on swatch hover */
-/* Atlas 12 tiles: mismo ancho que el texto; 4×3 escritorio (~sketch); 3 y 2 columnas en vistas más estrechas */
 #c1 .intro-atlas.intro-ch01-grid.small-multiples {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -1671,7 +1660,6 @@ svg text { font-family: var(--font-ui); }
   cursor: pointer;
 }
 
-/* Anchored to the viewport so wheel / trackpad never scrolls it away with the page */
 .poster-analysis__panel {
   position: fixed;
   z-index: 1;
@@ -1787,18 +1775,15 @@ svg text { font-family: var(--font-ui); }
   -webkit-overflow-scrolling: touch;
 }
 
-/* --- Remake modal scrollytelling --- */
 .pa-scrolly-track {
   position: relative;
   width: 100%;
 }
 
-/* Fit posters to the modal body — tight chrome so they read large but never clip. */
 .poster-analysis .pa-scrolly-track {
   --pa-fit-max-h: min(980px, max(236px, calc(100dvh - 248px)));
 }
 
-/* Between old 340vh and the short 88vh: enough stages to read, not exhausting */
 .pa-scrolly-spacer {
   height: min(155vh, 1180px);
 }
@@ -1815,7 +1800,6 @@ svg text { font-family: var(--font-ui); }
   padding-top: 16px;
 }
 
-/* Final comparison stage sizes to its content (no huge empty band below). */
 .pa-scrolly-stages--final-layout .pa-stage--poster {
   position: absolute;
   inset: 0;
@@ -1828,7 +1812,6 @@ svg text { font-family: var(--font-ui); }
   z-index: 2;
 }
 
-/* Use panel height once the comparison is shown: distribute sections vertically (no slab of unused white below). */
 .pa-scrolly-stages.pa-scrolly-stages--final-layout {
   display: flex;
   flex-direction: column;
@@ -1858,10 +1841,6 @@ svg text { font-family: var(--font-ui); }
   gap: clamp(14px, 2.4vh, 28px);
 }
 
-/*
- * Modal: one horizontal row for every family size (2, 3, 4, … posters).
- * --pa-poster-count is set on .pa-scrolly-track in poster-analysis.js
- */
 .poster-analysis .pa-scrolly-track .pa-stage-grid {
   --pa-box-w: auto;
   grid-template-columns: repeat(var(--pa-poster-count, 1), minmax(0, 1fr));
@@ -1913,7 +1892,6 @@ svg text { font-family: var(--font-ui); }
 
 .pa-stage--poster { opacity: 1; position: relative; }
 
-/* Stage layout like the provided mockups: clean, centered columns. */
 .pa-stage-grid {
   --pa-box-w: clamp(260px, 24vw, 420px);
   display: grid;
@@ -1945,7 +1923,6 @@ svg text { font-family: var(--font-ui); }
   height: 100%;
 }
 
-/* 5×8 pixel grid should show cell borders like the mockup. */
 .pa-box--grid .pa-grid-58 {
   gap: 0;
 }
@@ -1954,7 +1931,6 @@ svg text { font-family: var(--font-ui); }
   outline-offset: -0.5px;
 }
 
-/* 4 tones: 2×2 blocks inside the poster box. */
 .pa-quad {
   width: 100%;
   height: 100%;
@@ -1969,7 +1945,6 @@ svg text { font-family: var(--font-ui); }
   background: #ddd;
 }
 
-/* Final stage: comparison block only (dominant strip bars removed). */
 .pa-final-wrap {
   display: flex;
   flex-direction: column;
@@ -1980,7 +1955,6 @@ svg text { font-family: var(--font-ui); }
   min-height: 0;
 }
 
-/* Reuse existing swatch grids inside fixed poster box */
 .pa-grid-58 {
   width: 100%;
   height: 100%;
@@ -2260,7 +2234,6 @@ svg text { font-family: var(--font-ui); }
   gap: 8px;
 }
 
-/* 3–4 poster dashboard: explicit columns so rows span full width (repeat(var(--n)) is flaky in WebKit). */
 .poster-analysis .pa-cmp-cards--multi {
   width: 100%;
   box-sizing: border-box;
@@ -2299,7 +2272,6 @@ svg text { font-family: var(--font-ui); }
   gap: clamp(14px, 2vh, 22px);
 }
 
-/* Split card: color block on top, metadata panel below (reference mockup). */
 .pa-cmp-card--split {
   display: flex;
   flex-direction: column;
@@ -2344,7 +2316,7 @@ svg text { font-family: var(--font-ui); }
   display: block;
   margin: 0 0 6px;
   font-family: var(--font-ui);
-  font-size: 0.75rem; /* match old name size */
+  font-size: 0.75rem; 
   font-weight: 700;
   letter-spacing: 0.01em;
   color: var(--ink);
@@ -2461,7 +2433,6 @@ svg text { font-family: var(--font-ui); }
   margin-bottom: 0;
 }
 
-/* Compact metrics + contrast only inside comparison strip */
 .pa-cmp-wrap .pa-diff-row__year,
 .pa-cmp-wrap .pa-diff-pct {
   font-size: 0.6875rem;
@@ -2685,7 +2656,6 @@ svg text { font-family: var(--font-ui); }
   box-shadow: inset 0 0 0 1px var(--rule-soft);
 }
 
-/* In the remake scrolly, the 5×8 grid must fill the poster box exactly. */
 .poster-analysis .pa-box--grid .pa-grid-58 {
   --pa-cell: auto;
   width: 100%;

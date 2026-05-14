@@ -70,7 +70,6 @@ const state = {
   rendered: new Set(),
 };
 
-/** Remake comparisons need at least two films in the family. */
 function familiesRemakeOnly(families) {
   return (families || []).filter((f) => (f.movies || []).length > 1);
 }
@@ -153,7 +152,6 @@ function forceStartAtTop() {
 forceStartAtTop();
 window.addEventListener("load", forceStartAtTop, { once: true });
 window.addEventListener("pageshow", (e) => {
-  /** Only cold loads or full reloads; skip BFCache restores so scroll position survives back navigation — and never clashes with modal close. */
   if (!e.persisted) forceStartAtTop();
 });
 
@@ -409,7 +407,6 @@ function buildMasthead() {
     )
   );
 
-  // Hue wheel lightness: move mouse up/down to brighten/darken.
   const mast = essay.querySelector(".masthead");
   const wheel = mast?.querySelector?.(".feel-blob");
   if (mast && wheel) {
@@ -460,9 +457,7 @@ function buildMasthead() {
         const maxPx = Math.min(34, r.width * 0.07);
         targetX = dx * maxPx;
         targetY = dy * maxPx * 0.75;
-        // Top = brighter, bottom = darker. Make it more noticeable.
         targetB = 1.35 - y01 * 0.75; // ~[0.60..1.35]
-        // Rotate wheel with mouse X.
         targetRot = x01 * 360;
         if (!raf) raf = requestAnimationFrame(tick);
       };
@@ -524,7 +519,6 @@ function buildChapters() {
   });
 }
 
-/* ---------------- data ---------------- */
 
 async function loadData() {
   try {
@@ -605,7 +599,6 @@ function resolveSearch(query) {
   document.getElementById("c10")?.scrollIntoView({ behavior: "smooth" });
 }
 
-/* ---------------- scroll reveal (Energy-style fade / lift) ---------------- */
 
 function setupRevealAnimations() {
   const prefersReduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -640,7 +633,6 @@ function setupRevealAnimations() {
   });
 }
 
-/* ---------------- lazy render ---------------- */
 
 function setupLazyRender() {
   const figures = document.querySelectorAll("[data-render]");

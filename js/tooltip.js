@@ -1,8 +1,3 @@
-/**
- * Single shared tooltip attached to #tooltip in index.html.
- * One DOM node for every hover across the whole site.
- */
-
 function getNode() {
   return document.getElementById("tooltip");
 }

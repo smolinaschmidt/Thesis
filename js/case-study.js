@@ -1,23 +1,5 @@
 import { el, clear, classifyColor, hexToRgb, posterUrl } from "./color.js";
 
-/**
- * Chapter 9 — Case study.
- * For each film in a remake family, render three real visual artifacts:
- *   · Poster           (image)
- *   · Poster palette   (10 × 5 grid of k-means dominant colours per region)
- *   · Trailer barcode  (1 vertical stripe per second, coloured by the most
- *                       repeated pixel of that second's frame)
- *
- * Media data lives in ./data/analisis/media_colors/<tmdbId>.json — only a
- * subset of films have been processed by `scripts/extract_media_colors.py`,
- * so we lazy-load per film and fall back to the dominantHex strip when
- * unavailable.
- */
-
-/**
- * Two consolidated JSON files hold every film's media analysis.
- * We fetch each one at most once and keep them in memory for lookups.
- */
 let postersPromise = null;
 let trailersPromise = null;
 
@@ -48,7 +30,6 @@ export async function loadMediaColors(tmdbId) {
   if (!posterGrid && !flatTimeline) return null;
   return {
     posterGrid: posterGrid || null,
-    // Re-expand flat [[R,G,B], ...] → [{second, color:[R,G,B]}, ...]
     trailerTimeline: flatTimeline
       ? flatTimeline.map((color, second) => ({ second, color }))
       : null,
@@ -87,8 +68,6 @@ function metricRow(label, value) {
   );
 }
 
-/* ---------- the three media columns ---------- */
-
 function renderPosterCol(movie) {
   const url = posterUrl(movie.posterPath);
   return el(
@@ -124,8 +103,6 @@ function renderPaletteCol(movie) {
         grid.append(el("span", { style: { background: rgbToHex(rgb) } }));
       });
     } else {
-      // Fallback: render the single dominantHex as one swatch so the column
-      // still carries meaning instead of being empty chrome.
       grid.classList.add("is-fallback");
       grid.append(
         el("span", {
@@ -174,7 +151,6 @@ function renderTrailerCol(movie) {
   return col;
 }
 
-/* ---------- one full row per film ---------- */
 
 function renderRow(movie, role) {
   if (!movie) {
@@ -221,7 +197,6 @@ function renderRow(movie, role) {
   return row;
 }
 
-/* ---------- main ---------- */
 
 export function renderCaseStudy(container, { families, selectedFilm }) {
   clear(container);

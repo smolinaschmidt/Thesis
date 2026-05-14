@@ -1,13 +1,5 @@
 """
 Generate cached analytics for frontend visual components.
-
-Inputs:
-  - data/analisis/movies_enriched.json (preferred)
-  - data/analisis/movies_with_families.json (fallback)
-
-Outputs:
-  - data/analisis/analytics.json
-  - data/analisis/families.json
 """
 
 from __future__ import annotations
@@ -212,8 +204,6 @@ def local_color_for_movie(
             if rgb:
                 return rgb, "poster_palette"
 
-    # Secondary: trailer frame average for a small set of manually
-    # annotated films (legacy).
     key = (title, year)
     color_file = LOCAL_COLOR_FILES.get(key)
     if color_file and color_file.exists():
@@ -225,10 +215,9 @@ def local_color_for_movie(
             bs = [frame["color"][2] for frame in frames]
             return (
                 [round(sum(rs) / len(rs)), round(sum(gs) / len(gs)), round(sum(bs) / len(bs))],
-                "trailer_sample",
+                "local_manual",
             )
 
-    # Last resort: deterministic seed so films without media still render.
     return deterministic_color(f"{title}-{year}"), "deterministic_seed"
 
 
@@ -332,7 +321,6 @@ def build() -> tuple[dict[str, Any], list[dict[str, Any]], dict[str, Any], dict[
             "familyTitle": (record.get("normalizedTitle") or record.get("normalized_title") or title).title(),
             "genres": genres,
             "posterPath": record.get("posterPath") or record.get("poster_path"),
-            "trailerKey": record.get("trailerKey") or record.get("trailer_key"),
             "overview": record.get("overview"),
             "dominantRgb": rgb,
             "dominantHex": "#{:02x}{:02x}{:02x}".format(*rgb),
@@ -378,7 +366,6 @@ def build() -> tuple[dict[str, Any], list[dict[str, Any]], dict[str, Any], dict[
         "genreCount": len(genres),
         "withTmdbId": sum(1 for movie in movies if movie["tmdbId"]),
         "withPoster": sum(1 for movie in movies if movie["posterPath"]),
-        "withTrailer": sum(1 for movie in movies if movie["trailerKey"]),
     }
 
     analytics = {

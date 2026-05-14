@@ -1,34 +1,22 @@
 """
-Extract visual color artifacts from poster and trailer assets.
+Extract visual color artifacts from movie posters.
 
-For each movie in data/analisis/movies_enriched.json:
+For each movie in data/analisis/movies_enriched.json (1000+ films):
   1) Download poster (from TMDB) and extract an 8×5 per-cell k-means palette grid.
-  2) Download a low-quality trailer (via yt-dlp) and extract a dominant
-     color for every second of video.
 
-Outputs (consolidated, written incrementally so interrupting a run
-never loses already-processed films):
+Outputs (written incrementally so interrupting a run never loses already-processed films):
   - data/analisis/poster_palettes.json    {tmdbId: 8×5 grid of [R,G,B]}
-  - data/analisis/trailer_timelines.json  {tmdbId: [[R,G,B], ...]} (index=sec)
   - data/poster/poster_<tmdb_id>.jpg      cached poster
-  - data/trailers/trailer_<tmdb_id>.mp4   cached trailer
 
 Usage:
-  # Everything, all movies (posters + trailers). Slow. Safe to resume.
+  # Extract posters for all movies. Safe to resume.
   python3 scripts/extract_media_colors.py
 
-  # Posters only — then regenerate analytics so dominantRgb uses poster_palette:
-  python3 scripts/extract_media_colors.py --skip-trailers
-  python3 scripts/generate_color_analytics.py
-
   # Only films missing a valid 8×5 grid (catch-up).
-  python3 scripts/extract_media_colors.py --skip-trailers --only-missing
+  python3 scripts/extract_media_colors.py --only-missing
 
   # Coverage report vs analytics.json
   python3 scripts/report_poster_palette_coverage.py
-
-  # Trailers only — re-uses posters from a previous run.
-  python3 scripts/extract_media_colors.py --skip-posters
 
   # Only a handful of films (useful for testing).
   python3 scripts/extract_media_colors.py --limit 20
@@ -44,7 +32,6 @@ from __future__ import annotations
 
 import argparse
 import json
-import subprocess
 import time
 from pathlib import Path
 from typing import Any
@@ -58,14 +45,11 @@ from sklearn.cluster import KMeans
 ROOT = Path(__file__).resolve().parent.parent
 ENRICHED_INPUT = ROOT / "data" / "analisis" / "movies_enriched.json"
 POSTER_PALETTES = ROOT / "data" / "analisis" / "poster_palettes.json"
-TRAILER_TIMELINES = ROOT / "data" / "analisis" / "trailer_timelines.json"
 POSTER_DIR = ROOT / "data" / "poster"
-TRAILER_DIR = ROOT / "data" / "trailers"
 
 FEATURED_FAMILIES = {"Carrie", "Great Gatsby", "Star Is Born", "Little Mermaid"}
 GRID_ROWS = 8
 GRID_COLS = 5
-# Older runs used 10 horizontal bands × 5 columns; the UI uses the first 8 rows.
 GRID_LEGACY_ROWS = 10
 
 
@@ -106,15 +90,6 @@ def poster_grid_valid(grid: Any) -> bool:
                 return False
     return True
 
-
-def trailer_timeline_valid(flat: Any) -> bool:
-    return isinstance(flat, list) and len(flat) > 0
-
-
-# -------------------------------------------------------------------
-# Loading
-# -------------------------------------------------------------------
-
 def load_movies() -> list[dict[str, Any]]:
     if not ENRICHED_INPUT.exists():
         raise FileNotFoundError(
@@ -131,9 +106,7 @@ def load_family_titles() -> dict[str, str]:
     return {str(f.get("familyId") or ""): str(f.get("familyTitle") or "") for f in payload}
 
 
-# -------------------------------------------------------------------
-# Colour extraction
-# -------------------------------------------------------------------
+# Color extraction
 
 def dominant_rgb_from_pixels(pixels: np.ndarray) -> list[int]:
     km = KMeans(n_clusters=1, n_init=1, max_iter=24, random_state=0)
@@ -141,41 +114,6 @@ def dominant_rgb_from_pixels(pixels: np.ndarray) -> list[int]:
     centroid = km.cluster_centers_[0]
     # Input expected as BGR from OpenCV -> convert to RGB
     return [int(centroid[2]), int(centroid[1]), int(centroid[0])]
-
-
-def dominant_repeated_pixel_rgb(
-    frame_bgr: np.ndarray,
-    quantization_step: int = 16,
-    dark_threshold: int = 28,
-) -> list[int]:
-    """
-    Perceptually dominant color of a compressed frame.
-
-    Trailers contain heavy letterboxing and fade-to-black cuts, so the naive
-    "most repeated pixel" is almost always black. We:
-      1. Quantize channels to stabilize bucket counts.
-      2. First find the most repeated *non-dark* colour (luma above
-         `dark_threshold`). That surfaces the scene tone even with letterbox.
-      3. Only fall back to the darkest bucket if <1% of pixels are bright.
-    """
-    if frame_bgr.size == 0:
-        return [0, 0, 0]
-
-    pixels = frame_bgr.reshape(-1, 3).astype(np.int16)
-    quantized = (pixels // quantization_step) * quantization_step
-
-    luma = 0.299 * quantized[:, 2] + 0.587 * quantized[:, 1] + 0.114 * quantized[:, 0]
-    bright_mask = luma > dark_threshold
-
-    if bright_mask.mean() > 0.01:
-        bright_pixels = quantized[bright_mask]
-        uniques, counts = np.unique(bright_pixels, axis=0, return_counts=True)
-    else:
-        uniques, counts = np.unique(quantized, axis=0, return_counts=True)
-
-    top_idx = int(np.argmax(counts))
-    bgr = uniques[top_idx]
-    return [int(bgr[2]), int(bgr[1]), int(bgr[0])]
 
 
 def _poster_bgr(poster_path: Path) -> np.ndarray | None:
@@ -215,38 +153,7 @@ def extract_poster_grid(poster_path: Path) -> list[list[list[int]]]:
         grid.append(row)
     return grid
 
-
-def extract_trailer_timeline(
-    video_path: Path,
-    sample_seconds: float = 1.0,
-) -> list[dict[str, Any]]:
-    capture = cv2.VideoCapture(str(video_path))
-    if not capture.isOpened():
-        return []
-
-    fps = capture.get(cv2.CAP_PROP_FPS) or 24.0
-    total_frames = int(capture.get(cv2.CAP_PROP_FRAME_COUNT) or 0)
-    duration = total_frames / fps if fps > 0 else 0
-    samples = max(1, int(duration // sample_seconds))
-
-    timeline: list[dict[str, Any]] = []
-    for sec in range(samples + 1):
-        frame_number = int(sec * sample_seconds * fps)
-        capture.set(cv2.CAP_PROP_POS_FRAMES, frame_number)
-        ok, frame = capture.read()
-        if not ok:
-            continue
-        down = cv2.resize(frame, (96, 54))
-        color = dominant_repeated_pixel_rgb(down, quantization_step=16)
-        timeline.append({"second": sec, "color": color})
-
-    capture.release()
-    return timeline
-
-
-# -------------------------------------------------------------------
 # Downloads
-# -------------------------------------------------------------------
 
 def download_poster(urls: list[str], output_path: Path, *, force: bool = False) -> bool:
     """
@@ -289,68 +196,7 @@ def download_poster(urls: list[str], output_path: Path, *, force: bool = False) 
         and _poster_bgr(output_path) is not None
     )
 
-
-def download_trailer(trailer_key: str, output_path: Path) -> bool:
-    """
-    Download a trailer at the lowest reasonable quality.
-
-    We only analyse a downsampled 96×54 frame per second, so audio and
-    high resolutions are pure overhead. We prefer video-only 144p,
-    then fall back step by step. A 20 MB cap prevents surprise 1080p
-    downloads when 144p isn't offered.
-
-    YouTube has anti-bot checks that block unauthenticated yt-dlp for
-    many videos ("Sign in to confirm you're not a bot"). We pass cookies
-    from the local browser (Chrome by default). Override with env var
-    YT_DLP_COOKIES_BROWSER=safari|firefox|brave|edge if you prefer.
-    """
-    import os
-
-    if output_path.exists() and output_path.stat().st_size > 1024:
-        return True
-    youtube_url = f"https://www.youtube.com/watch?v={trailer_key}"
-    fmt = (
-        "worstvideo[height<=144][ext=mp4]"
-        "/worstvideo[height<=240][ext=mp4]"
-        "/worstvideo[ext=mp4]"
-        "/worst[height<=144][ext=mp4]"
-        "/worst[height<=240][ext=mp4]"
-        "/worst[ext=mp4]"
-        "/worst"
-    )
-    cookies_browser = os.environ.get("YT_DLP_COOKIES_BROWSER", "chrome")
-    cmd = [
-        "yt-dlp",
-        "-f", fmt,
-        "--format-sort", "+height,+filesize,+tbr",
-        "--max-filesize", "20M",
-        "--cookies-from-browser", cookies_browser,
-        # Needed for age-gated / JS-challenged videos: yt-dlp downloads a
-        # challenge solver from GitHub at first use and caches it.
-        "--remote-components", "ejs:github",
-        "--no-playlist",
-        "--no-warnings",
-        "--quiet",
-        "--no-progress",
-        "-o", str(output_path),
-        youtube_url,
-    ]
-    try:
-        # Shorter timeout (60s) so one stuck video doesn't stall the run.
-        proc = subprocess.run(cmd, capture_output=True, text=True, timeout=60)
-    except subprocess.TimeoutExpired:
-        print("    trailer download timed out (60s)")
-        return False
-    if proc.returncode != 0:
-        msg = (proc.stderr or proc.stdout or "").strip().splitlines()[-1:] or ["?"]
-        print(f"    trailer download failed: {msg[0][:120]}")
-        return False
-    return output_path.exists() and output_path.stat().st_size > 1024
-
-
-# -------------------------------------------------------------------
 # Per-film pipeline
-# -------------------------------------------------------------------
 
 def _load_json(path: Path) -> dict[str, Any]:
     if not path.exists():
@@ -366,34 +212,10 @@ def _write_json(path: Path, payload: dict[str, Any]) -> None:
     path.write_text(json.dumps(payload, separators=(",", ":")), encoding="utf-8")
 
 
-def _timeline_to_flat(timeline: list[dict[str, Any]]) -> list[list[int]]:
-    if not timeline:
-        return []
-    max_sec = max(int(entry.get("second", 0)) for entry in timeline)
-    colors: list[list[int] | None] = [None] * (max_sec + 1)
-    for entry in timeline:
-        sec = int(entry.get("second", 0))
-        color = entry.get("color")
-        if color and 0 <= sec <= max_sec:
-            colors[sec] = [int(color[0]), int(color[1]), int(color[2])]
-    last = [0, 0, 0]
-    out: list[list[int]] = []
-    for c in colors:
-        if c is None:
-            out.append(last)
-        else:
-            last = c
-            out.append(c)
-    return out
-
-
 def process_movie(
     movie: dict[str, Any],
     *,
     poster_store: dict[str, Any],
-    trailer_store: dict[str, Any],
-    skip_posters: bool,
-    skip_trailers: bool,
     force: bool,
     only_missing: bool,
 ) -> bool:
@@ -407,43 +229,22 @@ def process_movie(
 
     # --- Poster ---
     poster_file = POSTER_DIR / f"poster_{tmdb_id}.jpg"
-    if not skip_posters:
-        poster_ref = movie.get("posterPath")
-        if poster_ref:
-            existing = poster_store.get(key)
-            skip_poster = only_missing and not force and poster_grid_valid(existing)
-            if not skip_poster and (force or not poster_grid_valid(existing)):
-                urls = tmdb_poster_urls(str(poster_ref))
-                download_poster(urls, poster_file, force=force)
-                if poster_file.exists() and _poster_bgr(poster_file) is not None:
-                    grid = extract_poster_grid(poster_file)
-                    if poster_grid_valid(grid):
-                        poster_store[key] = grid
-                        changed = True
-                    else:
-                        print("    poster: could not produce a valid 8×5 grid")
-
-    # --- Trailer ---
-    trailer_file = TRAILER_DIR / f"trailer_{tmdb_id}.mp4"
-    if not skip_trailers:
-        trailer_key = movie.get("trailerKey")
-        if trailer_key:
-            existing_t = trailer_store.get(key)
-            skip_trailer = only_missing and not force and trailer_timeline_valid(existing_t)
-            if not skip_trailer and (force or not trailer_timeline_valid(existing_t)):
-                if download_trailer(str(trailer_key), trailer_file):
-                    timeline = extract_trailer_timeline(trailer_file)
-                    flat = _timeline_to_flat(timeline)
-                    if flat:
-                        trailer_store[key] = flat
-                        changed = True
+    poster_ref = movie.get("posterPath")
+    if poster_ref:
+        existing = poster_store.get(key)
+        skip_poster = only_missing and not force and poster_grid_valid(existing)
+        if not skip_poster and (force or not poster_grid_valid(existing)):
+            urls = tmdb_poster_urls(str(poster_ref))
+            download_poster(urls, poster_file, force=force)
+            if poster_file.exists() and _poster_bgr(poster_file) is not None:
+                grid = extract_poster_grid(poster_file)
+                if poster_grid_valid(grid):
+                    poster_store[key] = grid
+                    changed = True
+                else:
+                    print("    poster: could not produce a valid 8×5 grid")
 
     return changed
-
-
-# -------------------------------------------------------------------
-# main
-# -------------------------------------------------------------------
 
 def main() -> None:
     parser = argparse.ArgumentParser()
@@ -453,8 +254,6 @@ def main() -> None:
         action="store_true",
         help="Process only the thesis families: Carrie, Gatsby, Star Is Born, Little Mermaid.",
     )
-    parser.add_argument("--skip-posters", action="store_true", help="Do not download/analyse posters.")
-    parser.add_argument("--skip-trailers", action="store_true", help="Do not download/analyse trailers.")
     parser.add_argument(
         "--force",
         action="store_true",
@@ -463,7 +262,7 @@ def main() -> None:
     parser.add_argument(
         "--only-missing",
         action="store_true",
-        help="Skip poster rows that already have a valid 8×5 grid, and trailer rows with a non-empty timeline.",
+        help="Skip films that already have a valid 8×5 grid.",
     )
     args = parser.parse_args()
 
@@ -480,14 +279,10 @@ def main() -> None:
         movies = movies[: args.limit]
 
     POSTER_DIR.mkdir(parents=True, exist_ok=True)
-    TRAILER_DIR.mkdir(parents=True, exist_ok=True)
     POSTER_PALETTES.parent.mkdir(parents=True, exist_ok=True)
 
     poster_store = _load_json(POSTER_PALETTES)
-    trailer_store = _load_json(TRAILER_TIMELINES)
 
-    # When --force, drop in-memory poster rows that are not a valid 8×5 grid so
-    # they get re-extracted without touching films outside the current filter.
     if args.force:
         stale = [tid for tid, grid in poster_store.items() if not poster_grid_valid(grid)]
         for tid in stale:
@@ -509,20 +304,14 @@ def main() -> None:
             changed = process_movie(
                 movie,
                 poster_store=poster_store,
-                trailer_store=trailer_store,
-                skip_posters=args.skip_posters,
-                skip_trailers=args.skip_trailers,
                 force=args.force,
                 only_missing=args.only_missing,
             )
             processed += 1
             if changed:
                 changed_total += 1
-            # Flush consolidated JSONs every 20 films so partial runs
-            # are still useful and the frontend can be refreshed.
             if idx % 20 == 0 and changed_total:
                 _write_json(POSTER_PALETTES, poster_store)
-                _write_json(TRAILER_TIMELINES, trailer_store)
         except KeyboardInterrupt:
             print("\nInterrupted — flushing consolidated JSONs and exiting.")
             break
@@ -530,13 +319,7 @@ def main() -> None:
             failed += 1
             print(f"    ERROR: {exc}")
 
-    # Only write the file whose data we actually touched. Avoids clobbering
-    # poster_palettes.json from a --skip-posters run (or vice versa) when
-    # another process was writing it in parallel earlier in the session.
-    if not args.skip_posters:
-        _write_json(POSTER_PALETTES, poster_store)
-    if not args.skip_trailers:
-        _write_json(TRAILER_TIMELINES, trailer_store)
+    _write_json(POSTER_PALETTES, poster_store)
 
     elapsed = time.time() - start
     print(
@@ -544,7 +327,6 @@ def main() -> None:
         f"total={total} elapsed={elapsed:.1f}s ({elapsed / max(1, total):.1f}s/film)"
     )
     print(f"  posters:  {len(poster_store)} films in {POSTER_PALETTES.relative_to(ROOT)}")
-    print(f"  trailers: {len(trailer_store)} films in {TRAILER_TIMELINES.relative_to(ROOT)}")
 
 
 if __name__ == "__main__":

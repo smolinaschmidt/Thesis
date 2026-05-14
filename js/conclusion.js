@@ -1,19 +1,11 @@
 import { el, clear } from "./color.js";
 
-/**
- * Section 10 — conclusion + small multiples.
- * Each remake family reduced to a colored strip: one swatch per film,
- * in chronological order. Click a cell to load it in the case study.
- */
 export function renderConclusion(
   container,
   { analytics, families, onSelectFamily } = {}
 ) {
   clear(container);
 
-  // (Removed the "500 families · 1025 films" summary line per editorial request.)
-
-  // Keep genre buckets consistent with the "Color by genre" chart.
   const FALLBACK_GENRE_BUCKET = "Drama";
   const SCROLL_GENRE_ORDER = [
     "Drama",
@@ -137,7 +129,7 @@ export function renderConclusion(
   const state = {
     query: "",
     genre: "",
-    decadeIdx: 0, // 0 = All, else decadeOptions[idx-1]
+    decadeIdx: 0, 
   };
 
   const controls = el(
